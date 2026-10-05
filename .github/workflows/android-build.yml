@@ -3,9 +3,12 @@ name: QRU Android Build
 on:
   workflow_dispatch:
   push:
-    paths: ['android/**', '.github/workflows/android-build.yml']
+    paths:
+      - 'android/**'
+      - '.github/workflows/android-build.yml'
   pull_request:
-    paths: ['android/**']
+    paths:
+      - 'android/**'
 
 jobs:
   debug-apk:
@@ -13,6 +16,7 @@ jobs:
     timeout-minutes: 25
     permissions:
       contents: read
+
     steps:
       - uses: actions/checkout@v4
 
@@ -21,7 +25,7 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-            - uses: android-actions/setup-android@v3
+      - uses: android-actions/setup-android@v3
         with:
           packages: 'platform-tools'
 
@@ -39,8 +43,7 @@ jobs:
         run: gradle testDebugUnitTest assembleDebug --stacktrace --warning-mode all
 
       - name: Verify and register APK
-        run: |
-          python scripts/register_apk.py android/app/build/outputs/apk/debug/app-debug.apk
+        run: python scripts/register_apk.py android/app/build/outputs/apk/debug/app-debug.apk
 
       - uses: actions/upload-artifact@v4
         with:
