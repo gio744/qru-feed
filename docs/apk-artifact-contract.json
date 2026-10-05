@@ -1,0 +1,13 @@
+{
+  "artifact": "app-debug.apk",
+  "required_compilation_task": "assembleDebug",
+  "required_precondition": "testDebugUnitTest success",
+  "required_integrity": [
+    "non-empty file",
+    "ZIP/APK integrity check",
+    "SHA-256 sidecar"
+  ],
+  "success_path": "android/app/build/outputs/apk/debug/app-debug.apk",
+  "hash_path": "android/app/build/outputs/apk/debug/app-debug.apk.sha256",
+  "rule": "Do not label any file as a QRU APK unless these conditions are satisfied."
+}

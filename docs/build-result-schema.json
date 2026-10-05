@@ -1,0 +1,30 @@
+{
+  "$schema": "QRU-build-result-v1",
+  "status": [
+    "SUCCESS",
+    "FAILURE"
+  ],
+  "success_requires": [
+    "testDebugUnitTest PASS",
+    "assembleDebug PASS",
+    "APK non-empty",
+    "APK ZIP integrity PASS",
+    "SHA-256 generated"
+  ],
+  "success_outputs": [
+    "app-debug.apk",
+    "app-debug.apk.sha256",
+    "app-debug.apk.record.json"
+  ],
+  "failure_outputs": [
+    "compiler log",
+    "failure classification",
+    "diagnostic artifact"
+  ],
+  "device_test_states": [
+    "NOT_YET_DEVICE_TESTED",
+    "PASS",
+    "FAIL",
+    "BLOCKED"
+  ]
+}

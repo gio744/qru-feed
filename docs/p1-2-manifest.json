@@ -1,0 +1,15 @@
+{
+  "milestone": "P1.2",
+  "implemented": [
+    "canonical package hashing SHA-256",
+    "development HMAC signature verification",
+    "structural release gate",
+    "release gate persistence",
+    "transactional activation",
+    "single ACTIVE invariant",
+    "future-effective activation block",
+    "unit tests"
+  ],
+  "security_boundary": "HMAC is development-only; asymmetric package signing remains mandatory before production.",
+  "next": "P1.3 Ed25519 + RBAC + regression/impact gates + PostgreSQL integration tests"
+}

@@ -1,0 +1,6 @@
+<resources>
+    <!-- Replace only through controlled build configuration. -->
+    <string name="qru_legal_api_base_url">https://api.example.invalid/</string>
+    <!-- X.509 SubjectPublicKeyInfo, Base64. Placeholder deliberately invalid. -->
+    <string name="qru_legal_public_key_x509_b64">REPLACE_WITH_PRODUCTION_ED25519_PUBLIC_KEY</string>
+</resources>

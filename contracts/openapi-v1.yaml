@@ -1,0 +1,80 @@
+openapi: 3.1.0
+info:
+  title: QRU Trânsito API
+  version: 1.0.0-p0
+servers:
+  - url: https://api.example.invalid/v1
+paths:
+  /health:
+    get:
+      operationId: health
+      responses:
+        '200': {description: Healthy}
+  /legal/releases/current:
+    get:
+      operationId: getCurrentLegalRelease
+      responses:
+        '200':
+          description: Current authorized legal release
+  /search:
+    get:
+      operationId: unifiedSearch
+      parameters:
+        - {name: q, in: query, required: true, schema: {type: string}}
+        - {name: jurisdiction, in: query, required: false, schema: {type: string}}
+      responses:
+        '200': {description: Hypotheses and bound operational content}
+  /cases:
+    post:
+      operationId: createCase
+      responses:
+        '201': {description: Case created}
+  /cases/{caseId}:
+    get:
+      operationId: getCase
+      parameters:
+        - {name: caseId, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '200': {description: Case with accepted HEAD}
+  /cases/{caseId}/revisions:
+    post:
+      operationId: createCaseRevision
+      parameters:
+        - {name: caseId, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '201': {description: Immutable revision created}
+        '409': {description: Revision conflict}
+  /cases/{caseId}/resolve-conflict:
+    post:
+      operationId: resolveCaseConflict
+      parameters:
+        - {name: caseId, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '200': {description: Explicit merge revision created}
+  /operations:
+    post:
+      operationId: createProtectedOperation
+      parameters:
+        - {name: Idempotency-Key, in: header, required: true, schema: {type: string}}
+      responses:
+        '200': {description: Existing idempotent result}
+        '201': {description: Operation committed}
+        '409': {description: Key/payload conflict}
+  /operations/by-idempotency-key/{key}:
+    get:
+      operationId: recoverOperation
+      parameters:
+        - {name: key, in: path, required: true, schema: {type: string}}
+      responses:
+        '200': {description: Authoritative operation status}
+        '404': {description: Not found}
+  /admin/releases:
+    post:
+      operationId: createLegalRelease
+      responses:
+        '201': {description: Release candidate created}
+components:
+  securitySchemes:
+    bearerAuth: {type: http, scheme: bearer, bearerFormat: JWT}
+security:
+  - bearerAuth: []

@@ -1,0 +1,8 @@
+{
+  "java_found": true,
+  "gradle_cli_found": false,
+  "android_sdk_detected": false,
+  "gradle_wrapper_present": false,
+  "result": "SOURCE_AUDIT_ONLY",
+  "blocking_reason": "This runtime has Java but no Android SDK and no Gradle CLI/wrapper from the inherited scaffold, so an APK build cannot be truthfully claimed here."
+}

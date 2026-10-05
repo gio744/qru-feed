@@ -1,0 +1,25 @@
+{
+  "milestone": "P0.1",
+  "status": "PRODUCTION_SCAFFOLD_CREATED",
+  "android_modules": [
+    "app",
+    "core/domain",
+    "core/data",
+    "core/database",
+    "core/network",
+    "feature/search",
+    "feature/occurrence",
+    "feature/legal",
+    "feature/settings"
+  ],
+  "backend_modules": [
+    "auth",
+    "legal",
+    "cases",
+    "operations",
+    "admin"
+  ],
+  "database_migration": "database/migrations/001_initial_schema.sql",
+  "api_contract": "contracts/openapi-v1.yaml",
+  "next": "P1.1 executable backend + PostgreSQL migrations + health/auth/legal release endpoint"
+}

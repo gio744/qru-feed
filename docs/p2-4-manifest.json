@@ -1,0 +1,30 @@
+{
+  "milestone": "P2.4",
+  "implemented": [
+    "Retrofit legal release API",
+    "OkHttp HTTPS-only factory",
+    "active release manifest DTO",
+    "exact package byte download",
+    "persistent private-app staging",
+    "staging reread before verification",
+    "Android public-key resource contract",
+    "API endpoint resource contract",
+    "WorkManager source wired to HTTPS implementation",
+    "build-readiness audit"
+  ],
+  "security": [
+    "NetworkFactory rejects non-HTTPS base URL",
+    "signature and SHA-256 still verified locally after download",
+    "staging does not equal activation",
+    "production public key placeholder intentionally invalid until provisioned"
+  ],
+  "build_validation": {
+    "java_found": true,
+    "gradle_cli_found": false,
+    "android_sdk_detected": false,
+    "gradle_wrapper_present": false,
+    "result": "SOURCE_AUDIT_ONLY",
+    "blocking_reason": "This runtime has Java but no Android SDK and no Gradle CLI/wrapper from the inherited scaffold, so an APK build cannot be truthfully claimed here."
+  },
+  "next": "P2.5 create complete Gradle wrapper/project build files, replace destructive Room migration, add package API backend endpoint/byte-serving contract, then compile first debug APK in an Android-capable build environment"
+}

@@ -1,0 +1,19 @@
+{
+  "milestone": "P2.2",
+  "status": "ROOM_SEARCH_AND_OFFLINE_INSTALLER",
+  "implemented": [
+    "Repository + UseCase + ViewModel contract",
+    "Room search",
+    "local release registry",
+    "SHA-256 validation",
+    "structural validation",
+    "transactional active-package switch",
+    "technical empty bootstrap package"
+  ],
+  "guardrails": [
+    "no substantive legal content hardcoded",
+    "search/narrative is not confirmed fact",
+    "invalid package cannot replace active base"
+  ],
+  "next": "P2.3 Ed25519 on-device verification + staging + WorkManager + last-known-good"
+}

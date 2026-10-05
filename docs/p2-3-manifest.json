@@ -1,0 +1,23 @@
+{
+  "milestone": "P2.3",
+  "status": "SIGNED_OFFLINE_UPDATE_PIPELINE",
+  "implemented": [
+    "Android Ed25519 verifier using public key",
+    "staged legal package model",
+    "fingerprint + signature gates before activation",
+    "transactional installer delegation",
+    "last-known-good registry",
+    "WorkManager periodic legal update worker",
+    "network constraint and exponential backoff",
+    "unique periodic work",
+    "safe failure policy for invalid packages"
+  ],
+  "security_notes": [
+    "private signing key is never required on device",
+    "download success is not activation",
+    "signature/fingerprint/structure failures do not replace active content",
+    "network source is intentionally not hardwired yet"
+  ],
+  "known_gap": "Public key injection and HTTPS package-source implementation are P2.4; APK build is not claimed.",
+  "next": "P2.4 HTTPS API client + release manifest download + public-key resource/config + package staging persistence + Android build validation"
+}

@@ -1,0 +1,18 @@
+{
+  "milestone": "P2.8",
+  "status": "EXTERNAL_BUILD_EXECUTION_READY",
+  "source_validation_passed": true,
+  "implemented": [
+    "CI installs Android SDK 35",
+    "Gradle 8.9 + Java 17",
+    "unit tests and assembleDebug in one gate",
+    "APK non-empty verification",
+    "APK ZIP integrity verification",
+    "SHA-256 sidecar",
+    "failure diagnostics artifact",
+    "success-only APK artifact",
+    "SDK-independent project validator"
+  ],
+  "current_runtime_apk": false,
+  "next": "P2.9 consume first CI compiler/build result: if failure, apply exact fixes; if success, register APK hash/build metadata and begin device smoke-test checklist."
+}

@@ -1,0 +1,17 @@
+{
+  "milestone": "P2.9",
+  "status": "BUILD_EVIDENCE_AND_DEVICE_TEST_GATE_READY",
+  "implemented": [
+    "APK registration script",
+    "APK ZIP/manifest integrity validation",
+    "SHA-256 record",
+    "build failure classifier",
+    "device smoke-test checklist",
+    "formal build-result schema",
+    "CI success record artifact",
+    "CI failure classification artifact"
+  ],
+  "apk_available_now": false,
+  "reason": "No successful Android CI/local assembleDebug result has been supplied or executed in this runtime.",
+  "next": "P2.10: on first real CI run, consume SUCCESS artifact and begin device test, or consume FAILURE diagnostics and apply compiler-specific fixes."
+}

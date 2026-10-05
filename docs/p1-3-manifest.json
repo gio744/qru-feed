@@ -1,0 +1,18 @@
+{
+  "milestone": "P1.3",
+  "implemented": [
+    "Ed25519 package verification",
+    "public-key-only distributor verification",
+    "RBAC dependency from database roles",
+    "EDITOR/ADMIN candidate creation",
+    "REVIEWER/ADMIN impact+regression submission",
+    "ADMIN-only activation",
+    "impact gate",
+    "critical regression gate",
+    "Ed25519 tamper unit test",
+    "PostgreSQL integration-test harness"
+  ],
+  "important_limit": "Integration endpoint scenarios are scaffolded but not executed in this environment; P1.4 will containerize CI tests.",
+  "private_key_rule": "Private release signing key must not be stored in the distributor API repository or runtime.",
+  "next": "P1.4 containerized CI integration tests + release dossier/audit events + role bootstrap/admin provisioning"
+}

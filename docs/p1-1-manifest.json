@@ -1,0 +1,25 @@
+{
+  "milestone": "P1.1",
+  "status": "EXECUTABLE_BACKEND_SCAFFOLD",
+  "runtime": {
+    "api": "FastAPI/Python",
+    "database": "PostgreSQL 16",
+    "local_orchestration": "Docker Compose"
+  },
+  "implemented": [
+    "migration runner",
+    "health endpoint",
+    "development token endpoint",
+    "authenticated current legal release endpoint",
+    "technical bootstrap release"
+  ],
+  "not_yet_production_ready": [
+    "production identity provider",
+    "TLS/reverse proxy",
+    "secrets manager",
+    "signed legal packages",
+    "automated tests",
+    "deployment infrastructure"
+  ],
+  "next": "P1.2 release publication transaction + automated tests + package fingerprint/signature gate"
+}

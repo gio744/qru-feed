@@ -1,0 +1,14 @@
+{
+  "missing": [],
+  "checks": {
+    "required_files": true,
+    "application_class": true,
+    "launcher_activity": true,
+    "record_audio_permission": true,
+    "internet_permission": true,
+    "namespace": true,
+    "compile_sdk_35": true,
+    "min_sdk_28": true
+  },
+  "passed": true
+}

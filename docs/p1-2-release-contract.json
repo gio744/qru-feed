@@ -1,0 +1,21 @@
+{
+  "release_states": [
+    "CANDIDATE",
+    "REJECTED",
+    "ACTIVE",
+    "SUPERSEDED"
+  ],
+  "gates": [
+    "SIGNATURE",
+    "STRUCTURE"
+  ],
+  "activation_invariants": [
+    "candidate only",
+    "all recorded gates pass",
+    "effective_from is not future",
+    "activation and superseding prior ACTIVE happen in one database transaction",
+    "partial activation is forbidden"
+  ],
+  "signature_note": "P1.2 uses HMAC-SHA256 as executable development gate; production must migrate to asymmetric signing with protected private key.",
+  "next": "P1.3 add asymmetric Ed25519 signing, release regression/impact gates, role authorization, and integration tests against PostgreSQL"
+}

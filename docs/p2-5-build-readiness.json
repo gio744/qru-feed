@@ -1,0 +1,12 @@
+{
+  "milestone": "P2.5",
+  "gradle_distribution_pinned": "8.9",
+  "wrapper_properties": true,
+  "wrapper_jar_present": false,
+  "room_destructive_fallback_removed": true,
+  "room_migration_1_2": true,
+  "exact_byte_backend_endpoint": "/legal/releases/current/package",
+  "canonicalization": "JSON UTF-8 sorted keys compact separators ensure_ascii=false",
+  "apk_compiled": false,
+  "reason": "No Android SDK and no trusted gradle-wrapper.jar are available in this execution runtime. The wrapper JAR was not fabricated or downloaded."
+}

@@ -1,0 +1,17 @@
+{
+  "milestone": "P2.6",
+  "implemented": [
+    "clean Android Gradle build files",
+    "Java 17/Gradle 8.9/API35 build contract",
+    "GitHub Actions Android SDK setup",
+    "unit-test-before-build gate",
+    "debug APK build task",
+    "APK SHA-256 generation",
+    "artifact upload",
+    "local build script",
+    "BouncyCastle Ed25519 provider for Android compatibility",
+    "static required-file audit"
+  ],
+  "current_result": "BUILD_PIPELINE_READY_NOT_EXECUTED_HERE",
+  "next": "P2.7 compile against CI/build environment, fix any compiler errors, then preserve the first successful app-debug.apk + SHA-256 as installable test artifact"
+}

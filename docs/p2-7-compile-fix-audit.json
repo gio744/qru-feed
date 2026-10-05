@@ -1,0 +1,24 @@
+{
+  "milestone": "P2.7",
+  "compile_fix": [
+    "Restored MainActivity",
+    "Restored Compose QRU shell",
+    "Restored QRU theme",
+    "Added SearchViewModelFactory"
+  ],
+  "required_files_missing": [],
+  "static_source_gate_passed": true,
+  "environment": {
+    "java": "OpenJDK 21 detected",
+    "gradle_cli": false,
+    "android_home": false,
+    "sdkmanager": false
+  },
+  "apk_compiled": false,
+  "reason": "The active runtime has no Android SDK and no Gradle executable; assembleDebug cannot be executed locally.",
+  "ci_path": ".github/workflows/android-build.yml",
+  "expected_success_artifacts": [
+    "android/app/build/outputs/apk/debug/app-debug.apk",
+    "android/app/build/outputs/apk/debug/app-debug.apk.sha256"
+  ]
+}

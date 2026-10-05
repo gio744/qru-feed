@@ -1,0 +1,6 @@
+{
+  "milestone": "P2.7",
+  "status": "COMPILE_FIX_SOURCE_GATE_PASSED_BUILD_ENV_REQUIRED",
+  "important_finding": "The inherited P2.6 tree was missing MainActivity/QruApp/theme after an earlier environment reconstruction; P2.7 restores them.",
+  "next": "P2.8 run the existing CI workflow in a real Android build environment; fix compiler output if any; preserve first successful APK + SHA-256."
+}

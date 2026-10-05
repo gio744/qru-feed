@@ -1,0 +1,16 @@
+{
+  "milestone": "P1.4",
+  "implemented": [
+    "release dossier snapshot per activation attempt",
+    "blocked activation dossier persistence",
+    "append-only audit event chain with previous_hash/event_hash",
+    "release candidate and activation audit events",
+    "PostgreSQL test Docker Compose",
+    "GitHub Actions CI workflow",
+    "audit-chain unit test",
+    "dossier read endpoint"
+  ],
+  "integrity_note": "Audit hash chain is tamper-evident application logic, not an external trusted timestamp/signature system.",
+  "execution_note": "CI/container files are generated; this environment did not run Docker, so container integration success is not claimed.",
+  "next": "P2.1 Android native shell: Compose navigation, QRU visual system, unified search screen, mic contract, Room database bootstrap"
+}

@@ -1,0 +1,26 @@
+services:
+  testdb:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: qru_test
+      POSTGRES_USER: qru
+      POSTGRES_PASSWORD: qru
+    healthcheck:
+      test: ["CMD-SHELL","pg_isready -U qru -d qru_test"]
+      interval: 2s
+      timeout: 2s
+      retries: 20
+  tests:
+    image: python:3.12-slim
+    working_dir: /workspace/backend
+    volumes:
+      - .:/workspace
+    environment:
+      QRU_DATABASE_URL: postgresql://qru:qru@testdb:5432/qru_test
+      QRU_ENV: test
+      QRU_JWT_SECRET: test-secret
+      QRU_RUN_INTEGRATION: "1"
+    command: sh -c "pip install -r requirements.txt && python migrate.py && pytest -q"
+    depends_on:
+      testdb:
+        condition: service_healthy

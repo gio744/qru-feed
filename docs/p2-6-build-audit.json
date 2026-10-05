@@ -1,0 +1,19 @@
+{
+  "milestone": "P2.6",
+  "required_source_files_missing": [
+    "android/app/src/main/java/br/com/qru/transito/MainActivity.kt"
+  ],
+  "static_source_gate_passed": false,
+  "ci_android_sdk": "API 35",
+  "ci_java": "Temurin 17",
+  "ci_gradle": "8.9",
+  "ci_tasks": [
+    "testDebugUnitTest",
+    "assembleDebug",
+    "sha256sum APK"
+  ],
+  "artifact_name": "qru-transito-debug-apk",
+  "apk_compiled_in_current_runtime": false,
+  "reason": "Current execution runtime still lacks Android SDK/Gradle; compilation is delegated to the reproducible CI workflow.",
+  "truth_rule": "Only a successful CI/local Android build may produce an artifact called APK."
+}
