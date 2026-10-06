@@ -20,10 +20,10 @@ def current_package_bytes():
     if not row:
         raise HTTPException(404,"No active legal release")
     payload=row[0]
-        payload=row[0]
     if payload is None:
         raise HTTPException(404, "No published legal package")
-        raise HTTPException(500,"Stored release version does not match signed package")
+    if payload.get("content_version") != row[3]:
+        raise HTTPException(500, "Stored release version does not match signed package")
     # IMPORTANT: production signing must sign the same canonical byte representation served here.
     raw=canonical_bytes(payload)
     actual=hashlib.sha256(raw).hexdigest()
