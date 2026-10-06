@@ -1,6 +1,6 @@
 <resources>
     <!-- Replace only through controlled build configuration. -->
-    <string name="qru_legal_api_base_url">https://api.example.invalid/</string>
+        <string name="qru_legal_api_base_url">https://qru-feed.onrender.com/</string>
     <!-- X.509 SubjectPublicKeyInfo, Base64. Placeholder deliberately invalid. -->
-    <string name="qru_legal_public_key_x509_b64">REPLACE_WITH_PRODUCTION_ED25519_PUBLIC_KEY</string>
+      <string name="qru_legal_public_key_x509_b64">MCowBQYDK2VwAyEAb1yhybH2U31uQttGy2yaC0bT9E4Qx7I0uGASWezJ70w=</string>
 </resources>
