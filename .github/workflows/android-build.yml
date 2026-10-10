@@ -43,7 +43,7 @@ jobs:
 
       - name: Compile and unit test
         working-directory: android
-        run: gradle testDebugUnitTest assembleDebug --stacktrace --warning-mode all
+        run: gradle -PqruParallelTest testDebugUnitTest assembleDebug --stacktrace --warning-mode all
 
       - name: Verify and register APK
         run: |
