@@ -32,3 +32,25 @@ def test_structural_gate_rejects_version_outside_signature():
 
 def test_structural_gate_accepts_matching_version():
     assert structural_gate(package(), "demo")[0] is True
+
+
+def test_rejects_unsupported_schema_and_blank_identity():
+    for field, value in [("schema_version", 2), ("schema_version", True), ("content_version", " "), ("jurisdiction", "")]:
+        candidate = package()
+        candidate[field] = value
+        assert structural_gate(candidate)[0] is False
+
+
+def test_rejects_duplicate_or_incomplete_items():
+    for items in [[{}], [{"stable_key": "", "title": "Título"}],
+                  [{"stable_key": "x", "title": "A"}, {"stable_key": "x", "title": "B"}],
+                  [{"stable_key": "x", "title": "A", "article": 162}], [None]]:
+        candidate = package()
+        candidate["items"] = items
+        assert structural_gate(candidate)[0] is False
+
+
+def test_accepts_searchable_item():
+    candidate = package()
+    candidate["items"] = [{"stable_key": "x", "title": "Ficha técnica", "search_text": "consulta", "article": "162", "code": "501-00"}]
+    assert structural_gate(candidate)[0] is True

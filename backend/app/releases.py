@@ -28,10 +28,37 @@ class RegressionResult(BaseModel):
     details:dict={}
 
 def structural_gate(package, expected_version=None):
-    required=["schema_version","content_version","jurisdiction","items"]
-    missing=[x for x in required if x not in package]
+    required = ["schema_version", "content_version", "jurisdiction", "items"]
+    missing = [x for x in required if x not in package]
     version_matches = expected_version is None or package.get("content_version") == expected_version
-    return len(missing)==0 and isinstance(package.get("items"),list) and version_matches,{"missing":missing,"version_matches":version_matches}
+    errors = []
+    if type(package.get("schema_version")) is not int or package.get("schema_version") != 1:
+        errors.append("unsupported_schema")
+    for field in ("content_version", "jurisdiction"):
+        if not isinstance(package.get(field), str) or not package[field].strip():
+            errors.append("invalid_" + field)
+    items = package.get("items")
+    if not isinstance(items, list):
+        errors.append("invalid_items")
+    else:
+        keys = set()
+        for item in items:
+            if not isinstance(item, dict):
+                errors.append("invalid_item")
+                continue
+            if any(not isinstance(item.get(f), str) or not item[f].strip() for f in ("stable_key", "title")):
+                errors.append("invalid_item_identity")
+            key = item.get("stable_key")
+            if isinstance(key, str):
+                if key in keys:
+                    errors.append("duplicate_stable_key")
+                keys.add(key)
+            for field in ("search_text", "article", "code"):
+                if field in item and not isinstance(item[field], str):
+                    errors.append("invalid_item_" + field)
+    return not missing and not errors and version_matches, {
+        "missing": missing, "version_matches": version_matches, "errors": errors
+    }
 
 @router.post("")
 def create_release(body:ReleaseCandidate,actor=Depends(require_roles("EDITOR","ADMIN"))):

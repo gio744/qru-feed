@@ -1,0 +1,15 @@
+{
+  "backend_tests_passed": 17,
+  "postgres_tests_skipped": 1,
+  "python_syntax_passed": true,
+  "android_structure_passed": true,
+  "android_compiled": true,
+  "android_crypto_tests_executed": true,
+  "device_tested": false,
+  "production_api_configured": false,
+  "legal_content_validated_by_this_revision": false,
+  "android_unit_tests_passed": 5,
+  "icon_integrated": true,
+  "apk_integrity": "PASS",
+  "apk_sha256": "cf855b2d5ad545b88fc3668fa9e29ef6e23759b6eca4d4db6717a69eaf848eab"
+}

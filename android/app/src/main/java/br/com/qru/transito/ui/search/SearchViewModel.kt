@@ -1,7 +1,47 @@
 package br.com.qru.transito.ui.search
-import androidx.lifecycle.*;import br.com.qru.transito.domain.model.SearchResult;import br.com.qru.transito.domain.usecase.SearchLegalContent;import kotlinx.coroutines.flow.*;import kotlinx.coroutines.launch
-data class SearchUiState(val query:String="",val loading:Boolean=false,val results:List<SearchResult> = emptyList(),val message:String="Base local pronta.")
-class SearchViewModel(private val search:SearchLegalContent):ViewModel(){private val _s=MutableStateFlow(SearchUiState());val state:StateFlow<SearchUiState> = _s
- fun query(v:String){_s.value=_s.value.copy(query=v)}
- fun run(){val q=_s.value.query.trim();if(q.isBlank()){_s.value=_s.value.copy(results=emptyList(),message="Digite ou fale uma consulta.");return};viewModelScope.launch{_s.value=_s.value.copy(loading=true);val r=search(q);_s.value=_s.value.copy(loading=false,results=r,message=if(r.isEmpty())"BASE EM EXPANSÃO — nenhum conteúdo auditado local corresponde à consulta." else "QRU localizou hipóteses. A constatação do agente confirma os fatos.")}}
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import br.com.qru.transito.domain.model.SearchResult
+import br.com.qru.transito.domain.usecase.SearchLegalContent
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+
+data class SearchUiState(
+    val query: String = "", val loading: Boolean = false,
+    val results: List<SearchResult> = emptyList(), val message: String = "Faça uma consulta à base disponível."
+)
+class SearchViewModel(private val search: SearchLegalContent) : ViewModel() {
+    private val mutableState = MutableStateFlow(SearchUiState())
+    val state: StateFlow<SearchUiState> = mutableState
+    private var searchJob: Job? = null
+    fun query(value: String) {
+        searchJob?.cancel()
+        mutableState.value = mutableState.value.copy(query = value, loading = false, results = emptyList())
+    }
+    fun run() {
+        searchJob?.cancel()
+        val query = mutableState.value.query.trim()
+        if (query.isBlank()) {
+            mutableState.value = mutableState.value.copy(loading = false, results = emptyList(), message = "Digite ou fale uma consulta.")
+            return
+        }
+        searchJob = viewModelScope.launch {
+            mutableState.value = mutableState.value.copy(loading = true, results = emptyList())
+            try {
+                val results = search(query)
+                mutableState.value = mutableState.value.copy(loading = false, results = results,
+                    message = if (results.isEmpty()) "Nenhum conteúdo disponível corresponde à consulta."
+                    else "Confira os requisitos da ficha e os fatos constatados.")
+            } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (_: Exception) {
+                mutableState.value = mutableState.value.copy(loading = false, results = emptyList(),
+                    message = "Não foi possível consultar a base. Tente novamente.")
+            }
+        }
+    }
 }

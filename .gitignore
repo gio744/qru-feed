@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+.pytest_cache/
+*.pyc
+.gradle/
+**/build/
+local.properties
+*.jks
+*.keystore
+*.pem
+*private*key*
+build-diagnostics/
+postgres-test.log
