@@ -20,7 +20,7 @@ services:
       QRU_ENV: test
       QRU_JWT_SECRET: test-secret
       QRU_RUN_INTEGRATION: "1"
-    command: sh -c "pip install -r requirements.txt && python migrate.py && python -m pytest tests -q"
+    command: sh -c "pip install -r requirements.txt && python migrate.py && pytest -q"
     depends_on:
       testdb:
         condition: service_healthy

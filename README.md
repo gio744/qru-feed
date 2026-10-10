@@ -1,45 +1,33 @@
-# QRU Trânsito — integração do feed, 05/10/2026
+# QRU Trânsito — índice offline, 10/10/2026
 
-Pacote consolidado a partir de P1.4 (backend) e P2.9 (Android).
+O app inclui 418 referências pesquisáveis sem internet. A pesquisa aceita artigo, código com ou sem hífen, palavras com acento e descrições de situações. Os resultados abrem os documentos oficiais registrados no catálogo.
 
-## Correções verificadas
-- Corrigidos escapes literais de quebra de linha que impediam importar a API e instalar suas dependências.
-- Registrada a rota GET /legal/releases/current/package na aplicação FastAPI.
-- Distribuição usa os mesmos bytes canônicos da assinatura Ed25519.
-- Pacote com impressão digital divergente ou assinatura inválida é bloqueado.
-- Teste legado de assinatura substituído por teste compatível com a implementação Ed25519 atual.
+## Conteúdo disponível
 
-## Verificação executada
-Python compileall: passou.
-pytest backend/tests: 11 passaram; 1 teste de ambiente PostgreSQL foi pulado.
-Os testes da rota usam banco simulado e chaves efêmeras; não comprovam hospedagem nem integração com PostgreSQL real.
+- Busca: referências locais, pesquisa por voz e pesquisa a partir da descrição da ocorrência.
+- CTB: índice por artigo/código e link ao CTB integral oficial.
+- Normas: acesso às fontes oficiais do CONTRAN e do MBFT.
+- Situações: pesquisas por termos práticos; vídeos ainda não disponíveis.
+- Novidades: estado e alterações do app; não representa monitoramento normativo automático.
 
-## Executar backend local
-Instale backend/requirements.txt e configure as variáveis QRU_ conforme backend/.env.example.
-A partir de backend: python3 -m uvicorn app.main:app --host 127.0.0.1 --port 8000
-Aplique as migrações em um PostgreSQL de teste antes de usar os endpoints de escrita.
+As 418 referências vieram de QRU_Base_Operacional_v1.json, versão 19. Todas têm validação final pendente. A carga inclui título, código, artigo, termos de busca, fonte e metadados editoriais. Não publica orientações de autuação como validadas. Períodos registrados no catálogo aparecem nas referências, quando disponíveis. O índice não comprova vigência ou correção jurídica de cada ficha.
 
-## Pendências concretas
-- Provisionar PostgreSQL e hospedar a API em HTTPS.
-- Configurar chave pública Ed25519 no backend (formato raw base64) e Android (formato X.509 base64), correspondentes à mesma chave.
-- Substituir https://api.example.invalid/ em android/app/src/main/res/values/qru_config.xml pelo endereço real.
-- Validar criação, revisão, ativação e consumo de uma versão no banco real.
-- Compilar APK e executar testes em aparelho.
-- Revisar juridicamente as fichas antes de publicá-las; este pacote não adiciona conteúdo normativo validado.
+## Compilar a versão de teste instalada em paralelo
 
-Nenhum APK, hospedagem ou publicação na Play Store foi produzido nesta etapa.
+Na pasta android: `gradle -PqruParallelTest testDebugUnitTest assembleDebug`.
 
-## Continuação — teste completo preparado
-O teste PostgreSQL agora cria usuário técnico, assina pacote vazio, cria candidato,
-comprova bloqueio sem revisão, registra revisão e regressão, ativa, baixa e confere
-bytes/cabeçalhos, consulta dossiês e bloqueia reativação e acesso sem autenticação.
-Execute no banco descartável: docker compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from tests
-O teste exige QRU_ENV=test e banco qru_test; não deve ser apontado para produção.
-Também corrigido o Compose e adicionada espera pela saúde do banco.
-Nesta execução: 11 testes passaram; o fluxo PostgreSQL foi pulado porque o servidor não está disponível.
+Essa opção usa br.com.qru.testeapp e o certificado de debug em android/test-signing/qru-debug.jks, mantendo compatibilidade entre atualizações de teste. O certificado é exclusivamente de desenvolvimento. Sem a propriedade, o identificador principal permanece br.com.qru.transito.
 
-## Continuação — coerência da versão do feed
-- Candidatos com version diferente de content_version no pacote assinado são rejeitados pelo gate estrutural.
-- Distribuição também bloqueia divergência em registros já armazenados.
-- Metadados e download usam a mesma ordenação por ativação, criação e ID para desempate determinístico.
-- Verificação desta etapa: 14 testes passaram; 1 integração PostgreSQL pulada por ausência de servidor. Sintaxe Python verificada. APK e teste em aparelho continuam pendentes.
+Java/Kotlin: alvo 17; Gradle 8.9; Android SDK 35; Android mínimo API 28. Room exporta o esquema em android/app/schemas. O app usa o índice embarcado quando não existe versão ativa no banco local. Uma versão assinada ativa é consultada sem misturar automaticamente o índice editorial.
+
+## Verificações
+
+Ver docs/indice-offline-2026-10-10.json e docs/android-build-indice-2026-10-10.log. Testes de busca e assinatura fazem parte da suíte Android. A instalação e o funcionamento desta atualização no aparelho ainda precisam ser confirmados pelo usuário.
+
+Servidor: 17 testes unitários passaram; o teste PostgreSQL permanece pulado sem banco disponível. Sintaxe Python e conversão raw → X.509 da chave pública verificadas. O container de produção foi preparado, mas não executado neste ambiente.
+
+## Conexão online ainda pendente
+
+A API ainda não foi hospedada. Os recursos Android continuam com endereço/chave pública de exemplo. O app não agenda atualizações para esse endereço. Para conectar: informar API HTTPS e chave pública do servidor, usar scripts/configure_android_feed.py e reconstruir o APK. Ver docs/servidor-proximo-marco.md.
+
+O Dockerfile usa a raiz do projeto como contexto: `docker build -f backend/Dockerfile .`. É necessário PostgreSQL persistente, migrações, segredo JWT e chave pública válidos. Criação/revisão/ativação no banco real e publicação de conteúdo validado continuam pendentes. A autenticação administrativa exige configuração; o endpoint de token de desenvolvimento não funciona em produção.

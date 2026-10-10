@@ -7,21 +7,32 @@ plugins {
 android {
     namespace = "br.com.qru.transito"
     compileSdk = 35
+
+    defaultConfig {
+        applicationId = if (project.hasProperty("qruParallelTest")) "br.com.qru.testeapp" else "br.com.qru.transito"
+        minSdk = 28
+        targetSdk = 35
+        versionCode = 2
+        versionName = "0.2.7-indice"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-
-    kotlinOptions {
-        jvmTarget = "17"
+    kotlinOptions { jvmTarget = "17" }
+    signingConfigs {
+        create("parallelTest") {
+            storeFile = file("../test-signing/qru-debug.jks")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
     }
-    defaultConfig {
-        applicationId = "br.com.qru.transito"
-        minSdk = 28
-        targetSdk = 35
-        versionCode = 1
-        versionName = "0.2.6-p2"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    buildTypes.getByName("debug") {
+        if (project.hasProperty("qruParallelTest")) {
+            signingConfig = signingConfigs.getByName("parallelTest")
+        }
     }
     buildFeatures { compose = true; buildConfig = true }
     packaging { resources.excludes += "/META-INF/{AL2.0,LGPL2.1}" }
@@ -46,3 +57,5 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 }
+
+ksp { arg("room.schemaLocation", "$projectDir/schemas") }

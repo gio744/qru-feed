@@ -1,0 +1,9 @@
+{
+  "application_id": "br.com.qru.testeapp",
+  "coexists_with": "br.com.qru.transito",
+  "signature_verified": true,
+  "alignment_verified": true,
+  "device_tested": false,
+  "unchanged_payload_entries": 113,
+  "sha256": "8cb16c9a6315f982149bfa459d4fcfb8798498a659b8e1db20da224bdc18f7bf"
+}

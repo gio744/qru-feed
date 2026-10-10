@@ -1,0 +1,33 @@
+{
+  "catalogue_items": 418,
+  "legal_validation_complete": false,
+  "android_tests": [
+    {
+      "suite": "br.com.qru.transito.SafeUpdateContractTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "suite": "br.com.qru.transito.CatalogSearchTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "suite": "br.com.qru.transito.Ed25519VerifierTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0
+    }
+  ],
+  "android_compiled": true,
+  "backend_tests_passed": 17,
+  "postgres_tests_skipped": 1,
+  "device_update_tested": false,
+  "online_feed_configured": false,
+  "production_container_executed": false,
+  "application_id": "br.com.qru.testeapp",
+  "version_code": 2,
+  "sha256": "dcb68ae57995aec814f93bd70c4eb479d8de2725e6c58cae000a1119b326d7b7"
+}

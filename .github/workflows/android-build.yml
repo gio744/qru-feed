@@ -1,22 +1,18 @@
 name: QRU Android Build
-
 on:
   workflow_dispatch:
   push:
-    paths:
-      - 'android/**'
-      - '.github/workflows/android-build.yml'
+    paths: ['android/**','.github/workflows/android-build.yml']
   pull_request:
-    paths:
-      - 'android/**'
-
+    paths: ['android/**']
 jobs:
   debug-apk:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     permissions:
       contents: read
-
+    env:
+      ANDROID_COMPILE_SDK: "35"
     steps:
       - uses: actions/checkout@v4
 
@@ -26,8 +22,6 @@ jobs:
           java-version: '17'
 
       - uses: android-actions/setup-android@v3
-        with:
-          packages: 'platform-tools'
 
       - name: Install SDK
         run: |
@@ -38,14 +32,41 @@ jobs:
         with:
           gradle-version: '8.9'
 
+      - name: Environment report
+        run: |
+          java -version
+          gradle --version
+          sdkmanager --list_installed
+          test -f android/settings.gradle.kts
+          test -f android/app/build.gradle.kts
+          test -f android/app/src/main/AndroidManifest.xml
+
       - name: Compile and unit test
         working-directory: android
         run: gradle testDebugUnitTest assembleDebug --stacktrace --warning-mode all
 
       - name: Verify and register APK
-        run: python scripts/register_apk.py android/app/build/outputs/apk/debug/app-debug.apk
+        run: |
+          python scripts/register_apk.py android/app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Capture diagnostics on failure
+        if: failure()
+        run: |
+          mkdir -p build-diagnostics
+          find android -type f \( -name "*.log" -o -name "*.txt" -o -name "*.html" \) -path "*build*" -print -exec cp --parents {} build-diagnostics/ \; || true
+          find android -maxdepth 5 -type f | sort > build-diagnostics/project-files.txt
+          find ~/.gradle/daemon -type f -name "*.out.log" -print -exec cat {} \; > build-diagnostics/gradle-daemon.log 2>/dev/null || true
+          python scripts/classify_build_failure.py < build-diagnostics/gradle-daemon.log > build-diagnostics/failure-classification.json || true
 
       - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: qru-build-diagnostics
+          path: build-diagnostics/
+          if-no-files-found: warn
+
+      - uses: actions/upload-artifact@v4
+        if: success()
         with:
           name: qru-transito-debug-apk
           path: |

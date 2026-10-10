@@ -1,0 +1,8 @@
+{
+  "artifact": "app-debug.apk",
+  "bytes": 64086638,
+  "sha256": "cf855b2d5ad545b88fc3668fa9e29ef6e23759b6eca4d4db6717a69eaf848eab",
+  "registered_at_utc": "2026-10-10T03:58:22.201946+00:00",
+  "integrity": "PASS",
+  "install_status": "NOT_YET_DEVICE_TESTED"
+}
