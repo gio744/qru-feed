@@ -150,7 +150,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                 Text("10/10/2026 • ${app.bundledCatalog.all().size} referências disponíveis para busca sem internet.")
                 Text("Busca por artigo, código e termos práticos. Links para conferir as fontes oficiais.")
                 Text("Validação final das fichas: pendente.")
-                Text("Atualizações online: aguardando configuração do servidor.")
+                Text("As atualizações de conteúdo são recebidas pelo servidor e verificadas por assinatura. A disponibilidade depende da publicação de um pacote.")
             }
             else -> Unit
         }
