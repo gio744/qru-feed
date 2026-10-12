@@ -1,4 +1,5 @@
 import base64
+import pytest
 from contextlib import contextmanager
 from unittest.mock import patch
 from fastapi.testclient import TestClient
@@ -29,6 +30,18 @@ def request(row):
 
 def test_no_active_release():
     assert request(None).status_code == 404
+
+def test_legacy_active_release_without_payload():
+    response = request((None, 'legacy', None, 'baseline'))
+    assert response.status_code == 404
+    assert response.json() == {'detail': 'No published legal package'}
+    assert 'x-qru-signature' not in response.headers
+
+@pytest.mark.parametrize('payload', [[], 'invalid', 42, False])
+def test_invalid_stored_payload_is_not_distributed(payload):
+    response = request((payload, 'unused', None, 'baseline'))
+    assert response.status_code == 503
+    assert 'x-qru-signature' not in response.headers
 
 def test_signed_package_exact_bytes_and_headers(monkeypatch):
     package = {'items': [], 'content_version': 'test-1', 'text': 'Fiscalização'}
