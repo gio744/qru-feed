@@ -20,6 +20,11 @@ def current_package_bytes():
     if not row:
         raise HTTPException(404,"No active legal release")
     payload=row[0]
+    # Historical baseline releases predate the signed package pipeline.
+    if payload is None:
+        raise HTTPException(404,"No published legal package")
+    if not isinstance(payload, dict):
+        raise HTTPException(503,"Stored legal package has invalid format")
     if payload.get("content_version") != row[3]:
         raise HTTPException(500,"Stored release version does not match signed package")
     # IMPORTANT: production signing must sign the same canonical byte representation served here.
