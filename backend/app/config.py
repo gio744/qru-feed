@@ -7,6 +7,8 @@ class Settings(BaseSettings):
     env: str = "development"
     release_signing_secret: str = "LEGACY_DEV_ONLY"
     release_public_key_b64: str = ""
+    admin_username: str = ""
+    admin_password_hash: str = ""
     model_config = SettingsConfigDict(env_prefix="QRU_", env_file=".env", extra="ignore")
 
 settings = Settings()

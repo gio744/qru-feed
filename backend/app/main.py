@@ -5,10 +5,12 @@ from .auth import require_user, create_dev_token
 from .config import settings
 from .releases import router as releases_router
 from .package_distribution import router as distribution_router
+from .publisher import router as publisher_router
 
 app = FastAPI(title="QRU Trânsito API", version="1.2.0-p1")
 app.include_router(releases_router)
 app.include_router(distribution_router)
+app.include_router(publisher_router)
 
 class DevLogin(BaseModel):
     subject: str
