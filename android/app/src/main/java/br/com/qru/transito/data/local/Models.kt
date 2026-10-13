@@ -1,7 +1,7 @@
 package br.com.qru.transito.data.local
 import androidx.room.*
 @Entity(tableName="legal_items")
-data class LegalItemEntity(@PrimaryKey val stableKey:String,val title:String,val searchText:String,val article:String?,val code:String?,val jurisdiction:String,val releaseVersion:String,val active:Boolean=true)
+data class LegalItemEntity(@PrimaryKey val stableKey:String,val title:String,val searchText:String,val article:String?,val code:String?,val jurisdiction:String,val releaseVersion:String,val active:Boolean=true,val source:String?=null,@ColumnInfo(defaultValue="'Validação final pendente'") val reviewStatus:String="Validação final pendente",@ColumnInfo(defaultValue="''") val appliesFrom:String="",@ColumnInfo(defaultValue="''") val appliesUntil:String="")
 @Entity(tableName="legal_releases_local",indices=[Index(value=["active"])])
 data class LegalReleaseEntity(@PrimaryKey val version:String,val fingerprint:String,val jurisdiction:String,val installedAt:Long,val active:Boolean)
 @Dao interface LegalDao{
