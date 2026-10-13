@@ -1,0 +1,15 @@
+{
+  "id": "e3c8e344-a176-4ff2-b189-69e7addb6ba6",
+  "fingerprint": "5dad84b8632227adeecd1b2655365839730b5dfce9b27f54aa9e2a261ff7f942",
+  "status": "CANDIDATE",
+  "gates": [
+    {
+      "name": "SIGNATURE_ED25519",
+      "passed": true
+    },
+    {
+      "name": "STRUCTURE",
+      "passed": true
+    }
+  ]
+}
