@@ -1,0 +1,73 @@
+{
+  "checked_on": "2026-10-13",
+  "source": "Resolução CONTRAN 1031/2026",
+  "review_kind": "Revisão documental integrada; não constitui aprovação operacional",
+  "source_pages": {
+    "procedures": [
+      2,
+      3,
+      4
+    ],
+    "effective_dates": [
+      5
+    ],
+    "alcohol_annex": [
+      12,
+      13,
+      14
+    ],
+    "other_substances_annex": [
+      15,
+      16
+    ],
+    "refusal_alcohol_annex": [
+      17,
+      18
+    ],
+    "refusal_other_annex": [
+      19,
+      20
+    ]
+  },
+  "scenarios": [
+    {
+      "case": "Recusa sem conjunto mínimo de dois sinais",
+      "basis": "Art. 8 §1 e §3; art. 7",
+      "review": "Conferir oferta regular de procedimento e registro da recusa; hipótese do art.165-A. Separar códigos futuros de álcool e outras substâncias conforme data da ficha."
+    },
+    {
+      "case": "Recusa com pelo menos dois sinais que em conjunto comprovem alteração",
+      "basis": "Art.7 §§1 e2; art.8 §2",
+      "review": "Revisar como hipótese do art.165; registrar os sinais no AIT ou em termo que acompanhe o auto. A quantidade isolada não substitui a comprovação conjunta."
+    },
+    {
+      "case": "Etilômetro MR 0,33 mg/L",
+      "basis": "Anexo I; art.8 I; art.9",
+      "review": "Tabela aponta VC 0,29. Não apresentar como alcance do limiar quantitativo MR 0,34; existência de outros meios de comprovação deve ser analisada separadamente."
+    },
+    {
+      "case": "Etilômetro MR 0,34 mg/L",
+      "basis": "Anexo I; art.9 I",
+      "review": "Tabela aponta VC 0,30; conferir dados do aparelho, teste, MR, VC e documentação prevista no art.10."
+    },
+    {
+      "case": "Entrega a outro condutor",
+      "basis": "Art.11 caput e §1",
+      "review": "Verificar habilitação e condições do substituto, que será fiscalizado; ausência de substituto apto exige tratamento do depósito."
+    },
+    {
+      "case": "Documento de habilitação",
+      "basis": "Art.12",
+      "review": "Texto principal afasta recolhimento imediato por estas infrações; não copiar cabeçalho do anexo como ordem de recolhimento."
+    }
+  ],
+  "integration_blocks": [
+    "Ficha 516-91: Quando NÃO Autuar item 3 menciona 757-90 enquanto o anexo inclui 757-91; registrar referência residual e não adulterar texto oficial.",
+    "Cabeçalhos das fichas mencionam recolhimento do documento; conciliar expressamente com art.12 antes de transformar em orientação de interface.",
+    "Procedimentos publicados em 18/08/2026; alterações do MBFT após 60 dias. Evitar substituir início da existência da infração pela data da nova ficha.",
+    "Verificação metrológica do etilômetro, CTB consolidado e atos posteriores ainda precisam compor a revisão.",
+    "Caso com atendimento hospitalar não está resolvido exclusivamente por esta matriz; preservar prova disponível e revisar condições concretas."
+  ],
+  "ready_items": 0,
+  "activated": false
+}
