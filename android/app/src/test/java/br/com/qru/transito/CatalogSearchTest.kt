@@ -37,6 +37,9 @@ class CatalogSearchTest {
             IndexedReference(SearchResult(item.get("stable_key").asString,item.get("title").asString,
                 item.get("article").asString,item.get("code").asString,"BR","test"),item.get("search_text").asString)
         }
+        assertEquals("672-61",CatalogSearch.search(catalog,"pneu").first().code)
+        assertEquals("664-50",CatalogSearch.search(catalog,"66450").first().code)
+        assertEquals("664-50",CatalogSearch.search(catalog,"230, X").first().code)
         val codes=CatalogSearch.search(catalog,"pneu").mapNotNull { it.code }.toSet()
         assertTrue(codes.containsAll(setOf("661-02","664-50","672-61")))
         assertEquals(setOf("661-02","664-50","672-61","663-71","663-72"),codes)
