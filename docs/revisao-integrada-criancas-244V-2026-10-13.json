@@ -1,0 +1,42 @@
+{
+  "checked_on": "2026-10-13",
+  "scope": "CTB art.244 V; fichas707-21 e707-22; anexoII da1022/2026",
+  "sources": [
+    {
+      "document": "MBFT2022",
+      "code": "707-21",
+      "pdf_page": 719,
+      "visual_check": true
+    },
+    {
+      "document": "Resolução1022/2026",
+      "code": "707-22",
+      "pdf_page": 9,
+      "visual_check": true
+    },
+    {
+      "document": "CTB compilado",
+      "url": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+      "article": "244,V"
+    }
+  ],
+  "distinctions": [
+    {
+      "code": "707-21",
+      "criterion": "Idade inferior a dez anos, conforme ficha base; conferir prova da idade e condições de constatação."
+    },
+    {
+      "code": "707-22",
+      "criterion": "Ausência de condições de cuidar da própria segurança; documentar a circunstância concreta e avaliar tipo de veículo."
+    }
+  ],
+  "review_points": [
+    "Ficha707-21 permite dispensa de abordagem somente quando ao agente não resta dúvida de idade inferior a dez anos; não transformar em regra irrestrita.",
+    "Ficha707-22 do anexo1022 indica abordagem.",
+    "Campo Quando Autuar da707-22 menciona idade ou incapacidade, enquanto Quando NÃO Autuar remete menores de dez anos à707-21. Tratar como cruzamento necessário antes de automatizar decisão.",
+    "Quadriciclo comum e veículo de uso exclusivo fora de estrada têm escopos distintos nas resoluções1022 e1023; conferir classificação documental.",
+    "Não estender idade para todo transporte de crianças sem conferir modalidade de veículo e regras específicas."
+  ],
+  "ready_items": 0,
+  "activated": false
+}
