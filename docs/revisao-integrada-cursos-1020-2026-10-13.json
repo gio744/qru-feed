@@ -1,0 +1,63 @@
+{
+  "checked_on": "2026-10-13",
+  "codes": [
+    "774-91",
+    "774-92",
+    "777-31",
+    "777-32",
+    "778-11",
+    "778-12"
+  ],
+  "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf",
+  "scope": "Integração de cursos especializados e específicos",
+  "rules": {
+    "specialized": {
+      "provisions": [
+        "67–75"
+      ],
+      "renach_precedes_cnh_observations": true,
+      "approval_record_required": true,
+      "ambulance_validity_years": 5,
+      "ambulance_validity_start": "Aprovação nos exames teóricos",
+      "blanket_expired_course_rule_from_2022": "Não transpor automaticamente; integrar atos complementares e situação do curso",
+      "operational_ready": false
+    },
+    "specific": {
+      "provisions": [
+        "87–91"
+      ],
+      "course_and_theory_exam_are_distinct": true,
+      "certificate_alone_is_not_theory_approval": true,
+      "return_to_driving_requires_completed_suspension_and_recorded_approval": true,
+      "preventive_recycling_not_equivalent_to_mandatory_missing_course": true,
+      "operational_ready": false
+    }
+  },
+  "manual_review": {
+    "specialized_pages": [
+      61,
+      62,
+      63,
+      64,
+      65,
+      66
+    ],
+    "specific_page": 67,
+    "remissions_need_correction": true,
+    "no_renach_consultation": "As fichas de 2022 vedam autuação sem consulta; conferir com atos posteriores antes da ficha final."
+  },
+  "revocation_review": {
+    "resolution_789": "Revogada pelo art. 140, IV, da Resolução 1.020/2025; não usar como regra vigente sem verificar disciplina substituta",
+    "resolution_1009": "Art. 2º revogado pelo art. 139; não tratar toda a Resolução 1.009 como revogada"
+  },
+  "validation": {
+    "items": 418,
+    "changed_references": 6,
+    "ready": false
+  },
+  "pending": [
+    "Atos complementares da Senatran e transição dos cursos anteriores",
+    "Conferência operacional integral e remissões cruzadas",
+    "Implementação da ficha detalhada e entrega no APK"
+  ]
+}
