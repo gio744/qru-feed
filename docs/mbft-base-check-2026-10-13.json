@@ -1,0 +1,4181 @@
+{
+  "checked_on": "2026-10-13",
+  "pdf_pages": 830,
+  "pdf_sha256": "5214bc8cfa3c8d1b5acde7c34c3c27f2d06ea1ba1589f5bbfab5ae041e06b1b2",
+  "user_supplied_original": "MBVT20222.pdf",
+  "total_references": 418,
+  "unique_base_manual_codes": 411,
+  "base_manual_references_verified": 399,
+  "page_links_corrected": 1,
+  "ready_for_activation": false,
+  "verification_scope": "Código, amparo legal e página nas fichas com origem no MBFT-base. Não aprova vigência atual nem procedimentos.",
+  "records": [
+    {
+      "key": "65992",
+      "code": "659-92",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        543
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "65991",
+      "code": "659-91",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        538
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-751-01",
+      "code": "751-01",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        32
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-751-02",
+      "code": "751-02",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        34
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-752-81",
+      "code": "752-81",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        36
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-752-82",
+      "code": "752-82",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        38
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-501-00",
+      "code": "501-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        40
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-502-91",
+      "code": "502-91",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        43
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-502-92",
+      "code": "502-92",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        44
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-503-71",
+      "code": "503-71",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        45
+      ],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-503-72",
+      "code": "503-72",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        46
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-504-50",
+      "code": "504-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        47
+      ],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-505-31",
+      "code": "505-31",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        49
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-505-32",
+      "code": "505-32",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        52
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-505-33",
+      "code": "505-33",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        55
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-505-34",
+      "code": "505-34",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        57
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-774-91",
+      "code": "774-91",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        61
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-774-92",
+      "code": "774-92",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        67
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-506-10",
+      "code": "506-10",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        68
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-507-01",
+      "code": "507-01",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        69
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-507-02",
+      "code": "507-02",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        70
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-508-81",
+      "code": "508-81",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        71
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-508-82",
+      "code": "508-82",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        73
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-509-60",
+      "code": "509-60",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        75
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-510-01",
+      "code": "510-01",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        77
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-510-02",
+      "code": "510-02",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        79
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-510-03",
+      "code": "510-03",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        81
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-510-04",
+      "code": "510-04",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        83
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-777-31",
+      "code": "777-31",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        85
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-777-32",
+      "code": "777-32",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        86
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-511-80",
+      "code": "511-80",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        87
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-512-61",
+      "code": "512-61",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        88
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-512-62",
+      "code": "512-62",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        89
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-513-41",
+      "code": "513-41",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        90
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-513-42",
+      "code": "513-42",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        91
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-514-20",
+      "code": "514-20",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        92
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-515-01",
+      "code": "515-01",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        94
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-515-02",
+      "code": "515-02",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        96
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-515-03",
+      "code": "515-03",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        98
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-515-04",
+      "code": "515-04",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        100
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-778-11",
+      "code": "778-11",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        102
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-778-12",
+      "code": "778-12",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        103
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-516-92",
+      "code": "516-92",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        108
+      ],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-757-90",
+      "code": "757-90",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        110
+      ],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-764-10",
+      "code": "764-10",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        112
+      ],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-765-00",
+      "code": "765-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        114
+      ],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-517-70",
+      "code": "517-70",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        116
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-518-51",
+      "code": "518-51",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        118
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-518-52",
+      "code": "518-52",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        126
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-520-70",
+      "code": "520-70",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        137
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-521-51",
+      "code": "521-51",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        142
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-521-52",
+      "code": "521-52",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        143
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-522-31",
+      "code": "522-31",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        144
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-522-32",
+      "code": "522-32",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        145
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-523-11",
+      "code": "523-11",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        146
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-523-12",
+      "code": "523-12",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        147
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-524-00",
+      "code": "524-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        148
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-525-81",
+      "code": "525-81",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        149
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-525-82",
+      "code": "525-82",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        150
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-525-83",
+      "code": "525-83",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        152
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-526-61",
+      "code": "526-61",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        153
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-526-62",
+      "code": "526-62",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        155
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-526-63",
+      "code": "526-63",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        157
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-527-41",
+      "code": "527-41",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        159
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-527-42",
+      "code": "527-42",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        161
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-528-20",
+      "code": "528-20",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        163
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-529-00",
+      "code": "529-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        165
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-530-40",
+      "code": "530-40",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        167
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-531-20",
+      "code": "531-20",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        169
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-532-00",
+      "code": "532-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        171
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-533-90",
+      "code": "533-90",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        173
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-534-70",
+      "code": "534-70",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        175
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-535-50",
+      "code": "535-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        177
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-536-30",
+      "code": "536-30",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        179
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-537-10",
+      "code": "537-10",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        181
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-538-00",
+      "code": "538-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        183
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-539-80",
+      "code": "539-80",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        184
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-540-10",
+      "code": "540-10",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        186
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-541-00",
+      "code": "541-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        188
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-542-81",
+      "code": "542-81",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        190,
+        192
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-542-82",
+      "code": "542-82",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        194
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-542-83",
+      "code": "542-83",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        196
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-542-84",
+      "code": "542-84",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        198
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-543-60",
+      "code": "543-60",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        200
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-544-40",
+      "code": "544-40",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        202
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-545-21",
+      "code": "545-21",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        204
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-545-22",
+      "code": "545-22",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        205
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-545-23",
+      "code": "545-23",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        206
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-545-24",
+      "code": "545-24",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        207
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-545-25",
+      "code": "545-25",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        208
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-545-26",
+      "code": "545-26",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        210
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-545-27",
+      "code": "545-27",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        211
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-546-00",
+      "code": "546-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        213
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-547-90",
+      "code": "547-90",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        214
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-548-70",
+      "code": "548-70",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        216
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-549-50",
+      "code": "549-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        217
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-550-90",
+      "code": "550-90",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        219
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-551-72",
+      "code": "551-72",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        221
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-551-73",
+      "code": "551-73",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        222
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-552-50",
+      "code": "552-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        223
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-553-30",
+      "code": "553-30",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        224
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-554-11",
+      "code": "554-11",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        226
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-554-12",
+      "code": "554-12",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        228
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-554-13",
+      "code": "554-13",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        230
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-554-14",
+      "code": "554-14",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        233
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-554-17",
+      "code": "554-17",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        235
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-555-00",
+      "code": "555-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        237
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-556-80",
+      "code": "556-80",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        239
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-762-51",
+      "code": "762-51",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        240
+      ],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-762-52",
+      "code": "762-52",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        243
+      ],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-557-60",
+      "code": "557-60",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        246
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-558-40",
+      "code": "558-40",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        247
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-559-20",
+      "code": "559-20",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        249
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-560-60",
+      "code": "560-60",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        251
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-561-41",
+      "code": "561-41",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        252
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-561-42",
+      "code": "561-42",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        254
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-561-43",
+      "code": "561-43",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        256
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-561-44",
+      "code": "561-44",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        257
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-562-21",
+      "code": "562-21",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        259
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-562-22",
+      "code": "562-22",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        260
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-562-23",
+      "code": "562-23",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        262
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-562-24",
+      "code": "562-24",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        264
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-562-25",
+      "code": "562-25",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        265
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-563-00",
+      "code": "563-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        266
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-564-91",
+      "code": "564-91",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        268
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-564-92",
+      "code": "564-92",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        270
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-564-93",
+      "code": "564-93",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        271
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-565-70",
+      "code": "565-70",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        272
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-566-50",
+      "code": "566-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        273
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-767-00",
+      "code": "767-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        274
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-568-10",
+      "code": "568-10",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        278
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-569-00",
+      "code": "569-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        280
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-758-70",
+      "code": "758-70",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        282
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-570-30",
+      "code": "570-30",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        286
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-571-10",
+      "code": "571-10",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        289
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-572-00",
+      "code": "572-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        291
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-573-80",
+      "code": "573-80",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        293
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-574-61",
+      "code": "574-61",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        295
+      ],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-574-62",
+      "code": "574-62",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        297
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-574-63",
+      "code": "574-63",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        298
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-576-20",
+      "code": "576-20",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        300
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-577-01",
+      "code": "577-01",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        301
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-577-02",
+      "code": "577-02",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        302
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-577-03",
+      "code": "577-03",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        304
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-577-04",
+      "code": "577-04",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        306
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-577-05",
+      "code": "577-05",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        308
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-578-90",
+      "code": "578-90",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        310
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-579-70",
+      "code": "579-70",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        311
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-580-00",
+      "code": "580-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        313
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-581-91",
+      "code": "581-91",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        315
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-581-92",
+      "code": "581-92",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        317
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-581-93",
+      "code": "581-93",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        320
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-581-94",
+      "code": "581-94",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        321
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-581-95",
+      "code": "581-95",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        322
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-581-96",
+      "code": "581-96",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        323
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-581-97",
+      "code": "581-97",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        324
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-581-98",
+      "code": "581-98",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        325
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-582-70",
+      "code": "582-70",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        326
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-583-50",
+      "code": "583-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        327
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-584-31",
+      "code": "584-31",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        329
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-584-32",
+      "code": "584-32",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        331
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-584-33",
+      "code": "584-33",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        333
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-584-34",
+      "code": "584-34",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        335
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-585-11",
+      "code": "585-11",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        337
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-585-12",
+      "code": "585-12",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        339
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-586-00",
+      "code": "586-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        341
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-587-80",
+      "code": "587-80",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        342
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-588-60",
+      "code": "588-60",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        345
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-589-40",
+      "code": "589-40",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        346
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-590-80",
+      "code": "590-80",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        347
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-591-61",
+      "code": "591-61",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        348
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-591-62",
+      "code": "591-62",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        351
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-592-41",
+      "code": "592-41",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        354
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-592-42",
+      "code": "592-42",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        356
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-593-20",
+      "code": "593-20",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        358
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-594-01",
+      "code": "594-01",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        360
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-594-02",
+      "code": "594-02",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        362
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-594-03",
+      "code": "594-03",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        364
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-595-91",
+      "code": "595-91",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        366
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-595-92",
+      "code": "595-92",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        368
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-595-93",
+      "code": "595-93",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        370
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-595-94",
+      "code": "595-94",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        372
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-596-70",
+      "code": "596-70",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        374
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-597-50",
+      "code": "597-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        376
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-598-30",
+      "code": "598-30",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        378
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-599-10",
+      "code": "599-10",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        380
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-600-91",
+      "code": "600-91",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        382
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-600-92",
+      "code": "600-92",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        383
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-600-93",
+      "code": "600-93",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        384
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-600-94",
+      "code": "600-94",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        385
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-600-95",
+      "code": "600-95",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        386
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-601-71",
+      "code": "601-71",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        388
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-601-72",
+      "code": "601-72",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        390
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-601-73",
+      "code": "601-73",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        392
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-601-74",
+      "code": "601-74",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        394
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-601-75",
+      "code": "601-75",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        395
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-601-76",
+      "code": "601-76",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        397
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-602-50",
+      "code": "602-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        399
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-603-30",
+      "code": "603-30",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        400
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-604-11",
+      "code": "604-11",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        401
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-604-12",
+      "code": "604-12",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        404
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-605-01",
+      "code": "605-01",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        408
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-605-02",
+      "code": "605-02",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        410
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-606-81",
+      "code": "606-81",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        413
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-606-82",
+      "code": "606-82",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        414
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-606-85",
+      "code": "606-85",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        416
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-773-01",
+      "code": "773-01",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        417
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-773-02",
+      "code": "773-02",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        418
+      ],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-607-60",
+      "code": "607-60",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        419
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-608-41",
+      "code": "608-41",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        420
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-608-42",
+      "code": "608-42",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        423
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-608-43",
+      "code": "608-43",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        425
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-608-44",
+      "code": "608-44",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        428
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-609-20",
+      "code": "609-20",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        431
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-610-60",
+      "code": "610-60",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        432
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-611-40",
+      "code": "611-40",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        433
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-612-20",
+      "code": "612-20",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        434
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-613-00",
+      "code": "613-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        436
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-614-90",
+      "code": "614-90",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        438
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-615-70",
+      "code": "615-70",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        440
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-616-50",
+      "code": "616-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        442
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-617-31",
+      "code": "617-31",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        444
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-617-32",
+      "code": "617-32",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        445
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-617-33",
+      "code": "617-33",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        446
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-618-10",
+      "code": "618-10",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        447
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-619-00",
+      "code": "619-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        448
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-620-30",
+      "code": "620-30",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        449
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-745-50",
+      "code": "745-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        450
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-746-30",
+      "code": "746-30",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        452
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-747-10",
+      "code": "747-10",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        454
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-625-40",
+      "code": "625-40",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        456
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-626-20",
+      "code": "626-20",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        457
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-627-00",
+      "code": "627-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        459
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-628-91",
+      "code": "628-91",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        462
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-628-92",
+      "code": "628-92",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        464
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-629-70",
+      "code": "629-70",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        466
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-630-00",
+      "code": "630-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        468
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-631-90",
+      "code": "631-90",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        470
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-632-70",
+      "code": "632-70",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        472
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-633-50",
+      "code": "633-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        474
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-634-30",
+      "code": "634-30",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        476
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-635-10",
+      "code": "635-10",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        478
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-636-00",
+      "code": "636-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        480
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-637-80",
+      "code": "637-80",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        482
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-638-60",
+      "code": "638-60",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        484
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-639-41",
+      "code": "639-41",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        485
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-639-42",
+      "code": "639-42",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        487
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-639-43",
+      "code": "639-43",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        489
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-639-44",
+      "code": "639-44",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        491
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-641-60",
+      "code": "641-60",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        495
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-642-40",
+      "code": "642-40",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        497
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-643-21",
+      "code": "643-21",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        499
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-643-22",
+      "code": "643-22",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        501
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-644-00",
+      "code": "644-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        503
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-645-91",
+      "code": "645-91",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        505
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-645-92",
+      "code": "645-92",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        507
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-646-70",
+      "code": "646-70",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        509
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-647-50",
+      "code": "647-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        511
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-648-30",
+      "code": "648-30",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        512
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-649-10",
+      "code": "649-10",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        514
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-650-50",
+      "code": "650-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        516
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-651-30",
+      "code": "651-30",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        518
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-652-10",
+      "code": "652-10",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        520
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-653-00",
+      "code": "653-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        522
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-654-80",
+      "code": "654-80",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        523
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-655-61",
+      "code": "655-61",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        524
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-655-62",
+      "code": "655-62",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        526
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-655-63",
+      "code": "655-63",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        528
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-655-64",
+      "code": "655-64",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        530
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-655-65",
+      "code": "655-65",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        532
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-656-40",
+      "code": "656-40",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        534
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-657-20",
+      "code": "657-20",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        535
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-658-00",
+      "code": "658-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        536
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-660-20",
+      "code": "660-20",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        545
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-661-01",
+      "code": "661-01",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        547
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-661-02",
+      "code": "661-02",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        549
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-662-90",
+      "code": "662-90",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        553
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-663-71",
+      "code": "663-71",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        555
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-663-72",
+      "code": "663-72",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        560
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-664-50",
+      "code": "664-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        564
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-665-31",
+      "code": "665-31",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        571
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-665-32",
+      "code": "665-32",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        573
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-666-10",
+      "code": "666-10",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        575
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-667-00",
+      "code": "667-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        581
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-668-80",
+      "code": "668-80",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        584
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-669-61",
+      "code": "669-61",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        587
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-669-62",
+      "code": "669-62",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        590
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-670-00",
+      "code": "670-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        593
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-671-80",
+      "code": "671-80",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        597
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-672-61",
+      "code": "672-61",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        599
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-672-62",
+      "code": "672-62",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        602
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-672-63",
+      "code": "672-63",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        603
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-673-40",
+      "code": "673-40",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        604
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-674-20",
+      "code": "674-20",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        605
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-675-00",
+      "code": "675-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        607
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-676-90",
+      "code": "676-90",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        613
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-756-00",
+      "code": "756-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        614
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-677-70",
+      "code": "677-70",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        619
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-678-51",
+      "code": "678-51",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        620
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-678-52",
+      "code": "678-52",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        621
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-678-53",
+      "code": "678-53",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        622
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-679-30",
+      "code": "679-30",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        623
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-680-70",
+      "code": "680-70",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        624
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-681-50",
+      "code": "681-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        625
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-682-31",
+      "code": "682-31",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        627
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-682-32",
+      "code": "682-32",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        630
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-683-11",
+      "code": "683-11",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        632
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-683-12",
+      "code": "683-12",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        638
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-683-13",
+      "code": "683-13",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        642
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-684-01",
+      "code": "684-01",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        646
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-684-02",
+      "code": "684-02",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        648
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-685-80",
+      "code": "685-80",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        650
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-686-61",
+      "code": "686-61",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        651
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-686-62",
+      "code": "686-62",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        653
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-687-41",
+      "code": "687-41",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        655
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-687-42",
+      "code": "687-42",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        656
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-688-20",
+      "code": "688-20",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        657
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-689-00",
+      "code": "689-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        660
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-690-40",
+      "code": "690-40",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        663
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-691-20",
+      "code": "691-20",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        666
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-692-01",
+      "code": "692-01",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        670
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-692-02",
+      "code": "692-02",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        672
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-692-03",
+      "code": "692-03",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        674
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-692-04",
+      "code": "692-04",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        676
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-693-91",
+      "code": "693-91",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        678
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-693-92",
+      "code": "693-92",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        679
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-694-71",
+      "code": "694-71",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        680
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-694-72",
+      "code": "694-72",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        681
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-694-73",
+      "code": "694-73",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        682
+      ],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-695-50",
+      "code": "695-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        687
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-696-30",
+      "code": "696-30",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        688
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-697-10",
+      "code": "697-10",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        694
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-698-00",
+      "code": "698-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        696
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-699-80",
+      "code": "699-80",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        697
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-700-51",
+      "code": "700-51",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        699
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-700-52",
+      "code": "700-52",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        700
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-701-31",
+      "code": "701-31",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        701
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-701-32",
+      "code": "701-32",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        702
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-702-10",
+      "code": "702-10",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        703
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-712-92",
+      "code": "712-92",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        705
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-712-93",
+      "code": "712-93",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        706
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-703-01",
+      "code": "703-01",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        708
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-703-03",
+      "code": "703-03",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        711
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-704-81",
+      "code": "704-81",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        714
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-704-83",
+      "code": "704-83",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        717
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-705-61",
+      "code": "705-61",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        718
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-707-21",
+      "code": "707-21",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        719
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-707-22",
+      "code": "707-22",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        720
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-708-00",
+      "code": "708-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        721
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-709-91",
+      "code": "709-91",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        723
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-710-21",
+      "code": "710-21",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        724
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-710-23",
+      "code": "710-23",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        726
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-755-21",
+      "code": "755-21",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        728
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-755-22",
+      "code": "755-22",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        731
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-768-41",
+      "code": "768-41",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        733
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-768-42",
+      "code": "768-42",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        736
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-771-41",
+      "code": "771-41",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        738
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-771-42",
+      "code": "771-42",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        741
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-714-50",
+      "code": "714-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        743
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-715-31",
+      "code": "715-31",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        744
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-715-32",
+      "code": "715-32",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        746
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-716-11",
+      "code": "716-11",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        748
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-716-12",
+      "code": "716-12",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        750
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-717-01",
+      "code": "717-01",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        752
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-717-02",
+      "code": "717-02",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        754
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-718-81",
+      "code": "718-81",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        756
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-718-82",
+      "code": "718-82",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        758
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-719-61",
+      "code": "719-61",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        760
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-719-62",
+      "code": "719-62",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        762
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-720-01",
+      "code": "720-01",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        764
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-720-02",
+      "code": "720-02",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        766
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-722-61",
+      "code": "722-61",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        770
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-722-62",
+      "code": "722-62",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        772
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-723-40",
+      "code": "723-40",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        774
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-724-21",
+      "code": "724-21",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        776
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-724-22",
+      "code": "724-22",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        778
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-725-00",
+      "code": "725-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        780
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-726-90",
+      "code": "726-90",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        781
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-772-20",
+      "code": "772-20",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        782
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-728-50",
+      "code": "728-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        784
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-775-71",
+      "code": "775-71",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        785
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-775-72",
+      "code": "775-72",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        786
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-729-30",
+      "code": "729-30",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        788
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-730-70",
+      "code": "730-70",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        790
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-763-31",
+      "code": "763-31",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        792
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-763-32",
+      "code": "763-32",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        794
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-731-50",
+      "code": "731-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        796
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-732-31",
+      "code": "732-31",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        798
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-732-32",
+      "code": "732-32",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        799
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-732-33",
+      "code": "732-33",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        800
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-733-10",
+      "code": "733-10",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        801
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-734-00",
+      "code": "734-00",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        803
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-735-80",
+      "code": "735-80",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        804
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-736-61",
+      "code": "736-61",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        806
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-736-62",
+      "code": "736-62",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        807
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-759-50",
+      "code": "759-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        808
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-737-40",
+      "code": "737-40",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        809
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-761-71",
+      "code": "761-71",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        811
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-761-72",
+      "code": "761-72",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        814
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-761-73",
+      "code": "761-73",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        817
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-760-90",
+      "code": "760-90",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        820
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-776-50",
+      "code": "776-50",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        822
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-754-41",
+      "code": "754-41",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        823
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-754-42",
+      "code": "754-42",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        825
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-754-43",
+      "code": "754-43",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        827
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-754-44",
+      "code": "754-44",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        829
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-516-91",
+      "code": "516-91",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        105
+      ],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-519-30",
+      "code": "519-30",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        134
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-567-31",
+      "code": "567-31",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        276
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-640-80",
+      "code": "640-80",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        492
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-721-80",
+      "code": "721-80",
+      "base_manual_header_found": true,
+      "base_manual_pages": [
+        768
+      ],
+      "catalogue_source_is_base_manual": true,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-780-30",
+      "code": "780-30",
+      "base_manual_header_found": false,
+      "base_manual_pages": [],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-781-10",
+      "code": "781-10",
+      "base_manual_header_found": false,
+      "base_manual_pages": [],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-782-00",
+      "code": "782-00",
+      "base_manual_header_found": false,
+      "base_manual_pages": [],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "future-757-91",
+      "code": "757-91",
+      "base_manual_header_found": false,
+      "base_manual_pages": [],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "future-757-92",
+      "code": "757-92",
+      "base_manual_header_found": false,
+      "base_manual_pages": [],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-551-71",
+      "code": "551-71",
+      "base_manual_header_found": false,
+      "base_manual_pages": [],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    },
+    {
+      "key": "mbft-779-00",
+      "code": "779-00",
+      "base_manual_header_found": false,
+      "base_manual_pages": [],
+      "catalogue_source_is_base_manual": false,
+      "current_legal_readiness": false
+    }
+  ]
+}
