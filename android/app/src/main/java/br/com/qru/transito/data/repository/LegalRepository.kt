@@ -10,7 +10,8 @@ class LegalRepository(private val db: QruDatabase, private val bundled: BundledC
         if (query.isBlank()) emptyList()
         else if (db.legalReleaseDao().active() == null) bundled.search(query)
         else db.legalDao().search(query.trim()).map {
-            SearchResult(it.stableKey, it.title, it.article, it.code, it.jurisdiction, it.releaseVersion)
+            SearchResult(it.stableKey, it.title, it.article, it.code, it.jurisdiction, it.releaseVersion,
+                it.source, it.reviewStatus, it.appliesFrom, it.appliesUntil)
         }
     }
     suspend fun activeVersion() = db.legalReleaseDao().active()?.version
