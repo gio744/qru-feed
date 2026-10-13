@@ -21,6 +21,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -35,12 +37,17 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
 
 @Composable fun QruApp(){
  QruTheme{
-  var tab by remember{mutableStateOf(QruTab.BUSCA)}
+  var tab by rememberSaveable{mutableStateOf(QruTab.BUSCA)}
+  val tabStates=rememberSaveableStateHolder()
   Scaffold(bottomBar={NavigationBar{
    QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},
     icon={Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
     label={Text(item.label)})}
-  }}){padding->Box(Modifier.padding(padding).fillMaxSize()){if(tab==QruTab.BUSCA) SearchHome() else CatalogPage(tab)}}
+  }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
+   tabStates.SaveableStateProvider(tab.name) {
+    if(tab==QruTab.BUSCA) SearchHome() else CatalogPage(tab)
+   }
+  }}
  }
 }
 
@@ -50,7 +57,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  val vm:SearchViewModel=viewModel(factory=SearchViewModelFactory(app.searchLegalContent))
  val state by vm.state.collectAsState()
  val keyboard=LocalSoftwareKeyboardController.current
- var occurrence by remember{mutableStateOf("")}
+ var occurrence by rememberSaveable{mutableStateOf("")}
  var selected by remember{mutableStateOf<SearchResult?>(null)}
  fun voiceMessage(text:String){Toast.makeText(context,text,Toast.LENGTH_LONG).show()}
  val speech=rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()){r->
@@ -123,7 +130,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
 @Composable private fun CatalogPage(tab:QruTab) {
     val context=LocalContext.current
     val app=context.applicationContext as QruApplication
-    var query by remember(tab){mutableStateOf("")}
+    var query by rememberSaveable(tab){mutableStateOf("")}
     var selected by remember{mutableStateOf<SearchResult?>(null)}
     Column(Modifier.fillMaxSize().verticalScroll(androidx.compose.foundation.rememberScrollState()).padding(20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
         Text(tab.label,style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.primary)
