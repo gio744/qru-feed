@@ -1,0 +1,23 @@
+{
+  "checked_on": "2026-10-13",
+  "version": "indice-em-conferencia-2026-10-13-revisado",
+  "server_receipt": {
+    "id": "1624d958-4b6c-464a-bd14-8c2a789e61f4",
+    "fingerprint": "5e056522d10f8397cfefae2ec09c89633447df8c4b44317ac35158e3bedfd82e",
+    "status": "CANDIDATE",
+    "gates": [
+      {
+        "name": "SIGNATURE_ED25519",
+        "passed": true
+      },
+      {
+        "name": "STRUCTURE",
+        "passed": true
+      }
+    ]
+  },
+  "items": 418,
+  "ready_items": 0,
+  "activated": false,
+  "remaining": "Revisão operacional integrada, alterações normativas posteriores e teste no celular após futura ativação."
+}
