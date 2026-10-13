@@ -1,5 +1,5 @@
 {
-  "content_version": "indice-em-conferencia-2026-10-13-auditoria-integral",
+  "content_version": "indice-em-conferencia-2026-10-13-anexo-1022",
   "jurisdiction": "BR",
   "ready": false,
   "items": [
@@ -81,11 +81,6 @@
           }
         ],
         "operational_ready": false
-      },
-      "additional_regulatory_review": {
-        "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10222026c.pdf",
-        "status": "Resolução identificada como alteração do MBFT; cruzamento do anexo II pendente",
-        "checked_on": "2026-10-13"
       }
     },
     {
@@ -4574,11 +4569,6 @@
           }
         ],
         "operational_ready": false
-      },
-      "additional_regulatory_review": {
-        "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10222026c.pdf",
-        "status": "Resolução identificada como alteração do MBFT; cruzamento do anexo II pendente",
-        "checked_on": "2026-10-13"
       }
     },
     {
@@ -9066,11 +9056,6 @@
           }
         ],
         "operational_ready": false
-      },
-      "additional_regulatory_review": {
-        "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10222026c.pdf",
-        "status": "Resolução identificada como alteração do MBFT; cruzamento do anexo II pendente",
-        "checked_on": "2026-10-13"
       }
     },
     {
@@ -11526,10 +11511,10 @@
       "title": "Criança sem condições de cuidar da segurança na moto",
       "article": "244, V",
       "code": "707-22",
-      "search_text": " Criança sem condições de cuidar da segurança na moto resolução 1.022/2026",
-      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=720",
-      "review_status": "Conferência prioritária · validação final pendente",
-      "checked_on": "29/09/2026",
+      "search_text": " Criança sem condições de cuidar da segurança na moto resolução 1.022/2026 quadriciclo triciclo motorizado criança crianca sem condição própria segurança estribo braço engessado resolução 1022",
+      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10222026c.pdf#page=9",
+      "review_status": "Código, artigo e página conferidos no anexo oficial · revisão integrada pendente",
+      "checked_on": "2026-10-13",
       "applies_from": "",
       "applies_until": "",
       "ready": false,
@@ -11552,6 +11537,15 @@
           }
         ],
         "operational_ready": false
+      },
+      "annex_verification": {
+        "checked_on": "2026-10-13",
+        "pdf_sha256": "2547703494199728cee582c9f5717d83599c8ed610494f5c3942cea23779a7d2",
+        "pdf_page": 9,
+        "code_checked": true,
+        "article_checked": true,
+        "manual_annex_effective_from": "2026-07-01",
+        "current_legal_readiness": false
       }
     },
     {
