@@ -1,5 +1,5 @@
 {
-  "content_version": "indice-em-conferencia-2026-10-13-anexos-1012",
+  "content_version": "indice-em-conferencia-2026-10-13-prorrogacao",
   "jurisdiction": "BR",
   "ready": false,
   "items": [
@@ -231,13 +231,30 @@
       "title": "CNH vencida há mais de 30 dias",
       "article": "162, V",
       "code": "504-50",
-      "search_text": " habilitação cnh ppd dirigir entregar permitir deliberação 279 prorrogação dezembro 2026 9 de dezembro",
+      "search_text": " habilitação cnh ppd dirigir entregar permitir deliberação 279 prorrogação dezembro 2026 9 de dezembro prorrogação excepcional cnh acc vencimento 5 junho 8 dezembro 2026 suspensão cassação",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/deliberacoes/deliberacao2792026.pdf",
-      "review_status": "Conferência prioritária · validação final pendente",
-      "checked_on": "2026-09-30",
+      "review_status": "Prorrogação excepcional documentada · ficha e atos posteriores ainda pendentes",
+      "checked_on": "2026-10-13",
       "applies_from": "",
       "applies_until": "",
-      "ready": false
+      "ready": false,
+      "normative_exception_verification": {
+        "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/deliberacoes/deliberacao2792026.pdf",
+        "checked_on": "2026-10-13",
+        "document": "Deliberação CONTRAN 279/2026",
+        "articles": [
+          "1",
+          "2",
+          "3",
+          "6"
+        ],
+        "original_expiry_from": "2026-06-05",
+        "original_expiry_until": "2026-12-08",
+        "extended_validity_until": "2026-12-09",
+        "renewal_days_after_extension": 30,
+        "excludes_suspended_or_revoked_right": true,
+        "current_legal_readiness": false
+      }
     },
     {
       "stable_key": "mbft-505-31",
