@@ -1,0 +1,35 @@
+{
+  "checked_on": "2026-10-13",
+  "verified": {
+    "694-73": {
+      "name": "Resolucao10032023.pdf",
+      "page": 2,
+      "sha": "8e1c0e18924680565fff17585acda791d88607d46193227175be18d37950640d",
+      "date": "2024-01-02"
+    },
+    "574-61": {
+      "name": "resolucao10232026c.pdf",
+      "page": 11
+    },
+    "658-00": {
+      "name": "resolucao10232026c.pdf",
+      "page": 13
+    },
+    "659-91": {
+      "name": "resolucao10232026c.pdf",
+      "page": 15
+    }
+  },
+  "changed_codes": [
+    "659-91",
+    "574-61",
+    "658-00",
+    "694-73"
+  ],
+  "notes": [
+    "1003: ficha 694-73, artigo 235, páginas 2 a 3; vigência do ato em 02/01/2024.",
+    "1023: fichas 574-61 (187 I), 658-00 (230 IV) e 659-91 (230 V), páginas 11,13,15; vigência declarada em 03/07/2026.",
+    "Conferência dos cabeçalhos e leitura documental não equivale a validação integral dos procedimentos e de atos posteriores."
+  ],
+  "ready_items": 0
+}
