@@ -1,5 +1,5 @@
 {
-  "content_version": "indice-em-conferencia-2026-10-13-cursos",
+  "content_version": "indice-em-conferencia-2026-10-13-cursos-transicao",
   "jurisdiction": "BR",
   "ready": false,
   "items": [
@@ -644,7 +644,7 @@
       "title": "Sem curso especializado obrigatório",
       "article": "162, VII",
       "code": "774-91",
-      "search_text": "curso especializado MOPP CETPP produtos perigosos ambulância ambulancia CETVE transporte escolar CETE coletivo CETCP motofrete mototáxi CETCI carga indivisível condução condutor RENACH observações CNH curso certificado exame teórico aprovação ambulância atualização cinco anos",
+      "search_text": "curso especializado MOPP CETPP produtos perigosos ambulância ambulancia CETVE transporte escolar CETE coletivo CETCP motofrete mototáxi CETCI carga indivisível condução condutor RENACH observações CNH curso certificado exame teórico aprovação ambulância atualização cinco anos validade curso MOPP renovação atualização curso especializado prazo cinco anos ambulância",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=61",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -692,7 +692,16 @@
         "ambulance_validity_start": "Aprovação nos exames teóricos",
         "blanket_expired_course_rule_from_2022": "Não transpor automaticamente; integrar atos complementares e situação do curso",
         "operational_ready": false,
-        "scope": "Integração parcial de procedimentos; não equivale à validação integral da ficha"
+        "scope": "Integração parcial de procedimentos; não equivale à validação integral da ficha",
+        "periodic_renewal_review": {
+          "checked_on": "2026-10-13",
+          "evidence_source": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3137071",
+          "evidence": "Nota Técnica 412/2026, itens 2.3 a 2.6, páginas 7–8 do processo",
+          "finding": "Renovação periódica eliminada para a maioria dos cursos especializados; ambulâncias mantêm cinco anos.",
+          "legacy_records": "Migração e situações de cursos antigos ainda exigem conferência; não inferir habilitação pela posse de certificado.",
+          "operational_ready": false
+        },
+        "curriculum_source": "https://www.gov.br/transportes/pt-br/assuntos/transito/arquivos-senatran/portarias/2025/Portaria9232025.pdf"
       }
     },
     {
@@ -1168,7 +1177,7 @@
       "title": "Entregar a quem não possui curso especializado",
       "article": "163 c/c 162, VII",
       "code": "777-31",
-      "search_text": "curso especializado MOPP CETPP produtos perigosos ambulância ambulancia CETVE transporte escolar CETE coletivo CETCP motofrete mototáxi CETCI carga indivisível entregar direção proprietário presente RENACH observações CNH curso certificado exame teórico aprovação ambulância atualização cinco anos",
+      "search_text": "curso especializado MOPP CETPP produtos perigosos ambulância ambulancia CETVE transporte escolar CETE coletivo CETCP motofrete mototáxi CETCI carga indivisível entregar direção proprietário presente RENACH observações CNH curso certificado exame teórico aprovação ambulância atualização cinco anos validade curso MOPP renovação atualização curso especializado prazo cinco anos ambulância",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=85",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -1216,7 +1225,16 @@
         "ambulance_validity_start": "Aprovação nos exames teóricos",
         "blanket_expired_course_rule_from_2022": "Não transpor automaticamente; integrar atos complementares e situação do curso",
         "operational_ready": false,
-        "scope": "Integração parcial de procedimentos; não equivale à validação integral da ficha"
+        "scope": "Integração parcial de procedimentos; não equivale à validação integral da ficha",
+        "periodic_renewal_review": {
+          "checked_on": "2026-10-13",
+          "evidence_source": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3137071",
+          "evidence": "Nota Técnica 412/2026, itens 2.3 a 2.6, páginas 7–8 do processo",
+          "finding": "Renovação periódica eliminada para a maioria dos cursos especializados; ambulâncias mantêm cinco anos.",
+          "legacy_records": "Migração e situações de cursos antigos ainda exigem conferência; não inferir habilitação pela posse de certificado.",
+          "operational_ready": false
+        },
+        "curriculum_source": "https://www.gov.br/transportes/pt-br/assuntos/transito/arquivos-senatran/portarias/2025/Portaria9232025.pdf"
       }
     },
     {
@@ -1692,7 +1710,7 @@
       "title": "Permitir condução sem curso especializado",
       "article": "164 c/c 162, VII",
       "code": "778-11",
-      "search_text": "curso especializado MOPP CETPP produtos perigosos ambulância ambulancia CETVE transporte escolar CETE coletivo CETCP motofrete mototáxi CETCI carga indivisível permitir posse condução proprietário ausente pessoa jurídica RENACH observações CNH curso certificado exame teórico aprovação ambulância atualização cinco anos",
+      "search_text": "curso especializado MOPP CETPP produtos perigosos ambulância ambulancia CETVE transporte escolar CETE coletivo CETCP motofrete mototáxi CETCI carga indivisível permitir posse condução proprietário ausente pessoa jurídica RENACH observações CNH curso certificado exame teórico aprovação ambulância atualização cinco anos validade curso MOPP renovação atualização curso especializado prazo cinco anos ambulância",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=102",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -1740,7 +1758,16 @@
         "ambulance_validity_start": "Aprovação nos exames teóricos",
         "blanket_expired_course_rule_from_2022": "Não transpor automaticamente; integrar atos complementares e situação do curso",
         "operational_ready": false,
-        "scope": "Integração parcial de procedimentos; não equivale à validação integral da ficha"
+        "scope": "Integração parcial de procedimentos; não equivale à validação integral da ficha",
+        "periodic_renewal_review": {
+          "checked_on": "2026-10-13",
+          "evidence_source": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3137071",
+          "evidence": "Nota Técnica 412/2026, itens 2.3 a 2.6, páginas 7–8 do processo",
+          "finding": "Renovação periódica eliminada para a maioria dos cursos especializados; ambulâncias mantêm cinco anos.",
+          "legacy_records": "Migração e situações de cursos antigos ainda exigem conferência; não inferir habilitação pela posse de certificado.",
+          "operational_ready": false
+        },
+        "curriculum_source": "https://www.gov.br/transportes/pt-br/assuntos/transito/arquivos-senatran/portarias/2025/Portaria9232025.pdf"
       }
     },
     {
