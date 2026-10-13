@@ -5,6 +5,8 @@ data class LegalItemEntity(@PrimaryKey val stableKey:String,val title:String,val
 @Entity(tableName="legal_releases_local",indices=[Index(value=["active"])])
 data class LegalReleaseEntity(@PrimaryKey val version:String,val fingerprint:String,val jurisdiction:String,val installedAt:Long,val active:Boolean)
 @Dao interface LegalDao{
+ @Query("SELECT * FROM legal_items WHERE active=1")
+ suspend fun activeItems():List<LegalItemEntity>
  @Query("""SELECT * FROM legal_items WHERE active=1 AND (lower(title) LIKE '%'||lower(:q)||'%' OR lower(searchText) LIKE '%'||lower(:q)||'%' OR lower(COALESCE(article,'')) LIKE '%'||lower(:q)||'%' OR lower(COALESCE(code,'')) LIKE '%'||lower(:q)||'%') ORDER BY title LIMIT 30""")
  suspend fun search(q:String):List<LegalItemEntity>
  @Insert(onConflict=OnConflictStrategy.REPLACE) suspend fun insertItems(v:List<LegalItemEntity>)
