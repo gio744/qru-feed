@@ -1,0 +1,18 @@
+{
+  "checked_on": "2026-10-13",
+  "scope": "Integridade do índice e navegação às fontes; não é aprovação jurídica",
+  "references": 418,
+  "unique_keys": 418,
+  "unique_codes": 418,
+  "empty_required_fields": 0,
+  "invalid_periods": 0,
+  "links_to_pdf_adjusted": 399,
+  "future_references": 2,
+  "ready": 0,
+  "activation_approved": false,
+  "blocked_documents": [
+    "MBFT integral: rotas de download do Ministério dos Transportes e DER-MG retornaram HTTP 403",
+    "Anexos em imagem das alterações posteriores: conferência integral pendente"
+  ],
+  "next_required_input": "PDF integral oficial do MBFT disponibilizado pelo usuário, para comparação de título/código/página e procedimentos."
+}
