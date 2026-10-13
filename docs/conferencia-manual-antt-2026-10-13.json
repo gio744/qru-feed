@@ -1,0 +1,16 @@
+{
+  "checked_on": "2026-10-13",
+  "file": "manual_de_fiscalizacao_dos_limites_de_peso-1.pdf",
+  "sha256": "46844734d61a08ddb476bbc93e7d25fd5678f261fc3eeb5c9e17630b21f73618",
+  "pages": 125,
+  "embedded_files": 0,
+  "code55171_text_matches": 0,
+  "title_viadutos_text_matches": 0,
+  "mbft_reference": {
+    "pdf_page": 99,
+    "finding": "Texto menciona integração do MBFT como anexo e fornece endereço da listagem de resoluções. Cópia recebida não contém PDF embutido nem ficha551-71 identificada."
+  },
+  "conclusion": "Não usar esta cópia como evidência de identidade da551-71. Pendência permanece.",
+  "ready": false,
+  "activated": false
+}
