@@ -1,5 +1,5 @@
 {
-  "content_version": "indice-em-conferencia-2026-10-13-habilitacao",
+  "content_version": "indice-em-conferencia-2026-10-13-cursos",
   "jurisdiction": "BR",
   "ready": false,
   "items": [
@@ -644,7 +644,7 @@
       "title": "Sem curso especializado obrigatório",
       "article": "162, VII",
       "code": "774-91",
-      "search_text": "curso especializado MOPP CETPP produtos perigosos ambulância ambulancia CETVE transporte escolar CETE coletivo CETCP motofrete mototáxi CETCI carga indivisível condução condutor",
+      "search_text": "curso especializado MOPP CETPP produtos perigosos ambulância ambulancia CETVE transporte escolar CETE coletivo CETCP motofrete mototáxi CETCI carga indivisível condução condutor RENACH observações CNH curso certificado exame teórico aprovação ambulância atualização cinco anos",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=61",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -679,6 +679,20 @@
         "review_note": "Distinguir curso especializado e específico; integrar Resolução 1.020/2025 antes de transpor regras antigas de prazo de curso.",
         "operational_ready": false,
         "regulation_source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf"
+      },
+      "course_regulation_review": {
+        "checked_on": "2026-10-13",
+        "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf",
+        "provisions": [
+          "67–75"
+        ],
+        "renach_precedes_cnh_observations": true,
+        "approval_record_required": true,
+        "ambulance_validity_years": 5,
+        "ambulance_validity_start": "Aprovação nos exames teóricos",
+        "blanket_expired_course_rule_from_2022": "Não transpor automaticamente; integrar atos complementares e situação do curso",
+        "operational_ready": false,
+        "scope": "Integração parcial de procedimentos; não equivale à validação integral da ficha"
       }
     },
     {
@@ -686,7 +700,7 @@
       "title": "Dirigir sem curso específico obrigatório",
       "article": "162, VII",
       "code": "774-92",
-      "search_text": "curso específico reciclagem pendente não realizada suspensão cumprida período encerrado exame teórico aprovação RENACH condução condutor",
+      "search_text": "curso específico reciclagem pendente não realizada suspensão cumprida período encerrado exame teórico aprovação RENACH condução condutor certificado curso exame teórico aprovação registro RENACH reciclagem obrigatória preventiva",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=67",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -721,6 +735,19 @@
         "review_note": "Distinguir curso especializado e específico; integrar Resolução 1.020/2025 antes de transpor regras antigas de prazo de curso.",
         "operational_ready": false,
         "regulation_source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf"
+      },
+      "course_regulation_review": {
+        "checked_on": "2026-10-13",
+        "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf",
+        "provisions": [
+          "87–91"
+        ],
+        "course_and_theory_exam_are_distinct": true,
+        "certificate_alone_is_not_theory_approval": true,
+        "return_to_driving_requires_completed_suspension_and_recorded_approval": true,
+        "preventive_recycling_not_equivalent_to_mandatory_missing_course": true,
+        "operational_ready": false,
+        "scope": "Integração parcial de procedimentos; não equivale à validação integral da ficha"
       }
     },
     {
@@ -1141,7 +1168,7 @@
       "title": "Entregar a quem não possui curso especializado",
       "article": "163 c/c 162, VII",
       "code": "777-31",
-      "search_text": "curso especializado MOPP CETPP produtos perigosos ambulância ambulancia CETVE transporte escolar CETE coletivo CETCP motofrete mototáxi CETCI carga indivisível entregar direção proprietário presente",
+      "search_text": "curso especializado MOPP CETPP produtos perigosos ambulância ambulancia CETVE transporte escolar CETE coletivo CETCP motofrete mototáxi CETCI carga indivisível entregar direção proprietário presente RENACH observações CNH curso certificado exame teórico aprovação ambulância atualização cinco anos",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=85",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -1176,6 +1203,20 @@
         "review_note": "Distinguir curso especializado e específico; integrar Resolução 1.020/2025 antes de transpor regras antigas de prazo de curso.",
         "operational_ready": false,
         "regulation_source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf"
+      },
+      "course_regulation_review": {
+        "checked_on": "2026-10-13",
+        "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf",
+        "provisions": [
+          "67–75"
+        ],
+        "renach_precedes_cnh_observations": true,
+        "approval_record_required": true,
+        "ambulance_validity_years": 5,
+        "ambulance_validity_start": "Aprovação nos exames teóricos",
+        "blanket_expired_course_rule_from_2022": "Não transpor automaticamente; integrar atos complementares e situação do curso",
+        "operational_ready": false,
+        "scope": "Integração parcial de procedimentos; não equivale à validação integral da ficha"
       }
     },
     {
@@ -1183,7 +1224,7 @@
       "title": "Entregar a quem não possui curso específico",
       "article": "163 c/c 162, VII",
       "code": "777-32",
-      "search_text": "curso específico reciclagem pendente não realizada suspensão cumprida período encerrado exame teórico aprovação RENACH entregar direção proprietário presente",
+      "search_text": "curso específico reciclagem pendente não realizada suspensão cumprida período encerrado exame teórico aprovação RENACH entregar direção proprietário presente certificado curso exame teórico aprovação registro RENACH reciclagem obrigatória preventiva",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=86",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -1218,6 +1259,19 @@
         "review_note": "Distinguir curso especializado e específico; integrar Resolução 1.020/2025 antes de transpor regras antigas de prazo de curso.",
         "operational_ready": false,
         "regulation_source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf"
+      },
+      "course_regulation_review": {
+        "checked_on": "2026-10-13",
+        "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf",
+        "provisions": [
+          "87–91"
+        ],
+        "course_and_theory_exam_are_distinct": true,
+        "certificate_alone_is_not_theory_approval": true,
+        "return_to_driving_requires_completed_suspension_and_recorded_approval": true,
+        "preventive_recycling_not_equivalent_to_mandatory_missing_course": true,
+        "operational_ready": false,
+        "scope": "Integração parcial de procedimentos; não equivale à validação integral da ficha"
       }
     },
     {
@@ -1638,7 +1692,7 @@
       "title": "Permitir condução sem curso especializado",
       "article": "164 c/c 162, VII",
       "code": "778-11",
-      "search_text": "curso especializado MOPP CETPP produtos perigosos ambulância ambulancia CETVE transporte escolar CETE coletivo CETCP motofrete mototáxi CETCI carga indivisível permitir posse condução proprietário ausente pessoa jurídica",
+      "search_text": "curso especializado MOPP CETPP produtos perigosos ambulância ambulancia CETVE transporte escolar CETE coletivo CETCP motofrete mototáxi CETCI carga indivisível permitir posse condução proprietário ausente pessoa jurídica RENACH observações CNH curso certificado exame teórico aprovação ambulância atualização cinco anos",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=102",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -1673,6 +1727,20 @@
         "review_note": "Distinguir curso especializado e específico; integrar Resolução 1.020/2025 antes de transpor regras antigas de prazo de curso.",
         "operational_ready": false,
         "regulation_source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf"
+      },
+      "course_regulation_review": {
+        "checked_on": "2026-10-13",
+        "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf",
+        "provisions": [
+          "67–75"
+        ],
+        "renach_precedes_cnh_observations": true,
+        "approval_record_required": true,
+        "ambulance_validity_years": 5,
+        "ambulance_validity_start": "Aprovação nos exames teóricos",
+        "blanket_expired_course_rule_from_2022": "Não transpor automaticamente; integrar atos complementares e situação do curso",
+        "operational_ready": false,
+        "scope": "Integração parcial de procedimentos; não equivale à validação integral da ficha"
       }
     },
     {
@@ -1680,7 +1748,7 @@
       "title": "Permitir condução sem curso específico",
       "article": "164 c/c 162, VII",
       "code": "778-12",
-      "search_text": "curso específico reciclagem pendente não realizada suspensão cumprida período encerrado exame teórico aprovação RENACH permitir posse condução proprietário ausente pessoa jurídica",
+      "search_text": "curso específico reciclagem pendente não realizada suspensão cumprida período encerrado exame teórico aprovação RENACH permitir posse condução proprietário ausente pessoa jurídica certificado curso exame teórico aprovação registro RENACH reciclagem obrigatória preventiva",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=103",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -1715,6 +1783,19 @@
         "review_note": "Distinguir curso especializado e específico; integrar Resolução 1.020/2025 antes de transpor regras antigas de prazo de curso.",
         "operational_ready": false,
         "regulation_source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf"
+      },
+      "course_regulation_review": {
+        "checked_on": "2026-10-13",
+        "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf",
+        "provisions": [
+          "87–91"
+        ],
+        "course_and_theory_exam_are_distinct": true,
+        "certificate_alone_is_not_theory_approval": true,
+        "return_to_driving_requires_completed_suspension_and_recorded_approval": true,
+        "preventive_recycling_not_equivalent_to_mandatory_missing_course": true,
+        "operational_ready": false,
+        "scope": "Integração parcial de procedimentos; não equivale à validação integral da ficha"
       }
     },
     {
