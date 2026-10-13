@@ -1,5 +1,5 @@
 {
-  "content_version": "indice-em-conferencia-2026-10-13-mbft",
+  "content_version": "indice-em-conferencia-2026-10-13-anexos",
   "jurisdiction": "BR",
   "ready": false,
   "items": [
@@ -875,12 +875,22 @@
       "article": "165",
       "code": "516-92",
       "search_text": " Substância psicoativa: conferir procedimento e data drogado ao volante substancia psicoativa alteracao capacidade psicomotora",
-      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf",
-      "review_status": "Transição normativa conferida · ficha ainda não validada",
-      "checked_on": "29/09/2026",
-      "applies_from": "2026-08-18",
+      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf#page=15",
+      "review_status": "Código, artigo e página conferidos no anexo oficial · validação operacional pendente",
+      "checked_on": "2026-10-13",
+      "applies_from": "2026-10-17",
       "applies_until": "",
-      "ready": false
+      "ready": false,
+      "annex_verification": {
+        "checked_on": "2026-10-13",
+        "pdf_sha256": "9f6d8d8c6e7b7996fce21326a229c9b262d45178907fff7bd9dd159ca5ba9b5a",
+        "pdf_page": 15,
+        "code_checked": true,
+        "article_checked": true,
+        "current_legal_readiness": false,
+        "procedure_effective_from": "2026-08-18",
+        "manual_annex_effective_from": "2026-10-17"
+      }
     },
     {
       "stable_key": "mbft-757-90",
@@ -901,9 +911,9 @@
       "article": "165-B",
       "code": "764-10",
       "search_text": " Exame toxicológico: referência histórica",
-      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10092024.pdf#page=4",
-      "review_status": "Referência histórica · conferir vigência",
-      "checked_on": "29/09/2026",
+      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=112",
+      "review_status": "Ficha histórica do MBFT de 2022 · não consta como ficha no anexo da Resolução 1009/2024",
+      "checked_on": "2026-10-13",
       "applies_from": "",
       "applies_until": "",
       "ready": false
@@ -914,9 +924,9 @@
       "article": "165-B, parágrafo único",
       "code": "765-00",
       "search_text": " Exame toxicológico na renovação: referência histórica",
-      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10092024.pdf#page=7",
-      "review_status": "Referência histórica · conferir vigência",
-      "checked_on": "29/09/2026",
+      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=114",
+      "review_status": "Ficha histórica do MBFT de 2022 · não consta como ficha no anexo da Resolução 1009/2024",
+      "checked_on": "2026-10-13",
       "applies_from": "",
       "applies_until": "",
       "ready": false
@@ -8447,12 +8457,22 @@
       "article": "165",
       "code": "516-91",
       "search_text": " Álcool: conferir procedimento e data alcool sob influencia etilometro valor considerado",
-      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf",
-      "review_status": "Transição normativa conferida · ficha ainda não validada",
-      "checked_on": "29/09/2026",
-      "applies_from": "2026-08-18",
+      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf#page=12",
+      "review_status": "Código, artigo e página conferidos no anexo oficial · validação operacional pendente",
+      "checked_on": "2026-10-13",
+      "applies_from": "2026-10-17",
       "applies_until": "",
-      "ready": false
+      "ready": false,
+      "annex_verification": {
+        "checked_on": "2026-10-13",
+        "pdf_sha256": "9f6d8d8c6e7b7996fce21326a229c9b262d45178907fff7bd9dd159ca5ba9b5a",
+        "pdf_page": 12,
+        "code_checked": true,
+        "article_checked": true,
+        "current_legal_readiness": false,
+        "procedure_effective_from": "2026-08-18",
+        "manual_annex_effective_from": "2026-10-17"
+      }
     },
     {
       "stable_key": "mbft-519-30",
@@ -8545,11 +8565,19 @@
       "code": "780-30",
       "search_text": "toxicológico exame categorias c d e Exame toxicológico exigido na condução",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10092024.pdf#page=5",
-      "review_status": "Revisão editorial · validação final pendente",
-      "checked_on": "29/09/2026",
+      "review_status": "Código, artigo e página conferidos no anexo oficial · validação operacional pendente",
+      "checked_on": "2026-10-13",
       "applies_from": "2024-04-25",
       "applies_until": "",
-      "ready": false
+      "ready": false,
+      "annex_verification": {
+        "checked_on": "2026-10-13",
+        "pdf_sha256": "2c19112a82bf6357dc8710dd5c00401b721a70022e7dd8386a264814e261a9a1",
+        "pdf_page": 5,
+        "code_checked": true,
+        "article_checked": true,
+        "current_legal_readiness": false
+      }
     },
     {
       "stable_key": "mbft-781-10",
@@ -8558,11 +8586,19 @@
       "code": "781-10",
       "search_text": "toxicológico exame categorias c d e Resultado positivo em exame toxicológico",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10092024.pdf#page=6",
-      "review_status": "Revisão editorial · validação final pendente",
-      "checked_on": "29/09/2026",
+      "review_status": "Código, artigo e página conferidos no anexo oficial · validação operacional pendente",
+      "checked_on": "2026-10-13",
       "applies_from": "2024-04-25",
       "applies_until": "",
-      "ready": false
+      "ready": false,
+      "annex_verification": {
+        "checked_on": "2026-10-13",
+        "pdf_sha256": "2c19112a82bf6357dc8710dd5c00401b721a70022e7dd8386a264814e261a9a1",
+        "pdf_page": 6,
+        "code_checked": true,
+        "article_checked": true,
+        "current_legal_readiness": false
+      }
     },
     {
       "stable_key": "mbft-782-00",
@@ -8571,11 +8607,19 @@
       "code": "782-00",
       "search_text": "toxicológico exame categorias c d e Exame toxicológico periódico não realizado",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10092024.pdf#page=7",
-      "review_status": "Revisão editorial · validação final pendente",
-      "checked_on": "29/09/2026",
+      "review_status": "Código, artigo e página conferidos no anexo oficial · validação operacional pendente",
+      "checked_on": "2026-10-13",
       "applies_from": "2024-04-25",
       "applies_until": "",
-      "ready": false
+      "ready": false,
+      "annex_verification": {
+        "checked_on": "2026-10-13",
+        "pdf_sha256": "2c19112a82bf6357dc8710dd5c00401b721a70022e7dd8386a264814e261a9a1",
+        "pdf_page": 7,
+        "code_checked": true,
+        "article_checked": true,
+        "current_legal_readiness": false
+      }
     },
     {
       "stable_key": "future-757-91",
@@ -8583,12 +8627,22 @@
       "article": "165-A",
       "code": "757-91",
       "search_text": "recusa teste etilometro alcool substancia psicoativa Recusa de procedimento para álcool: vigência futura",
-      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf",
-      "review_status": "Transição normativa conferida · ficha ainda não validada",
-      "checked_on": "29/09/2026",
+      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf#page=17",
+      "review_status": "Código, artigo e página conferidos no anexo oficial · validação operacional pendente",
+      "checked_on": "2026-10-13",
       "applies_from": "2026-10-17",
       "applies_until": "",
-      "ready": false
+      "ready": false,
+      "annex_verification": {
+        "checked_on": "2026-10-13",
+        "pdf_sha256": "9f6d8d8c6e7b7996fce21326a229c9b262d45178907fff7bd9dd159ca5ba9b5a",
+        "pdf_page": 17,
+        "code_checked": true,
+        "article_checked": true,
+        "current_legal_readiness": false,
+        "procedure_effective_from": "2026-08-18",
+        "manual_annex_effective_from": "2026-10-17"
+      }
     },
     {
       "stable_key": "future-757-92",
@@ -8596,12 +8650,22 @@
       "article": "165-A",
       "code": "757-92",
       "search_text": "recusa teste etilometro alcool substancia psicoativa Recusa de procedimento para outra substância: vigência futura",
-      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf",
-      "review_status": "Transição normativa conferida · ficha ainda não validada",
-      "checked_on": "29/09/2026",
+      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf#page=19",
+      "review_status": "Código, artigo e página conferidos no anexo oficial · validação operacional pendente",
+      "checked_on": "2026-10-13",
       "applies_from": "2026-10-17",
       "applies_until": "",
-      "ready": false
+      "ready": false,
+      "annex_verification": {
+        "checked_on": "2026-10-13",
+        "pdf_sha256": "9f6d8d8c6e7b7996fce21326a229c9b262d45178907fff7bd9dd159ca5ba9b5a",
+        "pdf_page": 19,
+        "code_checked": true,
+        "article_checked": true,
+        "current_legal_readiness": false,
+        "procedure_effective_from": "2026-08-18",
+        "manual_annex_effective_from": "2026-10-17"
+      }
     },
     {
       "stable_key": "mbft-551-71",
@@ -8623,11 +8687,19 @@
       "code": "779-00",
       "search_text": "toxicológico toxicologico exame renovação concessão mudança categoria c d e renach cnh exame do caput 77900",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10092024.pdf#page=4",
-      "review_status": "Revisão operacional documentada · validação final pendente",
-      "checked_on": "29/09/2026",
+      "review_status": "Código, artigo e página conferidos no anexo oficial · validação operacional pendente",
+      "checked_on": "2026-10-13",
       "applies_from": "2024-04-25",
       "applies_until": "",
-      "ready": false
+      "ready": false,
+      "annex_verification": {
+        "checked_on": "2026-10-13",
+        "pdf_sha256": "2c19112a82bf6357dc8710dd5c00401b721a70022e7dd8386a264814e261a9a1",
+        "pdf_page": 4,
+        "code_checked": true,
+        "article_checked": true,
+        "current_legal_readiness": false
+      }
     }
   ],
   "schema_version": 1
