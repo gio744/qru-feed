@@ -65,6 +65,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
 
  Column(Modifier.fillMaxSize().verticalScroll(androidx.compose.foundation.rememberScrollState()).padding(20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)){
   Text("QRU?",style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.primary)
+  Text("QUAL A SITUAÇÃO",style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.secondary)
   Text("Trânsito",style=MaterialTheme.typography.titleLarge)
   Text("Consulta operacional",color=MaterialTheme.colorScheme.secondary)
   OutlinedTextField(state.query,{vm.query(it)},Modifier.fillMaxWidth(),label={Text("Busque artigo, código ou situação")},
