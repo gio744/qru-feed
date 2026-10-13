@@ -5,6 +5,8 @@ import br.com.qru.transito.domain.usecase.CatalogSearch
 import br.com.qru.transito.domain.usecase.IndexedReference
 import org.junit.Assert.*
 import org.junit.Test
+import com.google.gson.JsonParser
+import java.io.File
 
 class CatalogSearchTest {
     private val entries=listOf(
@@ -27,4 +29,16 @@ class CatalogSearchTest {
     @Test fun accentsDoNotBlockPracticalTerms(){assertEquals(CatalogSearch.search(entries,"bafometro"),CatalogSearch.search(entries,"bafômetro"))}
     @Test fun narrativeFindsReference(){assertEquals("cnh",CatalogSearch.search(entries,"condutor dirigindo com cnh vencida").first().stableKey)}
     @Test fun unknownOrEmptySearchDoesNotReturnAll(){assertTrue(CatalogSearch.search(entries,"").isEmpty());assertTrue(CatalogSearch.search(entries,"abacaxi").isEmpty())}
+
+    @Test fun bundledTyreSearchDoesNotReturnUnrelatedEquipment() {
+        val json=JsonParser.parseString(File("src/main/assets/initial-index.json").readText()).asJsonObject
+        val catalog=json.getAsJsonArray("items").map { element ->
+            val item=element.asJsonObject
+            IndexedReference(SearchResult(item.get("stable_key").asString,item.get("title").asString,
+                item.get("article").asString,item.get("code").asString,"BR","test"),item.get("search_text").asString)
+        }
+        val codes=CatalogSearch.search(catalog,"pneu").mapNotNull { it.code }.toSet()
+        assertTrue(codes.containsAll(setOf("661-02","664-50","672-61")))
+        assertEquals(setOf("661-02","664-50","672-61","663-71","663-72"),codes)
+    }
 }
