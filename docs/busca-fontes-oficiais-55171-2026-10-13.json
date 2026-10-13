@@ -1,0 +1,18 @@
+{
+  "checked_on": "2026-10-13",
+  "code": "551-71",
+  "attempts": [
+    {
+      "source": "https://semob.santarita.pb.gov.br/wp-content/uploads/2024/09/MANUAL-BRASILEIRO-DE-FISCALIZACAO-DE-TRANSITO-2022_2.pdf",
+      "result": "HTTP502; conteúdo não conferido"
+    },
+    {
+      "source": "https://www.gov.br/antt/pt-br/assuntos/fiscalizacao-e-multas/arquivos/arquivos-manuais-de-fiscalizacao/manual_de_fiscalizacao_dos_limites_de_peso-1.pdf",
+      "result": "HTTP403; publicação informa MBFT anexo, conteúdo da ficha não conferido"
+    }
+  ],
+  "received_manual": "Páginas219 e220 inspecionadas visualmente: pertencem à550-90, não à551-71. Ficha551-71 não foi localizada por extração no PDF recebido.",
+  "excluded_evidence": "Fichas do ParticipaMaisBrasil identificadas como consulta pública.",
+  "next_required": "Outra cópia oficial do manual que contenha a ficha551-71, seguida de conferência do texto e origem.",
+  "ready": false
+}
