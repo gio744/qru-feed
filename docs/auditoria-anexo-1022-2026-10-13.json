@@ -1,0 +1,20 @@
+{
+  "checked_on": "2026-10-13",
+  "file": "resolucao10222026c.pdf",
+  "pdf_pages": 9,
+  "sha256": "2547703494199728cee582c9f5717d83599c8ed610494f5c3942cea23779a7d2",
+  "annex_II": {
+    "page": 9,
+    "code": "707-22",
+    "article": "244, V",
+    "visual_check": true
+  },
+  "corrections": [
+    "Vinculação da ficha 707-22 ao anexo da 1022.",
+    "Removidas marcações provisórias de cruzamento do anexo 1022 das fichas 574-61, 658-00 e 659-91; suas fontes na 1023 permanecem.",
+    "Indexados termos quadriciclo e triciclo na referência 707-22."
+  ],
+  "review_note": "A coluna Quando Autuar combina idade e incapacidade, enquanto Quando NÃO Autuar remete menores de dez anos à 707-21. Necessária interpretação integrada das duas fichas e do CTB antes de liberar procedimento; não copiar a frase isolada como decisão automática.",
+  "status": "Lacuna de acesso e localização do anexo resolvida; validação operacional pendente.",
+  "ready_items": 0
+}
