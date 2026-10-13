@@ -1,0 +1,67 @@
+{
+  "checked_on": "2026-10-13",
+  "source": "Resolução CONTRAN 1009/2024; PDF recebido, páginas 4 a 7",
+  "review_kind": "Conferência integrada documental; validação atual final pendente",
+  "cards": [
+    {
+      "code": "779-00",
+      "article": "165-B caput",
+      "page": 4,
+      "distinction": "Exame de obtenção, renovação ou mudança para C/D/E, em condução de veículo que exige essas categorias.",
+      "check": [
+        "Abordagem",
+        "RENACH disponível",
+        "Tipo e vencimento do exame",
+        "Última coleta e prazo de validade",
+        "Categoria exigida pelo veículo"
+      ]
+    },
+    {
+      "code": "780-30",
+      "article": "165-B c/c parágrafo único",
+      "page": 5,
+      "distinction": "Exame periódico durante condução de veículo que exige C/D/E; conferir idade e prazo excedido.",
+      "check": [
+        "Abordagem",
+        "Idade inferior a 70 na hipótese da ficha",
+        "Exame periódico, não exame de renovação",
+        "RENACH e coleta recente",
+        "Não duplicar penalidades de exames periódicos vencidos na abordagem sem revisão"
+      ]
+    },
+    {
+      "code": "781-10",
+      "article": "165-C",
+      "page": 6,
+      "distinction": "Resultado positivo no exame ligado à obtenção/renovação, durante condução de veículo C/D/E; resultado positivo periódico tem tratamento próprio.",
+      "check": [
+        "Abordagem",
+        "Consulta RENACH",
+        "Natureza do exame",
+        "Não confundir laudo de larga janela com constatação de influência atual do art.165"
+      ]
+    },
+    {
+      "code": "782-00",
+      "article": "165-D",
+      "page": 7,
+      "distinction": "Falta de exame periódico; procedimento de competência estadual descrito na ficha, distinto da autuação em abordagem de 780-30.",
+      "check": [
+        "Competência",
+        "Calendário RENACH",
+        "Data, hora e local definidos nos procedimentos",
+        "Prazos de notificação",
+        "Exceções e passivo histórico"
+      ]
+    }
+  ],
+  "review_blocks": [
+    "Conferir Resolução 923 consolidada e atos posteriores à 1009 antes de liberar orientação.",
+    "Cabeçalho de 780-30 e texto de reincidência devem ser conciliados com CTB atual.",
+    "Item de regularidade por coleta da ficha 782-00 emprega referência temporal diferente da 780-30; não padronizar automaticamente o prazo de 90 dias.",
+    "Mudança para categorias B/AB e cancelamento tempestivo precisam ser considerados na revisão de 165-D.",
+    "Sem consulta RENACH, as fichas impedem lavratura; consulta não pode ser substituída por inferência de documento apresentado."
+  ],
+  "ready_items": 0,
+  "activated": false
+}
