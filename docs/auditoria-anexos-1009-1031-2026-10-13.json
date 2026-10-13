@@ -1,0 +1,45 @@
+{
+  "checked_on": "2026-10-13",
+  "files": [
+    {
+      "name": "Resolucao10092024.pdf",
+      "sha256": "2c19112a82bf6357dc8710dd5c00401b721a70022e7dd8386a264814e261a9a1",
+      "header_pages": {
+        "779-00": 4,
+        "780-30": 5,
+        "781-10": 6,
+        "782-00": 7
+      }
+    },
+    {
+      "name": "resolucao10312026.pdf",
+      "sha256": "9f6d8d8c6e7b7996fce21326a229c9b262d45178907fff7bd9dd159ca5ba9b5a",
+      "header_pages": {
+        "516-91": 12,
+        "516-92": 15,
+        "757-91": 17,
+        "757-92": 19
+      }
+    }
+  ],
+  "changed_codes": [
+    "516-92",
+    "764-10",
+    "765-00",
+    "516-91",
+    "780-30",
+    "781-10",
+    "782-00",
+    "757-91",
+    "757-92",
+    "779-00"
+  ],
+  "ready_items": 0,
+  "observations": [
+    "Resolução 1031: procedimentos desde publicação; alterações do MBFT após 60 dias, 17/10/2026.",
+    "Anexo 1031, ficha 516-91, Quando NÃO Autuar item 3 ainda menciona 757-90; cabe registrar possível referência residual, sem corrigir silenciosamente a norma.",
+    "Cabeçalhos de medidas administrativas nos anexos 1031 mencionam recolhimento; artigo 12 disciplina ausência de recolhimento imediato. Necessária revisão integrada antes de orientação operacional.",
+    "Códigos históricos 764-10 e 765-00 não são cabeçalhos no anexo 1009; fontes redirecionadas às páginas correspondentes do MBFT base.",
+    "Conferência documental não comprova ausência de normas posteriores nem validação final das fichas."
+  ]
+}
