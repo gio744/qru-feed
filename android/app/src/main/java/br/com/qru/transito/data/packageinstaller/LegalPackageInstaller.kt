@@ -42,7 +42,9 @@ class LegalPackageInstaller(private val db: QruDatabase) {
                 val title = requiredString(item, "title")
                 require(keys.add(key))
                 items += LegalItemEntity(key, title, optionalString(item, "search_text") ?: title,
-                    optionalString(item, "article"), optionalString(item, "code"), jurisdiction, version, true)
+                    optionalString(item, "article"), optionalString(item, "code"), jurisdiction, version, true,
+                    optionalString(item, "source"), optionalString(item, "review_status") ?: "Validação final pendente",
+                    optionalString(item, "applies_from") ?: "", optionalString(item, "applies_until") ?: "")
             }
         } catch (_: Exception) { return InstallResult(false, null, "INVALID_ITEM") }
         db.withTransaction {
