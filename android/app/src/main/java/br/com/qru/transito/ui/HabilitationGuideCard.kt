@@ -3,13 +3,25 @@ package br.com.qru.transito.ui
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.listSaver
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import br.com.qru.transito.domain.usecase.*
 
+private val GuideFactsSaver = listSaver<GuideFacts, String>(
+    save = { listOf(it.date,it.suspension.name,it.recycling.name,it.expiry.name) },
+    restore = { values ->
+        if(values.size != 4) null else runCatching {
+            GuideFacts(values[0],SuspensionState.valueOf(values[1]),
+                RecyclingState.valueOf(values[2]),ExpiryState.valueOf(values[3]))
+        }.getOrNull()
+    }
+)
+
 @Composable internal fun HabilitationGuideCard(onReference: (String) -> Unit) {
-    var expanded by remember { mutableStateOf(false) }
-    var facts by remember { mutableStateOf(GuideFacts()) }
+    var expanded by rememberSaveable { mutableStateOf(false) }
+    var facts by rememberSaveable(stateSaver=GuideFactsSaver) { mutableStateOf(GuideFacts()) }
     Card(modifier=Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp), verticalArrangement=Arrangement.spacedBy(10.dp)) {
             Text("ANÁLISE GUIADA • HABILITAÇÃO",color=MaterialTheme.colorScheme.primary)
