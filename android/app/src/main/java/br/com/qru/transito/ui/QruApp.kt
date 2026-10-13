@@ -11,6 +11,10 @@ import android.speech.RecognizerIntent
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -45,6 +49,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  val app=context.applicationContext as QruApplication
  val vm:SearchViewModel=viewModel(factory=SearchViewModelFactory(app.searchLegalContent))
  val state by vm.state.collectAsState()
+ val keyboard=LocalSoftwareKeyboardController.current
  var occurrence by remember{mutableStateOf("")}
  var selected by remember{mutableStateOf<SearchResult?>(null)}
  fun voiceMessage(text:String){Toast.makeText(context,text,Toast.LENGTH_LONG).show()}
@@ -63,8 +68,10 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   Text("Trânsito",style=MaterialTheme.typography.titleLarge)
   Text("Consulta operacional",color=MaterialTheme.colorScheme.secondary)
   OutlinedTextField(state.query,{vm.query(it)},Modifier.fillMaxWidth(),label={Text("Busque artigo, código ou situação")},
-   trailingIcon={IconButton({voice()}){Icon(Icons.Default.Mic,"Pesquisa por voz")}},singleLine=true)
-  Button({vm.run()},Modifier.fillMaxWidth()){Icon(Icons.Default.Search,null);Spacer(Modifier.width(8.dp));Text("CONSULTAR")}
+   trailingIcon={IconButton({voice()}){Icon(Icons.Default.Mic,"Pesquisa por voz")}},singleLine=true,
+   keyboardOptions=KeyboardOptions(imeAction=ImeAction.Search),
+   keyboardActions=KeyboardActions(onSearch={keyboard?.hide();vm.run()}))
+  Button({keyboard?.hide();vm.run()},Modifier.fillMaxWidth()){Icon(Icons.Default.Search,null);Spacer(Modifier.width(8.dp));Text("CONSULTAR")}
   if(state.loading) LinearProgressIndicator(Modifier.fillMaxWidth())
   Text("Referências em conferência • consulta sem internet", style=MaterialTheme.typography.bodySmall)
   state.results.forEach{result -> ReferenceCard(result) { selected=result }}
