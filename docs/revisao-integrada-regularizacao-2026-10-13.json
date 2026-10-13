@@ -1,0 +1,34 @@
+{
+  "checked_on": "2026-10-13",
+  "codes": [
+    "659-92",
+    "686-61",
+    "686-62"
+  ],
+  "sources": {
+    "manual_pdf_pages": [
+      543,
+      544,
+      651,
+      652,
+      653,
+      654
+    ],
+    "ctb": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm"
+  },
+  "findings": [
+    "Art.271 §9-B exclui art.230V e art.231VIII da liberação com prazo do §9-A.",
+    "A exclusão do prazo não equivale a afastamento automático do §9: saneamento efetivo no local deve ser distinguido de promessa de regularização posterior.",
+    "659-92: confirmar exercício licenciado em sistema e calendário aplicável; débito isolado não prova ausência de licenciamento.",
+    "686-61 e686-62: separar pessoas e bens, comprovar remuneração e autorização pertinente; ficha exige abordagem.",
+    "Licenciamento anual e autorização de transporte são conceitos distintos; não usar CRLV válido para comprovar por si só autorização da atividade.",
+    "Descrever fato, consulta e elementos documentais; regras específicas de transporte e atos posteriores continuam em revisão."
+  ],
+  "remaining": [
+    "Calendário atualizado de licenciamento e norma nacional aplicável",
+    "Legislação de transporte aplicável à modalidade e circunscrição",
+    "Procedimento integrado com exceções e prova no caso concreto"
+  ],
+  "ready_items": 0,
+  "activated": false
+}
