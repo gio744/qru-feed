@@ -1,0 +1,281 @@
+{
+  "checked_on": "2026-10-13",
+  "scope": "36 referências dos arts. 162, 163 e 164; revisão temática, precisão de busca e vínculos de fonte",
+  "operational_ready": false,
+  "changes": {
+    "targeted_search_terms": 36,
+    "qualified_expiry_titles": 2,
+    "restored_manual_sources": [
+      "503-71",
+      "504-50"
+    ],
+    "unchanged_outside_batch": 382
+  },
+  "findings": [
+    "Termos genéricos compartilhados associavam restrições de audição/prótese/adaptação a cassação, suspensão e reciclagem; substituídos por termos próprios.",
+    "Categoria B elétrica requer análise específica; a alteração legal não deve ser convertida em autorização genérica para qualquer veículo de até 4.250 kg.",
+    "Prorrogação excepcional deve ser conferida também nas referências de entregar e permitir; não remove cassação ou suspensão.",
+    "Recolhimento da CNH na ficha antiga 504-50 precisa ser confrontado com a redação atual do art. 162, V.",
+    "Ficha 774-92 contém remissões inconsistentes (773-31/773-32 e 778-11 repetido); preservados códigos das fichas próprias, sem copiar esses erros.",
+    "Suspensão em curso e curso específico pendente após o término exigem registros e enquadramentos distintos.",
+    "Curso especializado: não copiar automaticamente hipótese de curso vencido do manual de 2022 antes de integrar norma posterior."
+  ],
+  "sources": [
+    {
+      "url": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+      "provisions": [
+        "143 §2º-A",
+        "162",
+        "163",
+        "164"
+      ]
+    },
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf",
+      "provisions": [
+        "87 a 91"
+      ],
+      "status": "Integração parcial; outros artigos e atos complementares ainda pendentes"
+    },
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/deliberacoes/deliberacao2792026.pdf",
+      "provisions": [
+        "1 a 3"
+      ]
+    },
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf",
+      "pdf_sha256": "5214bc8cfa3c8d1b5acde7c34c3c27f2d06ea1ba1589f5bbfab5ae041e06b1b2"
+    }
+  ],
+  "items": [
+    {
+      "code": "501-00",
+      "article": "162, I",
+      "manual_page": 40,
+      "operational_ready": false
+    },
+    {
+      "code": "502-91",
+      "article": "162, II",
+      "manual_page": 43,
+      "operational_ready": false
+    },
+    {
+      "code": "502-92",
+      "article": "162, II",
+      "manual_page": 44,
+      "operational_ready": false
+    },
+    {
+      "code": "503-71",
+      "article": "162, III",
+      "manual_page": 45,
+      "operational_ready": false
+    },
+    {
+      "code": "503-72",
+      "article": "162, III",
+      "manual_page": 46,
+      "operational_ready": false
+    },
+    {
+      "code": "504-50",
+      "article": "162, V",
+      "manual_page": 47,
+      "operational_ready": false
+    },
+    {
+      "code": "505-31",
+      "article": "162, VI",
+      "manual_page": 49,
+      "operational_ready": false
+    },
+    {
+      "code": "505-32",
+      "article": "162, VI",
+      "manual_page": 52,
+      "operational_ready": false
+    },
+    {
+      "code": "505-33",
+      "article": "162, VI",
+      "manual_page": 55,
+      "operational_ready": false
+    },
+    {
+      "code": "505-34",
+      "article": "162, VI",
+      "manual_page": 57,
+      "operational_ready": false
+    },
+    {
+      "code": "774-91",
+      "article": "162, VII",
+      "manual_page": 61,
+      "operational_ready": false
+    },
+    {
+      "code": "774-92",
+      "article": "162, VII",
+      "manual_page": 67,
+      "operational_ready": false
+    },
+    {
+      "code": "506-10",
+      "article": "163 c/c 162, I",
+      "manual_page": 68,
+      "operational_ready": false
+    },
+    {
+      "code": "507-01",
+      "article": "163 c/c 162, II",
+      "manual_page": 69,
+      "operational_ready": false
+    },
+    {
+      "code": "507-02",
+      "article": "163 c/c 162, II",
+      "manual_page": 70,
+      "operational_ready": false
+    },
+    {
+      "code": "508-81",
+      "article": "163 c/c 162, III",
+      "manual_page": 71,
+      "operational_ready": false
+    },
+    {
+      "code": "508-82",
+      "article": "163 c/c 162, III",
+      "manual_page": 73,
+      "operational_ready": false
+    },
+    {
+      "code": "509-60",
+      "article": "163 c/c 162, V",
+      "manual_page": 75,
+      "operational_ready": false
+    },
+    {
+      "code": "510-01",
+      "article": "163 c/c 162, VI",
+      "manual_page": 77,
+      "operational_ready": false
+    },
+    {
+      "code": "510-02",
+      "article": "163 c/c 162, VI",
+      "manual_page": 79,
+      "operational_ready": false
+    },
+    {
+      "code": "510-03",
+      "article": "163 c/c 162, VI",
+      "manual_page": 81,
+      "operational_ready": false
+    },
+    {
+      "code": "510-04",
+      "article": "163 c/c 162, VI",
+      "manual_page": 83,
+      "operational_ready": false
+    },
+    {
+      "code": "777-31",
+      "article": "163 c/c 162, VII",
+      "manual_page": 85,
+      "operational_ready": false
+    },
+    {
+      "code": "777-32",
+      "article": "163 c/c 162, VII",
+      "manual_page": 86,
+      "operational_ready": false
+    },
+    {
+      "code": "511-80",
+      "article": "164 c/c 162, I",
+      "manual_page": 87,
+      "operational_ready": false
+    },
+    {
+      "code": "512-61",
+      "article": "164 c/c 162, II",
+      "manual_page": 88,
+      "operational_ready": false
+    },
+    {
+      "code": "512-62",
+      "article": "164 c/c 162, II",
+      "manual_page": 89,
+      "operational_ready": false
+    },
+    {
+      "code": "513-41",
+      "article": "164 c/c 162, III",
+      "manual_page": 90,
+      "operational_ready": false
+    },
+    {
+      "code": "513-42",
+      "article": "164 c/c 162, III",
+      "manual_page": 91,
+      "operational_ready": false
+    },
+    {
+      "code": "514-20",
+      "article": "164 c/c 162, V",
+      "manual_page": 92,
+      "operational_ready": false
+    },
+    {
+      "code": "515-01",
+      "article": "164 c/c 162, VI",
+      "manual_page": 94,
+      "operational_ready": false
+    },
+    {
+      "code": "515-02",
+      "article": "164 c/c 162, VI",
+      "manual_page": 96,
+      "operational_ready": false
+    },
+    {
+      "code": "515-03",
+      "article": "164 c/c 162, VI",
+      "manual_page": 98,
+      "operational_ready": false
+    },
+    {
+      "code": "515-04",
+      "article": "164 c/c 162, VI",
+      "manual_page": 100,
+      "operational_ready": false
+    },
+    {
+      "code": "778-11",
+      "article": "164 c/c 162, VII",
+      "manual_page": 102,
+      "operational_ready": false
+    },
+    {
+      "code": "778-12",
+      "article": "164 c/c 162, VII",
+      "manual_page": 103,
+      "operational_ready": false
+    }
+  ],
+  "validation": {
+    "items": 418,
+    "unique_stable_keys": 418,
+    "changed_items": 36,
+    "ready_items": 0
+  },
+  "pending": [
+    "Conferência integral das 36 fichas, incluindo continuidades e parte geral",
+    "Regulamentação complementar de habilitação e cursos",
+    "Critérios adicionais para veículos elétricos/híbridos",
+    "Entrega em APK e teste no dispositivo"
+  ]
+}
