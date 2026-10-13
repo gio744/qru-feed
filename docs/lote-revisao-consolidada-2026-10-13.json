@@ -1,0 +1,33 @@
+{
+  "checked_on": "2026-10-13",
+  "scope": "Todas as 418 referências",
+  "summary": {
+    "items": 418,
+    "base_manual_codes_found": 411,
+    "identity_evidence_found": 417,
+    "without_identity_evidence": [
+      "551-71"
+    ],
+    "ready_items": 0,
+    "duplicate_keys": 0,
+    "duplicate_codes": 0
+  },
+  "completed": [
+    "Cruzamento integral com 411 códigos do manual base",
+    "Cruzamento adicional de seis códigos novos com anexos recebidos",
+    "Ausência de divergência de artigo nos 411 códigos da base",
+    "Evidências vinculadas por item no índice",
+    "Revisões prioritárias de álcool, recusa, toxicológico e free flow consolidadas no diretório docs"
+  ],
+  "open_blocks": [
+    {
+      "code": "551-71",
+      "issue": "Fonte da ficha encontrada como minuta; identidade em ficha normativa ainda não confirmada."
+    },
+    {
+      "regulation": "1022/2026",
+      "issue": "Texto principal identificado; alteração do anexo II precisa cruzamento com 1023 antes de consolidar quadriciclos."
+    },
+    "Revisão operacional e rastreamento de normas posteriores continuam pendentes; 417 identidades não significam 417 fichas operacionais liberadas."
+  ]
+}
