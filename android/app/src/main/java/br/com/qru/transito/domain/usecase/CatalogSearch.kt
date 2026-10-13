@@ -15,6 +15,7 @@ object CatalogSearch {
             .filter { it.isNotBlank() && it !in stopWords }.distinct()
         if (tokens.isEmpty()) return emptyList()
         val compact = tokens.joinToString("")
+        val genericTyreQuery = tokens == listOf("pneu")
         val articleQuery = normalized.replace(Regex("^(?:artigo|art)\\.?\\s*"), "").trim()
         val articleParts = articleQuery.split(Regex("[^a-z0-9-]+")).filter { it.isNotBlank() }
         val incisoQuery = articleParts.size == 2 && articleParts[0].matches(Regex("[0-9]+(?:-[a-z])?")) && articleParts[1].matches(Regex("[ivxlcdm]+"))
@@ -35,6 +36,7 @@ object CatalogSearch {
             if (numericQuery && !exactCode && !exactArticle) null
             else if (!exactCode && matches < (tokens.size + 1) / 2) null
             else (if (exactCode) 1000 else if (exactInciso) 800 else if (exactArticle) 300 else 0) +
+                (if (genericTyreQuery && code == "67261") 150 else 0) +
                 matches * 20 + tokens.count { title.contains(it) } * 5 to result
         }.sortedWith(compareByDescending<Pair<Int, SearchResult>> { it.first }.thenBy { it.second.title })
             .take(50).map { it.second }
