@@ -1,5 +1,5 @@
 {
-  "content_version": "indice-em-conferencia-2026-10-13-reboque",
+  "content_version": "indice-em-conferencia-2026-10-13-habilitacao",
   "jurisdiction": "BR",
   "ready": false,
   "items": [
@@ -228,7 +228,7 @@
       "title": "Sem habilitação",
       "article": "162, I",
       "code": "501-00",
-      "search_text": " habilitação cnh ppd dirigir entregar permitir",
+      "search_text": "sem habilitação inabilitado não possui CNH PPD ACC primeira habilitação condução condutor",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=40",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "2026-09-30",
@@ -254,6 +254,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 40,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Verificar documento, existência de habilitação e situação no Renach; distinguir ausência de documento de inexistência de habilitação.",
+        "operational_ready": false
       }
     },
     {
@@ -261,7 +269,7 @@
       "title": "Habilitação cassada",
       "article": "162, II",
       "code": "502-91",
-      "search_text": " habilitação cnh ppd dirigir entregar permitir",
+      "search_text": "CNH cassada cassação cassacao período dois anos reabilitação RENACH condução condutor",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=43",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "2026-09-30",
@@ -287,6 +295,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 43,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Distinguir cassação e suspensão; conferir período no Renach. Reciclagem pendente após o término da suspensão exige análise própria.",
+        "operational_ready": false
       }
     },
     {
@@ -294,7 +310,7 @@
       "title": "Direito de dirigir suspenso",
       "article": "162, II",
       "code": "502-92",
-      "search_text": " habilitação cnh ppd dirigir entregar permitir",
+      "search_text": "CNH suspensa suspensão suspensao direito de dirigir período início término RENACH condução condutor",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=44",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "2026-09-30",
@@ -320,6 +336,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 44,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Distinguir cassação e suspensão; conferir período no Renach. Reciclagem pendente após o término da suspensão exige análise própria.",
+        "operational_ready": false
       }
     },
     {
@@ -327,8 +351,8 @@
       "title": "Categoria da CNH incompatível",
       "article": "162, III",
       "code": "503-71",
-      "search_text": " habilitação cnh ppd dirigir entregar permitir",
-      "source": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15503.htm",
+      "search_text": "categoria incompatível categoria diferente CNH B elétrico eletrico híbrido hibrido tração predominantemente elétrica 4250 4.250 kg peso bruto total PBT condução condutor",
+      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=45",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "2026-09-30",
       "applies_from": "",
@@ -345,6 +369,16 @@
           }
         ],
         "operational_ready": false
+      },
+      "regulation_source": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15503.htm",
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 45,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Confrontar categoria e características do veículo, incluindo exceções do art. 143. A hipótese elétrica não amplia a categoria B para todos os veículos.",
+        "operational_ready": false,
+        "additional_basis": "CTB art. 143, §2º-A; critérios adicionais do Contran precisam de conferência"
       }
     },
     {
@@ -352,7 +386,7 @@
       "title": "Categoria da PPD incompatível",
       "article": "162, III",
       "code": "503-72",
-      "search_text": " habilitação cnh ppd dirigir entregar permitir",
+      "search_text": "categoria incompatível categoria diferente CNH B elétrico eletrico híbrido hibrido tração predominantemente elétrica 4250 4.250 kg peso bruto total PBT condução condutor",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=46",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "2026-09-30",
@@ -378,6 +412,15 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 46,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Confrontar categoria e características do veículo, incluindo exceções do art. 143. A hipótese elétrica não amplia a categoria B para todos os veículos.",
+        "operational_ready": false,
+        "additional_basis": "CTB art. 143, §2º-A; critérios adicionais do Contran precisam de conferência"
       }
     },
     {
@@ -385,8 +428,8 @@
       "title": "CNH vencida há mais de 30 dias",
       "article": "162, V",
       "code": "504-50",
-      "search_text": " habilitação cnh ppd dirigir entregar permitir deliberação 279 prorrogação dezembro 2026 9 de dezembro prorrogação excepcional cnh acc vencimento 5 junho 8 dezembro 2026 suspensão cassação",
-      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/deliberacoes/deliberacao2792026.pdf",
+      "search_text": "CNH vencida validade vencimento mais de 30 dias trinta dias prorrogação excepcional Deliberação 279 dezembro 2026 condução condutor",
+      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=47",
       "review_status": "Prorrogação excepcional documentada · ficha e atos posteriores ainda pendentes",
       "checked_on": "2026-10-13",
       "applies_from": "",
@@ -420,6 +463,16 @@
           }
         ],
         "operational_ready": false
+      },
+      "regulation_source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/deliberacoes/deliberacao2792026.pdf",
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 47,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Conferir validade e prorrogação aplicável. O texto atual do art. 162, V, prevê retenção, sem recolhimento da CNH por este inciso.",
+        "operational_ready": false,
+        "additional_basis": "Deliberação 279/2026; período de vencimento 2026-06-05 a 2026-12-08; prorrogação até 2026-12-09; não abrange suspensão/cassação"
       }
     },
     {
@@ -427,7 +480,7 @@
       "title": "Sem lentes corretoras exigidas",
       "article": "162, VI",
       "code": "505-31",
-      "search_text": " habilitação cnh ppd dirigir entregar permitir",
+      "search_text": "restrição médica observações CNH óculos oculos lentes corretoras visão condução condutor",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=49",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -453,6 +506,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 49,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Conferir restrição efetivamente imposta e condição constatada; individualizar lentes, audição, prótese ou adaptação.",
+        "operational_ready": false
       }
     },
     {
@@ -460,7 +521,7 @@
       "title": "Dirigir sem aparelho auxiliar de audição exigido",
       "article": "162, VI",
       "code": "505-32",
-      "search_text": " habilitação cnh ppd cassada suspensão reciclagem categoria entregar permitir",
+      "search_text": "restrição médica observações CNH aparelho auditivo auxiliar audição audicao condução condutor",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=52",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -486,6 +547,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 52,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Conferir restrição efetivamente imposta e condição constatada; individualizar lentes, audição, prótese ou adaptação.",
+        "operational_ready": false
       }
     },
     {
@@ -493,7 +562,7 @@
       "title": "Dirigir sem prótese física exigida",
       "article": "162, VI",
       "code": "505-33",
-      "search_text": " habilitação cnh ppd cassada suspensão reciclagem categoria entregar permitir",
+      "search_text": "restrição médica observações CNH prótese protese física condução condutor",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=55",
       "review_status": "Inaplicável no MBFT consultado · verificar atualizações",
       "checked_on": "29/09/2026",
@@ -519,6 +588,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 55,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Conferir restrição efetivamente imposta e condição constatada; individualizar lentes, audição, prótese ou adaptação.",
+        "operational_ready": false
       }
     },
     {
@@ -526,7 +603,7 @@
       "title": "Dirigir sem adaptação exigida no veículo",
       "article": "162, VI",
       "code": "505-34",
-      "search_text": " habilitação cnh ppd cassada suspensão reciclagem categoria entregar permitir",
+      "search_text": "restrição médica observações CNH adaptação adaptacao veículo restrição condução condução condutor",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=57",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -552,6 +629,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 57,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Conferir restrição efetivamente imposta e condição constatada; individualizar lentes, audição, prótese ou adaptação.",
+        "operational_ready": false
       }
     },
     {
@@ -559,7 +644,7 @@
       "title": "Sem curso especializado obrigatório",
       "article": "162, VII",
       "code": "774-91",
-      "search_text": " habilitação cnh ppd dirigir entregar permitir curso especializado MOPP CETPP produtos perigosos curso ambulância ambulancia CETVE transporte escolar CETE coletivo CETCP motofrete mototáxi CETCI carga indivisível",
+      "search_text": "curso especializado MOPP CETPP produtos perigosos ambulância ambulancia CETVE transporte escolar CETE coletivo CETCP motofrete mototáxi CETCI carga indivisível condução condutor",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=61",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -585,6 +670,15 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 61,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Distinguir curso especializado e específico; integrar Resolução 1.020/2025 antes de transpor regras antigas de prazo de curso.",
+        "operational_ready": false,
+        "regulation_source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf"
       }
     },
     {
@@ -592,7 +686,7 @@
       "title": "Dirigir sem curso específico obrigatório",
       "article": "162, VII",
       "code": "774-92",
-      "search_text": " habilitação cnh ppd cassada suspensão reciclagem categoria entregar permitir curso específico reciclagem pendente reciclagem não realizada suspensão cumprida prazo encerrado exame teórico pendente aprovação reciclagem RENACH",
+      "search_text": "curso específico reciclagem pendente não realizada suspensão cumprida período encerrado exame teórico aprovação RENACH condução condutor",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=67",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -618,6 +712,15 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 67,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Distinguir curso especializado e específico; integrar Resolução 1.020/2025 antes de transpor regras antigas de prazo de curso.",
+        "operational_ready": false,
+        "regulation_source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf"
       }
     },
     {
@@ -625,7 +728,7 @@
       "title": "Entregar a pessoa sem habilitação",
       "article": "163 c/c 162, I",
       "code": "506-10",
-      "search_text": " habilitação cnh ppd dirigir entregar permitir",
+      "search_text": "sem habilitação inabilitado não possui CNH PPD ACC primeira habilitação entregar direção proprietário presente",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=68",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "28/09/2026",
@@ -651,6 +754,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 68,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Verificar documento, existência de habilitação e situação no Renach; distinguir ausência de documento de inexistência de habilitação.",
+        "operational_ready": false
       }
     },
     {
@@ -658,7 +769,7 @@
       "title": "Entregar a condutor com habilitação cassada",
       "article": "163 c/c 162, II",
       "code": "507-01",
-      "search_text": " habilitação cnh ppd cassada suspensão reciclagem categoria entregar permitir",
+      "search_text": "CNH cassada cassação cassacao período dois anos reabilitação RENACH entregar direção proprietário presente",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=69",
       "review_status": "Revisão editorial · alterações posteriores a conferir",
       "checked_on": "29/09/2026",
@@ -684,6 +795,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 69,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Distinguir cassação e suspensão; conferir período no Renach. Reciclagem pendente após o término da suspensão exige análise própria.",
+        "operational_ready": false
       }
     },
     {
@@ -691,7 +810,7 @@
       "title": "Entregar a condutor com direito suspenso",
       "article": "163 c/c 162, II",
       "code": "507-02",
-      "search_text": " habilitação cnh ppd cassada suspensão reciclagem categoria entregar permitir",
+      "search_text": "CNH suspensa suspensão suspensao direito de dirigir período início término RENACH entregar direção proprietário presente",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=70",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -717,6 +836,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 70,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Distinguir cassação e suspensão; conferir período no Renach. Reciclagem pendente após o término da suspensão exige análise própria.",
+        "operational_ready": false
       }
     },
     {
@@ -724,7 +851,7 @@
       "title": "Entregar a condutor com CNH de categoria incompatível",
       "article": "163 c/c 162, III",
       "code": "508-81",
-      "search_text": " habilitação cnh ppd cassada suspensão reciclagem categoria entregar permitir",
+      "search_text": "categoria incompatível categoria diferente CNH B elétrico eletrico híbrido hibrido tração predominantemente elétrica 4250 4.250 kg peso bruto total PBT entregar direção proprietário presente",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=71",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -750,6 +877,15 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 71,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Confrontar categoria e características do veículo, incluindo exceções do art. 143. A hipótese elétrica não amplia a categoria B para todos os veículos.",
+        "operational_ready": false,
+        "additional_basis": "CTB art. 143, §2º-A; critérios adicionais do Contran precisam de conferência"
       }
     },
     {
@@ -757,7 +893,7 @@
       "title": "Entregar a condutor com PPD de categoria incompatível",
       "article": "163 c/c 162, III",
       "code": "508-82",
-      "search_text": " habilitação cnh ppd cassada suspensão reciclagem categoria entregar permitir",
+      "search_text": "categoria incompatível categoria diferente CNH B elétrico eletrico híbrido hibrido tração predominantemente elétrica 4250 4.250 kg peso bruto total PBT entregar direção proprietário presente",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=73",
       "review_status": "Revisão editorial · alterações posteriores a conferir",
       "checked_on": "29/09/2026",
@@ -783,14 +919,23 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 73,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Confrontar categoria e características do veículo, incluindo exceções do art. 143. A hipótese elétrica não amplia a categoria B para todos os veículos.",
+        "operational_ready": false,
+        "additional_basis": "CTB art. 143, §2º-A; critérios adicionais do Contran precisam de conferência"
       }
     },
     {
       "stable_key": "mbft-509-60",
-      "title": "Entregar a pessoa com CNH vencida",
+      "title": "Entregar a pessoa com CNH vencida há mais de 30 dias",
       "article": "163 c/c 162, V",
       "code": "509-60",
-      "search_text": " habilitação cnh ppd dirigir entregar permitir",
+      "search_text": "CNH vencida validade vencimento mais de 30 dias trinta dias prorrogação excepcional Deliberação 279 dezembro 2026 entregar direção proprietário presente",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=75",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -816,6 +961,15 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 75,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Conferir validade e prorrogação aplicável. O texto atual do art. 162, V, prevê retenção, sem recolhimento da CNH por este inciso.",
+        "operational_ready": false,
+        "additional_basis": "Deliberação 279/2026; período de vencimento 2026-06-05 a 2026-12-08; prorrogação até 2026-12-09; não abrange suspensão/cassação"
       }
     },
     {
@@ -823,7 +977,7 @@
       "title": "Entregar a quem dirigia sem lentes corretoras",
       "article": "163 c/c 162, VI",
       "code": "510-01",
-      "search_text": " habilitação cnh ppd restrição curso especializado específico reciclagem entregar permitir",
+      "search_text": "restrição médica observações CNH óculos oculos lentes corretoras visão entregar direção proprietário presente",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=77",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -849,6 +1003,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 77,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Conferir restrição efetivamente imposta e condição constatada; individualizar lentes, audição, prótese ou adaptação.",
+        "operational_ready": false
       }
     },
     {
@@ -856,7 +1018,7 @@
       "title": "Entregar a quem dirigia sem aparelho auditivo",
       "article": "163 c/c 162, VI",
       "code": "510-02",
-      "search_text": " habilitação cnh ppd restrição curso especializado específico reciclagem entregar permitir",
+      "search_text": "restrição médica observações CNH aparelho auditivo auxiliar audição audicao entregar direção proprietário presente",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=79",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -882,6 +1044,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 79,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Conferir restrição efetivamente imposta e condição constatada; individualizar lentes, audição, prótese ou adaptação.",
+        "operational_ready": false
       }
     },
     {
@@ -889,7 +1059,7 @@
       "title": "Entregar a quem dirigia sem prótese física",
       "article": "163 c/c 162, VI",
       "code": "510-03",
-      "search_text": " habilitação cnh ppd restrição curso especializado específico reciclagem entregar permitir",
+      "search_text": "restrição médica observações CNH prótese protese física entregar direção proprietário presente",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=81",
       "review_status": "Inaplicável no MBFT consultado · verificar atualizações",
       "checked_on": "29/09/2026",
@@ -915,6 +1085,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 81,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Conferir restrição efetivamente imposta e condição constatada; individualizar lentes, audição, prótese ou adaptação.",
+        "operational_ready": false
       }
     },
     {
@@ -922,7 +1100,7 @@
       "title": "Entregar veículo sem adaptação exigida",
       "article": "163 c/c 162, VI",
       "code": "510-04",
-      "search_text": " habilitação cnh ppd restrição curso especializado específico reciclagem entregar permitir",
+      "search_text": "restrição médica observações CNH adaptação adaptacao veículo restrição condução entregar direção proprietário presente",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=83",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -948,6 +1126,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 83,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Conferir restrição efetivamente imposta e condição constatada; individualizar lentes, audição, prótese ou adaptação.",
+        "operational_ready": false
       }
     },
     {
@@ -955,7 +1141,7 @@
       "title": "Entregar a quem não possui curso especializado",
       "article": "163 c/c 162, VII",
       "code": "777-31",
-      "search_text": " habilitação cnh ppd restrição curso especializado específico reciclagem entregar permitir curso especializado MOPP CETPP produtos perigosos curso ambulância ambulancia CETVE transporte escolar CETE coletivo CETCP motofrete mototáxi CETCI carga indivisível",
+      "search_text": "curso especializado MOPP CETPP produtos perigosos ambulância ambulancia CETVE transporte escolar CETE coletivo CETCP motofrete mototáxi CETCI carga indivisível entregar direção proprietário presente",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=85",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -981,6 +1167,15 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 85,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Distinguir curso especializado e específico; integrar Resolução 1.020/2025 antes de transpor regras antigas de prazo de curso.",
+        "operational_ready": false,
+        "regulation_source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf"
       }
     },
     {
@@ -988,7 +1183,7 @@
       "title": "Entregar a quem não possui curso específico",
       "article": "163 c/c 162, VII",
       "code": "777-32",
-      "search_text": " habilitação cnh ppd restrição curso especializado específico reciclagem entregar permitir curso específico reciclagem pendente reciclagem não realizada suspensão cumprida prazo encerrado exame teórico pendente aprovação reciclagem RENACH",
+      "search_text": "curso específico reciclagem pendente não realizada suspensão cumprida período encerrado exame teórico aprovação RENACH entregar direção proprietário presente",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=86",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -1014,6 +1209,15 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 86,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Distinguir curso especializado e específico; integrar Resolução 1.020/2025 antes de transpor regras antigas de prazo de curso.",
+        "operational_ready": false,
+        "regulation_source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf"
       }
     },
     {
@@ -1021,7 +1225,7 @@
       "title": "Permitir condução por pessoa sem habilitação",
       "article": "164 c/c 162, I",
       "code": "511-80",
-      "search_text": " habilitação cnh ppd dirigir entregar permitir",
+      "search_text": "sem habilitação inabilitado não possui CNH PPD ACC primeira habilitação permitir posse condução proprietário ausente pessoa jurídica",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=87",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "28/09/2026",
@@ -1047,6 +1251,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 87,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Verificar documento, existência de habilitação e situação no Renach; distinguir ausência de documento de inexistência de habilitação.",
+        "operational_ready": false
       }
     },
     {
@@ -1054,7 +1266,7 @@
       "title": "Permitir condução com habilitação cassada",
       "article": "164 c/c 162, II",
       "code": "512-61",
-      "search_text": " habilitação cnh ppd cassada suspensão reciclagem categoria entregar permitir",
+      "search_text": "CNH cassada cassação cassacao período dois anos reabilitação RENACH permitir posse condução proprietário ausente pessoa jurídica",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=88",
       "review_status": "Revisão editorial · alterações posteriores a conferir",
       "checked_on": "29/09/2026",
@@ -1080,6 +1292,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 88,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Distinguir cassação e suspensão; conferir período no Renach. Reciclagem pendente após o término da suspensão exige análise própria.",
+        "operational_ready": false
       }
     },
     {
@@ -1087,7 +1307,7 @@
       "title": "Permitir condução com direito suspenso",
       "article": "164 c/c 162, II",
       "code": "512-62",
-      "search_text": " habilitação cnh ppd cassada suspensão reciclagem categoria entregar permitir",
+      "search_text": "CNH suspensa suspensão suspensao direito de dirigir período início término RENACH permitir posse condução proprietário ausente pessoa jurídica",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=89",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -1113,6 +1333,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 89,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Distinguir cassação e suspensão; conferir período no Renach. Reciclagem pendente após o término da suspensão exige análise própria.",
+        "operational_ready": false
       }
     },
     {
@@ -1120,7 +1348,7 @@
       "title": "Permitir condução com CNH de categoria incompatível",
       "article": "164 c/c 162, III",
       "code": "513-41",
-      "search_text": " habilitação cnh ppd cassada suspensão reciclagem categoria entregar permitir",
+      "search_text": "categoria incompatível categoria diferente CNH B elétrico eletrico híbrido hibrido tração predominantemente elétrica 4250 4.250 kg peso bruto total PBT permitir posse condução proprietário ausente pessoa jurídica",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=90",
       "review_status": "Revisão editorial · alterações posteriores a conferir",
       "checked_on": "29/09/2026",
@@ -1146,6 +1374,15 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 90,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Confrontar categoria e características do veículo, incluindo exceções do art. 143. A hipótese elétrica não amplia a categoria B para todos os veículos.",
+        "operational_ready": false,
+        "additional_basis": "CTB art. 143, §2º-A; critérios adicionais do Contran precisam de conferência"
       }
     },
     {
@@ -1153,7 +1390,7 @@
       "title": "Permitir condução com PPD de categoria incompatível",
       "article": "164 c/c 162, III",
       "code": "513-42",
-      "search_text": " habilitação cnh ppd cassada suspensão reciclagem categoria entregar permitir",
+      "search_text": "categoria incompatível categoria diferente CNH B elétrico eletrico híbrido hibrido tração predominantemente elétrica 4250 4.250 kg peso bruto total PBT permitir posse condução proprietário ausente pessoa jurídica",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=91",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -1179,14 +1416,23 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 91,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Confrontar categoria e características do veículo, incluindo exceções do art. 143. A hipótese elétrica não amplia a categoria B para todos os veículos.",
+        "operational_ready": false,
+        "additional_basis": "CTB art. 143, §2º-A; critérios adicionais do Contran precisam de conferência"
       }
     },
     {
       "stable_key": "mbft-514-20",
-      "title": "Permitir condução com CNH vencida",
+      "title": "Permitir condução com CNH vencida há mais de 30 dias",
       "article": "164 c/c 162, V",
       "code": "514-20",
-      "search_text": " habilitação cnh ppd dirigir entregar permitir",
+      "search_text": "CNH vencida validade vencimento mais de 30 dias trinta dias prorrogação excepcional Deliberação 279 dezembro 2026 permitir posse condução proprietário ausente pessoa jurídica",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=92",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -1212,6 +1458,15 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 92,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Conferir validade e prorrogação aplicável. O texto atual do art. 162, V, prevê retenção, sem recolhimento da CNH por este inciso.",
+        "operational_ready": false,
+        "additional_basis": "Deliberação 279/2026; período de vencimento 2026-06-05 a 2026-12-08; prorrogação até 2026-12-09; não abrange suspensão/cassação"
       }
     },
     {
@@ -1219,7 +1474,7 @@
       "title": "Permitir condução sem lentes corretoras",
       "article": "164 c/c 162, VI",
       "code": "515-01",
-      "search_text": " habilitação cnh ppd restrição curso especializado específico reciclagem entregar permitir",
+      "search_text": "restrição médica observações CNH óculos oculos lentes corretoras visão permitir posse condução proprietário ausente pessoa jurídica",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=94",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -1245,6 +1500,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 94,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Conferir restrição efetivamente imposta e condição constatada; individualizar lentes, audição, prótese ou adaptação.",
+        "operational_ready": false
       }
     },
     {
@@ -1252,7 +1515,7 @@
       "title": "Permitir condução sem aparelho auditivo",
       "article": "164 c/c 162, VI",
       "code": "515-02",
-      "search_text": " habilitação cnh ppd restrição curso especializado específico reciclagem entregar permitir",
+      "search_text": "restrição médica observações CNH aparelho auditivo auxiliar audição audicao permitir posse condução proprietário ausente pessoa jurídica",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=96",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -1278,6 +1541,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 96,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Conferir restrição efetivamente imposta e condição constatada; individualizar lentes, audição, prótese ou adaptação.",
+        "operational_ready": false
       }
     },
     {
@@ -1285,7 +1556,7 @@
       "title": "Permitir condução sem prótese física",
       "article": "164 c/c 162, VI",
       "code": "515-03",
-      "search_text": " habilitação cnh ppd restrição curso especializado específico reciclagem entregar permitir",
+      "search_text": "restrição médica observações CNH prótese protese física permitir posse condução proprietário ausente pessoa jurídica",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=98",
       "review_status": "Inaplicável no MBFT consultado · verificar atualizações",
       "checked_on": "29/09/2026",
@@ -1311,6 +1582,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 98,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Conferir restrição efetivamente imposta e condição constatada; individualizar lentes, audição, prótese ou adaptação.",
+        "operational_ready": false
       }
     },
     {
@@ -1318,7 +1597,7 @@
       "title": "Permitir condução sem adaptação exigida",
       "article": "164 c/c 162, VI",
       "code": "515-04",
-      "search_text": " habilitação cnh ppd restrição curso especializado específico reciclagem entregar permitir",
+      "search_text": "restrição médica observações CNH adaptação adaptacao veículo restrição condução permitir posse condução proprietário ausente pessoa jurídica",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=100",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -1344,6 +1623,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 100,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Conferir restrição efetivamente imposta e condição constatada; individualizar lentes, audição, prótese ou adaptação.",
+        "operational_ready": false
       }
     },
     {
@@ -1351,7 +1638,7 @@
       "title": "Permitir condução sem curso especializado",
       "article": "164 c/c 162, VII",
       "code": "778-11",
-      "search_text": " habilitação cnh ppd restrição curso especializado específico reciclagem entregar permitir curso especializado MOPP CETPP produtos perigosos curso ambulância ambulancia CETVE transporte escolar CETE coletivo CETCP motofrete mototáxi CETCI carga indivisível",
+      "search_text": "curso especializado MOPP CETPP produtos perigosos ambulância ambulancia CETVE transporte escolar CETE coletivo CETCP motofrete mototáxi CETCI carga indivisível permitir posse condução proprietário ausente pessoa jurídica",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=102",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -1377,6 +1664,15 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 102,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Distinguir curso especializado e específico; integrar Resolução 1.020/2025 antes de transpor regras antigas de prazo de curso.",
+        "operational_ready": false,
+        "regulation_source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf"
       }
     },
     {
@@ -1384,7 +1680,7 @@
       "title": "Permitir condução sem curso específico",
       "article": "164 c/c 162, VII",
       "code": "778-12",
-      "search_text": " habilitação cnh ppd restrição curso especializado específico reciclagem entregar permitir curso específico reciclagem pendente reciclagem não realizada suspensão cumprida prazo encerrado exame teórico pendente aprovação reciclagem RENACH",
+      "search_text": "curso específico reciclagem pendente não realizada suspensão cumprida período encerrado exame teórico aprovação RENACH permitir posse condução proprietário ausente pessoa jurídica",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=103",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -1410,6 +1706,15 @@
           }
         ],
         "operational_ready": false
+      },
+      "habilitation_integrated_review": {
+        "checked_on": "2026-10-13",
+        "scope": "Revisão temática e termos de busca; conferência operacional integral pendente",
+        "manual_page": 103,
+        "ctb_source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "review_note": "Distinguir curso especializado e específico; integrar Resolução 1.020/2025 antes de transpor regras antigas de prazo de curso.",
+        "operational_ready": false,
+        "regulation_source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf"
       }
     },
     {
