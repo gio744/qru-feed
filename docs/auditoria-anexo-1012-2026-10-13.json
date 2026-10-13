@@ -1,0 +1,28 @@
+{
+  "checked_on": "2026-10-13",
+  "source": "Resolucao10122024.pdf",
+  "pdf_sha256": "d6ff6c688bdc5126ca8644f3dfe80181c36f8b310ae53808c1102abc1e71715b",
+  "pages": 16,
+  "publication": "2024-10-16",
+  "header_verification": [
+    {
+      "code": "762-51",
+      "article": "181, XX",
+      "page": 7
+    },
+    {
+      "code": "762-52",
+      "article": "181, XX",
+      "page": 11
+    }
+  ],
+  "documentary_notes": [
+    "Art. 8 determina vigência na publicação.",
+    "Cabeçalhos das duas fichas indicam possibilidade sem abordagem; a hipótese de credencial usada sem transporte do beneficiário exige abordagem nas definições item 10.",
+    "É necessário distinguir credencial física, versão impressa de digital e versão digital vinculada ao veículo; ausência no painel isoladamente não resolve todos os casos.",
+    "As fichas registram transição até 31/05/2027 para credenciais antigas sem prazo de validade; validade atual exige conferência de alterações posteriores.",
+    "Ficha 762-52: definições item 2 parece repetir pessoa com deficiência no último trecho; preservar evidência e não reproduzir como regra geral para idosos sem análise integrada."
+  ],
+  "ready_items": 0,
+  "limitations": "Conferência documental de código, artigo, página e vigência declarada; não constitui liberação operacional nem verificação completa de atos posteriores."
+}
