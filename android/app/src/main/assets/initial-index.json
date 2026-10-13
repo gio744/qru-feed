@@ -1,5 +1,5 @@
 {
-  "content_version": "indice-em-conferencia-2026-10-13-anexo-1022",
+  "content_version": "indice-em-conferencia-2026-10-13-regularizacao",
   "jurisdiction": "BR",
   "ready": false,
   "items": [
@@ -8,7 +8,7 @@
       "title": "Veículo registrado sem licenciamento regular",
       "article": "230, V",
       "code": "659-92",
-      "search_text": "licenciamento vencido licenciado atrasado crlv pendente pagou documento veículo não licenciado documento atrasado documento vencido licenciamento atrasado crlv vencido",
+      "search_text": "licenciamento vencido licenciado atrasado crlv pendente pagou documento veículo não licenciado documento atrasado documento vencido licenciamento atrasado crlv vencido regularizadora remoção remocao prazo regularização regularizacao local 271 9-b",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=543",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -33,6 +33,14 @@
             "article": "Art. 230, V."
           }
         ],
+        "operational_ready": false
+      },
+      "regularization_exception_review": {
+        "checked_on": "2026-10-13",
+        "source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "basis": "Art.271 §§9,9-A,9-B",
+        "deadline_release_excluded": true,
+        "on_site_cure_must_be_distinguished": true,
         "operational_ready": false
       }
     },
@@ -10350,7 +10358,7 @@
       "title": "Transporte remunerado de pessoas sem licença",
       "article": "231, VIII",
       "code": "686-61",
-      "search_text": " carga peso balança excesso pbt eixo autorização aet transporte remunerado licença",
+      "search_text": " carga peso balança excesso pbt eixo autorização aet transporte remunerado licença regularizadora remoção remocao prazo regularização regularizacao local 271 9-b",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=651",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -10376,6 +10384,14 @@
           }
         ],
         "operational_ready": false
+      },
+      "regularization_exception_review": {
+        "checked_on": "2026-10-13",
+        "source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "basis": "Art.271 §§9,9-A,9-B",
+        "deadline_release_excluded": true,
+        "on_site_cure_must_be_distinguished": true,
+        "operational_ready": false
       }
     },
     {
@@ -10383,7 +10399,7 @@
       "title": "Transporte remunerado de bens sem licença",
       "article": "231, VIII",
       "code": "686-62",
-      "search_text": " carga peso balança excesso pbt eixo autorização aet transporte remunerado licença",
+      "search_text": " carga peso balança excesso pbt eixo autorização aet transporte remunerado licença regularizadora remoção remocao prazo regularização regularizacao local 271 9-b",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=653",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -10408,6 +10424,14 @@
             "article": "Art. 231, VIII."
           }
         ],
+        "operational_ready": false
+      },
+      "regularization_exception_review": {
+        "checked_on": "2026-10-13",
+        "source": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+        "basis": "Art.271 §§9,9-A,9-B",
+        "deadline_release_excluded": true,
+        "on_site_cure_must_be_distinguished": true,
         "operational_ready": false
       }
     },
