@@ -13,6 +13,14 @@ class CatalogSearchTest {
         IndexedReference(SearchResult("cnh","CNH vencida","162, V","504-50","BR","draft"),"carteira vencida habilitacao"),
         IndexedReference(SearchResult("pneu","Conjunto roda-pneu","230, X","660-20","BR","draft"),"roda pneu tamanho")
     )
+    @Test fun exactArticleAndIncisoComesBeforeRelatedReferences(){
+        val related = listOf(
+            IndexedReference(SearchResult("outro","A referência relacionada","230, XVIII","672-61","BR","draft"),"230 V licenciamento"),
+            IndexedReference(SearchResult("licenciamento","Veículo sem licenciamento","230, V","659-92","BR","draft"),"licenciamento")
+        )
+        for(q in listOf("230,V","230, V","art. 230, V","ARTIGO 230 v"))
+            assertEquals("licenciamento",CatalogSearch.search(related,q).first().stableKey)
+    }
     @Test fun articleDoesNotConfuse165With165A(){assertEquals(listOf("alcool"),CatalogSearch.search(entries,"artigo 165").map{it.stableKey})}
     @Test fun hyphenatedArticleKeepsLetter(){assertEquals(listOf("recusa"),CatalogSearch.search(entries,"165-A").map{it.stableKey})}
     @Test fun codeWithOrWithoutSeparatorFindsSameEntry(){for(q in listOf("504-50","50450"))assertEquals("cnh",CatalogSearch.search(entries,q).first().stableKey)}
