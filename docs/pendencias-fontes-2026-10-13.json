@@ -1,0 +1,23 @@
+{
+  "checked_on": "2026-10-13",
+  "completed": "Deliberação 279: artigos 1 a 3 e 6 lidos; escopo registrado na referência 504-50.",
+  "pending": [
+    {
+      "document": "Resolução 1003/2023",
+      "code": "694-73",
+      "reason": "Texto principal acessível; anexo em imagem; download direto 403."
+    },
+    {
+      "document": "Resolução 1023/2026",
+      "code": "574-61",
+      "reason": "Art. 11 II liga a hipótese ao art. 187 I; cabeçalho e procedimentos do anexo ainda sem inspeção visual; download 403."
+    },
+    {
+      "document": "Resolução 1013/2024",
+      "code": "773-02",
+      "reason": "Leitura e conferência integrada com alterações posteriores pendentes."
+    }
+  ],
+  "later_amendments_check": "Pesquisa não conclusiva; não declarar ausência de alterações.",
+  "ready_items": 0
+}
