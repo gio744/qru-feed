@@ -1,5 +1,5 @@
 {
-  "content_version": "indice-em-conferencia-2026-10-13-freeflow",
+  "content_version": "indice-em-conferencia-2026-10-13-ficha-pedagio",
   "jurisdiction": "BR",
   "ready": false,
   "items": [
@@ -4345,8 +4345,8 @@
       "article": "209-A",
       "code": "773-02",
       "search_text": " Não pagamento de pedágio na forma estabelecida resolução 1.013/2024 pedágio eletrônico free flow livre passagem prazo pagamento deliberação 277 resolução 1028 transição",
-      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10132024.pdf#page=5",
-      "review_status": "Regulamento e alteração de 2026 documentados · ficha MBFT e validação final pendentes",
+      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=418",
+      "review_status": "Ficha base localizada e alterações posteriores documentadas · revisão operacional integrada pendente",
       "checked_on": "2026-10-13",
       "applies_from": "",
       "applies_until": "",
@@ -4366,7 +4366,16 @@
         "transition_days_from_deliberation_publication": 200,
         "deliberation_publication": "2026-04-29",
         "payment_period_days": 30,
-        "payment_period_trigger": "Confirmação do processamento do registro de passagem junto à Senatran; observar regime excepcional."
+        "payment_period_trigger": "Confirmação do processamento do registro de passagem junto à Senatran; observar regime excepcional.",
+        "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10132024.pdf#page=5"
+      },
+      "base_manual_verification": {
+        "checked_on": "2026-10-13",
+        "pdf_sha256": "5214bc8cfa3c8d1b5acde7c34c3c27f2d06ea1ba1589f5bbfab5ae041e06b1b2",
+        "pdf_page": 418,
+        "code_checked": true,
+        "article_checked": true,
+        "current_legal_readiness": false
       }
     },
     {
