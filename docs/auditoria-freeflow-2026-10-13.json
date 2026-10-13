@@ -1,0 +1,31 @@
+{
+  "checked_on": "2026-10-13",
+  "pdf_pages": 9,
+  "pdf_sha256": "520d69ed12c645de1793e84651906059544d08a264181de8380ff0bacd246ca8",
+  "reference": "773-02",
+  "verification": {
+    "checked_on": "2026-10-13",
+    "pdf_sha256": "520d69ed12c645de1793e84651906059544d08a264181de8380ff0bacd246ca8",
+    "pdf_page": 5,
+    "article": "9",
+    "ctb_article_checked": "209-A",
+    "code_header_checked": false,
+    "current_legal_readiness": false,
+    "later_sources": [
+      "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/deliberacoes/Deliberacao2772026.pdf",
+      "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10282026.pdf"
+    ],
+    "transition_days_from_deliberation_publication": 200,
+    "deliberation_publication": "2026-04-29",
+    "payment_period_days": 30,
+    "payment_period_trigger": "Confirmação do processamento do registro de passagem junto à Senatran; observar regime excepcional."
+  },
+  "notes": [
+    "PDF recebido permite ler regulamento, inclusive artigo 9 vinculado ao CTB 209-A. Não foi encontrado cabeçalho de ficha 773-02 nas nove páginas; anexos visíveis são sinalização. Não certificar código a partir desse arquivo.",
+    "Resolução 1028/2026, publicada em 25/08/2026, aprova Deliberação 277 e ratifica o prazo original de transição; não reiniciar a contagem na publicação da resolução.",
+    "Durante período excepcional, art. 2 §§2 e 3 prevê não configuração da hipótese específica de falta de pagamento free flow e impede AIT, notificações, pontuação e andamento dos prazos relativos a ela.",
+    "Não estender automaticamente a exceção a outras hipóteses ou afastar obrigação de pagar tarifa.",
+    "Permanece pendente localizar ficha completa e conferir eventuais atos posteriores."
+  ],
+  "ready_items": 0
+}
