@@ -12,7 +12,7 @@ import br.com.qru.transito.network.*
 import br.com.qru.transito.sync.*
 
 class QruApplication:Application(){
-    val database by lazy { Room.databaseBuilder(this,QruDatabase::class.java,"qru.db").addMigrations(QruMigrations.MIGRATION_1_2).build() }
+    val database by lazy { Room.databaseBuilder(this,QruDatabase::class.java,"qru.db").addMigrations(QruMigrations.MIGRATION_1_2,QruMigrations.MIGRATION_2_3).build() }
     val bundledCatalog by lazy { BundledCatalog(this) }
     val legalRepository by lazy { LegalRepository(database, bundledCatalog) }
     val searchLegalContent by lazy { SearchLegalContent(legalRepository) }
