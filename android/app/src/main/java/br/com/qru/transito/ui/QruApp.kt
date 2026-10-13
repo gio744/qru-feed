@@ -81,6 +81,9 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
     Button(onClick={vm.query(occurrence);vm.run()},enabled=occurrence.isNotBlank()) { Text("BUSCAR REFERÊNCIAS") }
     Text("A descrição pesquisa termos do catálogo. Confira os requisitos na fonte oficial.",style=MaterialTheme.typography.bodySmall)}
   }
+  HabilitationGuideCard { code ->
+   app.bundledCatalog.all().firstOrNull { it.code==code }?.let { selected=it }
+  }
   Text(state.message)
  }
  selected?.let { ReferenceDialog(it) { selected=null } }
