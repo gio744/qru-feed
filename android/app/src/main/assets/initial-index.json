@@ -1,5 +1,5 @@
 {
-  "content_version": "indice-em-conferencia-2026-10-13-regularizacao",
+  "content_version": "indice-em-conferencia-2026-10-13-reboque",
   "jurisdiction": "BR",
   "ready": false,
   "items": [
@@ -10941,7 +10941,7 @@
       "title": "Rebocar veículo com corda ou cabo flexível",
       "article": "236",
       "code": "695-50",
-      "search_text": "rebocar reboque corda cabo flexível cambão cambao rígido emergência veículo puxando outro",
+      "search_text": "rebocar reboque corda cabo flexível cambão cambao rígido emergência veículo puxando outro cambão cambao barra rígida barra rigida cabo flexível cabo flexivel corda corrente cinta cabo aço rebocar emergência emergencia",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=687",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
@@ -10966,6 +10966,20 @@
             "article": "Art. 236."
           }
         ],
+        "operational_ready": false
+      },
+      "reboque_review": {
+        "checked_on": "2026-10-13",
+        "basis": "CTB art.236 e MBFT ficha695-50, PDF687",
+        "flexible_materials": [
+          "corda",
+          "corrente",
+          "cabo de aço",
+          "cinta"
+        ],
+        "emergency_scope": "Deslocamento suficiente para eliminar risco ou interferência conforme ficha.",
+        "rigid_bar_note": "Não classificar barra rígida como cabo flexível; outras exigências de circulação e segurança precisam de revisão específica.",
+        "motorcycle_reference": "708-00",
         "operational_ready": false
       }
     },
@@ -11577,7 +11591,7 @@
       "title": "Motocicleta rebocando outro veículo",
       "article": "244, VI",
       "code": "708-00",
-      "search_text": " Motocicleta rebocando outro veículo",
+      "search_text": " Motocicleta rebocando outro veículo moto rebocando motocicleta reboque cabo corda cambão cambao",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=721",
       "review_status": "Conferência prioritária · validação final pendente",
       "checked_on": "29/09/2026",
