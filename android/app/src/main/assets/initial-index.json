@@ -1,5 +1,5 @@
 {
-  "content_version": "indice-em-conferencia-2026-10-13-anexos-1003-1023",
+  "content_version": "indice-em-conferencia-2026-10-13-freeflow",
   "jurisdiction": "BR",
   "ready": false,
   "items": [
@@ -4344,13 +4344,30 @@
       "title": "Não pagamento de pedágio na forma estabelecida",
       "article": "209-A",
       "code": "773-02",
-      "search_text": " Não pagamento de pedágio na forma estabelecida resolução 1.013/2024",
-      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10132024.pdf",
-      "review_status": "Revisão editorial · validação final pendente",
-      "checked_on": "29/09/2026",
+      "search_text": " Não pagamento de pedágio na forma estabelecida resolução 1.013/2024 pedágio eletrônico free flow livre passagem prazo pagamento deliberação 277 resolução 1028 transição",
+      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10132024.pdf#page=5",
+      "review_status": "Regulamento e alteração de 2026 documentados · ficha MBFT e validação final pendentes",
+      "checked_on": "2026-10-13",
       "applies_from": "",
       "applies_until": "",
-      "ready": false
+      "ready": false,
+      "regulation_verification": {
+        "checked_on": "2026-10-13",
+        "pdf_sha256": "520d69ed12c645de1793e84651906059544d08a264181de8380ff0bacd246ca8",
+        "pdf_page": 5,
+        "article": "9",
+        "ctb_article_checked": "209-A",
+        "code_header_checked": false,
+        "current_legal_readiness": false,
+        "later_sources": [
+          "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/deliberacoes/Deliberacao2772026.pdf",
+          "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10282026.pdf"
+        ],
+        "transition_days_from_deliberation_publication": 200,
+        "deliberation_publication": "2026-04-29",
+        "payment_period_days": 30,
+        "payment_period_trigger": "Confirmação do processamento do registro de passagem junto à Senatran; observar regime excepcional."
+      }
     },
     {
       "stable_key": "mbft-607-60",
