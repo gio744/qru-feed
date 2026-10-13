@@ -1,0 +1,26 @@
+{
+  "checked_on": "2026-10-13",
+  "scope": "Consolidação da busca de retificações e transição dos cursos",
+  "sources_searched": [
+    "https://www.gov.br/transportes/pt-br/assuntos/transito/senatran/portarias-2025",
+    "https://www.gov.br/transportes/pt-br/assuntos/transito/senatran/portarias-2026"
+  ],
+  "results": {
+    "portaria_923_retification": "Não localizada nos índices oficiais e consultas realizadas; isso não comprova inexistência.",
+    "legacy_courses_transition": "Não localizada orientação primária suficiente para resolver todos os cursos vencidos antes de 09/12/2025."
+  },
+  "decisions": [
+    "Manter divergência 10/13 horas como pendência documental.",
+    "Não converter interpretação de entidade privada em regra nacional do QRU.",
+    "Não declarar certificado antigo automaticamente válido ou inválido.",
+    "Continuar desenvolvimento independente destas duas pendências."
+  ],
+  "confirmed_work": {
+    "habilitation_references_with_targeted_terms": 36,
+    "course_references_with_regulation_review": 6,
+    "course_references_with_senatran_evidence": 3,
+    "total_references": 418,
+    "operational_ready": false
+  },
+  "remaining_delivery": "Alterações de índice ainda precisam de compilação e entrega no APK; metadados de revisão não são ficha operacional pronta."
+}
