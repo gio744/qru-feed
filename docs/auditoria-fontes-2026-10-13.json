@@ -1,0 +1,167 @@
+{
+  "checked_on": "2026-10-13",
+  "references": 418,
+  "distinct_source_documents": 10,
+  "ready_for_activation": false,
+  "scope": "Auditoria inicial de origem e acessibilidade; não é validação jurídica integral",
+  "source_access": [
+    {
+      "url": "https://www.gov.br/participamaisbrasil/blob/baixar/6392",
+      "retrieved_url": "https://www.gov.br/participamaisbrasil/blob/baixar/6392",
+      "references": 1,
+      "status": 200,
+      "content_type": "application/pdf",
+      "bytes": 642151
+    },
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/deliberacoes/deliberacao2792026.pdf",
+      "retrieved_url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/deliberacoes/deliberacao2792026.pdf",
+      "references": 1,
+      "status": 403
+    },
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10032023.pdf",
+      "retrieved_url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10032023.pdf",
+      "references": 1,
+      "status": 403
+    },
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10092024.pdf",
+      "retrieved_url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10092024.pdf",
+      "references": 6,
+      "status": 403
+    },
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10122024.pdf",
+      "retrieved_url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10122024.pdf",
+      "references": 2,
+      "status": 403
+    },
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10132024.pdf",
+      "retrieved_url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10132024.pdf",
+      "references": 1,
+      "status": 403
+    },
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf/view",
+      "retrieved_url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf",
+      "references": 399,
+      "status": 403
+    },
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10232026c.pdf",
+      "retrieved_url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10232026c.pdf",
+      "references": 1,
+      "status": 403
+    },
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf",
+      "retrieved_url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf",
+      "references": 5,
+      "status": 403
+    },
+    {
+      "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15503.htm",
+      "retrieved_url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15503.htm",
+      "references": 1,
+      "error": "TimeoutError"
+    }
+  ],
+  "confirmed_documents_via_browser": [
+    "Resolução CONTRAN 1031/2026",
+    "Resolução CONTRAN 1009/2024",
+    "Resolução CONTRAN 1023/2026"
+  ],
+  "findings": [
+    {
+      "stable_key": "mbft-551-71",
+      "finding": "PDF de origem contém Minuta para Consulta Pública. Não deve servir sozinho como prova de ficha vigente.",
+      "action": "Aviso alterado no índice Android; nenhuma ficha ativada."
+    },
+    {
+      "topic": "Transição 165/165-A",
+      "finding": "Resolução 1031/2026, art. 16, distingue vigência dos procedimentos e vigência das alterações do MBFT. Datas do catálogo requerem revisão por tipo de conteúdo, não somente uma data única.",
+      "status": "Revisão integral pendente"
+    }
+  ],
+  "priority_queue": [
+    {
+      "stable_key": "mbft-502-91",
+      "article": "162, II",
+      "code": "502-91",
+      "title": "Habilitação cassada"
+    },
+    {
+      "stable_key": "mbft-502-92",
+      "article": "162, II",
+      "code": "502-92",
+      "title": "Direito de dirigir suspenso"
+    },
+    {
+      "stable_key": "mbft-504-50",
+      "article": "162, V",
+      "code": "504-50",
+      "title": "CNH vencida há mais de 30 dias"
+    },
+    {
+      "stable_key": "mbft-774-91",
+      "article": "162, VII",
+      "code": "774-91",
+      "title": "Sem curso especializado obrigatório"
+    },
+    {
+      "stable_key": "mbft-774-92",
+      "article": "162, VII",
+      "code": "774-92",
+      "title": "Dirigir sem curso específico obrigatório"
+    },
+    {
+      "stable_key": "mbft-516-92",
+      "article": "165",
+      "code": "516-92",
+      "title": "Dirigir sob influência de outra substância psicoativa"
+    },
+    {
+      "stable_key": "mbft-757-90",
+      "article": "165-A",
+      "code": "757-90",
+      "title": "Recusa de procedimento · ficha anterior"
+    },
+    {
+      "stable_key": "mbft-517-70",
+      "article": "166",
+      "code": "517-70",
+      "title": "Confiar ou entregar direção a pessoa sem condições"
+    },
+    {
+      "stable_key": "mbft-695-50",
+      "article": "236",
+      "code": "695-50",
+      "title": "Rebocar veículo com corda ou cabo flexível"
+    },
+    {
+      "stable_key": "mbft-516-91",
+      "article": "165",
+      "code": "516-91",
+      "title": "Dirigir sob influência de álcool"
+    },
+    {
+      "stable_key": "future-757-91",
+      "article": "165-A",
+      "code": "757-91",
+      "title": "Recusa de procedimento para álcool"
+    },
+    {
+      "stable_key": "future-757-92",
+      "article": "165-A",
+      "code": "757-92",
+      "title": "Recusa de procedimento para outra substância psicoativa"
+    }
+  ],
+  "limits": [
+    "HTTP 403 significa bloqueio de acesso nesta rota, não revogação nem inexistência da norma.",
+    "O pacote candidato já recebido no servidor continua sem ativação.",
+    "Conferir anexos, alterações posteriores, base CTB e texto vigente antes de aprovar procedimentos."
+  ]
+}
