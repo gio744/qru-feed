@@ -1,0 +1,25 @@
+{
+  "checked_on": "2026-10-13",
+  "reference55171": {
+    "sources_examined": [
+      "https://www.gov.br/participamaisbrasil/blob/baixar/6392",
+      "https://www.gov.br/participamaisbrasil/blob/baixar/16160"
+    ],
+    "finding": "As duas fontes identificadas pertencem a consulta pública; segunda ficha termina expressamente com Consulta Pública. Não confirmar incorporação normativa somente pelo domínio gov.br.",
+    "identity_in_normative_sheet": false,
+    "ready": false
+  },
+  "resolution1022": {
+    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10222026c.pdf",
+    "body_read": true,
+    "articles": [
+      16,
+      17,
+      18
+    ],
+    "annex_visual_review": false,
+    "download_result": "403",
+    "required": "Cópia integral do PDF para renderizar e conferir o anexo II."
+  },
+  "activated": false
+}
