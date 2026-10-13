@@ -1,5 +1,5 @@
 {
-  "content_version": "indice-em-conferencia-2026-10-13-anexos",
+  "content_version": "indice-em-conferencia-2026-10-13-anexos-1012",
   "jurisdiction": "BR",
   "ready": false,
   "items": [
@@ -2239,12 +2239,20 @@
       "article": "181, XX",
       "code": "762-51",
       "search_text": " Vaga PcD: credencial e beneficiário resolução 1.012/2024 vaga deficiente vaga pcd estacionamento acessivel sem credencial",
-      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10122024.pdf",
-      "review_status": "Conferência prioritária · validação final pendente",
-      "checked_on": "29/09/2026",
-      "applies_from": "",
+      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10122024.pdf#page=7",
+      "review_status": "Código, artigo e página conferidos no anexo oficial · validação operacional pendente",
+      "checked_on": "2026-10-13",
+      "applies_from": "2024-10-16",
       "applies_until": "",
-      "ready": false
+      "ready": false,
+      "annex_verification": {
+        "checked_on": "2026-10-13",
+        "pdf_sha256": "d6ff6c688bdc5126ca8644f3dfe80181c36f8b310ae53808c1102abc1e71715b",
+        "pdf_page": 7,
+        "code_checked": true,
+        "article_checked": true,
+        "current_legal_readiness": false
+      }
     },
     {
       "stable_key": "mbft-762-52",
@@ -2252,12 +2260,20 @@
       "article": "181, XX",
       "code": "762-52",
       "search_text": " Vaga de pessoa idosa: credencial e beneficiário resolução 1.012/2024 vaga idoso estacionamento idoso sem credencial",
-      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10122024.pdf",
-      "review_status": "Conferência prioritária · validação final pendente",
-      "checked_on": "29/09/2026",
-      "applies_from": "",
+      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10122024.pdf#page=11",
+      "review_status": "Código, artigo e página conferidos no anexo oficial · validação operacional pendente",
+      "checked_on": "2026-10-13",
+      "applies_from": "2024-10-16",
       "applies_until": "",
-      "ready": false
+      "ready": false,
+      "annex_verification": {
+        "checked_on": "2026-10-13",
+        "pdf_sha256": "d6ff6c688bdc5126ca8644f3dfe80181c36f8b310ae53808c1102abc1e71715b",
+        "pdf_page": 11,
+        "code_checked": true,
+        "article_checked": true,
+        "current_legal_readiness": false
+      }
     },
     {
       "stable_key": "mbft-557-60",
