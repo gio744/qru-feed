@@ -1,5 +1,5 @@
 {
-  "content_version": "indice-em-conferencia-2026-10-13-prorrogacao",
+  "content_version": "indice-em-conferencia-2026-10-13-anexos-1003-1023",
   "jurisdiction": "BR",
   "ready": false,
   "items": [
@@ -30,9 +30,9 @@
       "article": "230, V",
       "code": "659-91",
       "search_text": "sem registro veículo novo não registrado chassi placa registro",
-      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=538",
-      "review_status": "Conferência prioritária · validação final pendente",
-      "checked_on": "29/09/2026",
+      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10232026c.pdf#page=15",
+      "review_status": "Código, artigo e página conferidos no anexo oficial · validação operacional pendente",
+      "checked_on": "2026-10-13",
       "applies_from": "",
       "applies_until": "",
       "ready": false,
@@ -42,6 +42,15 @@
         "pdf_page": 538,
         "code_checked": true,
         "article_checked": true,
+        "current_legal_readiness": false
+      },
+      "annex_verification": {
+        "checked_on": "2026-10-13",
+        "pdf_sha256": "24f8d7ad7cd934041db4b1f1d7a2c9c97880f1a525378cf150285831c6c3f89d",
+        "pdf_page": 15,
+        "code_checked": true,
+        "article_checked": true,
+        "manual_annex_effective_from": "2026-07-03",
         "current_legal_readiness": false
       }
     },
@@ -2865,12 +2874,21 @@
       "article": "187, I",
       "code": "574-61",
       "search_text": " circulação faixa prioridade urgência sirene luz intermitente rodízio caminhão contramão resolução 1.023/2026",
-      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10232026c.pdf",
-      "review_status": "Conferência prioritária · validação final pendente",
-      "checked_on": "28/09/2026",
+      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10232026c.pdf#page=11",
+      "review_status": "Código, artigo e página conferidos no anexo oficial · validação operacional pendente",
+      "checked_on": "2026-10-13",
       "applies_from": "",
       "applies_until": "",
-      "ready": false
+      "ready": false,
+      "annex_verification": {
+        "checked_on": "2026-10-13",
+        "pdf_sha256": "24f8d7ad7cd934041db4b1f1d7a2c9c97880f1a525378cf150285831c6c3f89d",
+        "pdf_page": 11,
+        "code_checked": true,
+        "article_checked": true,
+        "manual_annex_effective_from": "2026-07-03",
+        "current_legal_readiness": false
+      }
     },
     {
       "stable_key": "mbft-574-62",
@@ -5684,9 +5702,9 @@
       "article": "230, IV",
       "code": "658-00",
       "search_text": " placa chassi selo lacre equipamento obrigatório ausente quebrado cor inspeção resolução 1.023/2026",
-      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf#page=536",
-      "review_status": "Conferência prioritária · validação final pendente",
-      "checked_on": "29/09/2026",
+      "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10232026c.pdf#page=13",
+      "review_status": "Código, artigo e página conferidos no anexo oficial · validação operacional pendente",
+      "checked_on": "2026-10-13",
       "applies_from": "",
       "applies_until": "",
       "ready": false,
@@ -5696,6 +5714,15 @@
         "pdf_page": 536,
         "code_checked": true,
         "article_checked": true,
+        "current_legal_readiness": false
+      },
+      "annex_verification": {
+        "checked_on": "2026-10-13",
+        "pdf_sha256": "24f8d7ad7cd934041db4b1f1d7a2c9c97880f1a525378cf150285831c6c3f89d",
+        "pdf_page": 13,
+        "code_checked": true,
+        "article_checked": true,
+        "manual_annex_effective_from": "2026-07-03",
         "current_legal_readiness": false
       }
     },
@@ -6861,11 +6888,20 @@
       "code": "694-73",
       "search_text": "carga parte externa teto bagageiro suporte bicicleta areia caçamba carroceria toras material siderúrgico malhal carga a granel",
       "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10032023.pdf#page=2",
-      "review_status": "Conferência prioritária · validação final pendente",
-      "checked_on": "2026-09-30",
+      "review_status": "Código, artigo e página conferidos no anexo oficial · validação operacional pendente",
+      "checked_on": "2026-10-13",
       "applies_from": "",
       "applies_until": "",
-      "ready": false
+      "ready": false,
+      "annex_verification": {
+        "checked_on": "2026-10-13",
+        "pdf_sha256": "8e1c0e18924680565fff17585acda791d88607d46193227175be18d37950640d",
+        "pdf_page": 2,
+        "code_checked": true,
+        "article_checked": true,
+        "manual_annex_effective_from": "2024-01-02",
+        "current_legal_readiness": false
+      }
     },
     {
       "stable_key": "mbft-695-50",
