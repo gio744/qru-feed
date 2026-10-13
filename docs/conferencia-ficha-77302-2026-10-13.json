@@ -1,0 +1,38 @@
+{
+  "checked_on": "2026-10-13",
+  "code": "773-02",
+  "article": "209-A",
+  "base_manual": {
+    "checked_on": "2026-10-13",
+    "pdf_sha256": "5214bc8cfa3c8d1b5acde7c34c3c27f2d06ea1ba1589f5bbfab5ae041e06b1b2",
+    "pdf_page": 418,
+    "code_checked": true,
+    "article_checked": true,
+    "current_legal_readiness": false
+  },
+  "regulations": {
+    "checked_on": "2026-10-13",
+    "pdf_sha256": "520d69ed12c645de1793e84651906059544d08a264181de8380ff0bacd246ca8",
+    "pdf_page": 5,
+    "article": "9",
+    "ctb_article_checked": "209-A",
+    "code_header_checked": false,
+    "current_legal_readiness": false,
+    "later_sources": [
+      "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/deliberacoes/Deliberacao2772026.pdf",
+      "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10282026.pdf"
+    ],
+    "transition_days_from_deliberation_publication": 200,
+    "deliberation_publication": "2026-04-29",
+    "payment_period_days": 30,
+    "payment_period_trigger": "Confirmação do processamento do registro de passagem junto à Senatran; observar regime excepcional.",
+    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10132024.pdf#page=5"
+  },
+  "notes": [
+    "Ficha base encontrada em página 418, conferida visualmente; distinção de 773-01 e remissão aos prazos regulamentares registradas.",
+    "Pendência de localizar ficha base resolvida. Não equivale a confirmação de versão atual consolidada do anexo alterado em 2024.",
+    "Regime de transição de 2026 deve ser integrado antes de qualquer liberação operacional.",
+    "Nenhuma referência foi ativada no feed."
+  ],
+  "ready_items": 0
+}
