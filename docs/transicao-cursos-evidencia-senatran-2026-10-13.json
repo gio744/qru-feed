@@ -1,0 +1,55 @@
+{
+  "checked_on": "2026-10-13",
+  "scope": "Transição e renovação dos cursos especializados",
+  "codes": [
+    "774-91",
+    "777-31",
+    "778-11"
+  ],
+  "operational_ready": false,
+  "evidence": {
+    "source": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3137071",
+    "document": "Nota Técnica 412/2026/CGREG-SENATRAN/DSEG-SENATRAN/SENATRAN",
+    "process": "50000.009168/2026-04",
+    "pages": [
+      7,
+      8
+    ],
+    "items": [
+      "2.3",
+      "2.4",
+      "2.5",
+      "2.6"
+    ],
+    "finding": "A Senatran explica a retirada da renovação periódica da maioria dos cursos; ambulâncias permanecem sujeitas ao prazo legal de cinco anos.",
+    "classification": "Manifestação técnica interpretativa; não substitui norma nem resolve automaticamente casos de registros antigos"
+  },
+  "curriculum": {
+    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/arquivos-senatran/portarias/2025/Portaria9232025.pdf",
+    "scope": "Conteúdo e carga horária; não confundir com autorização para conduzir ou regra completa de transição",
+    "ambiguity": {
+      "ambulance_update": {
+        "page": 7,
+        "total_hours_stated": 10,
+        "module_hours": [
+          3,
+          5,
+          4,
+          1
+        ],
+        "module_sum": 13,
+        "action": "Não divulgar carga horária definitiva sem conferir retificação ou orientação oficial"
+      }
+    }
+  },
+  "pending": [
+    "Retificações/alterações da Portaria 923/2025",
+    "Procedimentos de migração dos registros anteriores no Renach",
+    "Tratamento de cursos antigos vencidos ou sem exame registrado",
+    "Conferência integral das fichas e teste da versão Android"
+  ],
+  "validation": {
+    "item_count": 418,
+    "ready": false
+  }
+}
