@@ -25,6 +25,7 @@ private fun normSearch(text:String):String =
 
 /** Bundled documentary text; does not mark any operational ficha as validated. */
 @Composable fun OfflineNormLibrary(openSource:(String)->Unit) {
+ AdditionalOfflineNorms()
  val context=LocalContext.current
  var norm by remember { mutableStateOf<OfflineNorm?>(null) }
  var error by remember { mutableStateOf(false) }
@@ -87,5 +88,38 @@ private fun normSearch(text:String):String =
     }
    }
   }
+ }
+}
+
+private data class NormPdfEntry(
+ val file:String="",val title:String="",val subtitle:String="",
+ val sha256:String="",val pageCount:Int=0,val annexPage:Int?=null
+)
+@Composable private fun AdditionalOfflineNorms() {
+ val context=LocalContext.current
+ var documents by remember { mutableStateOf<List<NormPdfEntry>>(emptyList()) }
+ var selectedFile by rememberSaveable { mutableStateOf<String?>(null) }
+ var failed by remember { mutableStateOf(false) }
+ LaunchedEffect(Unit) {
+  val result=withContext(Dispatchers.IO) { runCatching {
+   context.assets.open("norms/pdf-catalog.json").bufferedReader().use {
+    Gson().fromJson(it,Array<NormPdfEntry>::class.java).toList()
+   }.filter { it.file!="resolucao10312026.pdf" }
+  }}
+  documents=result.getOrDefault(emptyList());failed=result.isFailure
+ }
+ if(failed) Text("Não foi possível carregar os documentos adicionais.")
+ documents.forEach { doc ->
+  Card(Modifier.fillMaxWidth()) {
+   Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
+    Text(doc.title,style=MaterialTheme.typography.titleMedium)
+    Text(doc.subtitle,style=MaterialTheme.typography.bodyMedium)
+    Text("PDF original completo offline • ${doc.pageCount} páginas",style=MaterialTheme.typography.bodySmall)
+    TextButton(onClick={selectedFile=doc.file}) { Text("LER PDF COMPLETO") }
+   }
+  }
+ }
+ documents.firstOrNull { it.file==selectedFile }?.let { doc ->
+  OfflinePdfReader(doc.sha256,doc.file,doc.title,doc.pageCount,doc.annexPage) { selectedFile=null }
  }
 }
