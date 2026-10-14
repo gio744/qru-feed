@@ -71,28 +71,33 @@ ksp { arg("room.schemaLocation", "$projectDir/schemas") }
 // Pin the original bytes: an upstream replacement must be reviewed explicitly.
 val normAssets = layout.buildDirectory.dir("generated/normAssets")
 val bundleNormPdf = tasks.register("bundleNormPdf") {
+    val catalog=file("src/main/assets/norms/pdf-catalog.json")
+    inputs.file(catalog)
     outputs.dir(normAssets)
     doLast {
-        val destination = normAssets.get().file("norms/resolucao10312026.pdf").asFile
-        fun fingerprint(file: File): String =
-            MessageDigest.getInstance("SHA-256").digest(file.readBytes())
-                .joinToString("") { "%02x".format(it) }
-        val expected = "9f6d8d8c6e7b7996fce21326a229c9b262d45178907fff7bd9dd159ca5ba9b5a"
-        if (!destination.exists() || fingerprint(destination) != expected) {
-            destination.parentFile.mkdirs()
-            val temporary = File(destination.parentFile, "norm.download")
-            try {
-                val connection = URI("https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf").toURL().openConnection()
-                connection.connectTimeout = 30000
-                connection.readTimeout = 60000
-                connection.setRequestProperty("User-Agent", "QRU-document-build/1.0")
-                connection.getInputStream().use { input ->
-                    temporary.outputStream().use { output -> input.copyTo(output) }
-                }
-                check(fingerprint(temporary) == expected) { "Official PDF bytes changed; review required" }
-                Files.move(temporary.toPath(), destination.toPath(),
-                    StandardCopyOption.REPLACE_EXISTING)
-            } finally { temporary.delete() }
+        @Suppress("UNCHECKED_CAST")
+        val documents=groovy.json.JsonSlurper().parse(catalog) as List<Map<String,Any>>
+        documents.forEach { doc ->
+            val name=doc["file"] as String
+            require(name.matches(Regex("[a-z0-9]+\\.pdf")))
+            val destination=normAssets.get().file("norms/$name").asFile
+            fun fingerprint(file:File):String = MessageDigest.getInstance("SHA-256")
+                .digest(file.readBytes()).joinToString("") { "%02x".format(it) }
+            val expected=doc["sha256"] as String
+            if(!destination.exists() || fingerprint(destination)!=expected) {
+                destination.parentFile.mkdirs()
+                val temporary=File(destination.parentFile,"$name.download")
+                try {
+                    val connection=URI(doc["source"] as String).toURL().openConnection()
+                    connection.connectTimeout=30000;connection.readTimeout=60000
+                    connection.setRequestProperty("User-Agent","QRU-document-build/1.0")
+                    connection.getInputStream().use { input ->
+                        temporary.outputStream().use { output -> input.copyTo(output) }
+                    }
+                    check(fingerprint(temporary)==expected) { "Official PDF bytes changed: $name" }
+                    Files.move(temporary.toPath(),destination.toPath(),StandardCopyOption.REPLACE_EXISTING)
+                } finally { temporary.delete() }
+            }
         }
     }
 }
