@@ -25,5 +25,41 @@
     "pageCount": 19,
     "annexPage": null,
     "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10232026c.pdf"
+  },
+  {
+    "file": "Resolucao10032023.pdf",
+    "title": "Resolução 1.003/2023",
+    "subtitle": "Alterações do MBFT",
+    "sha256": "8e1c0e18924680565fff17585acda791d88607d46193227175be18d37950640d",
+    "pageCount": 4,
+    "annexPage": null,
+    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10032023.pdf"
+  },
+  {
+    "file": "Resolucao10092024.pdf",
+    "title": "Resolução 1.009/2024",
+    "subtitle": "Alterações normativas e do MBFT",
+    "sha256": "2c19112a82bf6357dc8710dd5c00401b721a70022e7dd8386a264814e261a9a1",
+    "pageCount": 8,
+    "annexPage": null,
+    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10092024.pdf"
+  },
+  {
+    "file": "Resolucao10122024.pdf",
+    "title": "Resolução 1.012/2024",
+    "subtitle": "Estacionamentos específicos e sinalização",
+    "sha256": "d6ff6c688bdc5126ca8644f3dfe80181c36f8b310ae53808c1102abc1e71715b",
+    "pageCount": 16,
+    "annexPage": null,
+    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10122024.pdf"
+  },
+  {
+    "file": "Resolucao10132024.pdf",
+    "title": "Resolução 1.013/2024",
+    "subtitle": "Sistemas de livre passagem (free flow)",
+    "sha256": "520d69ed12c645de1793e84651906059544d08a264181de8380ff0bacd246ca8",
+    "pageCount": 9,
+    "annexPage": null,
+    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10132024.pdf"
   }
 ]
