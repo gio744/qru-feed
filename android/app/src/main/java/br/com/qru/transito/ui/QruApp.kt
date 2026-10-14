@@ -108,24 +108,27 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  val permission=rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()){if(it)launchSpeech() else voiceMessage("Microfone não autorizado. Use o teclado.")}
  fun voice(){if(context.checkSelfPermission(Manifest.permission.RECORD_AUDIO)==PackageManager.PERMISSION_GRANTED)launchSpeech() else permission.launch(Manifest.permission.RECORD_AUDIO)}
 
- Column(Modifier.fillMaxSize().verticalScroll(androidx.compose.foundation.rememberScrollState()).padding(20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)){
+ Column(Modifier.fillMaxSize().verticalScroll(androidx.compose.foundation.rememberScrollState()).padding(horizontal=16.dp,vertical=12.dp),verticalArrangement=Arrangement.spacedBy(10.dp)){
   Box(Modifier.fillMaxWidth()) {
-  Column(Modifier.fillMaxWidth(),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(14.dp)) {
+  Column(Modifier.fillMaxWidth(),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(4.dp)) {
   Text("QRU?",style=MaterialTheme.typography.headlineLarge,fontWeight=FontWeight.Black,color=MaterialTheme.colorScheme.primary)
   Text("QUAL A SITUAÇÃO",style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.secondary)
   }
    IconButton(onClick=onMenu,modifier=Modifier.align(Alignment.TopStart)){Icon(Icons.Default.Menu,"Abrir menu")}
   }
-  OutlinedTextField(state.query,{vm.query(it)},Modifier.fillMaxWidth(),label={Text("Busque artigo, código ou situação")},
+  OutlinedTextField(state.query,{vm.query(it)},Modifier.fillMaxWidth(),placeholder={Text("Artigo, código ou situação")},
+   leadingIcon={Icon(Icons.Default.Search,null)},
    trailingIcon={IconButton({voice()}){Icon(Icons.Default.Mic,"Pesquisa por voz")}},singleLine=true,
    keyboardOptions=KeyboardOptions(imeAction=ImeAction.Search),
    keyboardActions=KeyboardActions(onSearch={keyboard?.hide();vm.run()}))
   Button({keyboard?.hide();vm.run()},Modifier.fillMaxWidth()){Icon(Icons.Default.Search,null);Spacer(Modifier.width(8.dp));Text("CONSULTAR")}
   if(state.loading) LinearProgressIndicator(Modifier.fillMaxWidth())
-  Text("Referências em conferência • consulta sem internet", style=MaterialTheme.typography.bodySmall)
+  Text("Catálogo em conferência • disponível offline", style=MaterialTheme.typography.bodySmall)
   state.results.forEach{result -> ReferenceCard(result) { selected=result }}
-  OutlinedButton(onClick={occurrenceExpanded=!occurrenceExpanded},modifier=Modifier.fillMaxWidth()){
-   Text(if(occurrenceExpanded) "RECOLHER OCORRÊNCIA" else "DESCREVER OCORRÊNCIA")
+  TextButton(onClick={occurrenceExpanded=!occurrenceExpanded},modifier=Modifier.fillMaxWidth().heightIn(min=48.dp)){
+   Icon(Icons.Default.Description,null,modifier=Modifier.size(20.dp))
+   Spacer(Modifier.width(8.dp))
+   Text(if(occurrenceExpanded) "Recolher ocorrência" else "Descrever ocorrência")
   }
   if(occurrenceExpanded){
    Card(colors=CardDefaults.cardColors(containerColor=MaterialTheme.colorScheme.surfaceVariant),shape=RoundedCornerShape(18.dp),modifier=Modifier.fillMaxWidth()){
@@ -139,7 +142,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   HabilitationGuideCard { code ->
    app.bundledCatalog.all().firstOrNull { it.code==code }?.let { selected=it }
   }
-  Text(state.message)
+  if(state.message.isNotBlank() && state.message!="Faça uma consulta à base disponível.") Text(state.message,style=MaterialTheme.typography.bodySmall)
  }
  selected?.let { ReferenceDialog(it) { selected=null } }
 }
