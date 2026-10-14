@@ -77,7 +77,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
      if(kind=="help"){
       Text("Pesquise uma palavra, artigo ou código. Toque no resultado para conferir a referência e abrir sua fonte.")
       Text("Use Descrever ocorrência para pesquisar pelos fatos. A análise guiada organiza verificações de habilitação.")
-      Text("O catálogo pode ser consultado sem internet. Abrir fontes oficiais requer conexão.")
+      Text("O catálogo e as normas indicadas como offline podem ser consultados sem internet. Abrir fontes oficiais requer conexão.")
      }else{
       Text("QRU? — QUAL A SITUAÇÃO. Consulta de referências de trânsito.")
       Text("Versão em desenvolvimento. As fichas e a análise guiada permanecem em conferência jurídica.")
@@ -193,7 +193,9 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                 else if(results.isEmpty()) Text("Nenhuma referência encontrada.")
             }
             QruTab.NORMAS -> {
-                Text("Fontes oficiais para conferir os documentos e a vigência.")
+                Text("Biblioteca de normas",style=MaterialTheme.typography.titleLarge)
+                OfflineNormLibrary { url -> openOfficialSource(context,url) }
+                Text("A biblioteca offline está em expansão. Confira atualizações e documentos adicionais nas fontes oficiais.",style=MaterialTheme.typography.bodySmall)
                 Button(onClick={openOfficialSource(context,"https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran")},modifier=Modifier.fillMaxWidth()){Text("RESOLUÇÕES CONTRAN")}
                 Button(onClick={openOfficialSource(context,"https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao9852022.pdf")},modifier=Modifier.fillMaxWidth()){Text("MBFT — RESOLUÇÃO 985/2022")}
                 Text("Nas fichas, o botão de fonte abre o documento registrado para aquela referência.")
