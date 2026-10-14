@@ -34,32 +34,68 @@ import br.com.qru.transito.ui.search.SearchViewModel
 import br.com.qru.transito.ui.search.SearchViewModelFactory
 import br.com.qru.transito.ui.theme.QruTheme
 import java.util.Locale
+import kotlinx.coroutines.launch
 
 enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),SITUACOES("Situações"),NOVIDADES("Novidades")}
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable fun QruApp(){
  QruTheme{
   var tab by rememberSaveable{mutableStateOf(QruTab.BUSCA)}
+  var support by rememberSaveable{mutableStateOf<String?>(null)}
   val tabStates=rememberSaveableStateHolder()
-  Scaffold(bottomBar={NavigationBar{
-   QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},
-    icon={Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
-    label={Text(item.label)})}
-  }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
-   tabStates.SaveableStateProvider(tab.name) {
-    if(tab==QruTab.BUSCA) SearchHome() else CatalogPage(tab)
+  val drawer=rememberDrawerState(DrawerValue.Closed)
+  val scope=rememberCoroutineScope()
+  ModalNavigationDrawer(drawerState=drawer,drawerContent={
+   ModalDrawerSheet {
+    Column(Modifier.padding(24.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+     Text("QRU?",style=MaterialTheme.typography.headlineMedium,fontWeight=FontWeight.Black,color=MaterialTheme.colorScheme.primary)
+     Text("QUAL A SITUAÇÃO",style=MaterialTheme.typography.labelLarge)
+    }
+    NavigationDrawerItem(label={Text("Como usar")},selected=false,
+     icon={Icon(Icons.Default.HelpOutline,null)},onClick={support="help";scope.launch{drawer.close()}})
+    NavigationDrawerItem(label={Text("Fontes oficiais")},selected=false,
+     icon={Icon(Icons.Default.MenuBook,null)},onClick={tab=QruTab.NORMAS;scope.launch{drawer.close()}})
+    NavigationDrawerItem(label={Text("Sobre o QRU")},selected=false,
+     icon={Icon(Icons.Default.Info,null)},onClick={support="about";scope.launch{drawer.close()}})
+    TextButton(onClick={scope.launch{drawer.close()}},modifier=Modifier.padding(12.dp)){Text("FECHAR MENU")}
    }
-  }}
+  }){
+   Scaffold(bottomBar={NavigationBar{
+    QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},
+     icon={Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
+     label={Text(item.label)})}
+   }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
+    tabStates.SaveableStateProvider(tab.name) {
+     if(tab==QruTab.BUSCA) SearchHome{scope.launch{drawer.open()}} else CatalogPage(tab)
+    }
+   }}
+  }
+  support?.let { kind ->
+   AlertDialog(onDismissRequest={support=null},title={Text(if(kind=="help") "Como usar" else "Sobre o QRU")},
+    text={Column(verticalArrangement=Arrangement.spacedBy(12.dp)){
+     if(kind=="help"){
+      Text("Pesquise uma palavra, artigo ou código. Toque no resultado para conferir a referência e abrir sua fonte.")
+      Text("Use Descrever ocorrência para pesquisar pelos fatos. A análise guiada organiza verificações de habilitação.")
+      Text("O catálogo pode ser consultado sem internet. Abrir fontes oficiais requer conexão.")
+     }else{
+      Text("QRU? — QUAL A SITUAÇÃO. Consulta de referências de trânsito.")
+      Text("Versão em desenvolvimento. As fichas e a análise guiada permanecem em conferência jurídica.")
+      Text("O QRU não representa um órgão público. Consulte a fonte e a regra aplicável à data do fato.")
+     }
+    }},confirmButton={TextButton(onClick={support=null}){Text("ENTENDI")}})
+  }
  }
 }
 
-@Composable private fun SearchHome(){
+@Composable private fun SearchHome(onMenu:()->Unit){
  val context=LocalContext.current
  val app=context.applicationContext as QruApplication
  val vm:SearchViewModel=viewModel(factory=SearchViewModelFactory(app.searchLegalContent))
  val state by vm.state.collectAsState()
  val keyboard=LocalSoftwareKeyboardController.current
  var occurrence by rememberSaveable{mutableStateOf("")}
+ var occurrenceExpanded by rememberSaveable{mutableStateOf(false)}
  var selected by remember{mutableStateOf<SearchResult?>(null)}
  fun voiceMessage(text:String){Toast.makeText(context,text,Toast.LENGTH_LONG).show()}
  val speech=rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()){r->
@@ -73,9 +109,12 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  fun voice(){if(context.checkSelfPermission(Manifest.permission.RECORD_AUDIO)==PackageManager.PERMISSION_GRANTED)launchSpeech() else permission.launch(Manifest.permission.RECORD_AUDIO)}
 
  Column(Modifier.fillMaxSize().verticalScroll(androidx.compose.foundation.rememberScrollState()).padding(20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)){
+  Box(Modifier.fillMaxWidth()) {
   Column(Modifier.fillMaxWidth(),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(14.dp)) {
   Text("QRU?",style=MaterialTheme.typography.headlineLarge,fontWeight=FontWeight.Black,color=MaterialTheme.colorScheme.primary)
   Text("QUAL A SITUAÇÃO",style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.secondary)
+  }
+   IconButton(onClick=onMenu,modifier=Modifier.align(Alignment.TopStart)){Icon(Icons.Default.Menu,"Abrir menu")}
   }
   OutlinedTextField(state.query,{vm.query(it)},Modifier.fillMaxWidth(),label={Text("Busque artigo, código ou situação")},
    trailingIcon={IconButton({voice()}){Icon(Icons.Default.Mic,"Pesquisa por voz")}},singleLine=true,
@@ -85,11 +124,17 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   if(state.loading) LinearProgressIndicator(Modifier.fillMaxWidth())
   Text("Referências em conferência • consulta sem internet", style=MaterialTheme.typography.bodySmall)
   state.results.forEach{result -> ReferenceCard(result) { selected=result }}
-  Card(colors=CardDefaults.cardColors(containerColor=MaterialTheme.colorScheme.surfaceVariant),shape=RoundedCornerShape(18.dp),modifier=Modifier.fillMaxWidth()){
-   Column(Modifier.padding(16.dp)){Text("MODO OCORRÊNCIA",color=MaterialTheme.colorScheme.primary)
-    OutlinedTextField(occurrence,{occurrence=it},Modifier.fillMaxWidth(),label={Text("Descreva os fatos observados")},minLines=3)
-    Button(onClick={vm.query(occurrence);vm.run()},enabled=occurrence.isNotBlank()) { Text("BUSCAR REFERÊNCIAS") }
-    Text("A descrição pesquisa termos do catálogo. Confira os requisitos na fonte oficial.",style=MaterialTheme.typography.bodySmall)}
+  OutlinedButton(onClick={occurrenceExpanded=!occurrenceExpanded},modifier=Modifier.fillMaxWidth()){
+   Text(if(occurrenceExpanded) "RECOLHER OCORRÊNCIA" else "DESCREVER OCORRÊNCIA")
+  }
+  if(occurrenceExpanded){
+   Card(colors=CardDefaults.cardColors(containerColor=MaterialTheme.colorScheme.surfaceVariant),shape=RoundedCornerShape(18.dp),modifier=Modifier.fillMaxWidth()){
+    Column(Modifier.padding(16.dp),verticalArrangement=Arrangement.spacedBy(8.dp)){
+     OutlinedTextField(occurrence,{occurrence=it},Modifier.fillMaxWidth(),label={Text("Descreva os fatos observados")},minLines=3)
+     Button(onClick={keyboard?.hide();vm.query(occurrence);vm.run()},enabled=occurrence.isNotBlank()){Text("BUSCAR REFERÊNCIAS")}
+     Text("A descrição pesquisa termos do catálogo. Confira os requisitos na fonte oficial.",style=MaterialTheme.typography.bodySmall)
+    }
+   }
   }
   HabilitationGuideCard { code ->
    app.bundledCatalog.all().firstOrNull { it.code==code }?.let { selected=it }
@@ -110,10 +155,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
         Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
             Text(result.title,style=MaterialTheme.typography.titleMedium)
             Text("Art. ${result.article.orEmpty()} • ${result.code.orEmpty()}",color=MaterialTheme.colorScheme.secondary)
-            Text("Em conferência • toque para abrir a fonte",style=MaterialTheme.typography.bodySmall)
-            if(result.appliesFrom.isNotBlank() || result.appliesUntil.isNotBlank()) {
-                Text("Período registrado: ${result.appliesFrom.ifBlank { "—" }} até ${result.appliesUntil.ifBlank { "sem fim informado" }}",style=MaterialTheme.typography.bodySmall)
-            }
+            Text("Em conferência",style=MaterialTheme.typography.bodySmall)
         }
     }
 }
