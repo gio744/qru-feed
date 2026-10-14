@@ -31,17 +31,27 @@ class CatalogSearchTest {
     @Test fun unknownOrEmptySearchDoesNotReturnAll(){assertTrue(CatalogSearch.search(entries,"").isEmpty());assertTrue(CatalogSearch.search(entries,"abacaxi").isEmpty())}
 
     @Test fun bundledTyreSearchDoesNotReturnUnrelatedEquipment() {
-        val json=JsonParser.parseString(File("src/main/assets/initial-index.json").readText()).asJsonObject
-        val catalog=json.getAsJsonArray("items").map { element ->
-            val item=element.asJsonObject
-            IndexedReference(SearchResult(item.get("stable_key").asString,item.get("title").asString,
-                item.get("article").asString,item.get("code").asString,"BR","test"),item.get("search_text").asString)
-        }
+        val catalog=bundledEntries()
         assertEquals("672-61",CatalogSearch.search(catalog,"pneu").first().code)
         assertEquals("664-50",CatalogSearch.search(catalog,"66450").first().code)
         assertEquals("664-50",CatalogSearch.search(catalog,"230, X").first().code)
         val codes=CatalogSearch.search(catalog,"pneu").mapNotNull { it.code }.toSet()
         assertTrue(codes.containsAll(setOf("661-02","664-50","672-61")))
         assertEquals(setOf("661-02","664-50","672-61","663-71","663-72"),codes)
+    }
+
+    private fun bundledEntries(): List<IndexedReference> {
+        val json=JsonParser.parseString(File("src/main/assets/initial-index.json").readText()).asJsonObject
+        return json.getAsJsonArray("items").map { element ->
+            val item=element.asJsonObject
+            IndexedReference(SearchResult(item.get("stable_key").asString,item.get("title").asString,
+                item.get("article").asString,item.get("code").asString,"BR","test"),item.get("search_text").asString)
+        }
+
+    }
+    @Test fun practicalParkingTermsDoNotMatchUnrelatedParkingReferences() {
+        val catalog=bundledEntries()
+        for((query,code) in listOf("garagem" to "546-00","hidrante" to "543-60","rotativo" to "554-12"))
+            assertEquals(listOf(code),CatalogSearch.search(catalog,query).map { it.code })
     }
 }
