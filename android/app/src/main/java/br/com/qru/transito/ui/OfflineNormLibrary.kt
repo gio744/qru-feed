@@ -28,6 +28,7 @@ private fun normSearch(text:String):String =
  val context=LocalContext.current
  var norm by remember { mutableStateOf<OfflineNorm?>(null) }
  var error by remember { mutableStateOf(false) }
+ var pdfOpened by rememberSaveable { mutableStateOf(false) }
  var opened by rememberSaveable { mutableStateOf(false) }
  var query by rememberSaveable { mutableStateOf("") }
  LaunchedEffect(Unit) {
@@ -47,10 +48,12 @@ private fun normSearch(text:String):String =
   Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
    Text(document.title,style=MaterialTheme.typography.titleMedium)
    Text(document.subtitle,style=MaterialTheme.typography.bodyMedium)
-   Text("Texto parcial offline • anexos em imagem no PDF original",style=MaterialTheme.typography.bodySmall)
-   TextButton(onClick={opened=true}) { Text("LER NO QRU") }
+   Text("PDF completo offline • texto pesquisável disponível",style=MaterialTheme.typography.bodySmall)
+   TextButton(onClick={pdfOpened=true}) { Text("LER PDF COMPLETO") }
+   TextButton(onClick={opened=true}) { Text("PESQUISAR TEXTO") }
   }
  }
+ if(pdfOpened) OfflinePdfReader(document.pdfSha256) { pdfOpened=false }
  if(opened) {
   val needle=normSearch(query.trim())
   val pages=remember(document,needle) {
@@ -62,7 +65,7 @@ private fun normSearch(text:String):String =
    Surface(Modifier.fillMaxSize(),color=MaterialTheme.colorScheme.background) {
     Column(Modifier.fillMaxSize().padding(16.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
      Text(document.title,style=MaterialTheme.typography.titleLarge)
-     Text("Texto parcial extraído do documento enviado. Oito páginas em imagem não estão nesta leitura. Confira tabelas e anexos no PDF oficial; esse link exige internet. A cópia não verifica alterações posteriores.",
+     Text("Texto parcial extraído do documento enviado. A busca não abrange anexos em imagem. Confira tabelas e anexos no PDF completo offline. A cópia não verifica alterações posteriores.",
       style=MaterialTheme.typography.bodySmall)
      OutlinedTextField(query,{query=it},Modifier.fillMaxWidth(),label={Text("Buscar no documento")},singleLine=true)
      Text(if(needle.isBlank()) "${pages.size} páginas" else "${pages.size} páginas com o termo",style=MaterialTheme.typography.bodySmall)
@@ -72,13 +75,13 @@ private fun normSearch(text:String):String =
        Card(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
          Text("Página ${page.first+1}",style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.primary)
-         SelectionContainer { Text(if(page.second.isBlank()) "Página em imagem, sem texto extraído. Consulte o PDF oficial com conexão." else page.second,style=MaterialTheme.typography.bodyMedium) }
+         SelectionContainer { Text(if(page.second.isBlank()) "Página em imagem. Abra o PDF completo offline." else page.second,style=MaterialTheme.typography.bodyMedium) }
         }
        }
       }
      }
      Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
-      TextButton(onClick={openSource(document.source)}) { Text("PDF OFICIAL") }
+      TextButton(onClick={pdfOpened=true}) { Text("PDF OFFLINE") }
       TextButton(onClick={opened=false}) { Text("VOLTAR") }
      }
     }

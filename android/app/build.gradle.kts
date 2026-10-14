@@ -1,3 +1,9 @@
+import java.security.MessageDigest
+import java.io.File
+import java.net.URI
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -59,3 +65,36 @@ dependencies {
 }
 
 ksp { arg("room.schemaLocation", "$projectDir/schemas") }
+
+ 
+// Download only during the build. The installed app reads the bundled asset offline.
+// Pin the original bytes: an upstream replacement must be reviewed explicitly.
+val normAssets = layout.buildDirectory.dir("generated/normAssets")
+val bundleNormPdf = tasks.register("bundleNormPdf") {
+    outputs.dir(normAssets)
+    doLast {
+        val destination = normAssets.get().file("norms/resolucao10312026.pdf").asFile
+        fun fingerprint(file: File): String =
+            MessageDigest.getInstance("SHA-256").digest(file.readBytes())
+                .joinToString("") { "%02x".format(it) }
+        val expected = "9f6d8d8c6e7b7996fce21326a229c9b262d45178907fff7bd9dd159ca5ba9b5a"
+        if (!destination.exists() || fingerprint(destination) != expected) {
+            destination.parentFile.mkdirs()
+            val temporary = File(destination.parentFile, "norm.download")
+            try {
+                val connection = URI("https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf").toURL().openConnection()
+                connection.connectTimeout = 30000
+                connection.readTimeout = 60000
+                connection.setRequestProperty("User-Agent", "QRU-document-build/1.0")
+                connection.getInputStream().use { input ->
+                    temporary.outputStream().use { output -> input.copyTo(output) }
+                }
+                check(fingerprint(temporary) == expected) { "Official PDF bytes changed; review required" }
+                Files.move(temporary.toPath(), destination.toPath(),
+                    StandardCopyOption.REPLACE_EXISTING)
+            } finally { temporary.delete() }
+        }
+    }
+}
+android.sourceSets.getByName("main").assets.srcDir(normAssets)
+tasks.named("preBuild") { dependsOn(bundleNormPdf) }
