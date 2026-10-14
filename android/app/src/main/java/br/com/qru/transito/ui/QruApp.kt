@@ -184,13 +184,12 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
         Text(tab.label,style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.primary)
         when(tab) {
             QruTab.CTB -> {
-                Text("Índice por artigo • ${app.bundledCatalog.all().size} referências em conferência")
-                OutlinedTextField(query,{query=it},Modifier.fillMaxWidth(),label={Text("Artigo, código ou palavra")},singleLine=true)
-                TextButton(onClick={openOfficialSource(context,"https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm")}){Text("CTB INTEGRAL — FONTE OFICIAL")}
-                val results=if(query.isBlank()) app.bundledCatalog.all().take(50) else app.bundledCatalog.search(query)
-                results.forEach{ReferenceCard(it){selected=it}}
-                if(query.isBlank()) Text("Primeiras 50 referências. Use a busca para localizar as demais.")
-                else if(results.isEmpty()) Text("Nenhuma referência encontrada.")
+                Text("Parte geral e crimes de trânsito",style=MaterialTheme.typography.titleLarge)
+                Text("Escolha a parte do Código que deseja consultar.",style=MaterialTheme.typography.bodyMedium)
+                CtbSectionCard("Parte geral","Disposições gerais, circulação, habilitação, responsabilidades e procedimentos"){openOfficialSource(context,"https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm")}
+                CtbSectionCard("Crimes de trânsito","Disposições gerais e crimes em espécie • arts. 291 a 312-B"){openOfficialSource(context,"https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm#art291")}
+                Text("Nesta versão, os cards abrem o texto oficial online. A leitura organizada dentro do QRU ainda será incorporada.",style=MaterialTheme.typography.bodySmall)
+
             }
             QruTab.NORMAS -> {
                 Text("Biblioteca de normas",style=MaterialTheme.typography.titleLarge)
@@ -222,4 +221,17 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
         }
     }
     selected?.let{ReferenceDialog(it){selected=null}}
+}
+
+@Composable private fun CtbSectionCard(title:String,description:String,onClick:()->Unit) {
+ Card(onClick=onClick,modifier=Modifier.fillMaxWidth()) {
+  Column(Modifier.padding(16.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
+   Row(Modifier.fillMaxWidth()) {
+    Text(title,style=MaterialTheme.typography.titleMedium,color=MaterialTheme.colorScheme.secondary,modifier=Modifier.weight(1f))
+    Icon(Icons.Default.ChevronRight,"Abrir fonte oficial online")
+   }
+   Text(description,style=MaterialTheme.typography.bodyMedium)
+   Text("Fonte oficial • requer internet",style=MaterialTheme.typography.labelSmall)
+  }
+ }
 }
