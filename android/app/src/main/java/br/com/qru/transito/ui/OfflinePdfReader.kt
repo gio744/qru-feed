@@ -4,6 +4,11 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.pdf.PdfRenderer
 import android.os.ParcelFileDescriptor
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.rememberScrollState
@@ -29,6 +34,9 @@ private data class PdfFrame(val bitmap:Bitmap,val count:Int)
 @Composable fun OfflinePdfReader(expectedHash:String,onDismiss:()->Unit) {
  val context=LocalContext.current
  var page by rememberSaveable { mutableStateOf(0) }
+ var jumpOpen by rememberSaveable { mutableStateOf(false) }
+ var jumpText by rememberSaveable { mutableStateOf("") }
+ val keyboard=LocalSoftwareKeyboardController.current
  var zoom by rememberSaveable { mutableStateOf(1) }
  var frame by remember { mutableStateOf<PdfFrame?>(null) }
  var failed by remember { mutableStateOf(false) }
@@ -76,8 +84,13 @@ private data class PdfFrame(val bitmap:Bitmap,val count:Int)
     Text("PDF completo offline • cópia incluída nesta versão",style=MaterialTheme.typography.bodySmall)
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
      TextButton(onClick={page--},enabled=page>0 && !loading){Text("ANTERIOR")}
-     Text("Página ${page+1} / 20")
+     TextButton(onClick={jumpText=(page+1).toString();jumpOpen=true}) { Text("${page+1} / 20 ▾") }
      TextButton(onClick={page++},enabled=page<19 && !loading){Text("PRÓXIMA")}
+    }
+    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
+     TextButton(onClick={page=0},enabled=page!=0 && !loading){Text("PRIMEIRA")}
+     TextButton(onClick={page=11},enabled=page!=11 && !loading){Text("ANEXOS · P. 12")}
+     TextButton(onClick={page=19},enabled=page!=19 && !loading){Text("ÚLTIMA")}
     }
     if(loading) LinearProgressIndicator(Modifier.fillMaxWidth())
     if(failed) Text("Não foi possível abrir o PDF. Feche e tente novamente.")
@@ -99,4 +112,18 @@ private data class PdfFrame(val bitmap:Bitmap,val count:Int)
    }
   }
  }
+ if(jumpOpen) {
+  val target=jumpText.toIntOrNull()
+  val valid=target!=null && target in 1..20
+  fun go() { if(valid) {page=target!!-1;jumpOpen=false;keyboard?.hide()} }
+  AlertDialog(onDismissRequest={jumpOpen=false},title={Text("Ir para página")},text={
+   OutlinedTextField(jumpText,{value->jumpText=value.filter { it in '0'..'9' }.take(2)},
+    label={Text("Página de 1 a 20")},singleLine=true,
+    isError=jumpText.isNotBlank() && !valid,
+    keyboardOptions=KeyboardOptions(keyboardType=KeyboardType.Number,imeAction=ImeAction.Go),
+    keyboardActions=KeyboardActions(onGo={go()}))
+  },confirmButton={TextButton(onClick={go()},enabled=valid){Text("IR")}},
+   dismissButton={TextButton(onClick={jumpOpen=false}){Text("CANCELAR")}})
+ }
+
 }
