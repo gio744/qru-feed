@@ -54,4 +54,16 @@ class CatalogSearchTest {
         for((query,code) in listOf("garagem" to "546-00","hidrante" to "543-60","rotativo" to "554-12"))
             assertEquals(listOf(code),CatalogSearch.search(catalog,query).map { it.code })
     }
+
+    @Test fun racingSearchDoesNotReturnSeatBeltOrAccidentReferences() {
+        assertEquals(listOf("524-00"),CatalogSearch.search(bundledEntries(),"racha").map { it.code })
+    }
+    @Test fun seatBeltSearchKeepsRacingAndDangerousManoeuvresOut() {
+        val codes=CatalogSearch.search(bundledEntries(),"cinto").mapNotNull { it.code }
+        assertTrue(codes.containsAll(listOf("518-51","518-52")))
+        assertFalse(codes.any { it in setOf("524-00","527-41","527-42","528-20") })
+    }
+    @Test fun skiddingQueryPrioritizesItsDirectReference() {
+        assertEquals("527-42",CatalogSearch.search(bundledEntries(),"derrapagem").first().code)
+    }
 }
