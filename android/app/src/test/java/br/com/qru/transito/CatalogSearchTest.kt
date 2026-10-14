@@ -72,4 +72,11 @@ class CatalogSearchTest {
         for((query,code) in listOf("rodízio" to "574-62","marcha ré" to "582-70","ordem agente" to "583-50"))
             assertEquals(code,CatalogSearch.search(catalog,query).first().code)
     }
+
+    @Test fun specificOvertakingAndTurnQueriesPrioritizeDirectReferences() {
+        val catalog=bundledEntries()
+        for((query,code) in listOf("linha amarela contínua" to "596-70",
+            "ultrapassagem passagem nível" to "591-62","retorno túnel" to "600-95"))
+            assertEquals(code,CatalogSearch.search(catalog,query).first().code)
+    }
 }
