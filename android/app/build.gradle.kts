@@ -1,3 +1,9 @@
+import java.security.MessageDigest
+import java.io.File
+import java.net.URI
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -68,15 +74,15 @@ val bundleNormPdf = tasks.register("bundleNormPdf") {
     outputs.dir(normAssets)
     doLast {
         val destination = normAssets.get().file("norms/resolucao10312026.pdf").asFile
-        fun fingerprint(file: java.io.File): String =
-            java.security.MessageDigest.getInstance("SHA-256").digest(file.readBytes())
+        fun fingerprint(file: File): String =
+            MessageDigest.getInstance("SHA-256").digest(file.readBytes())
                 .joinToString("") { "%02x".format(it) }
         val expected = "9f6d8d8c6e7b7996fce21326a229c9b262d45178907fff7bd9dd159ca5ba9b5a"
         if (!destination.exists() || fingerprint(destination) != expected) {
             destination.parentFile.mkdirs()
-            val temporary = java.io.File(destination.parentFile, "norm.download")
+            val temporary = File(destination.parentFile, "norm.download")
             try {
-                val connection = java.net.URI("https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf").toURL().openConnection()
+                val connection = URI("https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf").toURL().openConnection()
                 connection.connectTimeout = 30000
                 connection.readTimeout = 60000
                 connection.setRequestProperty("User-Agent", "QRU-document-build/1.0")
@@ -84,8 +90,8 @@ val bundleNormPdf = tasks.register("bundleNormPdf") {
                     temporary.outputStream().use { output -> input.copyTo(output) }
                 }
                 check(fingerprint(temporary) == expected) { "Official PDF bytes changed; review required" }
-                java.nio.file.Files.move(temporary.toPath(), destination.toPath(),
-                    java.nio.file.StandardCopyOption.REPLACE_EXISTING)
+                Files.move(temporary.toPath(), destination.toPath(),
+                    StandardCopyOption.REPLACE_EXISTING)
             } finally { temporary.delete() }
         }
     }
