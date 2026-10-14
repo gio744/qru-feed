@@ -31,25 +31,25 @@ import java.security.MessageDigest
 private data class PdfFrame(val bitmap:Bitmap,val count:Int)
 
 /** One page at a time keeps allocation bounded even for image-only annexes. */
-@Composable fun OfflinePdfReader(expectedHash:String,onDismiss:()->Unit) {
+@Composable fun OfflinePdfReader(expectedHash:String,assetName:String="resolucao10312026.pdf",title:String="Resolução 1.031/2026",pageCount:Int=20,annexPage:Int?=12,onDismiss:()->Unit) {
  val context=LocalContext.current
- var page by rememberSaveable { mutableStateOf(0) }
- var jumpOpen by rememberSaveable { mutableStateOf(false) }
- var jumpText by rememberSaveable { mutableStateOf("") }
+ var page by rememberSaveable(assetName) { mutableStateOf(0) }
+ var jumpOpen by rememberSaveable(assetName) { mutableStateOf(false) }
+ var jumpText by rememberSaveable(assetName) { mutableStateOf("") }
  val keyboard=LocalSoftwareKeyboardController.current
- var zoom by rememberSaveable { mutableStateOf(1) }
+ var zoom by rememberSaveable(assetName) { mutableStateOf(1) }
  var frame by remember { mutableStateOf<PdfFrame?>(null) }
  var failed by remember { mutableStateOf(false) }
  var loading by remember { mutableStateOf(true) }
- LaunchedEffect(page) {
+ LaunchedEffect(assetName,page) {
   loading=true;failed=false
   val result=withContext(Dispatchers.IO) {
    runCatching {
-    val file=File(context.cacheDir,"norm-1031-$expectedHash.pdf")
+    val file=File(context.cacheDir,"norm-$expectedHash.pdf")
     if(!file.exists()) {
-     val temporary=File(context.cacheDir,"norm-1031.tmp")
+     val temporary=File(context.cacheDir,"norm-$expectedHash.tmp")
      try {
-      context.assets.open("norms/resolucao10312026.pdf").use { input ->
+      context.assets.open("norms/$assetName").use { input ->
        temporary.outputStream().use { output -> input.copyTo(output) }
       }
       val actual=MessageDigest.getInstance("SHA-256").digest(temporary.readBytes())
@@ -61,7 +61,7 @@ private data class PdfFrame(val bitmap:Bitmap,val count:Int)
     val descriptor=ParcelFileDescriptor.open(file,ParcelFileDescriptor.MODE_READ_ONLY)
     val renderer=try { PdfRenderer(descriptor) } catch(error:Throwable) { descriptor.close();throw error }
     renderer.use { pdf ->
-     require(pdf.pageCount==20)
+     require(pdf.pageCount==pageCount)
      pdf.openPage(page.coerceIn(0,pdf.pageCount-1)).use { source ->
       val width=1600
       val height=(width.toFloat()*source.height/source.width).toInt().coerceAtLeast(1)
@@ -80,17 +80,17 @@ private data class PdfFrame(val bitmap:Bitmap,val count:Int)
  Dialog(onDismissRequest=onDismiss,properties=DialogProperties(usePlatformDefaultWidth=false)) {
   Surface(Modifier.fillMaxSize()) {
    Column(Modifier.fillMaxSize().padding(12.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
-    Text("Resolução 1.031/2026",style=MaterialTheme.typography.titleLarge)
+    Text(title,style=MaterialTheme.typography.titleLarge)
     Text("PDF completo offline • cópia incluída nesta versão",style=MaterialTheme.typography.bodySmall)
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
      TextButton(onClick={page--},enabled=page>0 && !loading){Text("ANTERIOR")}
-     TextButton(onClick={jumpText=(page+1).toString();jumpOpen=true}) { Text("${page+1} / 20 ▾") }
-     TextButton(onClick={page++},enabled=page<19 && !loading){Text("PRÓXIMA")}
+     TextButton(onClick={jumpText=(page+1).toString();jumpOpen=true}) { Text("${page+1} / $pageCount ▾") }
+     TextButton(onClick={page++},enabled=page<pageCount-1 && !loading){Text("PRÓXIMA")}
     }
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
      TextButton(onClick={page=0},enabled=page!=0 && !loading){Text("PRIMEIRA")}
-     TextButton(onClick={page=11},enabled=page!=11 && !loading){Text("ANEXOS · P. 12")}
-     TextButton(onClick={page=19},enabled=page!=19 && !loading){Text("ÚLTIMA")}
+     annexPage?.let { first -> TextButton(onClick={page=first-1},enabled=page!=first-1 && !loading){Text("ANEXOS · P. $first")} }
+     TextButton(onClick={page=pageCount-1},enabled=page!=pageCount-1 && !loading){Text("ÚLTIMA")}
     }
     if(loading) LinearProgressIndicator(Modifier.fillMaxWidth())
     if(failed) Text("Não foi possível abrir o PDF. Feche e tente novamente.")
@@ -114,11 +114,11 @@ private data class PdfFrame(val bitmap:Bitmap,val count:Int)
  }
  if(jumpOpen) {
   val target=jumpText.toIntOrNull()
-  val valid=target!=null && target in 1..20
+  val valid=target!=null && target in 1..pageCount
   fun go() { if(valid) {page=target!!-1;jumpOpen=false;keyboard?.hide()} }
   AlertDialog(onDismissRequest={jumpOpen=false},title={Text("Ir para página")},text={
-   OutlinedTextField(jumpText,{value->jumpText=value.filter { it in '0'..'9' }.take(2)},
-    label={Text("Página de 1 a 20")},singleLine=true,
+   OutlinedTextField(jumpText,{value->jumpText=value.filter { it in '0'..'9' }.take(pageCount.toString().length)},
+    label={Text("Página de 1 a $pageCount")},singleLine=true,
     isError=jumpText.isNotBlank() && !valid,
     keyboardOptions=KeyboardOptions(keyboardType=KeyboardType.Number,imeAction=ImeAction.Go),
     keyboardActions=KeyboardActions(onGo={go()}))
