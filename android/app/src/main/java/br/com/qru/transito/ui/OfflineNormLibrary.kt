@@ -109,6 +109,7 @@ private data class NormPdfEntry(
   documents=result.getOrDefault(emptyList());failed=result.isFailure
  }
  if(failed) Text("Não foi possível carregar os documentos adicionais.")
+ Text("Documentos originais. Alterações e revogações posteriores precisam ser conferidas; esta biblioteca ainda não apresenta textos consolidados.",style=MaterialTheme.typography.bodySmall)
  documents.forEach { doc ->
   Card(Modifier.fillMaxWidth()) {
    Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {

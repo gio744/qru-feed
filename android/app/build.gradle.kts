@@ -79,7 +79,7 @@ val bundleNormPdf = tasks.register("bundleNormPdf") {
         val documents=groovy.json.JsonSlurper().parse(catalog) as List<Map<String,Any>>
         documents.forEach { doc ->
             val name=doc["file"] as String
-            require(name.matches(Regex("[a-z0-9]+\\.pdf")))
+            require(name.matches(Regex("[A-Za-z0-9]+\\.pdf")))
             val destination=normAssets.get().file("norms/$name").asFile
             fun fingerprint(file:File):String = MessageDigest.getInstance("SHA-256")
                 .digest(file.readBytes()).joinToString("") { "%02x".format(it) }
