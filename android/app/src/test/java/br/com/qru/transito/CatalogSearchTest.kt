@@ -79,4 +79,14 @@ class CatalogSearchTest {
             "ultrapassagem passagem nível" to "591-62","retorno túnel" to "600-95"))
             assertEquals(code,CatalogSearch.search(catalog,query).first().code)
     }
+
+    @Test fun roundaboutSearchOnlyReturnsItsReference() {
+        val catalog=bundledEntries()
+        for(query in listOf("rotatória","rotatoria"))
+            assertEquals(listOf("617-32"),CatalogSearch.search(catalog,query).map { it.code })
+    }
+    @Test fun radarSearchDoesNotReturnPriorityOrPropertyAccessReferences() {
+        assertEquals(setOf("745-50","746-30","747-10"),
+            CatalogSearch.search(bundledEntries(),"radar").mapNotNull { it.code }.toSet())
+    }
 }
