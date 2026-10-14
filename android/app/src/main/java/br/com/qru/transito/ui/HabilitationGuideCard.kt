@@ -22,6 +22,12 @@ private val GuideFactsSaver = listSaver<GuideFacts, String>(
 @Composable internal fun HabilitationGuideCard(onReference: (String) -> Unit) {
     var expanded by rememberSaveable { mutableStateOf(false) }
     var facts by rememberSaveable(stateSaver=GuideFactsSaver) { mutableStateOf(GuideFacts()) }
+    if(!expanded) {
+        OutlinedButton(onClick={expanded=true},modifier=Modifier.fillMaxWidth()) {
+            Text("ANÁLISE GUIADA • HABILITAÇÃO")
+        }
+        return
+    }
     Card(modifier=Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp), verticalArrangement=Arrangement.spacedBy(10.dp)) {
             Text("ANÁLISE GUIADA • HABILITAÇÃO",color=MaterialTheme.colorScheme.primary)
