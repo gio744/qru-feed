@@ -1,0 +1,82 @@
+{
+  "recorded_on": "2026-10-13",
+  "target_delivery": "2026-10-21",
+  "external_deadline": "2026-10-22",
+  "deadline_reason": "Usuário informou renovação QAP em 22/10/2026 e necessidade operacional.",
+  "target": "Versão prioritária testável para uso nas situações frequentes; não declarar produto final nem todas as 418 fichas validadas.",
+  "verified_state": {
+    "indexed_references": 418,
+    "operational_ready_references": 0,
+    "installed_search_tests": [
+      "pneu com 672-61 primeiro",
+      "rotatória específica",
+      "navegação entre abas"
+    ],
+    "current_limitation": "Resultados abrem fonte e indicam conferência; ficha operacional completa offline ainda não implementada."
+  },
+  "priorities": [
+    {
+      "order": 1,
+      "deliverable": "Ficha detalhada offline",
+      "sections": [
+        "Elementos a constatar",
+        "Quando autuar",
+        "Quando não autuar",
+        "Responsável e competência",
+        "Medidas administrativas",
+        "Documentação",
+        "Fonte, vigência e revisão"
+      ],
+      "requirement": "Conteúdo rastreável e conferido por ficha; diferenças entre texto antigo e normas posteriores explícitas."
+    },
+    {
+      "order": 2,
+      "deliverable": "Lote operacional prioritário",
+      "topics": [
+        "162 I, II, III, V, VI e VII",
+        "163 e 164",
+        "165 e 165-A",
+        "167",
+        "195",
+        "230 V, VII, IX, X, XIII, XVIII e XXII",
+        "231 VIII",
+        "232",
+        "244 e equipamentos de motocicleta",
+        "252 uso/manuseio de celular",
+        "Parada/estacionamento e preferência"
+      ]
+    },
+    {
+      "order": 3,
+      "deliverable": "Testes reais de busca e acesso à ficha",
+      "requirement": "Termos práticos, código exato, artigo/inciso e consulta offline; evitar resultados indevidos e indicar lacunas."
+    },
+    {
+      "order": 4,
+      "deliverable": "APK consolidado e teste no celular",
+      "requirement": "Integridade, assinatura, compilação/testes e conferência das situações prioritárias no dispositivo."
+    }
+  ],
+  "proposed_schedule": [
+    {
+      "dates": "14–16/10",
+      "work": "Estrutura de ficha detalhada e conteúdo dos primeiros casos prioritários"
+    },
+    {
+      "dates": "17–19/10",
+      "work": "Conferência normativa, ampliação do lote e testes de busca"
+    },
+    {
+      "dates": "20–21/10",
+      "work": "Estabilização, APK consolidado e conferência no celular"
+    }
+  ],
+  "deferred": [
+    "Acabamento dos ícones",
+    "Vídeos",
+    "Ampliação da análise guiada para novos cenários",
+    "Recursos comerciais e publicação em loja"
+  ],
+  "completion_gate": "Avaliar cobertura efetivamente revisada e testes antes de tratar QRU como substituto suficiente para a rotina do usuário.",
+  "no_guarantee": "Cronograma é meta de execução, não garantia de conclusão de todas as fichas ou equivalência funcional ao QAP."
+}
