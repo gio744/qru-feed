@@ -35,7 +35,7 @@ private fun normSearch(text:String):String =
    runCatching {
     context.assets.open("norms/resolucao10312026.json").bufferedReader().use {
      Gson().fromJson(it,OfflineNorm::class.java)
-    }.also { require(it.pages.isNotEmpty() && it.pages.none(String::isBlank)) }
+    }.also { require(it.pages.isNotEmpty() && it.pages.first().isNotBlank()) }
    }
   }
   norm=result.getOrNull();error=result.isFailure
@@ -47,7 +47,7 @@ private fun normSearch(text:String):String =
   Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
    Text(document.title,style=MaterialTheme.typography.titleMedium)
    Text(document.subtitle,style=MaterialTheme.typography.bodyMedium)
-   Text("Leitura offline • documento de origem com ${document.pages.size} páginas",style=MaterialTheme.typography.bodySmall)
+   Text("Texto parcial offline • anexos em imagem no PDF original",style=MaterialTheme.typography.bodySmall)
    TextButton(onClick={opened=true}) { Text("LER NO QRU") }
   }
  }
@@ -62,7 +62,7 @@ private fun normSearch(text:String):String =
    Surface(Modifier.fillMaxSize(),color=MaterialTheme.colorScheme.background) {
     Column(Modifier.fillMaxSize().padding(16.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
      Text(document.title,style=MaterialTheme.typography.titleLarge)
-     Text("Texto extraído do documento enviado. Tabelas e imagens podem exigir consulta ao PDF original. A cópia não verifica alterações posteriores.",
+     Text("Texto parcial extraído do documento enviado. Oito páginas em imagem não estão nesta leitura. Confira tabelas e anexos no PDF oficial; esse link exige internet. A cópia não verifica alterações posteriores.",
       style=MaterialTheme.typography.bodySmall)
      OutlinedTextField(query,{query=it},Modifier.fillMaxWidth(),label={Text("Buscar no documento")},singleLine=true)
      Text(if(needle.isBlank()) "${pages.size} páginas" else "${pages.size} páginas com o termo",style=MaterialTheme.typography.bodySmall)
@@ -72,7 +72,7 @@ private fun normSearch(text:String):String =
        Card(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
          Text("Página ${page.first+1}",style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.primary)
-         SelectionContainer { Text(page.second,style=MaterialTheme.typography.bodyMedium) }
+         SelectionContainer { Text(if(page.second.isBlank()) "Página em imagem, sem texto extraído. Consulte o PDF oficial com conexão." else page.second,style=MaterialTheme.typography.bodyMedium) }
         }
        }
       }
