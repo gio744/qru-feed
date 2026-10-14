@@ -77,19 +77,6 @@ private data class PdfFrame(val bitmap:Bitmap,val count:Int)
   }
   frame=result.getOrNull();failed=result.isFailure;loading=false
  }
- if(jumpOpen) {
-  val target=jumpText.toIntOrNull()
-  val valid=target!=null && target in 1..20
-  fun go() { if(valid) {page=target!!-1;jumpOpen=false;keyboard?.hide()} }
-  AlertDialog(onDismissRequest={jumpOpen=false},title={Text("Ir para página")},text={
-   OutlinedTextField(jumpText,{value->jumpText=value.filter { it in '0'..'9' }.take(2)},
-    label={Text("Página de 1 a 20")},singleLine=true,
-    isError=jumpText.isNotBlank() && !valid,
-    keyboardOptions=KeyboardOptions(keyboardType=KeyboardType.Number,imeAction=ImeAction.Go),
-    keyboardActions=KeyboardActions(onGo={go()}))
-  },confirmButton={TextButton(onClick={go()},enabled=valid){Text("IR")}},
-   dismissButton={TextButton(onClick={jumpOpen=false}){Text("CANCELAR")}})
- }
  Dialog(onDismissRequest=onDismiss,properties=DialogProperties(usePlatformDefaultWidth=false)) {
   Surface(Modifier.fillMaxSize()) {
    Column(Modifier.fillMaxSize().padding(12.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
@@ -125,4 +112,18 @@ private data class PdfFrame(val bitmap:Bitmap,val count:Int)
    }
   }
  }
+ if(jumpOpen) {
+  val target=jumpText.toIntOrNull()
+  val valid=target!=null && target in 1..20
+  fun go() { if(valid) {page=target!!-1;jumpOpen=false;keyboard?.hide()} }
+  AlertDialog(onDismissRequest={jumpOpen=false},title={Text("Ir para página")},text={
+   OutlinedTextField(jumpText,{value->jumpText=value.filter { it in '0'..'9' }.take(2)},
+    label={Text("Página de 1 a 20")},singleLine=true,
+    isError=jumpText.isNotBlank() && !valid,
+    keyboardOptions=KeyboardOptions(keyboardType=KeyboardType.Number,imeAction=ImeAction.Go),
+    keyboardActions=KeyboardActions(onGo={go()}))
+  },confirmButton={TextButton(onClick={go()},enabled=valid){Text("IR")}},
+   dismissButton={TextButton(onClick={jumpOpen=false}){Text("CANCELAR")}})
+ }
+
 }
