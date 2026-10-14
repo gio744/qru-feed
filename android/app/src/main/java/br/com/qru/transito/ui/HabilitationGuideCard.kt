@@ -2,6 +2,8 @@ package br.com.qru.transito.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Checklist
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -23,8 +25,10 @@ private val GuideFactsSaver = listSaver<GuideFacts, String>(
     var expanded by rememberSaveable { mutableStateOf(false) }
     var facts by rememberSaveable(stateSaver=GuideFactsSaver) { mutableStateOf(GuideFacts()) }
     if(!expanded) {
-        OutlinedButton(onClick={expanded=true},modifier=Modifier.fillMaxWidth()) {
-            Text("ANÁLISE GUIADA • HABILITAÇÃO")
+        TextButton(onClick={expanded=true},modifier=Modifier.fillMaxWidth().heightIn(min=48.dp)) {
+            Icon(Icons.Default.Checklist,null,modifier=Modifier.size(20.dp))
+            Spacer(Modifier.width(8.dp))
+            Text("Análise guiada · habilitação")
         }
         return
     }
