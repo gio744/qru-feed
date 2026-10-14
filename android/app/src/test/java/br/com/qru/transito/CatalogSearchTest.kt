@@ -86,7 +86,7 @@ class CatalogSearchTest {
             assertEquals(listOf("617-32"),CatalogSearch.search(catalog,query).map { it.code })
     }
     @Test fun radarSearchDoesNotReturnPriorityOrPropertyAccessReferences() {
-        assertEquals(setOf("745-50","746-30","747-10"),
+        assertEquals(setOf("745-50","746-30","747-10","657-20"),
             CatalogSearch.search(bundledEntries(),"radar").mapNotNull { it.code }.toSet())
     }
 }
