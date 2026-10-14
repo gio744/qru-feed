@@ -66,4 +66,10 @@ class CatalogSearchTest {
     @Test fun skiddingQueryPrioritizesItsDirectReference() {
         assertEquals("527-42",CatalogSearch.search(bundledEntries(),"derrapagem").first().code)
     }
+
+    @Test fun directCirculationTermsPrioritizeTheirOwnReferences() {
+        val catalog=bundledEntries()
+        for((query,code) in listOf("rodízio" to "574-62","marcha ré" to "582-70","ordem agente" to "583-50"))
+            assertEquals(code,CatalogSearch.search(catalog,query).first().code)
+    }
 }
