@@ -25,6 +25,8 @@ private fun normSearch(text:String):String =
 
 /** Bundled documentary text; does not mark any operational ficha as validated. */
 @Composable fun OfflineNormLibrary(openSource:(String)->Unit) {
+ var catalogQuery by rememberSaveable { mutableStateOf("") }
+ OutlinedTextField(catalogQuery,{catalogQuery=it},Modifier.fillMaxWidth(),label={Text("Número ou assunto da norma")},singleLine=true)
  val context=LocalContext.current
  var norm by remember { mutableStateOf<OfflineNorm?>(null) }
  var error by remember { mutableStateOf(false) }
@@ -44,7 +46,7 @@ private fun normSearch(text:String):String =
  val document=norm
  if(error) { Text("Não foi possível carregar a norma neste aparelho.");return }
  if(document==null) { LinearProgressIndicator(Modifier.fillMaxWidth());return }
- Card(Modifier.fillMaxWidth()) {
+ if(matchesNorm(document.title,document.subtitle,catalogQuery)) Card(Modifier.fillMaxWidth()) {
   Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
    Text(document.title,style=MaterialTheme.typography.titleMedium)
    Text(document.subtitle,style=MaterialTheme.typography.bodyMedium)
@@ -53,7 +55,7 @@ private fun normSearch(text:String):String =
    TextButton(onClick={opened=true}) { Text("PESQUISAR TEXTO") }
   }
  }
- AdditionalOfflineNorms()
+ AdditionalOfflineNorms(catalogQuery,openSource)
  if(pdfOpened) OfflinePdfReader(document.pdfSha256) { pdfOpened=false }
  if(opened) {
   val needle=normSearch(query.trim())
@@ -93,9 +95,9 @@ private fun normSearch(text:String):String =
 
 private data class NormPdfEntry(
  val file:String="",val title:String="",val subtitle:String="",
- val sha256:String="",val pageCount:Int=0,val annexPage:Int?=null
+ val source:String="",val sha256:String="",val pageCount:Int=0,val annexPage:Int?=null
 )
-@Composable private fun AdditionalOfflineNorms() {
+@Composable private fun AdditionalOfflineNorms(query:String,openSource:(String)->Unit) {
  val context=LocalContext.current
  var documents by remember { mutableStateOf<List<NormPdfEntry>>(emptyList()) }
  var selectedFile by rememberSaveable { mutableStateOf<String?>(null) }
@@ -110,17 +112,28 @@ private data class NormPdfEntry(
  }
  if(failed) Text("Não foi possível carregar os documentos adicionais.")
  Text("Documentos originais. Alterações e revogações posteriores precisam ser conferidas; esta biblioteca ainda não apresenta textos consolidados.",style=MaterialTheme.typography.bodySmall)
- documents.forEach { doc ->
+ val visible=remember(documents,query) { documents.filter { matchesNorm(it.title,it.subtitle,query) } }
+ if(query.isNotBlank() && visible.isEmpty() && !matchesNorm("Resolução 1.031/2026","Fiscalização de álcool e outras substâncias psicoativas",query)) Text("Nenhuma norma encontrada. Tente outro número ou assunto.")
+ visible.forEach { doc ->
   Card(Modifier.fillMaxWidth()) {
    Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
     Text(doc.title,style=MaterialTheme.typography.titleMedium)
     Text(doc.subtitle,style=MaterialTheme.typography.bodyMedium)
     Text("PDF original completo offline • ${doc.pageCount} páginas",style=MaterialTheme.typography.bodySmall)
     TextButton(onClick={selectedFile=doc.file}) { Text("LER PDF COMPLETO") }
+    TextButton(onClick={openSource(doc.source)}) { Text("FONTE OFICIAL · ONLINE") }
    }
   }
  }
  documents.firstOrNull { it.file==selectedFile }?.let { doc ->
   OfflinePdfReader(doc.sha256,doc.file,doc.title,doc.pageCount,doc.annexPage) { selectedFile=null }
  }
+}
+
+internal fun matchesNorm(title:String,subtitle:String,query:String):Boolean {
+ fun normalized(value:String)=normSearch(value).replace(Regex("(?<=\\d)\\.(?=\\d)"),"")
+  .replace(Regex("[^a-z0-9]+")," ").trim()
+ val tokens=normalized(query).split(" ").filter { it.isNotBlank() }
+ val text=normalized("$title $subtitle")
+ return tokens.all { text.contains(it) }
 }
