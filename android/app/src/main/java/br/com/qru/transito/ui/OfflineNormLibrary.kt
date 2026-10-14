@@ -25,7 +25,6 @@ private fun normSearch(text:String):String =
 
 /** Bundled documentary text; does not mark any operational ficha as validated. */
 @Composable fun OfflineNormLibrary(openSource:(String)->Unit) {
- AdditionalOfflineNorms()
  val context=LocalContext.current
  var norm by remember { mutableStateOf<OfflineNorm?>(null) }
  var error by remember { mutableStateOf(false) }
@@ -54,6 +53,7 @@ private fun normSearch(text:String):String =
    TextButton(onClick={opened=true}) { Text("PESQUISAR TEXTO") }
   }
  }
+ AdditionalOfflineNorms()
  if(pdfOpened) OfflinePdfReader(document.pdfSha256) { pdfOpened=false }
  if(opened) {
   val needle=normSearch(query.trim())
@@ -82,7 +82,7 @@ private fun normSearch(text:String):String =
       }
      }
      Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
-      TextButton(onClick={pdfOpened=true}) { Text("PDF OFFLINE") }
+      TextButton(onClick={opened=false;pdfOpened=true}) { Text("PDF OFFLINE") }
       TextButton(onClick={opened=false}) { Text("VOLTAR") }
      }
     }
