@@ -13,7 +13,10 @@ class OfflineNormAssetTest {
   assertTrue(pages[0].asString.contains("1.031"))
   assertTrue(pages[0].asString.contains("17 DE AGOSTO DE 2026"))
   val body=pages.take(5).joinToString { it.asString }
-  for(article in 1..12) assertTrue("Missing article $article",body.contains("Art. $article."))
+  for(article in 1..16) {
+   val suffix=if(article<10) "º" else "."
+   assertTrue("Missing article $article",body.contains("Art. $article$suffix"))
+  }
   assertTrue(doc["pdfSha256"].asString.matches(Regex("[a-f0-9]{64}")))
   assertTrue(doc["source"].asString.startsWith("https://www.gov.br/"))
  }
