@@ -4,14 +4,16 @@ import java.io.File
 import org.junit.Assert.*
 import org.junit.Test
 class OfflineNormAssetTest {
- @Test fun bundledNormRetainsDocumentIdentityAndAllExtractedPages() {
+ @Test fun bundledNormRetainsIdentityBodyAndImageOnlyPagePositions() {
   val doc=JsonParser.parseString(File("src/main/assets/norms/resolucao10312026.json").readText()).asJsonObject
   val pages=doc.getAsJsonArray("pages")
   assertEquals(20,pages.size())
-  assertTrue(pages.all { it.asString.isNotBlank() })
+  // These annex pages are images in the source. Keep their positions, not fabricated text.
+  assertEquals((11..18).toList(),pages.mapIndexedNotNull { i,p -> if(p.asString.isBlank()) i else null })
   assertTrue(pages[0].asString.contains("1.031"))
   assertTrue(pages[0].asString.contains("17 DE AGOSTO DE 2026"))
-  assertTrue(pages.joinToString { it.asString }.contains("ANEXO"))
+  val body=pages.take(5).joinToString { it.asString }
+  for(article in 1..12) assertTrue("Missing article $article",body.contains("Art. $article."))
   assertTrue(doc["pdfSha256"].asString.matches(Regex("[a-f0-9]{64}")))
   assertTrue(doc["source"].asString.startsWith("https://www.gov.br/"))
  }
