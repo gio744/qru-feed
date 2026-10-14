@@ -117,11 +117,10 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    IconButton(onClick=onMenu,modifier=Modifier.align(Alignment.TopStart)){Icon(Icons.Default.Menu,"Abrir menu")}
   }
   OutlinedTextField(state.query,{vm.query(it)},Modifier.fillMaxWidth(),placeholder={Text("Artigo, código ou situação")},
-   leadingIcon={Icon(Icons.Default.Search,null)},
+   leadingIcon={IconButton(onClick={keyboard?.hide();vm.run()},enabled=state.query.isNotBlank()){Icon(Icons.Default.Search,"Executar consulta")}},
    trailingIcon={IconButton({voice()}){Icon(Icons.Default.Mic,"Pesquisa por voz")}},singleLine=true,
    keyboardOptions=KeyboardOptions(imeAction=ImeAction.Search),
    keyboardActions=KeyboardActions(onSearch={keyboard?.hide();vm.run()}))
-  Button({keyboard?.hide();vm.run()},Modifier.fillMaxWidth()){Icon(Icons.Default.Search,null);Spacer(Modifier.width(8.dp));Text("CONSULTAR")}
   if(state.loading) LinearProgressIndicator(Modifier.fillMaxWidth())
   Text("Catálogo em conferência • disponível offline", style=MaterialTheme.typography.bodySmall)
   state.results.forEach{result -> ReferenceCard(result) { selected=result }}
