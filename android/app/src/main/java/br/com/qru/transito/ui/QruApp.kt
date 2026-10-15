@@ -1,6 +1,10 @@
 package br.com.qru.transito.ui
 import android.content.ActivityNotFoundException
 import android.widget.Toast
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.layout.ContentScale
+import br.com.qru.transito.R
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
@@ -49,7 +53,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   ModalNavigationDrawer(drawerState=drawer,drawerContent={
    ModalDrawerSheet {
     Column(Modifier.padding(24.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
-     Text("QRU?",style=MaterialTheme.typography.headlineMedium,fontWeight=FontWeight.Black,color=MaterialTheme.colorScheme.primary)
+     QruWordmark(compact=true)
      Text("QUAL A SITUAÇÃO",style=MaterialTheme.typography.labelLarge)
     }
     NavigationDrawerItem(label={Text("Como usar")},selected=false,
@@ -111,7 +115,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  Column(Modifier.fillMaxSize().verticalScroll(androidx.compose.foundation.rememberScrollState()).padding(horizontal=16.dp,vertical=12.dp),verticalArrangement=Arrangement.spacedBy(10.dp)){
   Box(Modifier.fillMaxWidth()) {
   Column(Modifier.fillMaxWidth(),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(4.dp)) {
-  Text("QRU?",style=MaterialTheme.typography.headlineLarge,fontWeight=FontWeight.Black,color=MaterialTheme.colorScheme.primary)
+  QruWordmark()
   Text("QUAL A SITUAÇÃO",style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.secondary)
   }
    IconButton(onClick=onMenu,modifier=Modifier.align(Alignment.TopStart)){Icon(Icons.Default.Menu,"Abrir menu")}
@@ -230,4 +234,13 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
    Text("Fonte oficial • requer internet",style=MaterialTheme.typography.labelSmall)
   }
  }
+}
+
+@Composable private fun QruWordmark(compact:Boolean=false) {
+ Image(
+  painter=painterResource(R.mipmap.ic_launcher),
+  contentDescription="QRU?",
+  contentScale=ContentScale.Crop,
+  modifier=Modifier.width(if(compact) 144.dp else 180.dp).height(if(compact) 48.dp else 64.dp)
+ )
 }
