@@ -54,7 +54,7 @@ private data class CtbDocument(val source:String="",val retrievedOn:String="",va
  OutlinedTextField(query,{query=it},Modifier.fillMaxWidth(),label={Text("Capítulo, artigo ou palavra")},singleLine=true)
  val chapters=remember(doc,crimes,query) {
   doc.chapters.filter { (it.id=="CAPÍTULO XIX")==crimes }
-   .filter { matchesNorm(it.title,it.paragraphs.joinToString(" "),query) }
+   .filter { chapter -> matchesNorm(chapter.title,"",query) || chapter.paragraphs.any { matchesCtbParagraph(it,query) } }
  }
  chapters.forEach { chapter ->
   Card(onClick={selectedId=chapter.id},modifier=Modifier.fillMaxWidth()) {
@@ -81,7 +81,7 @@ private data class CtbDocument(val source:String="",val retrievedOn:String="",va
      var hit by rememberSaveable(chapter.id) { mutableStateOf(0) }
      val hits=remember(chapter.id,readerQuery) {
       if(readerQuery.isBlank()) emptyList() else chapter.paragraphs.indices.filter {
-       matchesNorm("",chapter.paragraphs[it],readerQuery)
+       matchesCtbParagraph(chapter.paragraphs[it],readerQuery)
       }
      }
      LaunchedEffect(chapter.id,readerQuery) {
