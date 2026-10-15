@@ -1,6 +1,8 @@
 package br.com.qru.transito.ui
 
 import android.util.Base64
+import androidx.compose.foundation.background
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -69,7 +71,9 @@ private data class CtbDocument(val source:String="",val retrievedOn:String="",va
   Dialog(onDismissRequest={selectedId=null},properties=DialogProperties(usePlatformDefaultWidth=false)) {
    Surface(Modifier.fillMaxSize()) {
     Column(Modifier.fillMaxSize().padding(16.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+     Text(chapter.id,style=MaterialTheme.typography.labelMedium,color=MaterialTheme.colorScheme.secondary)
      Text(chapter.title,style=MaterialTheme.typography.titleLarge)
+     HorizontalDivider(color=MaterialTheme.colorScheme.primary.copy(alpha=0.5f))
      Text("Cópia documental offline • conferência pendente",style=MaterialTheme.typography.bodySmall)
      val listState=rememberLazyListState()
      val scope=rememberCoroutineScope()
@@ -99,8 +103,26 @@ private data class CtbDocument(val source:String="",val retrievedOn:String="",va
       }
      }
      LazyColumn(Modifier.weight(1f),state=listState,verticalArrangement=Arrangement.spacedBy(10.dp)) {
-      itemsIndexed(chapter.paragraphs) { _,text ->
-       SelectionContainer { Text(text,style=MaterialTheme.typography.bodyLarge) }
+      itemsIndexed(chapter.paragraphs) { index,text ->
+       val article=text.trimStart().startsWith("Art.",ignoreCase=true)
+       val active=readerQuery.isNotBlank() && hits.getOrNull(hit)==index
+       Column(Modifier.fillMaxWidth()
+        .background(if(active) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surface)
+        .padding(horizontal=8.dp,vertical=if(article) 12.dp else 6.dp),
+        verticalArrangement=Arrangement.spacedBy(8.dp)) {
+        if(article) HorizontalDivider(color=MaterialTheme.colorScheme.outlineVariant)
+        Row(Modifier.fillMaxWidth()) {
+         if(article || active) {
+          Box(Modifier.width(3.dp).height(24.dp).background(MaterialTheme.colorScheme.primary))
+          Spacer(Modifier.width(10.dp))
+         }
+         SelectionContainer(Modifier.weight(1f)) {
+          Text(text,style=MaterialTheme.typography.bodyLarge,
+           fontWeight=if(article) FontWeight.SemiBold else FontWeight.Normal,
+           color=if(active) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurface)
+         }
+        }
+       }
       }
      }
      Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
