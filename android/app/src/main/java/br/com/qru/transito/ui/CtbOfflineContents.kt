@@ -53,19 +53,28 @@ private data class CtbDocument(val source:String="",val retrievedOn:String="",va
   style=MaterialTheme.typography.bodySmall)
  OutlinedTextField(query,{query=it},Modifier.fillMaxWidth(),label={Text("Capítulo, artigo ou palavra")},singleLine=true)
  val chapters=remember(doc,crimes,query) {
-  doc.chapters.filter { (it.id=="CAPÍTULO XIX")==crimes }
+  doc.chapters.filter { query.isNotBlank() || (it.id=="CAPÍTULO XIX")==crimes }
    .filter { chapter -> matchesNorm(chapter.title,"",query) || chapter.paragraphs.any { matchesCtbParagraph(it,query) } }
  }
+ if(query.isNotBlank()) Text("Busca na parte geral e nos crimes • ${chapters.size} capítulo(s)",
+  style=MaterialTheme.typography.bodySmall)
  chapters.forEach { chapter ->
+  val preview=remember(chapter.id,query) {
+   if(query.isBlank()) null else chapter.paragraphs.firstOrNull { matchesCtbParagraph(it,query) }
+  }
   Card(onClick={selectedId=chapter.id},modifier=Modifier.fillMaxWidth()) {
    Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
     Text(chapter.id,style=MaterialTheme.typography.labelMedium,color=MaterialTheme.colorScheme.secondary)
     Text(chapter.title,style=MaterialTheme.typography.titleMedium)
-    Text("Toque para ler",style=MaterialTheme.typography.bodySmall)
+    if(query.isNotBlank()) Text(if(chapter.id=="CAPÍTULO XIX") "Crimes de trânsito" else "Parte geral",
+     style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.secondary)
+    if(preview!=null) Text(preview,style=MaterialTheme.typography.bodyMedium,
+     maxLines=3,overflow=androidx.compose.ui.text.style.TextOverflow.Ellipsis)
+    Text(if(preview!=null) "Abrir no trecho encontrado" else "Toque para ler",style=MaterialTheme.typography.bodySmall)
    }
   }
  }
- if(chapters.isEmpty()) Text("Nenhum capítulo encontrado.")
+ if(chapters.isEmpty()) Text("Nenhum resultado encontrado na cópia offline.")
  TextButton(onClick={openSource(doc.source)}) { Text("CONFERIR FONTE OFICIAL · ONLINE") }
  doc.chapters.firstOrNull { it.id==selectedId }?.let { chapter ->
   Dialog(onDismissRequest={selectedId=null},properties=DialogProperties(usePlatformDefaultWidth=false)) {
