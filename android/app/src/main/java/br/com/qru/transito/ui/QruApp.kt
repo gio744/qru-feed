@@ -152,7 +152,9 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
 
 private fun openOfficialSource(context: android.content.Context, url: String) {
     val uri=Uri.parse(url)
-    if(uri.scheme!="https" || uri.host?.endsWith(".gov.br")!=true) return
+    val host=uri.host?.lowercase(Locale.ROOT)
+    val official=host?.endsWith(".gov.br")==true || host=="www2.camara.leg.br"
+    if(uri.scheme!="https" || !official) return
     try { context.startActivity(Intent(Intent.ACTION_VIEW,uri)) }
     catch(_:ActivityNotFoundException) { Toast.makeText(context,"Não foi possível abrir a fonte.",Toast.LENGTH_LONG).show() }
 }
