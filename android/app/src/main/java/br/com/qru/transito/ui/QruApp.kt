@@ -184,11 +184,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
         Text(tab.label,style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.primary)
         when(tab) {
             QruTab.CTB -> {
-                Text("Parte geral e crimes de trânsito",style=MaterialTheme.typography.titleLarge)
-                Text("Escolha a parte do Código que deseja consultar.",style=MaterialTheme.typography.bodyMedium)
-                CtbSectionCard("Parte geral","Disposições gerais, circulação, habilitação, responsabilidades e procedimentos"){openOfficialSource(context,"https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm")}
-                CtbSectionCard("Crimes de trânsito","Disposições gerais e crimes em espécie • arts. 291 a 312-B"){openOfficialSource(context,"https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm#art291")}
-                Text("Nesta versão, os cards abrem o texto oficial online. A leitura organizada dentro do QRU ainda será incorporada.",style=MaterialTheme.typography.bodySmall)
+                CtbOfflineContents { url -> openOfficialSource(context,url) }
 
             }
             QruTab.NORMAS -> {
