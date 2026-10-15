@@ -4,6 +4,8 @@ import android.util.Base64
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
+import kotlinx.coroutines.launch
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -69,7 +71,34 @@ private data class CtbDocument(val source:String="",val retrievedOn:String="",va
     Column(Modifier.fillMaxSize().padding(16.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
      Text(chapter.title,style=MaterialTheme.typography.titleLarge)
      Text("Cópia documental offline • conferência pendente",style=MaterialTheme.typography.bodySmall)
-     LazyColumn(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(10.dp)) {
+     val listState=rememberLazyListState()
+     val scope=rememberCoroutineScope()
+     var readerQuery by rememberSaveable(chapter.id) { mutableStateOf(query) }
+     var hit by rememberSaveable(chapter.id) { mutableStateOf(0) }
+     val hits=remember(chapter.id,readerQuery) {
+      if(readerQuery.isBlank()) emptyList() else chapter.paragraphs.indices.filter {
+       matchesNorm("",chapter.paragraphs[it],readerQuery)
+      }
+     }
+     LaunchedEffect(chapter.id,readerQuery) {
+      hit=0
+      hits.firstOrNull()?.let { listState.scrollToItem(it) }
+     }
+     OutlinedTextField(readerQuery,{hit=0;readerQuery=it},Modifier.fillMaxWidth(),
+      label={Text("Encontrar artigo ou palavra")},singleLine=true)
+     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
+      TextButton(onClick={scope.launch { listState.scrollToItem(0) }}) { Text("INÍCIO") }
+      TextButton(onClick={scope.launch { listState.scrollToItem(chapter.paragraphs.lastIndex.coerceAtLeast(0)) }}) { Text("FIM") }
+     }
+     if(readerQuery.isNotBlank()) {
+      Text(if(hits.isEmpty()) "Nenhum trecho encontrado." else "Trecho ${hit+1} de ${hits.size}",
+       style=MaterialTheme.typography.bodySmall)
+      Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
+       TextButton(enabled=hit>0,onClick={hit--;scope.launch { listState.scrollToItem(hits[hit]) }}) { Text("ANTERIOR") }
+       TextButton(enabled=hit<hits.lastIndex,onClick={hit++;scope.launch { listState.scrollToItem(hits[hit]) }}) { Text("PRÓXIMO") }
+      }
+     }
+     LazyColumn(Modifier.weight(1f),state=listState,verticalArrangement=Arrangement.spacedBy(10.dp)) {
       itemsIndexed(chapter.paragraphs) { _,text ->
        SelectionContainer { Text(text,style=MaterialTheme.typography.bodyLarge) }
       }
