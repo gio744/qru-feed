@@ -7,7 +7,7 @@ import org.junit.Test
 class NormPdfCatalogTest {
  @Test fun everyRegisteredDocumentIsBundledAndVerified() {
   val catalog=JsonParser.parseString(File("src/main/assets/norms/pdf-catalog.json").readText()).asJsonArray
-  assertEquals(7,catalog.size())
+  assertEquals(8,catalog.size())
   val names=mutableSetOf<String>()
   for(entry in catalog) {
    val doc=entry.asJsonObject
