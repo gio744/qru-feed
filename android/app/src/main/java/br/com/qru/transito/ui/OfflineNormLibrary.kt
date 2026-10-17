@@ -40,11 +40,21 @@ private fun normSearch(text:String):String =
   Text("Nenhum documento desta categoria foi incluído nesta versão.",style=MaterialTheme.typography.bodyMedium)
   return
  }
- Text(if(category=="Manuais") "Manuais • 1 documento offline" else "Resoluções • 7 documentos offline",style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.secondary)
+ val context=LocalContext.current
+ var catalog by remember { mutableStateOf<List<OfflinePdfDocument>?>(null) }
+ LaunchedEffect(Unit) {
+  catalog=withContext(Dispatchers.IO) { runCatching {
+   context.assets.open("norms/pdf-catalog.json").bufferedReader().use {
+    Gson().fromJson(it,Array<OfflinePdfDocument>::class.java).toList()
+   }
+  }.getOrNull() }
+ }
+ val count=catalog?.count { it.category==category }
+ Text(if(count==null) "$category • catálogo offline" else "$category • $count "+(if(count==1) "documento offline" else "documentos offline"),
+  style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.secondary)
  Text("Publicações originais. Conferência de alterações e vigência pendente.",style=MaterialTheme.typography.bodySmall)
  var catalogQuery by rememberSaveable { mutableStateOf("") }
  OutlinedTextField(catalogQuery,{catalogQuery=it},Modifier.fillMaxWidth(),label={Text("Número ou assunto da norma")},singleLine=true)
- val context=LocalContext.current
  var norm by remember { mutableStateOf<OfflineNorm?>(null) }
  var error by remember { mutableStateOf(false) }
  var pdfOpened by rememberSaveable { mutableStateOf(false) }
