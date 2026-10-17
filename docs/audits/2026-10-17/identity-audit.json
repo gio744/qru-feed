@@ -1,0 +1,7658 @@
+{
+  "scope": "Historical code/article identity only; no current validity or operational approval",
+  "content_version": "indice-em-conferencia-2026-10-13-busca-preferencia",
+  "candidate_file_sha256": "452d77e5b63ca9dab3addd9858c985bae246eb0c87df68628e9bb96a702e1753",
+  "manual_pdf_sha256": "5214bc8cfa3c8d1b5acde7c34c3c27f2d06ea1ba1589f5bbfab5ae041e06b1b2",
+  "table_pdf_sha256": "83ecb895fa2e95878bcb8818b67e896dd7768bede507a162b5851c51f7334d7e",
+  "summary": {
+    "items": 418,
+    "manual_header_matches": 411,
+    "annex_ocr_matches": 3,
+    "table_matches": 175,
+    "identity_matches": 413,
+    "source_page_mismatches": 0,
+    "operationally_approved": 0,
+    "identity_matches_after_visual_review": 418,
+    "visually_reviewed_annex_headers": 6,
+    "candidate_source_base_manual_items": 401,
+    "candidate_source_later_resolution_items": 16,
+    "candidate_source_consultation_draft_items": 1
+  },
+  "items": [
+    {
+      "stable_key": "65992",
+      "code": "659-92",
+      "article": "230, V",
+      "manual_header_evidence": [
+        {
+          "page": 543,
+          "article": "Art. 230, V."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 543,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "65991",
+      "code": "659-91",
+      "article": "230, V",
+      "manual_header_evidence": [
+        {
+          "page": 538,
+          "article": "Art. 230, V."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": null,
+      "source_page_matches_header": null,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-751-01",
+      "code": "751-01",
+      "article": "95",
+      "manual_header_evidence": [
+        {
+          "page": 32,
+          "article": "Art. 95."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 7,
+          "article": "95"
+        }
+      ],
+      "source_page": 32,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-751-02",
+      "code": "751-02",
+      "article": "95",
+      "manual_header_evidence": [
+        {
+          "page": 34,
+          "article": "Art. 95."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 7,
+          "article": "95"
+        }
+      ],
+      "source_page": 34,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-752-81",
+      "code": "752-81",
+      "article": "95, §1º",
+      "manual_header_evidence": [
+        {
+          "page": 36,
+          "article": "Art. 95, §1º."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 36,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-752-82",
+      "code": "752-82",
+      "article": "95, §1º",
+      "manual_header_evidence": [
+        {
+          "page": 38,
+          "article": "Art. 95, §1º."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 38,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-501-00",
+      "code": "501-00",
+      "article": "162, I",
+      "manual_header_evidence": [
+        {
+          "page": 40,
+          "article": "Art. 162, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 40,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-502-91",
+      "code": "502-91",
+      "article": "162, II",
+      "manual_header_evidence": [
+        {
+          "page": 43,
+          "article": "Art. 162, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 43,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-502-92",
+      "code": "502-92",
+      "article": "162, II",
+      "manual_header_evidence": [
+        {
+          "page": 44,
+          "article": "Art. 162, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 44,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-503-71",
+      "code": "503-71",
+      "article": "162, III",
+      "manual_header_evidence": [
+        {
+          "page": 45,
+          "article": "Art. 162, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 45,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-503-72",
+      "code": "503-72",
+      "article": "162, III",
+      "manual_header_evidence": [
+        {
+          "page": 46,
+          "article": "Art. 162, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 46,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-504-50",
+      "code": "504-50",
+      "article": "162, V",
+      "manual_header_evidence": [
+        {
+          "page": 47,
+          "article": "Art. 162, V."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 47,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-505-31",
+      "code": "505-31",
+      "article": "162, VI",
+      "manual_header_evidence": [
+        {
+          "page": 49,
+          "article": "Art. 162, VI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 49,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-505-32",
+      "code": "505-32",
+      "article": "162, VI",
+      "manual_header_evidence": [
+        {
+          "page": 52,
+          "article": "Art. 162, VI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 52,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-505-33",
+      "code": "505-33",
+      "article": "162, VI",
+      "manual_header_evidence": [
+        {
+          "page": 55,
+          "article": "Art. 162, VI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 55,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-505-34",
+      "code": "505-34",
+      "article": "162, VI",
+      "manual_header_evidence": [
+        {
+          "page": 57,
+          "article": "Art. 162, VI."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 7,
+          "article": "162, VI"
+        }
+      ],
+      "source_page": 57,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-774-91",
+      "code": "774-91",
+      "article": "162, VII",
+      "manual_header_evidence": [
+        {
+          "page": 61,
+          "article": "Art. 162, VII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 61,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-774-92",
+      "code": "774-92",
+      "article": "162, VII",
+      "manual_header_evidence": [
+        {
+          "page": 67,
+          "article": "Art. 162, VII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 67,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-506-10",
+      "code": "506-10",
+      "article": "163 c/c 162, I",
+      "manual_header_evidence": [
+        {
+          "page": 68,
+          "article": "Art. 163 c/c 162, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 68,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-507-01",
+      "code": "507-01",
+      "article": "163 c/c 162, II",
+      "manual_header_evidence": [
+        {
+          "page": 69,
+          "article": "Art. 163 c/c 162, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 69,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-507-02",
+      "code": "507-02",
+      "article": "163 c/c 162, II",
+      "manual_header_evidence": [
+        {
+          "page": 70,
+          "article": "Art. 163 c/c 162, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 70,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-508-81",
+      "code": "508-81",
+      "article": "163 c/c 162, III",
+      "manual_header_evidence": [
+        {
+          "page": 71,
+          "article": "Art. 163 c/c 162, III"
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 71,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-508-82",
+      "code": "508-82",
+      "article": "163 c/c 162, III",
+      "manual_header_evidence": [
+        {
+          "page": 73,
+          "article": "Art. 163 c/c 162, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 73,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-509-60",
+      "code": "509-60",
+      "article": "163 c/c 162, V",
+      "manual_header_evidence": [
+        {
+          "page": 75,
+          "article": "Art. 163 c/c 162, V."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 75,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-510-01",
+      "code": "510-01",
+      "article": "163 c/c 162, VI",
+      "manual_header_evidence": [
+        {
+          "page": 77,
+          "article": "Art. 163 c/c 162, VI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 77,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-510-02",
+      "code": "510-02",
+      "article": "163 c/c 162, VI",
+      "manual_header_evidence": [
+        {
+          "page": 79,
+          "article": "Art. 163 c/c 162, VI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 79,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-510-03",
+      "code": "510-03",
+      "article": "163 c/c 162, VI",
+      "manual_header_evidence": [
+        {
+          "page": 81,
+          "article": "Art. 163 c/c 162, VI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 81,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-510-04",
+      "code": "510-04",
+      "article": "163 c/c 162, VI",
+      "manual_header_evidence": [
+        {
+          "page": 83,
+          "article": "Art. 163 c/c 162, VI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 83,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-777-31",
+      "code": "777-31",
+      "article": "163 c/c 162, VII",
+      "manual_header_evidence": [
+        {
+          "page": 85,
+          "article": "Art. 163 c/c 162, VII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 85,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-777-32",
+      "code": "777-32",
+      "article": "163 c/c 162, VII",
+      "manual_header_evidence": [
+        {
+          "page": 86,
+          "article": "Art. 163 c/c 162, VII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 86,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-511-80",
+      "code": "511-80",
+      "article": "164 c/c 162, I",
+      "manual_header_evidence": [
+        {
+          "page": 87,
+          "article": "Art. 164 c/c 162, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 87,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-512-61",
+      "code": "512-61",
+      "article": "164 c/c 162, II",
+      "manual_header_evidence": [
+        {
+          "page": 88,
+          "article": "Art. 164 c/c 162, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 88,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-512-62",
+      "code": "512-62",
+      "article": "164 c/c 162, II",
+      "manual_header_evidence": [
+        {
+          "page": 89,
+          "article": "Art. 164 c/c 162, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 89,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-513-41",
+      "code": "513-41",
+      "article": "164 c/c 162, III",
+      "manual_header_evidence": [
+        {
+          "page": 90,
+          "article": "Art. 164 c/c 162, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 90,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-513-42",
+      "code": "513-42",
+      "article": "164 c/c 162, III",
+      "manual_header_evidence": [
+        {
+          "page": 91,
+          "article": "Art. 164 c/c 162, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 91,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-514-20",
+      "code": "514-20",
+      "article": "164 c/c 162, V",
+      "manual_header_evidence": [
+        {
+          "page": 92,
+          "article": "Art. 164 c/c 162, V."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 92,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-515-01",
+      "code": "515-01",
+      "article": "164 c/c 162, VI",
+      "manual_header_evidence": [
+        {
+          "page": 94,
+          "article": "Art. 164 c/c 162, VI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 94,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-515-02",
+      "code": "515-02",
+      "article": "164 c/c 162, VI",
+      "manual_header_evidence": [
+        {
+          "page": 96,
+          "article": "Art. 164 c/c 162, VI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 96,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-515-03",
+      "code": "515-03",
+      "article": "164 c/c 162, VI",
+      "manual_header_evidence": [
+        {
+          "page": 98,
+          "article": "Art. 164 c/c 162, VI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 98,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-515-04",
+      "code": "515-04",
+      "article": "164 c/c 162, VI",
+      "manual_header_evidence": [
+        {
+          "page": 100,
+          "article": "Art. 164 c/c 162, VI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 100,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-778-11",
+      "code": "778-11",
+      "article": "164 c/c 162, VII",
+      "manual_header_evidence": [
+        {
+          "page": 102,
+          "article": "Art. 164 c/c 162, VII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 102,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-778-12",
+      "code": "778-12",
+      "article": "164 c/c 162, VII",
+      "manual_header_evidence": [
+        {
+          "page": 103,
+          "article": "Art. 164 c/c 162, VII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 103,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-516-92",
+      "code": "516-92",
+      "article": "165",
+      "manual_header_evidence": [
+        {
+          "page": 108,
+          "article": "Art. 165."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 9,
+          "article": "165"
+        }
+      ],
+      "source_page": null,
+      "source_page_matches_header": null,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-757-90",
+      "code": "757-90",
+      "article": "165-A",
+      "manual_header_evidence": [
+        {
+          "page": 110,
+          "article": "Art. 165-A."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": null,
+      "source_page_matches_header": null,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-764-10",
+      "code": "764-10",
+      "article": "165-B",
+      "manual_header_evidence": [
+        {
+          "page": 112,
+          "article": "Art. 165-B."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 9,
+          "article": "165-B"
+        }
+      ],
+      "source_page": 112,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-765-00",
+      "code": "765-00",
+      "article": "165-B, parágrafo único",
+      "manual_header_evidence": [
+        {
+          "page": 114,
+          "article": "Art. 165-B, parágrafo único."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 114,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-517-70",
+      "code": "517-70",
+      "article": "166",
+      "manual_header_evidence": [
+        {
+          "page": 116,
+          "article": "Art. 166."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 116,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-518-51",
+      "code": "518-51",
+      "article": "167",
+      "manual_header_evidence": [
+        {
+          "page": 118,
+          "article": "Art. 167."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 118,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-518-52",
+      "code": "518-52",
+      "article": "167",
+      "manual_header_evidence": [
+        {
+          "page": 126,
+          "article": "Art. 167."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 126,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-520-70",
+      "code": "520-70",
+      "article": "169",
+      "manual_header_evidence": [
+        {
+          "page": 137,
+          "article": "Art. 169."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 137,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-521-51",
+      "code": "521-51",
+      "article": "170",
+      "manual_header_evidence": [
+        {
+          "page": 142,
+          "article": "Art. 170."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 142,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-521-52",
+      "code": "521-52",
+      "article": "170",
+      "manual_header_evidence": [
+        {
+          "page": 143,
+          "article": "Art. 170."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 9,
+          "article": "170"
+        }
+      ],
+      "source_page": 143,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-522-31",
+      "code": "522-31",
+      "article": "171",
+      "manual_header_evidence": [
+        {
+          "page": 144,
+          "article": "Art. 171."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 144,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-522-32",
+      "code": "522-32",
+      "article": "171",
+      "manual_header_evidence": [
+        {
+          "page": 145,
+          "article": "Art. 171."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 145,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-523-11",
+      "code": "523-11",
+      "article": "172",
+      "manual_header_evidence": [
+        {
+          "page": 146,
+          "article": "Art. 172."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 9,
+          "article": "172"
+        }
+      ],
+      "source_page": 146,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-523-12",
+      "code": "523-12",
+      "article": "172",
+      "manual_header_evidence": [
+        {
+          "page": 147,
+          "article": "Art. 172."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 147,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-524-00",
+      "code": "524-00",
+      "article": "173",
+      "manual_header_evidence": [
+        {
+          "page": 148,
+          "article": "Art. 173."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 9,
+          "article": "173"
+        }
+      ],
+      "source_page": 148,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-525-81",
+      "code": "525-81",
+      "article": "174",
+      "manual_header_evidence": [
+        {
+          "page": 149,
+          "article": "Art. 174."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 149,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-525-82",
+      "code": "525-82",
+      "article": "174",
+      "manual_header_evidence": [
+        {
+          "page": 150,
+          "article": "Art. 174."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 150,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-525-83",
+      "code": "525-83",
+      "article": "174",
+      "manual_header_evidence": [
+        {
+          "page": 152,
+          "article": "Art. 174."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 9,
+          "article": "174"
+        }
+      ],
+      "source_page": 152,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-526-61",
+      "code": "526-61",
+      "article": "174",
+      "manual_header_evidence": [
+        {
+          "page": 153,
+          "article": "Art. 174."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 153,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-526-62",
+      "code": "526-62",
+      "article": "174",
+      "manual_header_evidence": [
+        {
+          "page": 155,
+          "article": "Art. 174."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 155,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-526-63",
+      "code": "526-63",
+      "article": "174",
+      "manual_header_evidence": [
+        {
+          "page": 157,
+          "article": "Art. 174."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 9,
+          "article": "174"
+        }
+      ],
+      "source_page": 157,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-527-41",
+      "code": "527-41",
+      "article": "175",
+      "manual_header_evidence": [
+        {
+          "page": 159,
+          "article": "Art. 175."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 159,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-527-42",
+      "code": "527-42",
+      "article": "175",
+      "manual_header_evidence": [
+        {
+          "page": 161,
+          "article": "Art. 175."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 161,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-528-20",
+      "code": "528-20",
+      "article": "176, I",
+      "manual_header_evidence": [
+        {
+          "page": 163,
+          "article": "Art. 176, I."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 9,
+          "article": "176, I"
+        }
+      ],
+      "source_page": 163,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-529-00",
+      "code": "529-00",
+      "article": "176, II",
+      "manual_header_evidence": [
+        {
+          "page": 165,
+          "article": "Art. 176, II."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 9,
+          "article": "176, II"
+        }
+      ],
+      "source_page": 165,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-530-40",
+      "code": "530-40",
+      "article": "176, III",
+      "manual_header_evidence": [
+        {
+          "page": 167,
+          "article": "Art. 176, III."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 10,
+          "article": "176, III"
+        }
+      ],
+      "source_page": 167,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-531-20",
+      "code": "531-20",
+      "article": "176, IV",
+      "manual_header_evidence": [
+        {
+          "page": 169,
+          "article": "Art. 176, IV."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 10,
+          "article": "176, IV"
+        }
+      ],
+      "source_page": 169,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-532-00",
+      "code": "532-00",
+      "article": "176, V",
+      "manual_header_evidence": [
+        {
+          "page": 171,
+          "article": "Art. 176, V."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 10,
+          "article": "176, V"
+        }
+      ],
+      "source_page": 171,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-533-90",
+      "code": "533-90",
+      "article": "177",
+      "manual_header_evidence": [
+        {
+          "page": 173,
+          "article": "Art. 177."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 173,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-534-70",
+      "code": "534-70",
+      "article": "178",
+      "manual_header_evidence": [
+        {
+          "page": 175,
+          "article": "Art. 178."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 10,
+          "article": "178"
+        }
+      ],
+      "source_page": 175,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-535-50",
+      "code": "535-50",
+      "article": "179, I",
+      "manual_header_evidence": [
+        {
+          "page": 177,
+          "article": "Art. 179, I."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 10,
+          "article": "179, I"
+        }
+      ],
+      "source_page": 177,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-536-30",
+      "code": "536-30",
+      "article": "179, II",
+      "manual_header_evidence": [
+        {
+          "page": 179,
+          "article": "Art. 179, II"
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 179,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-537-10",
+      "code": "537-10",
+      "article": "180",
+      "manual_header_evidence": [
+        {
+          "page": 181,
+          "article": "Art. 180."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 181,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-538-00",
+      "code": "538-00",
+      "article": "181, I",
+      "manual_header_evidence": [
+        {
+          "page": 183,
+          "article": "Art. 181, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 183,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-539-80",
+      "code": "539-80",
+      "article": "181, II",
+      "manual_header_evidence": [
+        {
+          "page": 184,
+          "article": "Art. 181, II"
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 184,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-540-10",
+      "code": "540-10",
+      "article": "181, III",
+      "manual_header_evidence": [
+        {
+          "page": 186,
+          "article": "Art. 181, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 186,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-541-00",
+      "code": "541-00",
+      "article": "181, IV",
+      "manual_header_evidence": [
+        {
+          "page": 188,
+          "article": "Art. 181, IV."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 188,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-542-81",
+      "code": "542-81",
+      "article": "181, V",
+      "manual_header_evidence": [
+        {
+          "page": 190,
+          "article": "Art. 181, V."
+        },
+        {
+          "page": 192,
+          "article": "Art. 181, V."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 190,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-542-82",
+      "code": "542-82",
+      "article": "181, V",
+      "manual_header_evidence": [
+        {
+          "page": 194,
+          "article": "Art. 181, V."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 194,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-542-83",
+      "code": "542-83",
+      "article": "181, V",
+      "manual_header_evidence": [
+        {
+          "page": 196,
+          "article": "Art. 181, V."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 196,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-542-84",
+      "code": "542-84",
+      "article": "181, V",
+      "manual_header_evidence": [
+        {
+          "page": 198,
+          "article": "Art. 181, V."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 198,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-543-60",
+      "code": "543-60",
+      "article": "181, VI",
+      "manual_header_evidence": [
+        {
+          "page": 200,
+          "article": "Art. 181, VI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 200,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-544-40",
+      "code": "544-40",
+      "article": "181, VII",
+      "manual_header_evidence": [
+        {
+          "page": 202,
+          "article": "Art. 181, VII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 10,
+          "article": "181, VII"
+        }
+      ],
+      "source_page": 202,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-545-21",
+      "code": "545-21",
+      "article": "181, VIII",
+      "manual_header_evidence": [
+        {
+          "page": 204,
+          "article": "Art. 181, VIII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 10,
+          "article": "181, VIII"
+        }
+      ],
+      "source_page": 204,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-545-22",
+      "code": "545-22",
+      "article": "181, VIII",
+      "manual_header_evidence": [
+        {
+          "page": 205,
+          "article": "Art. 181, VIII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 205,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-545-23",
+      "code": "545-23",
+      "article": "181, VIII",
+      "manual_header_evidence": [
+        {
+          "page": 206,
+          "article": "Art. 181, VIII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 10,
+          "article": "181, VIII"
+        }
+      ],
+      "source_page": 206,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-545-24",
+      "code": "545-24",
+      "article": "181, VIII",
+      "manual_header_evidence": [
+        {
+          "page": 207,
+          "article": "Art. 181, VIII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 10,
+          "article": "181, VIII"
+        }
+      ],
+      "source_page": 207,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-545-25",
+      "code": "545-25",
+      "article": "181, VIII",
+      "manual_header_evidence": [
+        {
+          "page": 208,
+          "article": "Art. 181, VIII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 208,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-545-26",
+      "code": "545-26",
+      "article": "181, VIII",
+      "manual_header_evidence": [
+        {
+          "page": 210,
+          "article": "Art. 181, VIII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 210,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-545-27",
+      "code": "545-27",
+      "article": "181, VIII",
+      "manual_header_evidence": [
+        {
+          "page": 211,
+          "article": "Art. 181, VIII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 211,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-546-00",
+      "code": "546-00",
+      "article": "181, IX",
+      "manual_header_evidence": [
+        {
+          "page": 213,
+          "article": "Art. 181, IX."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 213,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-547-90",
+      "code": "547-90",
+      "article": "181, X",
+      "manual_header_evidence": [
+        {
+          "page": 214,
+          "article": "Art. 181, X."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 214,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-548-70",
+      "code": "548-70",
+      "article": "181, XI",
+      "manual_header_evidence": [
+        {
+          "page": 216,
+          "article": "Art. 181, XI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 216,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-549-50",
+      "code": "549-50",
+      "article": "181, XII",
+      "manual_header_evidence": [
+        {
+          "page": 217,
+          "article": "Art. 181, XII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 217,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-550-90",
+      "code": "550-90",
+      "article": "181, XIII",
+      "manual_header_evidence": [
+        {
+          "page": 219,
+          "article": "Art. 181, XIII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "181, XIII"
+        }
+      ],
+      "source_page": 219,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-551-72",
+      "code": "551-72",
+      "article": "181, XIV",
+      "manual_header_evidence": [
+        {
+          "page": 221,
+          "article": "Art. 181, XIV."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "181, XIV"
+        }
+      ],
+      "source_page": 221,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-551-73",
+      "code": "551-73",
+      "article": "181, XIV",
+      "manual_header_evidence": [
+        {
+          "page": 222,
+          "article": "Art. 181, XIV."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "181, XIV"
+        }
+      ],
+      "source_page": 222,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-552-50",
+      "code": "552-50",
+      "article": "181, XV",
+      "manual_header_evidence": [
+        {
+          "page": 223,
+          "article": "Art. 181, XV."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "181, XV"
+        }
+      ],
+      "source_page": 223,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-553-30",
+      "code": "553-30",
+      "article": "181, XVI",
+      "manual_header_evidence": [
+        {
+          "page": 224,
+          "article": "Art. 181, XVI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 224,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-554-11",
+      "code": "554-11",
+      "article": "181, XVII",
+      "manual_header_evidence": [
+        {
+          "page": 226,
+          "article": "Art. 181, XVII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "181, XVII"
+        }
+      ],
+      "source_page": 226,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-554-12",
+      "code": "554-12",
+      "article": "181, XVII",
+      "manual_header_evidence": [
+        {
+          "page": 228,
+          "article": "Art. 181, XVII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "181, XVII"
+        }
+      ],
+      "source_page": 228,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-554-13",
+      "code": "554-13",
+      "article": "181, XVII",
+      "manual_header_evidence": [
+        {
+          "page": 230,
+          "article": "Art. 181, XVII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 230,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-554-14",
+      "code": "554-14",
+      "article": "181, XVII",
+      "manual_header_evidence": [
+        {
+          "page": 233,
+          "article": "Art. 181, XVII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "181, XVII"
+        }
+      ],
+      "source_page": 233,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-554-17",
+      "code": "554-17",
+      "article": "181, XVII",
+      "manual_header_evidence": [
+        {
+          "page": 235,
+          "article": "Art. 181, XVII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "181, XVII"
+        }
+      ],
+      "source_page": 235,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-555-00",
+      "code": "555-00",
+      "article": "181, XVIII",
+      "manual_header_evidence": [
+        {
+          "page": 237,
+          "article": "Art. 181, XVIII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 237,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-556-80",
+      "code": "556-80",
+      "article": "181, XIX",
+      "manual_header_evidence": [
+        {
+          "page": 239,
+          "article": "Art. 181, XIX."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "181, XIX"
+        }
+      ],
+      "source_page": 239,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-762-51",
+      "code": "762-51",
+      "article": "181, XX",
+      "manual_header_evidence": [
+        {
+          "page": 240,
+          "article": "Art. 181, XX."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": null,
+      "source_page_matches_header": null,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-762-52",
+      "code": "762-52",
+      "article": "181, XX",
+      "manual_header_evidence": [
+        {
+          "page": 243,
+          "article": "Art. 181, XX."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": null,
+      "source_page_matches_header": null,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-557-60",
+      "code": "557-60",
+      "article": "182, I",
+      "manual_header_evidence": [
+        {
+          "page": 246,
+          "article": "Art. 182, I."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "182, I"
+        }
+      ],
+      "source_page": 246,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-558-40",
+      "code": "558-40",
+      "article": "182, II",
+      "manual_header_evidence": [
+        {
+          "page": 247,
+          "article": "Art. 182, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 247,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-559-20",
+      "code": "559-20",
+      "article": "182, III",
+      "manual_header_evidence": [
+        {
+          "page": 249,
+          "article": "Art. 182, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 249,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-560-60",
+      "code": "560-60",
+      "article": "182, IV",
+      "manual_header_evidence": [
+        {
+          "page": 251,
+          "article": "Art. 182, IV."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 251,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-561-41",
+      "code": "561-41",
+      "article": "182, V",
+      "manual_header_evidence": [
+        {
+          "page": 252,
+          "article": "Art. 182, V."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 252,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-561-42",
+      "code": "561-42",
+      "article": "182, V",
+      "manual_header_evidence": [
+        {
+          "page": 254,
+          "article": "Art. 182, V."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 254,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-561-43",
+      "code": "561-43",
+      "article": "182, V",
+      "manual_header_evidence": [
+        {
+          "page": 256,
+          "article": "Art. 182, V."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 256,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-561-44",
+      "code": "561-44",
+      "article": "182, V",
+      "manual_header_evidence": [
+        {
+          "page": 257,
+          "article": "Art. 182, V."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 257,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-562-21",
+      "code": "562-21",
+      "article": "182, VI",
+      "manual_header_evidence": [
+        {
+          "page": 259,
+          "article": "Art. 182, VI."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "182, VI"
+        }
+      ],
+      "source_page": 259,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-562-22",
+      "code": "562-22",
+      "article": "182, VI",
+      "manual_header_evidence": [
+        {
+          "page": 260,
+          "article": "Art. 182, VI."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "182, VI"
+        }
+      ],
+      "source_page": 260,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-562-23",
+      "code": "562-23",
+      "article": "182, VI",
+      "manual_header_evidence": [
+        {
+          "page": 262,
+          "article": "Art. 182, VI."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "182, VI"
+        }
+      ],
+      "source_page": 262,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-562-24",
+      "code": "562-24",
+      "article": "182, VI",
+      "manual_header_evidence": [
+        {
+          "page": 264,
+          "article": "Art. 182, VI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 264,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-562-25",
+      "code": "562-25",
+      "article": "182, VI",
+      "manual_header_evidence": [
+        {
+          "page": 265,
+          "article": "Art. 182, VI."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "182, VI"
+        }
+      ],
+      "source_page": 265,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-563-00",
+      "code": "563-00",
+      "article": "182, VII",
+      "manual_header_evidence": [
+        {
+          "page": 266,
+          "article": "Art. 182, VII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "182, VII"
+        }
+      ],
+      "source_page": 266,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-564-91",
+      "code": "564-91",
+      "article": "182, VIII",
+      "manual_header_evidence": [
+        {
+          "page": 268,
+          "article": "Art. 182, VIII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "182, VIII"
+        }
+      ],
+      "source_page": 268,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-564-92",
+      "code": "564-92",
+      "article": "182, VIII",
+      "manual_header_evidence": [
+        {
+          "page": 270,
+          "article": "Art. 182, VIII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "182, VIII"
+        }
+      ],
+      "source_page": 270,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-564-93",
+      "code": "564-93",
+      "article": "182, VIII",
+      "manual_header_evidence": [
+        {
+          "page": 271,
+          "article": "Art. 182, VIII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "182, VIII"
+        }
+      ],
+      "source_page": 271,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-565-70",
+      "code": "565-70",
+      "article": "182, IX",
+      "manual_header_evidence": [
+        {
+          "page": 272,
+          "article": "Art. 182, IX."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 12,
+          "article": "182, IX"
+        }
+      ],
+      "source_page": 272,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-566-50",
+      "code": "566-50",
+      "article": "182, X",
+      "manual_header_evidence": [
+        {
+          "page": 273,
+          "article": "Art. 182, X."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 273,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-767-00",
+      "code": "767-00",
+      "article": "182, XI",
+      "manual_header_evidence": [
+        {
+          "page": 274,
+          "article": "Art. 182, XI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 274,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-568-10",
+      "code": "568-10",
+      "article": "184, I",
+      "manual_header_evidence": [
+        {
+          "page": 278,
+          "article": "Art. 184, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 278,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-569-00",
+      "code": "569-00",
+      "article": "184, II",
+      "manual_header_evidence": [
+        {
+          "page": 280,
+          "article": "Art. 184, II."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 12,
+          "article": "184, II"
+        }
+      ],
+      "source_page": 280,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-758-70",
+      "code": "758-70",
+      "article": "184, III",
+      "manual_header_evidence": [
+        {
+          "page": 282,
+          "article": "Art. 184, III."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 12,
+          "article": "184, III"
+        }
+      ],
+      "source_page": 282,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-570-30",
+      "code": "570-30",
+      "article": "185, I",
+      "manual_header_evidence": [
+        {
+          "page": 286,
+          "article": "Art. 185, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 286,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-571-10",
+      "code": "571-10",
+      "article": "185, II",
+      "manual_header_evidence": [
+        {
+          "page": 289,
+          "article": "Art. 185, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 289,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-572-00",
+      "code": "572-00",
+      "article": "186, I",
+      "manual_header_evidence": [
+        {
+          "page": 291,
+          "article": "Art. 186, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 291,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-573-80",
+      "code": "573-80",
+      "article": "186, II",
+      "manual_header_evidence": [
+        {
+          "page": 293,
+          "article": "Art. 186, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 293,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-574-61",
+      "code": "574-61",
+      "article": "187, I",
+      "manual_header_evidence": [
+        {
+          "page": 295,
+          "article": "Art. 187, I."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 12,
+          "article": "187, I"
+        }
+      ],
+      "source_page": null,
+      "source_page_matches_header": null,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-574-62",
+      "code": "574-62",
+      "article": "187, I",
+      "manual_header_evidence": [
+        {
+          "page": 297,
+          "article": "Art. 187, I."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 12,
+          "article": "187, I"
+        }
+      ],
+      "source_page": 297,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-574-63",
+      "code": "574-63",
+      "article": "187, I",
+      "manual_header_evidence": [
+        {
+          "page": 298,
+          "article": "Art. 187, I."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 12,
+          "article": "187, I"
+        }
+      ],
+      "source_page": 298,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-576-20",
+      "code": "576-20",
+      "article": "188",
+      "manual_header_evidence": [
+        {
+          "page": 300,
+          "article": "Art. 188."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 12,
+          "article": "188"
+        }
+      ],
+      "source_page": 300,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-577-01",
+      "code": "577-01",
+      "article": "189",
+      "manual_header_evidence": [
+        {
+          "page": 301,
+          "article": "Art. 189."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 12,
+          "article": "189"
+        }
+      ],
+      "source_page": 301,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-577-02",
+      "code": "577-02",
+      "article": "189",
+      "manual_header_evidence": [
+        {
+          "page": 302,
+          "article": "Art. 189."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 12,
+          "article": "189"
+        }
+      ],
+      "source_page": 302,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-577-03",
+      "code": "577-03",
+      "article": "189",
+      "manual_header_evidence": [
+        {
+          "page": 304,
+          "article": "Art. 189."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 304,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-577-04",
+      "code": "577-04",
+      "article": "189",
+      "manual_header_evidence": [
+        {
+          "page": 306,
+          "article": "Art. 189."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 12,
+          "article": "189"
+        }
+      ],
+      "source_page": 306,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-577-05",
+      "code": "577-05",
+      "article": "189",
+      "manual_header_evidence": [
+        {
+          "page": 308,
+          "article": "Art. 189."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 12,
+          "article": "189"
+        }
+      ],
+      "source_page": 308,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-578-90",
+      "code": "578-90",
+      "article": "190",
+      "manual_header_evidence": [
+        {
+          "page": 310,
+          "article": "Art. 190."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 12,
+          "article": "190"
+        }
+      ],
+      "source_page": 310,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-579-70",
+      "code": "579-70",
+      "article": "191",
+      "manual_header_evidence": [
+        {
+          "page": 311,
+          "article": "Art. 191."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 12,
+          "article": "191"
+        }
+      ],
+      "source_page": 311,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-580-00",
+      "code": "580-00",
+      "article": "192",
+      "manual_header_evidence": [
+        {
+          "page": 313,
+          "article": "Art. 192."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 13,
+          "article": "192"
+        }
+      ],
+      "source_page": 313,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-581-91",
+      "code": "581-91",
+      "article": "193",
+      "manual_header_evidence": [
+        {
+          "page": 315,
+          "article": "Art. 193."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 315,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-581-92",
+      "code": "581-92",
+      "article": "193",
+      "manual_header_evidence": [
+        {
+          "page": 317,
+          "article": "193."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 317,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-581-93",
+      "code": "581-93",
+      "article": "193",
+      "manual_header_evidence": [
+        {
+          "page": 320,
+          "article": "Art. 193."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 13,
+          "article": "193"
+        }
+      ],
+      "source_page": 320,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-581-94",
+      "code": "581-94",
+      "article": "193",
+      "manual_header_evidence": [
+        {
+          "page": 321,
+          "article": "Art. 193."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 13,
+          "article": "193"
+        }
+      ],
+      "source_page": 321,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-581-95",
+      "code": "581-95",
+      "article": "193",
+      "manual_header_evidence": [
+        {
+          "page": 322,
+          "article": "Art. 193."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 322,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-581-96",
+      "code": "581-96",
+      "article": "193",
+      "manual_header_evidence": [
+        {
+          "page": 323,
+          "article": "Art. 193."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 323,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-581-97",
+      "code": "581-97",
+      "article": "193",
+      "manual_header_evidence": [
+        {
+          "page": 324,
+          "article": "Art. 193."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 324,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-581-98",
+      "code": "581-98",
+      "article": "193",
+      "manual_header_evidence": [
+        {
+          "page": 325,
+          "article": "Art. 193."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 13,
+          "article": "193"
+        }
+      ],
+      "source_page": 325,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-582-70",
+      "code": "582-70",
+      "article": "194",
+      "manual_header_evidence": [
+        {
+          "page": 326,
+          "article": "Art. 194."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 13,
+          "article": "194"
+        }
+      ],
+      "source_page": 326,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-583-50",
+      "code": "583-50",
+      "article": "195",
+      "manual_header_evidence": [
+        {
+          "page": 327,
+          "article": "Art. 195."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 13,
+          "article": "195"
+        }
+      ],
+      "source_page": 327,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-584-31",
+      "code": "584-31",
+      "article": "196",
+      "manual_header_evidence": [
+        {
+          "page": 329,
+          "article": "Art. 196."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 329,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-584-32",
+      "code": "584-32",
+      "article": "196",
+      "manual_header_evidence": [
+        {
+          "page": 331,
+          "article": "Art. 196."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 331,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-584-33",
+      "code": "584-33",
+      "article": "196",
+      "manual_header_evidence": [
+        {
+          "page": 333,
+          "article": "Art. 196."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 333,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-584-34",
+      "code": "584-34",
+      "article": "196",
+      "manual_header_evidence": [
+        {
+          "page": 335,
+          "article": "Art. 196."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 335,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-585-11",
+      "code": "585-11",
+      "article": "197",
+      "manual_header_evidence": [
+        {
+          "page": 337,
+          "article": "Art. 197."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 13,
+          "article": "197"
+        }
+      ],
+      "source_page": 337,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-585-12",
+      "code": "585-12",
+      "article": "197",
+      "manual_header_evidence": [
+        {
+          "page": 339,
+          "article": "Art. 197."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 13,
+          "article": "197"
+        }
+      ],
+      "source_page": 339,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-586-00",
+      "code": "586-00",
+      "article": "198",
+      "manual_header_evidence": [
+        {
+          "page": 341,
+          "article": "Art. 198."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 341,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-587-80",
+      "code": "587-80",
+      "article": "199",
+      "manual_header_evidence": [
+        {
+          "page": 342,
+          "article": "Art. 199."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 342,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-588-60",
+      "code": "588-60",
+      "article": "200",
+      "manual_header_evidence": [
+        {
+          "page": 345,
+          "article": "Art. 200."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 13,
+          "article": "200"
+        }
+      ],
+      "source_page": 345,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-589-40",
+      "code": "589-40",
+      "article": "201",
+      "manual_header_evidence": [
+        {
+          "page": 346,
+          "article": "Art. 201."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 346,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-590-80",
+      "code": "590-80",
+      "article": "202, I",
+      "manual_header_evidence": [
+        {
+          "page": 347,
+          "article": "Art. 202, I."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 13,
+          "article": "202, I"
+        }
+      ],
+      "source_page": 347,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-591-61",
+      "code": "591-61",
+      "article": "202, II",
+      "manual_header_evidence": [
+        {
+          "page": 348,
+          "article": "Art. 202, II."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 13,
+          "article": "202, II"
+        }
+      ],
+      "source_page": 348,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-591-62",
+      "code": "591-62",
+      "article": "202, II",
+      "manual_header_evidence": [
+        {
+          "page": 351,
+          "article": "Art. 202, II."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 13,
+          "article": "202, II"
+        }
+      ],
+      "source_page": 351,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-592-41",
+      "code": "592-41",
+      "article": "203, I",
+      "manual_header_evidence": [
+        {
+          "page": 354,
+          "article": "Art. 203, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 354,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-592-42",
+      "code": "592-42",
+      "article": "203, I",
+      "manual_header_evidence": [
+        {
+          "page": 356,
+          "article": "Art. 203, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 356,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-593-20",
+      "code": "593-20",
+      "article": "203, II",
+      "manual_header_evidence": [
+        {
+          "page": 358,
+          "article": "Art. 203, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 358,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-594-01",
+      "code": "594-01",
+      "article": "203, III",
+      "manual_header_evidence": [
+        {
+          "page": 360,
+          "article": "Art. 203, III."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 13,
+          "article": "203, III"
+        }
+      ],
+      "source_page": 360,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-594-02",
+      "code": "594-02",
+      "article": "203, III",
+      "manual_header_evidence": [
+        {
+          "page": 362,
+          "article": "Art. 203, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 362,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-594-03",
+      "code": "594-03",
+      "article": "203, III",
+      "manual_header_evidence": [
+        {
+          "page": 364,
+          "article": "Art. 203, III."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 14,
+          "article": "203, III"
+        }
+      ],
+      "source_page": 364,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-595-91",
+      "code": "595-91",
+      "article": "203, IV",
+      "manual_header_evidence": [
+        {
+          "page": 366,
+          "article": "Art. 203, IV."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 366,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-595-92",
+      "code": "595-92",
+      "article": "203, IV",
+      "manual_header_evidence": [
+        {
+          "page": 368,
+          "article": "Art. 203, IV."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 368,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-595-93",
+      "code": "595-93",
+      "article": "203, IV",
+      "manual_header_evidence": [
+        {
+          "page": 370,
+          "article": "Art. 203, IV."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 370,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-595-94",
+      "code": "595-94",
+      "article": "203, IV",
+      "manual_header_evidence": [
+        {
+          "page": 372,
+          "article": "Art. 203, IV."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 14,
+          "article": "203, IV"
+        }
+      ],
+      "source_page": 372,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-596-70",
+      "code": "596-70",
+      "article": "203, V",
+      "manual_header_evidence": [
+        {
+          "page": 374,
+          "article": "Art. 203, V."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 14,
+          "article": "203, V"
+        }
+      ],
+      "source_page": 374,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-597-50",
+      "code": "597-50",
+      "article": "204",
+      "manual_header_evidence": [
+        {
+          "page": 376,
+          "article": "Art. 204."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 14,
+          "article": "204"
+        }
+      ],
+      "source_page": 376,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-598-30",
+      "code": "598-30",
+      "article": "205",
+      "manual_header_evidence": [
+        {
+          "page": 378,
+          "article": "Art. 205."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 14,
+          "article": "205"
+        }
+      ],
+      "source_page": 378,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-599-10",
+      "code": "599-10",
+      "article": "206, I",
+      "manual_header_evidence": [
+        {
+          "page": 380,
+          "article": "Art. 206, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 380,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-600-91",
+      "code": "600-91",
+      "article": "206, II",
+      "manual_header_evidence": [
+        {
+          "page": 382,
+          "article": "Art. 206, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 382,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-600-92",
+      "code": "600-92",
+      "article": "206, II",
+      "manual_header_evidence": [
+        {
+          "page": 383,
+          "article": "Art. 206, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 383,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-600-93",
+      "code": "600-93",
+      "article": "206, II",
+      "manual_header_evidence": [
+        {
+          "page": 384,
+          "article": "Art. 206, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 384,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-600-94",
+      "code": "600-94",
+      "article": "206, II",
+      "manual_header_evidence": [
+        {
+          "page": 385,
+          "article": "Art. 206, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 385,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-600-95",
+      "code": "600-95",
+      "article": "206, II",
+      "manual_header_evidence": [
+        {
+          "page": 386,
+          "article": "Art. 206, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 386,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-601-71",
+      "code": "601-71",
+      "article": "206, III",
+      "manual_header_evidence": [
+        {
+          "page": 388,
+          "article": "Art. 206, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 388,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-601-72",
+      "code": "601-72",
+      "article": "206, III",
+      "manual_header_evidence": [
+        {
+          "page": 390,
+          "article": "Art. 206, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 390,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-601-73",
+      "code": "601-73",
+      "article": "206, III",
+      "manual_header_evidence": [
+        {
+          "page": 392,
+          "article": "Art. 206, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 392,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-601-74",
+      "code": "601-74",
+      "article": "206, III",
+      "manual_header_evidence": [
+        {
+          "page": 394,
+          "article": "Art. 206, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 394,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-601-75",
+      "code": "601-75",
+      "article": "206, III",
+      "manual_header_evidence": [
+        {
+          "page": 395,
+          "article": "Art. 206, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 395,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-601-76",
+      "code": "601-76",
+      "article": "206, III",
+      "manual_header_evidence": [
+        {
+          "page": 397,
+          "article": "Art. 206, III."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 14,
+          "article": "206, III"
+        }
+      ],
+      "source_page": 397,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-602-50",
+      "code": "602-50",
+      "article": "206, IV",
+      "manual_header_evidence": [
+        {
+          "page": 399,
+          "article": "Art. 206, IV."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 14,
+          "article": "206, IV"
+        }
+      ],
+      "source_page": 399,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-603-30",
+      "code": "603-30",
+      "article": "206, V",
+      "manual_header_evidence": [
+        {
+          "page": 400,
+          "article": "Art. 206, V."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 14,
+          "article": "206, V"
+        }
+      ],
+      "source_page": 400,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-604-11",
+      "code": "604-11",
+      "article": "207",
+      "manual_header_evidence": [
+        {
+          "page": 401,
+          "article": "Art. 207."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 14,
+          "article": "207"
+        }
+      ],
+      "source_page": 401,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-604-12",
+      "code": "604-12",
+      "article": "207",
+      "manual_header_evidence": [
+        {
+          "page": 404,
+          "article": "Art. 207."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 14,
+          "article": "207"
+        }
+      ],
+      "source_page": 404,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-605-01",
+      "code": "605-01",
+      "article": "208",
+      "manual_header_evidence": [
+        {
+          "page": 408,
+          "article": "Art. 208."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 15,
+          "article": "208"
+        }
+      ],
+      "source_page": 408,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-605-02",
+      "code": "605-02",
+      "article": "208",
+      "manual_header_evidence": [
+        {
+          "page": 410,
+          "article": "Art. 208."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 15,
+          "article": "208"
+        }
+      ],
+      "source_page": 410,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-606-81",
+      "code": "606-81",
+      "article": "209",
+      "manual_header_evidence": [
+        {
+          "page": 413,
+          "article": "Art. 209."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 413,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-606-82",
+      "code": "606-82",
+      "article": "209",
+      "manual_header_evidence": [
+        {
+          "page": 414,
+          "article": "Art. 209."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 414,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-606-85",
+      "code": "606-85",
+      "article": "209 e Art. 1º, §5º da Lei 13.711/2018",
+      "manual_header_evidence": [
+        {
+          "page": 416,
+          "article": "Art. 209 e Art. 1º, §5º da Lei 13.711/2018."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 416,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-773-01",
+      "code": "773-01",
+      "article": "209-A",
+      "manual_header_evidence": [
+        {
+          "page": 417,
+          "article": "Art. 209-A."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 15,
+          "article": "209-A"
+        }
+      ],
+      "source_page": 417,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-773-02",
+      "code": "773-02",
+      "article": "209-A",
+      "manual_header_evidence": [
+        {
+          "page": 418,
+          "article": "Art. 209-A."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 15,
+          "article": "209-A"
+        }
+      ],
+      "source_page": 418,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-607-60",
+      "code": "607-60",
+      "article": "210",
+      "manual_header_evidence": [
+        {
+          "page": 419,
+          "article": "Art. 210."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 15,
+          "article": "210"
+        }
+      ],
+      "source_page": 419,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-608-41",
+      "code": "608-41",
+      "article": "211",
+      "manual_header_evidence": [
+        {
+          "page": 420,
+          "article": "Art. 211."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 15,
+          "article": "211"
+        }
+      ],
+      "source_page": 420,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-608-42",
+      "code": "608-42",
+      "article": "211",
+      "manual_header_evidence": [
+        {
+          "page": 423,
+          "article": "Art. 211."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 423,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-608-43",
+      "code": "608-43",
+      "article": "211",
+      "manual_header_evidence": [
+        {
+          "page": 425,
+          "article": "Art. 211."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 15,
+          "article": "211"
+        }
+      ],
+      "source_page": 425,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-608-44",
+      "code": "608-44",
+      "article": "211",
+      "manual_header_evidence": [
+        {
+          "page": 428,
+          "article": "Art. 211."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 15,
+          "article": "211"
+        }
+      ],
+      "source_page": 428,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-609-20",
+      "code": "609-20",
+      "article": "212",
+      "manual_header_evidence": [
+        {
+          "page": 431,
+          "article": "Art. 212."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 431,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-610-60",
+      "code": "610-60",
+      "article": "213, I",
+      "manual_header_evidence": [
+        {
+          "page": 432,
+          "article": "Art. 213, I."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 15,
+          "article": "213, I"
+        }
+      ],
+      "source_page": 432,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-611-40",
+      "code": "611-40",
+      "article": "213, II",
+      "manual_header_evidence": [
+        {
+          "page": 433,
+          "article": "Art. 213, II."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 15,
+          "article": "213, II"
+        }
+      ],
+      "source_page": 433,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-612-20",
+      "code": "612-20",
+      "article": "214, I",
+      "manual_header_evidence": [
+        {
+          "page": 434,
+          "article": "Art. 214, I."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 15,
+          "article": "214, I"
+        }
+      ],
+      "source_page": 434,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-613-00",
+      "code": "613-00",
+      "article": "214, II",
+      "manual_header_evidence": [
+        {
+          "page": 436,
+          "article": "Art. 214, II."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 15,
+          "article": "214, II"
+        }
+      ],
+      "source_page": 436,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-614-90",
+      "code": "614-90",
+      "article": "214, III",
+      "manual_header_evidence": [
+        {
+          "page": 438,
+          "article": "Art. 214, III."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 15,
+          "article": "214, III"
+        }
+      ],
+      "source_page": 438,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-615-70",
+      "code": "615-70",
+      "article": "214, IV",
+      "manual_header_evidence": [
+        {
+          "page": 440,
+          "article": "Art. 214, IV."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 15,
+          "article": "214, IV"
+        }
+      ],
+      "source_page": 440,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-616-50",
+      "code": "616-50",
+      "article": "214, V",
+      "manual_header_evidence": [
+        {
+          "page": 442,
+          "article": "Art. 214, V."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 15,
+          "article": "214, V"
+        }
+      ],
+      "source_page": 442,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-617-31",
+      "code": "617-31",
+      "article": "215, I, a",
+      "manual_header_evidence": [
+        {
+          "page": 444,
+          "article": "Art. 215, I, a."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 444,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-617-32",
+      "code": "617-32",
+      "article": "215, I, a",
+      "manual_header_evidence": [
+        {
+          "page": 445,
+          "article": "Art. 215, I, a."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 445,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-617-33",
+      "code": "617-33",
+      "article": "215, I, b",
+      "manual_header_evidence": [
+        {
+          "page": 446,
+          "article": "Art. 215, I, b."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 446,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-618-10",
+      "code": "618-10",
+      "article": "215, II",
+      "manual_header_evidence": [
+        {
+          "page": 447,
+          "article": "Art. 215, II."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 16,
+          "article": "215, II"
+        }
+      ],
+      "source_page": 447,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-619-00",
+      "code": "619-00",
+      "article": "216",
+      "manual_header_evidence": [
+        {
+          "page": 448,
+          "article": "Art. 216."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 16,
+          "article": "216"
+        }
+      ],
+      "source_page": 448,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-620-30",
+      "code": "620-30",
+      "article": "217",
+      "manual_header_evidence": [
+        {
+          "page": 449,
+          "article": "Art. 217."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 16,
+          "article": "217"
+        }
+      ],
+      "source_page": 449,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-745-50",
+      "code": "745-50",
+      "article": "218, I",
+      "manual_header_evidence": [
+        {
+          "page": 450,
+          "article": "Art. 218, I"
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 450,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-746-30",
+      "code": "746-30",
+      "article": "218, II",
+      "manual_header_evidence": [
+        {
+          "page": 452,
+          "article": "Art. 218, II."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 16,
+          "article": "218, II"
+        }
+      ],
+      "source_page": 452,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-747-10",
+      "code": "747-10",
+      "article": "218, III",
+      "manual_header_evidence": [
+        {
+          "page": 454,
+          "article": "Art. 218, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 454,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-625-40",
+      "code": "625-40",
+      "article": "219",
+      "manual_header_evidence": [
+        {
+          "page": 456,
+          "article": "Art. 219."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 16,
+          "article": "219"
+        }
+      ],
+      "source_page": 456,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-626-20",
+      "code": "626-20",
+      "article": "220, I",
+      "manual_header_evidence": [
+        {
+          "page": 457,
+          "article": "Art. 220, I."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 16,
+          "article": "220, I"
+        }
+      ],
+      "source_page": 457,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-627-00",
+      "code": "627-00",
+      "article": "220, II",
+      "manual_header_evidence": [
+        {
+          "page": 459,
+          "article": "Art. 220, II."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 16,
+          "article": "220, II"
+        }
+      ],
+      "source_page": 459,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-628-91",
+      "code": "628-91",
+      "article": "220, III",
+      "manual_header_evidence": [
+        {
+          "page": 462,
+          "article": "Art. 220, III."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 16,
+          "article": "220, III"
+        }
+      ],
+      "source_page": 462,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-628-92",
+      "code": "628-92",
+      "article": "220, III",
+      "manual_header_evidence": [
+        {
+          "page": 464,
+          "article": "Art. 220, III."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 16,
+          "article": "220, III"
+        }
+      ],
+      "source_page": 464,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-629-70",
+      "code": "629-70",
+      "article": "220, IV",
+      "manual_header_evidence": [
+        {
+          "page": 466,
+          "article": "Art. 220, IV."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 466,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-630-00",
+      "code": "630-00",
+      "article": "220, V",
+      "manual_header_evidence": [
+        {
+          "page": 468,
+          "article": "Art. 220, V."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 468,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-631-90",
+      "code": "631-90",
+      "article": "220, VI",
+      "manual_header_evidence": [
+        {
+          "page": 470,
+          "article": "Art. 220, VI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 470,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-632-70",
+      "code": "632-70",
+      "article": "220, VII",
+      "manual_header_evidence": [
+        {
+          "page": 472,
+          "article": "Art. 220, VII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 16,
+          "article": "220, VII"
+        }
+      ],
+      "source_page": 472,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-633-50",
+      "code": "633-50",
+      "article": "220, VIII",
+      "manual_header_evidence": [
+        {
+          "page": 474,
+          "article": "Art. 220, VIII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 474,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-634-30",
+      "code": "634-30",
+      "article": "220, IX",
+      "manual_header_evidence": [
+        {
+          "page": 476,
+          "article": "Art. 220, IX."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 476,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-635-10",
+      "code": "635-10",
+      "article": "220, X",
+      "manual_header_evidence": [
+        {
+          "page": 478,
+          "article": "Art. 220, X."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 16,
+          "article": "220, X"
+        }
+      ],
+      "source_page": 478,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-636-00",
+      "code": "636-00",
+      "article": "220, XI",
+      "manual_header_evidence": [
+        {
+          "page": 480,
+          "article": "Art. 220, XI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 480,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-637-80",
+      "code": "637-80",
+      "article": "220, XII",
+      "manual_header_evidence": [
+        {
+          "page": 482,
+          "article": "Art. 220, XII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 16,
+          "article": "220, XII"
+        }
+      ],
+      "source_page": 482,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-638-60",
+      "code": "638-60",
+      "article": "220, XIII",
+      "manual_header_evidence": [
+        {
+          "page": 484,
+          "article": "Art. 220, XIII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 16,
+          "article": "220, XIII"
+        }
+      ],
+      "source_page": 484,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-639-41",
+      "code": "639-41",
+      "article": "220, XIV",
+      "manual_header_evidence": [
+        {
+          "page": 485,
+          "article": "Art. 220, XIV."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 485,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-639-42",
+      "code": "639-42",
+      "article": "220, XIV",
+      "manual_header_evidence": [
+        {
+          "page": 487,
+          "article": "Art. 220, XIV."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 487,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-639-43",
+      "code": "639-43",
+      "article": "220, XIV",
+      "manual_header_evidence": [
+        {
+          "page": 489,
+          "article": "Art. 220, XIV."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 17,
+          "article": "220, XIV"
+        }
+      ],
+      "source_page": 489,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-639-44",
+      "code": "639-44",
+      "article": "220, XIV",
+      "manual_header_evidence": [
+        {
+          "page": 491,
+          "article": "Art. 220, XIV."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 491,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-641-60",
+      "code": "641-60",
+      "article": "221, Parágrafo único",
+      "manual_header_evidence": [
+        {
+          "page": 495,
+          "article": "Art. 221, Parágrafo único."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 495,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-642-40",
+      "code": "642-40",
+      "article": "222",
+      "manual_header_evidence": [
+        {
+          "page": 497,
+          "article": "Art. 222."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 17,
+          "article": "222"
+        }
+      ],
+      "source_page": 497,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-643-21",
+      "code": "643-21",
+      "article": "223",
+      "manual_header_evidence": [
+        {
+          "page": 499,
+          "article": "Art. 223."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 499,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-643-22",
+      "code": "643-22",
+      "article": "223",
+      "manual_header_evidence": [
+        {
+          "page": 501,
+          "article": "Art. 223."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 501,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-644-00",
+      "code": "644-00",
+      "article": "224",
+      "manual_header_evidence": [
+        {
+          "page": 503,
+          "article": "Art. 224."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 503,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-645-91",
+      "code": "645-91",
+      "article": "225, I",
+      "manual_header_evidence": [
+        {
+          "page": 505,
+          "article": "Art. 225, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 505,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-645-92",
+      "code": "645-92",
+      "article": "225, I",
+      "manual_header_evidence": [
+        {
+          "page": 507,
+          "article": "Art. 225, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 507,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-646-70",
+      "code": "646-70",
+      "article": "225, II",
+      "manual_header_evidence": [
+        {
+          "page": 509,
+          "article": "Art. 225, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 509,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-647-50",
+      "code": "647-50",
+      "article": "226",
+      "manual_header_evidence": [
+        {
+          "page": 511,
+          "article": "Art. 226."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 17,
+          "article": "226"
+        }
+      ],
+      "source_page": 511,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-648-30",
+      "code": "648-30",
+      "article": "227, I",
+      "manual_header_evidence": [
+        {
+          "page": 512,
+          "article": "Art. 227, I."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 17,
+          "article": "227, I"
+        }
+      ],
+      "source_page": 512,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-649-10",
+      "code": "649-10",
+      "article": "227, II",
+      "manual_header_evidence": [
+        {
+          "page": 514,
+          "article": "Art. 227, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 514,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-650-50",
+      "code": "650-50",
+      "article": "227, III",
+      "manual_header_evidence": [
+        {
+          "page": 516,
+          "article": "Art. 227, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 516,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-651-30",
+      "code": "651-30",
+      "article": "227, IV",
+      "manual_header_evidence": [
+        {
+          "page": 518,
+          "article": "Art. 227, IV."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 518,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-652-10",
+      "code": "652-10",
+      "article": "227, V",
+      "manual_header_evidence": [
+        {
+          "page": 520,
+          "article": "Art. 227, V."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 17,
+          "article": "227, V"
+        }
+      ],
+      "source_page": 520,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-653-00",
+      "code": "653-00",
+      "article": "228",
+      "manual_header_evidence": [
+        {
+          "page": 522,
+          "article": "Art. 228."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 17,
+          "article": "228"
+        }
+      ],
+      "source_page": 522,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-654-80",
+      "code": "654-80",
+      "article": "229",
+      "manual_header_evidence": [
+        {
+          "page": 523,
+          "article": "Art. 229."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 17,
+          "article": "229"
+        }
+      ],
+      "source_page": 523,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-655-61",
+      "code": "655-61",
+      "article": "230, I",
+      "manual_header_evidence": [
+        {
+          "page": 524,
+          "article": "Art. 230, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 524,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-655-62",
+      "code": "655-62",
+      "article": "230, I",
+      "manual_header_evidence": [
+        {
+          "page": 526,
+          "article": "Art. 230, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 526,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-655-63",
+      "code": "655-63",
+      "article": "230, I",
+      "manual_header_evidence": [
+        {
+          "page": 528,
+          "article": "Art. 230, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 528,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-655-64",
+      "code": "655-64",
+      "article": "230, I",
+      "manual_header_evidence": [
+        {
+          "page": 530,
+          "article": "Art. 230, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 530,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-655-65",
+      "code": "655-65",
+      "article": "230, I",
+      "manual_header_evidence": [
+        {
+          "page": 532,
+          "article": "Art. 230, I."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 17,
+          "article": "230, I"
+        }
+      ],
+      "source_page": 532,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-656-40",
+      "code": "656-40",
+      "article": "230, II",
+      "manual_header_evidence": [
+        {
+          "page": 534,
+          "article": "Art. 230, II."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 18,
+          "article": "230, II"
+        }
+      ],
+      "source_page": 534,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-657-20",
+      "code": "657-20",
+      "article": "230, III",
+      "manual_header_evidence": [
+        {
+          "page": 535,
+          "article": "Art. 230, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 535,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-658-00",
+      "code": "658-00",
+      "article": "230, IV",
+      "manual_header_evidence": [
+        {
+          "page": 536,
+          "article": "Art. 230, IV."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": null,
+      "source_page_matches_header": null,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-660-20",
+      "code": "660-20",
+      "article": "230, VI",
+      "manual_header_evidence": [
+        {
+          "page": 545,
+          "article": "Art. 230, VI."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 18,
+          "article": "230, VI"
+        }
+      ],
+      "source_page": 545,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-661-01",
+      "code": "661-01",
+      "article": "230, VII",
+      "manual_header_evidence": [
+        {
+          "page": 547,
+          "article": "Art. 230, VII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 18,
+          "article": "230, VII"
+        }
+      ],
+      "source_page": 547,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-661-02",
+      "code": "661-02",
+      "article": "230, VII",
+      "manual_header_evidence": [
+        {
+          "page": 549,
+          "article": "Art. 230, VII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 549,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-662-90",
+      "code": "662-90",
+      "article": "230, VIII",
+      "manual_header_evidence": [
+        {
+          "page": 553,
+          "article": "Art. 230, VIII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 553,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-663-71",
+      "code": "663-71",
+      "article": "230, IX",
+      "manual_header_evidence": [
+        {
+          "page": 555,
+          "article": "Art. 230, IX."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 555,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-663-72",
+      "code": "663-72",
+      "article": "230, IX",
+      "manual_header_evidence": [
+        {
+          "page": 560,
+          "article": "Art. 230, IX."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 560,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-664-50",
+      "code": "664-50",
+      "article": "230, X",
+      "manual_header_evidence": [
+        {
+          "page": 564,
+          "article": "Art. 230, X."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 18,
+          "article": "230, X"
+        }
+      ],
+      "source_page": 564,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-665-31",
+      "code": "665-31",
+      "article": "230, XI",
+      "manual_header_evidence": [
+        {
+          "page": 571,
+          "article": "Art. 230, XI."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 18,
+          "article": "230, XI"
+        }
+      ],
+      "source_page": 571,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-665-32",
+      "code": "665-32",
+      "article": "230, XI",
+      "manual_header_evidence": [
+        {
+          "page": 573,
+          "article": "Art. 230, XI."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 18,
+          "article": "230, XI"
+        }
+      ],
+      "source_page": 573,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-666-10",
+      "code": "666-10",
+      "article": "230, XII",
+      "manual_header_evidence": [
+        {
+          "page": 575,
+          "article": "Art. 230, XII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 575,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-667-00",
+      "code": "667-00",
+      "article": "230, XIII",
+      "manual_header_evidence": [
+        {
+          "page": 581,
+          "article": "Art. 230, XIII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 18,
+          "article": "230, XIII"
+        }
+      ],
+      "source_page": 581,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-668-80",
+      "code": "668-80",
+      "article": "230, XIV",
+      "manual_header_evidence": [
+        {
+          "page": 584,
+          "article": "Art. 230, XIV."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 18,
+          "article": "230, XIV"
+        }
+      ],
+      "source_page": 584,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-669-61",
+      "code": "669-61",
+      "article": "230, XV",
+      "manual_header_evidence": [
+        {
+          "page": 587,
+          "article": "Art. 230, XV."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 18,
+          "article": "230, XV"
+        }
+      ],
+      "source_page": 587,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-669-62",
+      "code": "669-62",
+      "article": "230, XV",
+      "manual_header_evidence": [
+        {
+          "page": 590,
+          "article": "Art. 230, XV."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 18,
+          "article": "230, XV"
+        }
+      ],
+      "source_page": 590,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-670-00",
+      "code": "670-00",
+      "article": "230, XVI",
+      "manual_header_evidence": [
+        {
+          "page": 593,
+          "article": "Art. 230, XVI."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 18,
+          "article": "230, XVI"
+        }
+      ],
+      "source_page": 593,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-671-80",
+      "code": "671-80",
+      "article": "230, XVII",
+      "manual_header_evidence": [
+        {
+          "page": 597,
+          "article": "Art. 230, XVII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 597,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-672-61",
+      "code": "672-61",
+      "article": "230, XVIII",
+      "manual_header_evidence": [
+        {
+          "page": 599,
+          "article": "Art. 230, XVIII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 18,
+          "article": "230, XVIII"
+        }
+      ],
+      "source_page": 599,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-672-62",
+      "code": "672-62",
+      "article": "230, XVIII",
+      "manual_header_evidence": [
+        {
+          "page": 602,
+          "article": "Art. 230, XVIII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 602,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-672-63",
+      "code": "672-63",
+      "article": "230, XVIII",
+      "manual_header_evidence": [
+        {
+          "page": 603,
+          "article": "Art. 230, XVIII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 18,
+          "article": "230, XVIII"
+        }
+      ],
+      "source_page": 603,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-673-40",
+      "code": "673-40",
+      "article": "230, XIX",
+      "manual_header_evidence": [
+        {
+          "page": 604,
+          "article": "Art. 230, XIX."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 604,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-674-20",
+      "code": "674-20",
+      "article": "230, XX",
+      "manual_header_evidence": [
+        {
+          "page": 605,
+          "article": "Art. 230, XX."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 19,
+          "article": "230, XX"
+        }
+      ],
+      "source_page": 605,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-675-00",
+      "code": "675-00",
+      "article": "230, XXI",
+      "manual_header_evidence": [
+        {
+          "page": 607,
+          "article": "Art. 230, XXI."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 19,
+          "article": "230, XXI"
+        }
+      ],
+      "source_page": 607,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-676-90",
+      "code": "676-90",
+      "article": "230, XXII",
+      "manual_header_evidence": [
+        {
+          "page": 613,
+          "article": "Art. 230, XXII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 19,
+          "article": "230, XXII"
+        }
+      ],
+      "source_page": 613,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-756-00",
+      "code": "756-00",
+      "article": "230, XXIII",
+      "manual_header_evidence": [
+        {
+          "page": 614,
+          "article": "Art. 230, XXIII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 19,
+          "article": "230, XXIII"
+        }
+      ],
+      "source_page": 614,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-677-70",
+      "code": "677-70",
+      "article": "231, I",
+      "manual_header_evidence": [
+        {
+          "page": 619,
+          "article": "Art. 231, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 619,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-678-51",
+      "code": "678-51",
+      "article": "231, II, a",
+      "manual_header_evidence": [
+        {
+          "page": 620,
+          "article": "Art. 231, II, a."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 620,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-678-52",
+      "code": "678-52",
+      "article": "231, II, a",
+      "manual_header_evidence": [
+        {
+          "page": 621,
+          "article": "Art. 231, II, a."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 621,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-678-53",
+      "code": "678-53",
+      "article": "231, II, a",
+      "manual_header_evidence": [
+        {
+          "page": 622,
+          "article": "Art. 231, II, a."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 622,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-679-30",
+      "code": "679-30",
+      "article": "231, II, b",
+      "manual_header_evidence": [
+        {
+          "page": 623,
+          "article": "Art. 231, II, b."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 19,
+          "article": "231, II, b"
+        }
+      ],
+      "source_page": 623,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-680-70",
+      "code": "680-70",
+      "article": "231, II, c",
+      "manual_header_evidence": [
+        {
+          "page": 624,
+          "article": "Art. 231, II, c."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 19,
+          "article": "231, II, c"
+        }
+      ],
+      "source_page": 624,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-681-50",
+      "code": "681-50",
+      "article": "231, III",
+      "manual_header_evidence": [
+        {
+          "page": 625,
+          "article": "Art. 231, III."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 19,
+          "article": "231, III"
+        }
+      ],
+      "source_page": 625,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-682-31",
+      "code": "682-31",
+      "article": "231, IV",
+      "manual_header_evidence": [
+        {
+          "page": 627,
+          "article": "Art. 231, IV."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 19,
+          "article": "231, IV"
+        }
+      ],
+      "source_page": 627,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-682-32",
+      "code": "682-32",
+      "article": "231, IV",
+      "manual_header_evidence": [
+        {
+          "page": 630,
+          "article": "Art. 231, IV."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 19,
+          "article": "231, IV"
+        }
+      ],
+      "source_page": 630,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-683-11",
+      "code": "683-11",
+      "article": "231, V",
+      "manual_header_evidence": [
+        {
+          "page": 632,
+          "article": "Art. 231, V."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 632,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-683-12",
+      "code": "683-12",
+      "article": "231, V",
+      "manual_header_evidence": [
+        {
+          "page": 638,
+          "article": "Art. 231, V."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 638,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-683-13",
+      "code": "683-13",
+      "article": "231, V",
+      "manual_header_evidence": [
+        {
+          "page": 642,
+          "article": "Art. 231, V."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 642,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-684-01",
+      "code": "684-01",
+      "article": "231, VI",
+      "manual_header_evidence": [
+        {
+          "page": 646,
+          "article": "Art. 231, VI."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 19,
+          "article": "231, VI"
+        }
+      ],
+      "source_page": 646,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-684-02",
+      "code": "684-02",
+      "article": "231, VI",
+      "manual_header_evidence": [
+        {
+          "page": 648,
+          "article": "Art. 231, VI."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 19,
+          "article": "231, VI"
+        }
+      ],
+      "source_page": 648,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-685-80",
+      "code": "685-80",
+      "article": "231, VII",
+      "manual_header_evidence": [
+        {
+          "page": 650,
+          "article": "Art. 231, VII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 650,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-686-61",
+      "code": "686-61",
+      "article": "231, VIII",
+      "manual_header_evidence": [
+        {
+          "page": 651,
+          "article": "Art. 231, VIII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 19,
+          "article": "231, VIII"
+        }
+      ],
+      "source_page": 651,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-686-62",
+      "code": "686-62",
+      "article": "231, VIII",
+      "manual_header_evidence": [
+        {
+          "page": 653,
+          "article": "Art. 231, VIII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 19,
+          "article": "231, VIII"
+        }
+      ],
+      "source_page": 653,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-687-41",
+      "code": "687-41",
+      "article": "231, IX",
+      "manual_header_evidence": [
+        {
+          "page": 655,
+          "article": "Art. 231, IX."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 655,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-687-42",
+      "code": "687-42",
+      "article": "231, IX",
+      "manual_header_evidence": [
+        {
+          "page": 656,
+          "article": "Art. 231, IX."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 656,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-688-20",
+      "code": "688-20",
+      "article": "231, X",
+      "manual_header_evidence": [
+        {
+          "page": 657,
+          "article": "Art. 231, X"
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 657,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-689-00",
+      "code": "689-00",
+      "article": "231, X",
+      "manual_header_evidence": [
+        {
+          "page": 660,
+          "article": "Art. 231, X."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 660,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-690-40",
+      "code": "690-40",
+      "article": "231, X",
+      "manual_header_evidence": [
+        {
+          "page": 663,
+          "article": "Art. 231, X."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 663,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-691-20",
+      "code": "691-20",
+      "article": "232",
+      "manual_header_evidence": [
+        {
+          "page": 666,
+          "article": "Art. 232."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 666,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-692-01",
+      "code": "692-01",
+      "article": "233 c/c 123, I",
+      "manual_header_evidence": [
+        {
+          "page": 670,
+          "article": "Art. 233 c/c 123, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 670,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-692-02",
+      "code": "692-02",
+      "article": "233 c/c 123, II",
+      "manual_header_evidence": [
+        {
+          "page": 672,
+          "article": "Art. 233 c/c 123, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 672,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-692-03",
+      "code": "692-03",
+      "article": "233 c/c 123, III",
+      "manual_header_evidence": [
+        {
+          "page": 674,
+          "article": "Art. 233 c/c 123, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 674,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-692-04",
+      "code": "692-04",
+      "article": "233 c/c 123, IV",
+      "manual_header_evidence": [
+        {
+          "page": 676,
+          "article": "Art. 233 c/c 123, IV."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 676,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-693-91",
+      "code": "693-91",
+      "article": "234",
+      "manual_header_evidence": [
+        {
+          "page": 678,
+          "article": "Art. 234."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 678,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-693-92",
+      "code": "693-92",
+      "article": "234",
+      "manual_header_evidence": [
+        {
+          "page": 679,
+          "article": "Art. 234."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 679,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-694-71",
+      "code": "694-71",
+      "article": "235",
+      "manual_header_evidence": [
+        {
+          "page": 680,
+          "article": "Art. 235."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 680,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-694-72",
+      "code": "694-72",
+      "article": "235",
+      "manual_header_evidence": [
+        {
+          "page": 681,
+          "article": "Art. 235."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 681,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-694-73",
+      "code": "694-73",
+      "article": "235",
+      "manual_header_evidence": [
+        {
+          "page": 682,
+          "article": "Art. 235."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 2,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false,
+      "annex_ocr_evidence": {
+        "source_file": "Resolucao10032023.pdf",
+        "page": 2,
+        "article": "Art. 235.",
+        "requires_visual_review": true
+      }
+    },
+    {
+      "stable_key": "mbft-695-50",
+      "code": "695-50",
+      "article": "236",
+      "manual_header_evidence": [
+        {
+          "page": 687,
+          "article": "Art. 236."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 687,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-696-30",
+      "code": "696-30",
+      "article": "237",
+      "manual_header_evidence": [
+        {
+          "page": 688,
+          "article": "Art. 237."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 688,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-697-10",
+      "code": "697-10",
+      "article": "238",
+      "manual_header_evidence": [
+        {
+          "page": 694,
+          "article": "Art. 238."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 694,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-698-00",
+      "code": "698-00",
+      "article": "239",
+      "manual_header_evidence": [
+        {
+          "page": 696,
+          "article": "Art. 239."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 20,
+          "article": "239"
+        }
+      ],
+      "source_page": 696,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-699-80",
+      "code": "699-80",
+      "article": "240",
+      "manual_header_evidence": [
+        {
+          "page": 697,
+          "article": "Art. 240."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 20,
+          "article": "240"
+        }
+      ],
+      "source_page": 697,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-700-51",
+      "code": "700-51",
+      "article": "241",
+      "manual_header_evidence": [
+        {
+          "page": 699,
+          "article": "Art. 241."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 699,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-700-52",
+      "code": "700-52",
+      "article": "241",
+      "manual_header_evidence": [
+        {
+          "page": 700,
+          "article": "Art. 241."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 700,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-701-31",
+      "code": "701-31",
+      "article": "242",
+      "manual_header_evidence": [
+        {
+          "page": 701,
+          "article": "Art. 242."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 701,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-701-32",
+      "code": "701-32",
+      "article": "242",
+      "manual_header_evidence": [
+        {
+          "page": 702,
+          "article": "Art. 242."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 702,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-702-10",
+      "code": "702-10",
+      "article": "243",
+      "manual_header_evidence": [
+        {
+          "page": 703,
+          "article": "Art. 243."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 20,
+          "article": "243"
+        }
+      ],
+      "source_page": 703,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-712-92",
+      "code": "712-92",
+      "article": "244, § 2º",
+      "manual_header_evidence": [
+        {
+          "page": 705,
+          "article": "Art. 244, § 2º."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 705,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-712-93",
+      "code": "712-93",
+      "article": "244, § 2º",
+      "manual_header_evidence": [
+        {
+          "page": 706,
+          "article": "Art. 244, § 2º."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 706,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-703-01",
+      "code": "703-01",
+      "article": "244, I",
+      "manual_header_evidence": [
+        {
+          "page": 708,
+          "article": "Art. 244, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 708,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-703-03",
+      "code": "703-03",
+      "article": "244, I",
+      "manual_header_evidence": [
+        {
+          "page": 711,
+          "article": "Art. 244, I."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 20,
+          "article": "244, I"
+        }
+      ],
+      "source_page": 711,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-704-81",
+      "code": "704-81",
+      "article": "244, II",
+      "manual_header_evidence": [
+        {
+          "page": 714,
+          "article": "Art. 244, II."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 21,
+          "article": "244, II"
+        }
+      ],
+      "source_page": 714,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-704-83",
+      "code": "704-83",
+      "article": "244, II",
+      "manual_header_evidence": [
+        {
+          "page": 717,
+          "article": "Art. 244, II."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 21,
+          "article": "244, II"
+        }
+      ],
+      "source_page": 717,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-705-61",
+      "code": "705-61",
+      "article": "244, III",
+      "manual_header_evidence": [
+        {
+          "page": 718,
+          "article": "Art. 244, III."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 21,
+          "article": "244, III"
+        }
+      ],
+      "source_page": 718,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-707-21",
+      "code": "707-21",
+      "article": "244, V",
+      "manual_header_evidence": [
+        {
+          "page": 719,
+          "article": "Art. 244, V."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 719,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-707-22",
+      "code": "707-22",
+      "article": "244, V",
+      "manual_header_evidence": [
+        {
+          "page": 720,
+          "article": "Art. 244, V."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 21,
+          "article": "244, V"
+        }
+      ],
+      "source_page": null,
+      "source_page_matches_header": null,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-708-00",
+      "code": "708-00",
+      "article": "244, VI",
+      "manual_header_evidence": [
+        {
+          "page": 721,
+          "article": "Art. 244, VI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 721,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-709-91",
+      "code": "709-91",
+      "article": "244, VII",
+      "manual_header_evidence": [
+        {
+          "page": 723,
+          "article": "Art. 244, VII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 21,
+          "article": "244, VII"
+        }
+      ],
+      "source_page": 723,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-710-21",
+      "code": "710-21",
+      "article": "244, VIII",
+      "manual_header_evidence": [
+        {
+          "page": 724,
+          "article": "Art. 244, VIII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 21,
+          "article": "244, VIII"
+        }
+      ],
+      "source_page": 724,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-710-23",
+      "code": "710-23",
+      "article": "244, VIII",
+      "manual_header_evidence": [
+        {
+          "page": 726,
+          "article": "Art. 244, VIII."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 21,
+          "article": "244, VIII"
+        }
+      ],
+      "source_page": 726,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-755-21",
+      "code": "755-21",
+      "article": "244, IX",
+      "manual_header_evidence": [
+        {
+          "page": 728,
+          "article": "Art. 244, IX."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 21,
+          "article": "244, IX"
+        }
+      ],
+      "source_page": 728,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-755-22",
+      "code": "755-22",
+      "article": "244, IX",
+      "manual_header_evidence": [
+        {
+          "page": 731,
+          "article": "Art. 244, IX."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 21,
+          "article": "244, IX"
+        }
+      ],
+      "source_page": 731,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-768-41",
+      "code": "768-41",
+      "article": "244, X",
+      "manual_header_evidence": [
+        {
+          "page": 733,
+          "article": "Art. 244, X."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 21,
+          "article": "244, X"
+        }
+      ],
+      "source_page": 733,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-768-42",
+      "code": "768-42",
+      "article": "244, X",
+      "manual_header_evidence": [
+        {
+          "page": 736,
+          "article": "Art. 244, X."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 21,
+          "article": "244, X"
+        }
+      ],
+      "source_page": 736,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-771-41",
+      "code": "771-41",
+      "article": "244, XI",
+      "manual_header_evidence": [
+        {
+          "page": 738,
+          "article": "Art. 244, XI."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 21,
+          "article": "244, XI"
+        }
+      ],
+      "source_page": 738,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-771-42",
+      "code": "771-42",
+      "article": "244, XI",
+      "manual_header_evidence": [
+        {
+          "page": 741,
+          "article": "Art. 244, XI."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 21,
+          "article": "244, XI"
+        }
+      ],
+      "source_page": 741,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-714-50",
+      "code": "714-50",
+      "article": "245",
+      "manual_header_evidence": [
+        {
+          "page": 743,
+          "article": "Art. 245."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 22,
+          "article": "245"
+        }
+      ],
+      "source_page": 743,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-715-31",
+      "code": "715-31",
+      "article": "246",
+      "manual_header_evidence": [
+        {
+          "page": 744,
+          "article": "Art. 246."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 22,
+          "article": "246"
+        }
+      ],
+      "source_page": 744,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-715-32",
+      "code": "715-32",
+      "article": "246",
+      "manual_header_evidence": [
+        {
+          "page": 746,
+          "article": "Art. 246."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 746,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-716-11",
+      "code": "716-11",
+      "article": "246",
+      "manual_header_evidence": [
+        {
+          "page": 748,
+          "article": "Art. 246."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 22,
+          "article": "246"
+        }
+      ],
+      "source_page": 748,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-716-12",
+      "code": "716-12",
+      "article": "246",
+      "manual_header_evidence": [
+        {
+          "page": 750,
+          "article": "Art. 246."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 750,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-717-01",
+      "code": "717-01",
+      "article": "246",
+      "manual_header_evidence": [
+        {
+          "page": 752,
+          "article": "Art. 246."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 22,
+          "article": "246"
+        }
+      ],
+      "source_page": 752,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-717-02",
+      "code": "717-02",
+      "article": "246",
+      "manual_header_evidence": [
+        {
+          "page": 754,
+          "article": "Art. 246."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 754,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-718-81",
+      "code": "718-81",
+      "article": "246",
+      "manual_header_evidence": [
+        {
+          "page": 756,
+          "article": "Art. 246."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 22,
+          "article": "246"
+        }
+      ],
+      "source_page": 756,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-718-82",
+      "code": "718-82",
+      "article": "246",
+      "manual_header_evidence": [
+        {
+          "page": 758,
+          "article": "Art. 246."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 758,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-719-61",
+      "code": "719-61",
+      "article": "246",
+      "manual_header_evidence": [
+        {
+          "page": 760,
+          "article": "Art. 246."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 22,
+          "article": "246"
+        }
+      ],
+      "source_page": 760,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-719-62",
+      "code": "719-62",
+      "article": "246",
+      "manual_header_evidence": [
+        {
+          "page": 762,
+          "article": "Art. 246."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 762,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-720-01",
+      "code": "720-01",
+      "article": "247",
+      "manual_header_evidence": [
+        {
+          "page": 764,
+          "article": "Art. 247."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 22,
+          "article": "247"
+        }
+      ],
+      "source_page": 764,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-720-02",
+      "code": "720-02",
+      "article": "247",
+      "manual_header_evidence": [
+        {
+          "page": 766,
+          "article": "Art. 247."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 766,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-722-61",
+      "code": "722-61",
+      "article": "249",
+      "manual_header_evidence": [
+        {
+          "page": 770,
+          "article": "Art. 249."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 770,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-722-62",
+      "code": "722-62",
+      "article": "249",
+      "manual_header_evidence": [
+        {
+          "page": 772,
+          "article": "Art. 249."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 772,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-723-40",
+      "code": "723-40",
+      "article": "250, I, a",
+      "manual_header_evidence": [
+        {
+          "page": 774,
+          "article": "Art. 250, I, a."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 774,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-724-21",
+      "code": "724-21",
+      "article": "250, I, b",
+      "manual_header_evidence": [
+        {
+          "page": 776,
+          "article": "Art. 250, I, b."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 776,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-724-22",
+      "code": "724-22",
+      "article": "250, I, b",
+      "manual_header_evidence": [
+        {
+          "page": 778,
+          "article": "Art. 250, I, b."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 22,
+          "article": "250, I, b"
+        }
+      ],
+      "source_page": 778,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-725-00",
+      "code": "725-00",
+      "article": "250, I, c",
+      "manual_header_evidence": [
+        {
+          "page": 780,
+          "article": "Art. 250, I, c."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 22,
+          "article": "250, I, c"
+        }
+      ],
+      "source_page": 780,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-726-90",
+      "code": "726-90",
+      "article": "250, I, d",
+      "manual_header_evidence": [
+        {
+          "page": 781,
+          "article": "Art. 250, I, d."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 22,
+          "article": "250, I, d"
+        }
+      ],
+      "source_page": 781,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-772-20",
+      "code": "772-20",
+      "article": "250, I, e",
+      "manual_header_evidence": [
+        {
+          "page": 782,
+          "article": "Art. 250, I, e."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 22,
+          "article": "250, I, e"
+        }
+      ],
+      "source_page": 782,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-728-50",
+      "code": "728-50",
+      "article": "250, III",
+      "manual_header_evidence": [
+        {
+          "page": 784,
+          "article": "Art. 250, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 784,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-775-71",
+      "code": "775-71",
+      "article": "250, IV",
+      "manual_header_evidence": [
+        {
+          "page": 785,
+          "article": "Art. 250, IV."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 23,
+          "article": "250, IV"
+        }
+      ],
+      "source_page": 785,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-775-72",
+      "code": "775-72",
+      "article": "250, IV",
+      "manual_header_evidence": [
+        {
+          "page": 786,
+          "article": "Art. 250, IV."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 786,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-729-30",
+      "code": "729-30",
+      "article": "251, I",
+      "manual_header_evidence": [
+        {
+          "page": 788,
+          "article": "Art. 251, I."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 23,
+          "article": "251, I"
+        }
+      ],
+      "source_page": 788,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-730-70",
+      "code": "730-70",
+      "article": "251, II",
+      "manual_header_evidence": [
+        {
+          "page": 790,
+          "article": "Art. 251, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 790,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-763-31",
+      "code": "763-31",
+      "article": "252, parágrafo único",
+      "manual_header_evidence": [
+        {
+          "page": 792,
+          "article": "Art. 252, parágrafo único."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 792,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-763-32",
+      "code": "763-32",
+      "article": "252, parágrafo único",
+      "manual_header_evidence": [
+        {
+          "page": 794,
+          "article": "Art. 252, parágrafo único."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 794,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-731-50",
+      "code": "731-50",
+      "article": "252, I",
+      "manual_header_evidence": [
+        {
+          "page": 796,
+          "article": "Art. 252, I."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 796,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-732-31",
+      "code": "732-31",
+      "article": "252, II",
+      "manual_header_evidence": [
+        {
+          "page": 798,
+          "article": "Art. 252, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 798,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-732-32",
+      "code": "732-32",
+      "article": "252, II",
+      "manual_header_evidence": [
+        {
+          "page": 799,
+          "article": "Art. 252, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 799,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-732-33",
+      "code": "732-33",
+      "article": "252, II",
+      "manual_header_evidence": [
+        {
+          "page": 800,
+          "article": "Art. 252, II."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 800,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-733-10",
+      "code": "733-10",
+      "article": "252, III",
+      "manual_header_evidence": [
+        {
+          "page": 801,
+          "article": "Art. 252, III."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 801,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-734-00",
+      "code": "734-00",
+      "article": "252, IV",
+      "manual_header_evidence": [
+        {
+          "page": 803,
+          "article": "Art. 252, IV."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 803,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-735-80",
+      "code": "735-80",
+      "article": "252, V",
+      "manual_header_evidence": [
+        {
+          "page": 804,
+          "article": "Art. 252, V."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 23,
+          "article": "252, V"
+        }
+      ],
+      "source_page": 804,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-736-61",
+      "code": "736-61",
+      "article": "252, VI",
+      "manual_header_evidence": [
+        {
+          "page": 806,
+          "article": "Art. 252, VI."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 23,
+          "article": "252, VI"
+        }
+      ],
+      "source_page": 806,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-736-62",
+      "code": "736-62",
+      "article": "252, VI",
+      "manual_header_evidence": [
+        {
+          "page": 807,
+          "article": "Art. 252, VI."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 807,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-759-50",
+      "code": "759-50",
+      "article": "252, VII",
+      "manual_header_evidence": [
+        {
+          "page": 808,
+          "article": "Art. 252, VII."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 808,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-737-40",
+      "code": "737-40",
+      "article": "253",
+      "manual_header_evidence": [
+        {
+          "page": 809,
+          "article": "Art. 253."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 23,
+          "article": "253"
+        }
+      ],
+      "source_page": 809,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-761-71",
+      "code": "761-71",
+      "article": "253-A",
+      "manual_header_evidence": [
+        {
+          "page": 811,
+          "article": "Art. 253-A."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 811,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-761-72",
+      "code": "761-72",
+      "article": "253-A",
+      "manual_header_evidence": [
+        {
+          "page": 814,
+          "article": "Art. 253-A."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 814,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-761-73",
+      "code": "761-73",
+      "article": "253-A",
+      "manual_header_evidence": [
+        {
+          "page": 817,
+          "article": "Art. 253-A."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 817,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-760-90",
+      "code": "760-90",
+      "article": "253-A, §1º",
+      "manual_header_evidence": [
+        {
+          "page": 820,
+          "article": "Art. 253-A, §1º."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 820,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-776-50",
+      "code": "776-50",
+      "article": "278, § único c/c Art. 210",
+      "manual_header_evidence": [
+        {
+          "page": 822,
+          "article": "Art. 278, § único c/c Art. 210."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 822,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-754-41",
+      "code": "754-41",
+      "article": "330, § 5º e § 6º",
+      "manual_header_evidence": [
+        {
+          "page": 823,
+          "article": "Art. 330, § 5º e § 6º."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 823,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-754-42",
+      "code": "754-42",
+      "article": "330, § 5º e § 6º",
+      "manual_header_evidence": [
+        {
+          "page": 825,
+          "article": "Art. 330, § 5º e § 6º."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 825,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-754-43",
+      "code": "754-43",
+      "article": "330, § 5º e § 6º",
+      "manual_header_evidence": [
+        {
+          "page": 827,
+          "article": "Art. 330, § 5º e § 6º."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 827,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-754-44",
+      "code": "754-44",
+      "article": "330, § 5º e § 6º",
+      "manual_header_evidence": [
+        {
+          "page": 829,
+          "article": "Art. 330, § 5º e § 6º."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 829,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-516-91",
+      "code": "516-91",
+      "article": "165",
+      "manual_header_evidence": [
+        {
+          "page": 105,
+          "article": "Art. 165."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 8,
+          "article": "165"
+        }
+      ],
+      "source_page": 12,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false,
+      "annex_ocr_evidence": {
+        "source_file": "resolucao10312026.pdf",
+        "page": 12,
+        "article": "Art. 165.",
+        "requires_visual_review": true
+      }
+    },
+    {
+      "stable_key": "mbft-519-30",
+      "code": "519-30",
+      "article": "168",
+      "manual_header_evidence": [
+        {
+          "page": 134,
+          "article": "Art. 168."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 9,
+          "article": "168"
+        }
+      ],
+      "source_page": 134,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-567-31",
+      "code": "567-31",
+      "article": "183",
+      "manual_header_evidence": [
+        {
+          "page": 276,
+          "article": "Art. 183."
+        }
+      ],
+      "table_2022_evidence": [],
+      "source_page": 276,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-640-80",
+      "code": "640-80",
+      "article": "221",
+      "manual_header_evidence": [
+        {
+          "page": 492,
+          "article": "Art. 221."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 17,
+          "article": "221"
+        }
+      ],
+      "source_page": 492,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-721-80",
+      "code": "721-80",
+      "article": "248",
+      "manual_header_evidence": [
+        {
+          "page": 768,
+          "article": "Art. 248."
+        }
+      ],
+      "table_2022_evidence": [
+        {
+          "page": 22,
+          "article": "248"
+        }
+      ],
+      "source_page": 768,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-780-30",
+      "code": "780-30",
+      "article": "165-B, parágrafo único",
+      "manual_header_evidence": [],
+      "table_2022_evidence": [],
+      "source_page": null,
+      "source_page_matches_header": null,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false,
+      "visual_header_review": {
+        "source_file": "Resolucao10092024.pdf",
+        "page": 5,
+        "article_read": "Art. 165-B c/c o parágrafo único.",
+        "reviewed_on": "2026-10-17",
+        "scope": "Identity only; no operational approval"
+      }
+    },
+    {
+      "stable_key": "mbft-781-10",
+      "code": "781-10",
+      "article": "165-C",
+      "manual_header_evidence": [],
+      "table_2022_evidence": [],
+      "source_page": null,
+      "source_page_matches_header": null,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false,
+      "visual_header_review": {
+        "source_file": "Resolucao10092024.pdf",
+        "page": 6,
+        "article_read": "Art. 165-C.",
+        "reviewed_on": "2026-10-17",
+        "scope": "Identity only; no operational approval"
+      }
+    },
+    {
+      "stable_key": "mbft-782-00",
+      "code": "782-00",
+      "article": "165-D",
+      "manual_header_evidence": [],
+      "table_2022_evidence": [],
+      "source_page": null,
+      "source_page_matches_header": null,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false,
+      "visual_header_review": {
+        "source_file": "Resolucao10092024.pdf",
+        "page": 7,
+        "article_read": "Art. 165-D.",
+        "reviewed_on": "2026-10-17",
+        "scope": "Identity only; no operational approval"
+      }
+    },
+    {
+      "stable_key": "future-757-91",
+      "code": "757-91",
+      "article": "165-A",
+      "manual_header_evidence": [],
+      "table_2022_evidence": [],
+      "source_page": null,
+      "source_page_matches_header": null,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false,
+      "visual_header_review": {
+        "source_file": "resolucao10312026.pdf",
+        "page": 17,
+        "article_read": "Art. 165-A.",
+        "reviewed_on": "2026-10-17",
+        "scope": "Identity only; no operational approval"
+      }
+    },
+    {
+      "stable_key": "future-757-92",
+      "code": "757-92",
+      "article": "165-A",
+      "manual_header_evidence": [],
+      "table_2022_evidence": [],
+      "source_page": null,
+      "source_page_matches_header": null,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false,
+      "visual_header_review": {
+        "source_file": "resolucao10312026.pdf",
+        "page": 19,
+        "article_read": "Art. 165-A.",
+        "reviewed_on": "2026-10-17",
+        "scope": "Identity only; no operational approval"
+      }
+    },
+    {
+      "stable_key": "mbft-551-71",
+      "code": "551-71",
+      "article": "181, XIV",
+      "manual_header_evidence": [],
+      "table_2022_evidence": [
+        {
+          "page": 11,
+          "article": "181, XIV"
+        }
+      ],
+      "source_page": null,
+      "source_page_matches_header": null,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false
+    },
+    {
+      "stable_key": "mbft-779-00",
+      "code": "779-00",
+      "article": "165-B, caput",
+      "manual_header_evidence": [],
+      "table_2022_evidence": [],
+      "source_page": 4,
+      "source_page_matches_header": true,
+      "identity_found_in_supplied_sources": true,
+      "operational_ready": false,
+      "annex_ocr_evidence": {
+        "source_file": "Resolucao10092024.pdf",
+        "page": 4,
+        "article": "Art. 165-B, caput.",
+        "requires_visual_review": true
+      },
+      "visual_header_review": {
+        "source_file": "Resolucao10092024.pdf",
+        "page": 4,
+        "article_read": "Art. 165-B, caput.",
+        "reviewed_on": "2026-10-17",
+        "scope": "Identity only; no operational approval"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10032023.pdf",
+      "sha256": "8e1c0e18924680565fff17585acda791d88607d46193227175be18d37950640d"
+    },
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10092024.pdf",
+      "sha256": "2c19112a82bf6357dc8710dd5c00401b721a70022e7dd8386a264814e261a9a1"
+    },
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10122024.pdf",
+      "sha256": "d6ff6c688bdc5126ca8644f3dfe80181c36f8b310ae53808c1102abc1e71715b"
+    },
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10222026c.pdf",
+      "sha256": "2547703494199728cee582c9f5717d83599c8ed610494f5c3942cea23779a7d2"
+    },
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10232026c.pdf",
+      "sha256": "24f8d7ad7cd934041db4b1f1d7a2c9c97880f1a525378cf150285831c6c3f89d"
+    },
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf",
+      "sha256": "9f6d8d8c6e7b7996fce21326a229c9b262d45178907fff7bd9dd159ca5ba9b5a"
+    },
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf",
+      "sha256": "5214bc8cfa3c8d1b5acde7c34c3c27f2d06ea1ba1589f5bbfab5ae041e06b1b2"
+    },
+    {
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/arquivos-senatran/portarias/2022/Portaria3542022AnexoN3.pdf",
+      "sha256": "83ecb895fa2e95878bcb8818b67e896dd7768bede507a162b5851c51f7334d7e"
+    }
+  ],
+  "limitations": [
+    "Identity evidence is historical. Current applicability, subsequent amendments, procedures and exceptions remain under review.",
+    "551-71 identity is confirmed in published SENATRAN table, but candidate still cites consultation draft. Full fiche publication unresolved.",
+    "175 table matches reflect strict parser coverage, not the absence of other codes in the table.",
+    "Annex OCR is only a lead. Six manually inspected headers are separately recorded.",
+    "Only anchors into the exact base-manual PDF were exhaustively checked automatically. Later-resolution anchors are not all declared validated.",
+    "Candidate unchanged, no new signature and no server activation."
+  ],
+  "input_unchanged": true
+}
