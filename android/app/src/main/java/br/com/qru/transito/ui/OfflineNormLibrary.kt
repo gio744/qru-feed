@@ -36,11 +36,11 @@ private fun normSearch(text:String):String =
    FilterChip(selected=category==name,onClick={category=name},label={Text(name)})
   }
  }
- if(category!="Resoluções") {
+ if(category!="Resoluções" && category!="Manuais") {
   Text("Nenhum documento desta categoria foi incluído nesta versão.",style=MaterialTheme.typography.bodyMedium)
   return
  }
- Text("Resoluções • 7 documentos offline",style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.secondary)
+ Text(if(category=="Manuais") "Manuais • 1 documento offline" else "Resoluções • 7 documentos offline",style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.secondary)
  Text("Publicações originais. Conferência de alterações e vigência pendente.",style=MaterialTheme.typography.bodySmall)
  var catalogQuery by rememberSaveable { mutableStateOf("") }
  OutlinedTextField(catalogQuery,{catalogQuery=it},Modifier.fillMaxWidth(),label={Text("Número ou assunto da norma")},singleLine=true)
@@ -63,7 +63,7 @@ private fun normSearch(text:String):String =
  val document=norm
  if(error) { Text("Não foi possível carregar a norma neste aparelho.");return }
  if(document==null) { LinearProgressIndicator(Modifier.fillMaxWidth());return }
- if(matchesNorm(document.title,document.subtitle,catalogQuery)) Card(onClick={pdfOpened=true},modifier=Modifier.fillMaxWidth()) {
+ if(category=="Resoluções" && matchesNorm(document.title,document.subtitle,catalogQuery)) Card(onClick={pdfOpened=true},modifier=Modifier.fillMaxWidth()) {
   Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
     Text(document.title,style=MaterialTheme.typography.titleMedium,color=MaterialTheme.colorScheme.secondary,modifier=Modifier.weight(1f))
@@ -74,7 +74,7 @@ private fun normSearch(text:String):String =
    TextButton(onClick={opened=true}) { Text("PESQUISAR TEXTO") }
   }
  }
- AdditionalOfflineNorms(catalogQuery,openSource)
+ AdditionalOfflineNorms(catalogQuery,category,openSource)
  if(pdfOpened) OfflinePdfReader(document.pdfSha256) { pdfOpened=false }
  if(opened) {
   val needle=normSearch(query.trim())
@@ -112,26 +112,22 @@ private fun normSearch(text:String):String =
  }
 }
 
-private data class NormPdfEntry(
- val file:String="",val title:String="",val subtitle:String="",
- val source:String="",val sha256:String="",val pageCount:Int=0,val annexPage:Int?=null
-)
-@Composable private fun AdditionalOfflineNorms(query:String,openSource:(String)->Unit) {
+@Composable private fun AdditionalOfflineNorms(query:String,category:String,openSource:(String)->Unit) {
  val context=LocalContext.current
- var documents by remember { mutableStateOf<List<NormPdfEntry>>(emptyList()) }
+ var documents by remember { mutableStateOf<List<OfflinePdfDocument>>(emptyList()) }
  var selectedFile by rememberSaveable { mutableStateOf<String?>(null) }
  var failed by remember { mutableStateOf(false) }
  LaunchedEffect(Unit) {
   val result=withContext(Dispatchers.IO) { runCatching {
    context.assets.open("norms/pdf-catalog.json").bufferedReader().use {
-    Gson().fromJson(it,Array<NormPdfEntry>::class.java).toList()
+    Gson().fromJson(it,Array<OfflinePdfDocument>::class.java).toList()
    }.filter { it.file!="resolucao10312026.pdf" }
   }}
   documents=result.getOrDefault(emptyList());failed=result.isFailure
  }
  if(failed) Text("Não foi possível carregar os documentos adicionais.")
- val visible=remember(documents,query) { documents.filter { matchesNorm(it.title,it.subtitle,query) } }
- if(query.isNotBlank() && visible.isEmpty() && !matchesNorm("Resolução 1.031/2026","Fiscalização de álcool e outras substâncias psicoativas",query)) Text("Nenhuma norma encontrada. Tente outro número ou assunto.")
+ val visible=remember(documents,query,category) { documents.filter { it.category==category && matchesNorm(it.title,it.subtitle,query) } }
+ if(query.isNotBlank() && visible.isEmpty() && (category!="Resoluções" || !matchesNorm("Resolução 1.031/2026","Fiscalização de álcool e outras substâncias psicoativas",query))) Text("Nenhuma norma encontrada. Tente outro número ou assunto.")
  visible.forEach { doc ->
   Card(onClick={selectedFile=doc.file},modifier=Modifier.fillMaxWidth()) {
    Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {

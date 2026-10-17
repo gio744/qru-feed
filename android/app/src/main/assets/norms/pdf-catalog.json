@@ -61,5 +61,15 @@
     "pageCount": 9,
     "annexPage": null,
     "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10132024.pdf"
+  },
+  {
+    "file": "mbvt20222.pdf",
+    "title": "MBFT — manual-base de 2022",
+    "subtitle": "Publicação original • consultar também as alterações posteriores",
+    "sha256": "5214bc8cfa3c8d1b5acde7c34c3c27f2d06ea1ba1589f5bbfab5ae041e06b1b2",
+    "pageCount": 830,
+    "annexPage": null,
+    "category": "Manuais",
+    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf"
   }
 ]

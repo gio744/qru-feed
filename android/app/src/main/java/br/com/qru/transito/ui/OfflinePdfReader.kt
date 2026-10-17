@@ -31,9 +31,9 @@ import java.security.MessageDigest
 private data class PdfFrame(val bitmap:Bitmap,val count:Int)
 
 /** One page at a time keeps allocation bounded even for image-only annexes. */
-@Composable fun OfflinePdfReader(expectedHash:String,assetName:String="resolucao10312026.pdf",title:String="Resolução 1.031/2026",pageCount:Int=20,annexPage:Int?=12,onDismiss:()->Unit) {
+@Composable fun OfflinePdfReader(expectedHash:String,assetName:String="resolucao10312026.pdf",title:String="Resolução 1.031/2026",pageCount:Int=20,annexPage:Int?=12,initialPage:Int=1,onDismiss:()->Unit) {
  val context=LocalContext.current
- var page by rememberSaveable(assetName) { mutableStateOf(0) }
+ var page by rememberSaveable(assetName,initialPage) { mutableStateOf(initialPage.coerceIn(1,pageCount)-1) }
  var jumpOpen by rememberSaveable(assetName) { mutableStateOf(false) }
  var jumpText by rememberSaveable(assetName) { mutableStateOf("") }
  val keyboard=LocalSoftwareKeyboardController.current
