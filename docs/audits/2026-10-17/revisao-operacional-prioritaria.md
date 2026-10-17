@@ -12,7 +12,7 @@ Este registro separa o conteúdo identificado no MBFT-base das verificações co
 - **CTB compilado**, arts. 230, V e XVIII; 236; 270; 271, especialmente §§9º, 9º-A e 9º-B: https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm
 - **Resolução 913/2022**, arts. 4º, 5º, 10 e 22, texto disponibilizado pelo Ministério com anotação de retificação no art. 22: https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucao-contran-no-913-de-28-de-marco-de-2022
 - **Resolução 1.025/2026**, publicação original: https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10252026c.pdf
-  - Identificada e consultada como norma sobre remoção, guarda, liberação e leilão. Sua leitura integral, vigência, transição e atos de implementação **não estão concluídos neste bloco**. Não substituir procedimentos locais com base apenas em sua identificação.
+  - Identificada e consultada como norma sobre remoção, guarda, liberação e leilão. Vigência e transição foram conferidas na leitura dirigida dos arts. 14–25 e 43–46, registrada abaixo. A revisão integral e os atos de implementação continuam pendentes.
 
 ## 672-61 — conservação com comprometimento da segurança
 
@@ -33,7 +33,7 @@ Este registro separa o conteúdo identificado no MBFT-base das verificações co
 
 **Limite deste bloco:** foco em pneus. Não publicar resumo completo de para-brisa a partir desta revisão parcial, nem omitir que a ficha abrange outras condições de conservação.
 
-**Pendências:** competência atual após alterações legislativas; revisão integral de normas sucessoras; conferência visual das colunas do manual; validação técnica dos exemplos e da medida administrativa.
+**Pendências:** revisão integral de normas sucessoras; conferência visual das colunas do manual; validação técnica dos exemplos e da medida administrativa. Competência legal geral conferida no complemento abaixo.
 
 ## 659-92 — veículo registrado sem licenciamento devido
 
@@ -49,7 +49,7 @@ Este registro separa o conteúdo identificado no MBFT-base das verificações co
 
 **Medida e exceções:** separar a regularização efetiva no local (art. 271, §9º) da liberação com prazo para regularizar (§9º-A). O §9º-B exclui a infração do art. 230, V da hipótese do §9º-A. Não oferecer “15 dias para licenciar” como solução desta infração.
 
-**Pendências:** verificar calendário vigente por UF/data e regras para circulação fora da UF; não transcrever automaticamente a tabela nacional do manual de 2022. Concluir leitura da Resolução 1.025/2026, transição e regulamentação complementar; conferir competência atual, procedimentos de consulta e regularização sistêmica.
+**Pendências:** verificar calendário vigente por UF/data e regras para circulação fora da UF; não transcrever automaticamente a tabela nacional do manual de 2022. Concluir revisão integral e regulamentação complementar da Resolução 1.025/2026; conferir procedimentos de consulta e regularização sistêmica. Competência legal geral, vigência e transição conferidas no complemento abaixo.
 
 ## 695-50 — reboque por cabo flexível ou corda
 
@@ -67,7 +67,7 @@ Este registro separa o conteúdo identificado no MBFT-base das verificações co
 
 **Medida:** não atribuir retenção ou remoção automaticamente a 695-50. Outra irregularidade eventualmente constatada precisa de fundamento independente.
 
-**Pendências:** confirmar competência atual e requisitos complementares para modalidades de reboque; revisão técnica da descrição da emergência e dos exemplos.
+**Pendências:** requisitos complementares para modalidades de reboque; revisão técnica da descrição da emergência e dos exemplos. Competência legal geral conferida no complemento abaixo.
 
 ## Critérios antes de incorporar ao aplicativo
 
