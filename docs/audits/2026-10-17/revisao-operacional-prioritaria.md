@@ -79,3 +79,34 @@ Este registro separa o conteúdo identificado no MBFT-base das verificações co
 - Manter todas as 418 referências em conferência até aprovação individual e os demais controles de publicação.
 
 Esta entrega é uma revisão documental preliminar de três fichas. Não é uma nova versão do aplicativo nem uma liberação operacional.
+
+
+## Complemento — competências e medidas (17/10/2026)
+
+### Competência: atualização do manual de 2022
+
+Conferidos os arts. 22, §2º; 24, VI e §4º; e 24-A do CTB compilado. Os arts. 230, V e XVIII, e 236 não integram as listas privativas ali previstas. A conclusão documental é de competência concorrente dos órgãos executivos estaduais, distrital e municipais, observadas circunscrição e integração ao SNT. A competência rodoviária deve ser apresentada com sua base própria, sem ser apagada por essa atualização.
+
+Portanto, os rótulos estaduais/municipais das fichas-base de 2022 não devem ser copiados como exclusividade atual. Esta pendência fica resolvida quanto à regra geral legal; credenciamento, circunscrição e eventual convênio concretos continuam sujeitos à verificação.
+
+### Retenção e remoção: não misturar os prazos
+
+- Art. 270, §2º: até 30 dias, condicionado à segurança e aos demais requisitos; §§6º–7º tratam de restrição e recolhimento por descumprimento.
+- Art. 271, §9º-A: até 15 dias; §9º-B exclui art. 230, V e art. 231, VIII.
+- Regularização efetiva no local é hipótese distinta da concessão de prazo.
+
+### Resolução 1.025/2026: pontos conferidos
+
+Leitura dirigida dos arts. 14–25 e 43–46, páginas físicas 5–8 e 13. Publicada em 30/06/2026, com vigência na publicação e revogação expressa da Resolução 623/2016.
+
+Para a ficha de remoção, registrar termo, fundamento, identificação, destino e condições do veículo. A guarda monitorada do art. 17 é uma modalidade condicionada de cumprimento da remoção: exige decisão competente, requisitos cumulativos e tecnologia homologada. Não equivale à regularizadora nem pode ser prometida pelo aplicativo.
+
+O art. 44, §2º dispensa obrigações dependentes do Sivec até sua operação. A consulta ao texto não comprova implantação nacional, homologação ou disponibilidade local.
+
+A saída para reparo externo do art. 23, §1º ocorre transportada, com autorização e prazo de reapresentação até 60 dias; não é autorização para circulação irregular.
+
+**Pendências remanescentes:** atos posteriores, homologações, situação operacional dos sistemas, calendário de licenciamento e revisão técnica final. Não foi realizada auditoria integral de leilões. As três fichas permanecem sem aprovação operacional.
+
+### Consequência para implementação
+
+O modelo futuro precisa separar: competência legal; medida prevista; requisitos de liberação; prazo com fundamento; dependência de sistema; e exceções. Usar um único campo “regularizadora” para todos esses casos induziria erro. Este complemento documenta essa exigência; ainda não modifica o modelo ou o aplicativo.
