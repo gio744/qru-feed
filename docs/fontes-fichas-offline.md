@@ -5,11 +5,11 @@ O botão **Ler no QRU** abre a publicação original incluída no aplicativo, di
 ## Cobertura deste bloco
 
 - Manual-base MBFT de 2022: 830 páginas, 17.077.053 bytes, SHA-256 `5214bc8cfa3c8d1b5acde7c34c3c27f2d06ea1ba1589f5bbfab5ae041e06b1b2`.
-- Sete resoluções completas já incluídas, preservando as cópias e seus hashes.
-- 417 das 418 fontes do candidato correspondem exatamente a um desses oito documentos. Todas as páginas indicadas estão dentro dos limites registrados.
+- Nove resoluções completas incluídas, preservando as cópias e seus hashes. As novas cópias são a Resolução 913/2022 (4 páginas; 88.876 bytes; SHA-256 `3542071abf17e71c2e858712bd2e53b0348c59d129aa70ae4f79198e07622637`) e a Resolução 1.025/2026 (14 páginas; 256.961 bytes; SHA-256 `fa6ffc0346400e0ac5760bc663e0d6efc5e466dfc5819701f772db1754c09f9c`).
+- 417 das 418 fontes do candidato correspondem exatamente a um desses dez documentos. Todas as páginas indicadas estão dentro dos limites registrados.
 - 551-71 continua com abertura externa porque a fonte registrada é uma minuta. Não substituímos essa fonte silenciosamente pelo manual nem removemos sua pendência de conferência.
 
-O manual aparece na categoria **Manuais**, identificado como publicação original de 2022. As resoluções posteriores permanecem na categoria **Resoluções**. Incluir uma fonte offline não altera a prontidão ou a vigência de qualquer ficha.
+O manual aparece na categoria **Manuais**, identificado como publicação original de 2022. As nove resoluções permanecem na categoria **Resoluções**, com contagem derivada do catálogo. A cópia da Resolução 913/2022 é a publicação original: não incorpora silenciosamente retificações ou alterações posteriores. Incluir uma fonte offline não altera a prontidão ou a vigência de qualquer ficha.
 
 ## Correspondência de documentos
 
