@@ -7,6 +7,7 @@ from .config import settings
 from .rbac import require_roles
 from .release_crypto import fingerprint, verify_ed25519
 from .dossier import create_dossier
+from .release_readiness import content_readiness_gate
 from .audit import append_audit
 
 router=APIRouter(prefix="/admin/releases",tags=["releases"])
@@ -111,12 +112,15 @@ def activate(release_id:str,actor=Depends(require_roles("ADMIN"))):
     with connection() as conn:
         with conn.transaction():
             with conn.cursor() as cur:
-                cur.execute("SELECT status,effective_from FROM legal_releases WHERE id=%s FOR UPDATE",(release_id,))
+                cur.execute("SELECT status,effective_from,package_payload FROM legal_releases WHERE id=%s FOR UPDATE",(release_id,))
                 row=cur.fetchone()
                 if not row: raise HTTPException(404,"Release not found")
+                readiness_ok,readiness_details=content_readiness_gate(row[2])
+                activation_checks={"content_readiness":{"passed":readiness_ok,"details":readiness_details}}
                 failure=None
                 if row[0]!="CANDIDATE": failure="Not an activatable candidate"
                 elif row[1] is not None and row[1]>now: failure="Release is not effective yet"
+                if failure is None and not readiness_ok: failure="Content readiness gate failed"
                 cur.execute("SELECT passed FROM release_gate_results WHERE release_id=%s",(release_id,))
                 basic=[x[0] for x in cur.fetchall()]
                 if failure is None and (not basic or not all(basic)): failure="Basic gates failed"
@@ -127,7 +131,8 @@ def activate(release_id:str,actor=Depends(require_roles("ADMIN"))):
                 tests=cur.fetchall()
                 if failure is None and (not tests or any(c and not p for c,p in tests)):
                     failure="Critical regression gate failed or missing"
-                dossier_id,attempt,_=create_dossier(cur,release_id,actor["subject"],"BLOCKED" if failure else "APPROVED")
+                dossier_id,attempt,_=create_dossier(cur,release_id,actor["subject"],"BLOCKED" if failure else "APPROVED",
+                                                      activation_checks=activation_checks)
                 if failure:
                     append_audit(cur,"RELEASE_ACTIVATION_BLOCKED",actor["subject"],"legal_release",release_id,
                                  {"reason":failure,"attempt_no":attempt},dossier_id)

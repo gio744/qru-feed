@@ -15,10 +15,12 @@ def build_snapshot(cur,release_id):
             "impact":None if not impact else {"passed":impact[0],"details":impact[1],"reviewed_at":str(impact[2])},
             "regression":regression}
 
-def create_dossier(cur,release_id,actor_subject,status):
+def create_dossier(cur,release_id,actor_subject,status,activation_checks=None):
     cur.execute("SELECT COALESCE(MAX(attempt_no),0)+1 FROM release_dossiers WHERE release_id=%s",(release_id,))
     attempt=cur.fetchone()[0]
     snapshot=build_snapshot(cur,release_id)
+    if activation_checks is not None:
+        snapshot["activation_checks"]=activation_checks
     cur.execute("""INSERT INTO release_dossiers(release_id,attempt_no,actor_subject,status,snapshot)
                    VALUES(%s,%s,%s,%s,%s::jsonb) RETURNING id::text""",
                 (release_id,attempt,actor_subject,status,json.dumps(snapshot)))
