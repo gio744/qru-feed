@@ -15,7 +15,7 @@ O diagnóstico registra a quantidade total de fichas pendentes e até 20 exemplo
 - 32 testes locais aprovados: booleanos estritos, campos ausentes, payload malformado, lista vazia, aprovação parcial, candidato antigo, todos os demais gates passando com conteúdo pendente, manutenção das outras exigências, ativação positiva, recebimento de candidato pendente e snapshot do dossiê.
 - Sintaxe dos módulos Python verificada.
 - O candidato real de 418 referências foi submetido somente à função local: resultado bloqueado, 418 itens pendentes; arquivo permaneceu idêntico.
-- Os testes de ativação usam conexão e cursor simulados. Não foi executada ativação nem gravação no PostgreSQL de produção.
+- Os testes locais de ativação usam conexão e cursor simulados. A suíte existente de PostgreSQL descartável também cobre a rejeição de pacote pendente e de ficha pendente com os demais gates aprovados, a persistência do dossiê/auditoria e a preservação da versão ativa. O cenário positivo usa uma ficha técnica explicitamente pronta, em vez de pacote vazio. Não foi executada ativação nem gravação no PostgreSQL de produção.
 - O workflow `Content publication gates` executa a suíte específica em PRs que alterem esses módulos.
 
 Para executar: na pasta `backend`, instalar `requirements.txt` e executar `python -m pytest tests/test_release_readiness_gate.py -q`.
