@@ -31,9 +31,12 @@ import java.security.MessageDigest
 private data class PdfFrame(val bitmap:Bitmap,val count:Int)
 
 /** One page at a time keeps allocation bounded even for image-only annexes. */
-@Composable fun OfflinePdfReader(expectedHash:String,assetName:String="resolucao10312026.pdf",title:String="Resolução 1.031/2026",pageCount:Int=20,annexPage:Int?=12,initialPage:Int=1,onDismiss:()->Unit) {
+@Composable fun OfflinePdfReader(expectedHash:String,assetName:String="resolucao10312026.pdf",title:String="Resolução 1.031/2026",pageCount:Int=20,annexPage:Int?=12,initialPage:Int?=null,onDismiss:()->Unit) {
  val context=LocalContext.current
- var page by rememberSaveable(assetName,initialPage) { mutableStateOf(initialPage.coerceIn(1,pageCount)-1) }
+ val preferences=remember(context) { context.getSharedPreferences("qru_pdf_reading",android.content.Context.MODE_PRIVATE) }
+ val savedPage=remember(expectedHash) { runCatching { preferences.getInt(expectedHash,1) }.getOrDefault(1) }
+ val startPage=remember(expectedHash,initialPage,pageCount) { initialPdfPage(initialPage,savedPage,pageCount) }
+ var page by rememberSaveable(assetName,expectedHash,initialPage) { mutableStateOf(startPage-1) }
  var jumpOpen by rememberSaveable(assetName) { mutableStateOf(false) }
  var jumpText by rememberSaveable(assetName) { mutableStateOf("") }
  val keyboard=LocalSoftwareKeyboardController.current
@@ -41,7 +44,7 @@ private data class PdfFrame(val bitmap:Bitmap,val count:Int)
  var frame by remember { mutableStateOf<PdfFrame?>(null) }
  var failed by remember { mutableStateOf(false) }
  var loading by remember { mutableStateOf(true) }
- LaunchedEffect(assetName,page) {
+ LaunchedEffect(assetName,expectedHash,page) {
   loading=true;failed=false
   val result=withContext(Dispatchers.IO) {
    runCatching {
@@ -76,12 +79,13 @@ private data class PdfFrame(val bitmap:Bitmap,val count:Int)
    }
   }
   frame=result.getOrNull();failed=result.isFailure;loading=false
+  if(result.isSuccess) preferences.edit().putInt(expectedHash,page+1).apply()
  }
  Dialog(onDismissRequest=onDismiss,properties=DialogProperties(usePlatformDefaultWidth=false)) {
   Surface(Modifier.fillMaxSize()) {
    Column(Modifier.fillMaxSize().padding(12.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
     Text(title,style=MaterialTheme.typography.titleLarge)
-    Text("PDF completo offline • cópia incluída nesta versão",style=MaterialTheme.typography.bodySmall)
+    Text(if(initialPage==null && startPage>1) "Leitura retomada na página $startPage • PDF offline" else "PDF completo offline • cópia incluída nesta versão",style=MaterialTheme.typography.bodySmall)
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
      TextButton(onClick={page--},enabled=page>0 && !loading){Text("ANTERIOR")}
      TextButton(onClick={jumpText=(page+1).toString();jumpOpen=true}) { Text("${page+1} / $pageCount ▾") }
