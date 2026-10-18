@@ -4,6 +4,11 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.pdf.PdfRenderer
 import android.os.ParcelFileDescriptor
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.calculateZoom
+import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
@@ -69,7 +74,7 @@ private fun pdfHash(file:File):String {
  var attempt by remember { mutableStateOf(0) }
  var jumpOpen by rememberSaveable(assetName) { mutableStateOf(false) }
  var jumpText by rememberSaveable(assetName) { mutableStateOf("") }
- var zoom by rememberSaveable(assetName) { mutableStateOf(1) }
+ var zoom by rememberSaveable(assetName) { mutableStateOf(1f) }
  LaunchedEffect(assetName,expectedHash,attempt) {
   failed=false;file=null
   try {
@@ -117,14 +122,16 @@ private fun pdfHash(file:File):String {
     Box(Modifier.weight(1f).fillMaxWidth()) {
      if(document!=null) LazyColumn(state=listState,modifier=Modifier.fillMaxSize(),verticalArrangement=Arrangement.spacedBy(12.dp)) {
       items(count=window.count,key={it},contentType={"pdf_page"}) { index ->
-       ContinuousPdfPage(document,window.documentIndex(index),zoom,renderMutex,page==index) {
+       ContinuousPdfPage(document,window.documentIndex(index),zoom,{zoom=it},renderMutex,page==index) {
         if(pageRange==null) preferences.edit().putInt(expectedHash,window.documentIndex(index)+1).apply()
        }
       }
      }
     }
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
-     TextButton(onClick={zoom=if(zoom==3) 1 else zoom+1}) { Text("AMPLIAR ${zoom}×") }
+     TextButton(onClick={zoom=boundedPdfZoom(zoom,1f/1.25f)},enabled=zoom>1f) { Text("−") }
+     TextButton(onClick={zoom=1f}) { Text(String.format(java.util.Locale.ROOT,"%.1f×",zoom)) }
+     TextButton(onClick={zoom=boundedPdfZoom(zoom,1.25f)},enabled=zoom<4f) { Text("+") }
      TextButton(onClick=onDismiss) { Text("VOLTAR") }
     }
    }
@@ -145,7 +152,7 @@ private fun pdfHash(file:File):String {
  }
 }
 
-@Composable private fun ContinuousPdfPage(file:File,index:Int,zoom:Int,mutex:Mutex,isCurrent:Boolean,onDisplayed:()->Unit) {
+@Composable private fun ContinuousPdfPage(file:File,index:Int,zoom:Float,onZoom:(Float)->Unit,mutex:Mutex,isCurrent:Boolean,onDisplayed:()->Unit) {
  var bitmap by remember(file,index) { mutableStateOf<Bitmap?>(null) }
  var failed by remember(file,index) { mutableStateOf(false) }
  var attempt by remember(file,index) { mutableStateOf(0) }
@@ -173,10 +180,31 @@ private fun pdfHash(file:File):String {
     catch(_:Exception) { failed=true }
  }
  val frame=bitmap
+ val currentZoom by rememberUpdatedState(zoom)
+ val updateZoom by rememberUpdatedState(onZoom)
  LaunchedEffect(frame,isCurrent) { if(frame!=null && isCurrent) onDisplayed() }
  Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(4.dp)) {
-  Text("Página ${index+1}",style=MaterialTheme.typography.labelSmall)
-  BoxWithConstraints(Modifier.fillMaxWidth()) {
+  Text("Página ${index+1} • use dois dedos para ampliar",style=MaterialTheme.typography.labelSmall)
+  BoxWithConstraints(Modifier.fillMaxWidth().pointerInput(file,index) {
+   awaitEachGesture {
+    awaitFirstDown(requireUnconsumed=false,pass=PointerEventPass.Initial)
+    var pinching=false
+    var gestureZoom=currentZoom
+    do {
+     val event=awaitPointerEvent(PointerEventPass.Initial)
+     val fingers=event.changes.count { it.pressed }
+     if(fingers>=2) {
+      if(!pinching) gestureZoom=currentZoom
+      pinching=true
+      gestureZoom=boundedPdfZoom(gestureZoom,event.calculateZoom())
+      updateZoom(gestureZoom)
+     }
+     // Leave one-finger movement to vertical/horizontal scrolling.
+     // Once a pinch starts, finish it before allowing another scroll gesture.
+     if(pinching) event.changes.forEach { it.consume() }
+    } while(event.changes.any { it.pressed })
+   }
+  }) {
    val width=maxWidth*zoom
    Box(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())) {
     if(frame!=null) Image(frame.asImageBitmap(),"Página ${index+1} do PDF original",
