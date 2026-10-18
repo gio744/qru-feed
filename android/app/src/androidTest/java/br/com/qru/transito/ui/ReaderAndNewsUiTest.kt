@@ -78,4 +78,36 @@ class ReaderAndNewsUiTest {
    ui.onNodeWithText("Novidades do QRU").assertDoesNotExist()
   }
  }
+
+ @Test fun automaticSearchOpensOnlyItsFichaAndKeepsQueryOnReturn() {
+  val context=InstrumentationRegistry.getInstrumentation().targetContext
+  context.getSharedPreferences("qru_news",0).edit()
+   .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
+  ActivityScenario.launch(MainActivity::class.java).use {
+   ui.onNodeWithTag("search_query").performTextReplacement("pneu")
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithText("672-61",substring=true).fetchSemanticsNodes().isNotEmpty()
+   }
+   ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
+   ui.onNodeWithTag("search_query").performImeAction()
+   ui.onAllNodesWithTag("reference_card").onFirst().performScrollTo().performClick()
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithText("ABRIR FICHA").fetchSemanticsNodes().isNotEmpty()
+   }
+   ui.onNodeWithText("ABRIR FICHA").performClick()
+   waitForPage(599)
+   ui.onNodeWithText("1 / 3 ▾").assertIsDisplayed()
+   ui.onNodeWithContentDescription("Página 1 do PDF original").assertDoesNotExist()
+   androidx.test.espresso.Espresso.pressBack()
+   ui.onNodeWithText("ABRIR FICHA").assertExists()
+   androidx.test.espresso.Espresso.pressBack()
+   ui.onNodeWithTag("search_query").assertTextContains("pneu")
+   ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
+   ui.onNodeWithTag("search_query").performTextReplacement("230,v")
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithText("659-92",substring=true).fetchSemanticsNodes().isNotEmpty()
+   }
+   ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("Art. 230, V",substring=true)
+  }
+ }
 }
