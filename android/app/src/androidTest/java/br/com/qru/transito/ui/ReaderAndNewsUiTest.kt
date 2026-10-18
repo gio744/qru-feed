@@ -3,6 +3,7 @@ package br.com.qru.transito.ui
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.*
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
@@ -185,7 +186,8 @@ class ReaderAndNewsUiTest {
    ui.onNodeWithText("Análise guiada · habilitação").performClick()
    android.util.Log.i("QRU_UI_TEST","guide: reveal expiry choice")
    revealInSearch(ui.onNodeWithTag("guide_choice_Validade da CNH"))
-   ui.onNodeWithTag("guide_choice_Validade da CNH").performClick()
+   ui.onNodeWithTag("guide_choice_Validade da CNH").assertHasClickAction()
+    .performSemanticsAction(SemanticsActions.OnClick) { assertTrue(it()) }
    ui.waitUntil(5_000) {
     ui.onAllNodesWithText("Vencida há mais de 30 dias").fetchSemanticsNodes().isNotEmpty()
    }
