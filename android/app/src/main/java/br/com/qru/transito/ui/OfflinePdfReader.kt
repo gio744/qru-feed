@@ -189,12 +189,15 @@ private fun pdfHash(file:File):String {
    awaitEachGesture {
     awaitFirstDown(requireUnconsumed=false,pass=PointerEventPass.Initial)
     var pinching=false
+    var gestureZoom=currentZoom
     do {
      val event=awaitPointerEvent(PointerEventPass.Initial)
      val fingers=event.changes.count { it.pressed }
      if(fingers>=2) {
+      if(!pinching) gestureZoom=currentZoom
       pinching=true
-      updateZoom(boundedPdfZoom(currentZoom,event.calculateZoom()))
+      gestureZoom=boundedPdfZoom(gestureZoom,event.calculateZoom())
+      updateZoom(gestureZoom)
      }
      // Leave one-finger movement to vertical/horizontal scrolling.
      // Once a pinch starts, finish it before allowing another scroll gesture.
