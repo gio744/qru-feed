@@ -52,6 +52,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  QruTheme{
   var tab by rememberSaveable{mutableStateOf(QruTab.BUSCA)}
   var support by rememberSaveable{mutableStateOf<String?>(null)}
+  var showStartupNews by rememberSaveable { mutableStateOf(true) }
   val tabStates=rememberSaveableStateHolder()
   val drawer=rememberDrawerState(DrawerValue.Closed)
   val scope=rememberCoroutineScope()
@@ -80,6 +81,10 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
     }
    }}
   }
+  if(showStartupNews) QruStartupNewsDialog(
+   onContinue={showStartupNews=false},
+   onDetails={showStartupNews=false;tab=QruTab.NOVIDADES}
+  )
   support?.let { kind ->
    AlertDialog(onDismissRequest={support=null},title={Text(if(kind=="help") "Como usar" else "Sobre o QRU")},
     text={Column(verticalArrangement=Arrangement.spacedBy(12.dp)){
@@ -185,17 +190,25 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
 @Composable private fun ReferenceDialog(result:SearchResult,onDismiss:()->Unit) {
     val context=LocalContext.current
     var documents by remember { mutableStateOf<List<OfflinePdfDocument>>(emptyList()) }
+    var ranges by remember { mutableStateOf<List<ReferencePageRange>>(emptyList()) }
     var offlineOpened by rememberSaveable(result.stableKey) { mutableStateOf(false) }
     LaunchedEffect(Unit) {
-        documents=withContext(Dispatchers.IO) {
-            runCatching {
+        val loaded=withContext(Dispatchers.IO) {
+            val docs=runCatching {
                 context.assets.open("norms/pdf-catalog.json").bufferedReader().use {
                     Gson().fromJson(it,Array<OfflinePdfDocument>::class.java).toList()
                 }
             }.getOrDefault(emptyList())
+            val pages=runCatching {
+                context.assets.open("norms/reference-page-ranges.json").bufferedReader().use {
+                    Gson().fromJson(it,Array<ReferencePageRange>::class.java).toList()
+                }
+            }.getOrDefault(emptyList())
+            docs to pages
         }
+        documents=loaded.first;ranges=loaded.second
     }
-    val offline=result.source?.let { resolveOfflineDocument(documents,it) }
+    val offline=result.source?.let { resolveOfflineReference(documents,ranges,it,result.code) }
     AlertDialog(onDismissRequest=onDismiss,title={Text(result.title)},text={
         Column(Modifier.verticalScroll(androidx.compose.foundation.rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
             Text("Art. ${result.article.orEmpty()} • código ${result.code.orEmpty()}")
@@ -205,17 +218,17 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             if(result.appliesUntil.isNotBlank()) Text("Fim registrado no catálogo: ${result.appliesUntil}")
             Text("Confira a fonte oficial e a regra aplicável à data do fato.")
             if(offline!=null) {
-                Text("Publicação original disponível offline. Confira também as alterações posteriores.",style=MaterialTheme.typography.bodySmall)
+                Text("Ficha individual da publicação original • ${offline.range.last-offline.range.first+1} páginas. Confira também alterações posteriores.",style=MaterialTheme.typography.bodySmall)
                 result.source?.let { source -> TextButton(onClick={openOfficialSource(context,source)}) { Text("VER PUBLICAÇÃO ONLINE") } }
-            }
+            } else Text("Ficha individual ainda indisponível nesta versão. A opção abaixo abre a fonte completa.",style=MaterialTheme.typography.bodySmall)
         }
     },confirmButton={
-        if(offline!=null) TextButton(onClick={offlineOpened=true}) { Text("LER NO QRU") }
+        if(offline!=null) TextButton(onClick={offlineOpened=true}) { Text("ABRIR FICHA") }
         else result.source?.let{source->TextButton(onClick={openOfficialSource(context,source)}){Text("ABRIR FONTE OFICIAL")}}
       },dismissButton={TextButton(onClick=onDismiss){Text("VOLTAR")}})
     if(offlineOpened && offline!=null) {
         val doc=offline.document
-        OfflinePdfReader(doc.sha256,doc.file,doc.title,doc.pageCount,doc.annexPage,initialPage=offline.page) { offlineOpened=false }
+        OfflinePdfReader(doc.sha256,doc.file,"Ficha ${result.code} • art. ${result.article}",doc.pageCount,initialPage=offline.range.first,pageRange=offline.range) { offlineOpened=false }
     }
 }
 @Composable private fun CatalogPage(tab:QruTab) {
@@ -250,8 +263,9 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                 Text("Vídeos ainda não disponíveis.",style=MaterialTheme.typography.bodySmall)
             }
             QruTab.NOVIDADES -> {
-                Text("Atualizações do QRU",style=MaterialTheme.typography.titleLarge)
-                Text("10/10/2026 • ${app.bundledCatalog.all().size} referências disponíveis para busca sem internet.")
+                QruLatestNewsCard()
+                Text("Recursos desta versão",style=MaterialTheme.typography.titleLarge)
+                Text("Catálogo • • ${app.bundledCatalog.all().size} referências disponíveis para busca sem internet.")
                 Text("Busca por artigo, código e termos práticos. Links para conferir as fontes oficiais.")
                 Text("Validação final das fichas: pendente.")
                 Text("As atualizações de conteúdo são recebidas pelo servidor e verificadas por assinatura. A disponibilidade depende da publicação de um pacote.")
