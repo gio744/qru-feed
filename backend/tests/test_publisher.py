@@ -34,6 +34,22 @@ def test_wrong_credentials_do_not_access_database(configured):
     assert response.status_code == 401
     connection.assert_not_called()
 
+@pytest.mark.parametrize('encoded', [
+    'plain-text-password',
+    'pbkdf2_sha256$600000$invalid$invalid',
+    'pbkdf2_sha256$1$AAAAAAAAAAAAAAAAAAAAAA==$AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=',
+    'pbkdf2_sha256$1000001$AAAAAAAAAAAAAAAAAAAAAA==$AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=',
+    'other$600000$AAAAAAAAAAAAAAAAAAAAAA==$AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=',
+])
+def test_malformed_password_configuration_is_unavailable(configured, monkeypatch, encoded):
+    monkeypatch.setattr(settings, 'admin_password_hash', encoded)
+    with patch('app.publisher.connection') as connection:
+        response = client.post('/admin/auth/login', json={'username':'maycon','password':'test'})
+    assert response.status_code == 503
+    assert encoded not in response.text
+    assert not _attempts
+    connection.assert_not_called()
+
 @contextmanager
 def database():
     class Cursor:

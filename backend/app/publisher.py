@@ -26,20 +26,28 @@ def password_hash(password):
     return 'pbkdf2_sha256$600000$' + base64.b64encode(salt).decode() + '$' + base64.b64encode(digest).decode()
 
 
-def verify_password(password, encoded):
+def _password_hash_parameters(encoded):
     try:
         algorithm, iterations, salt, digest = encoded.split('$')
         iterations = int(iterations)
         if algorithm != 'pbkdf2_sha256' or not 600_000 <= iterations <= 1_000_000:
-            return False
+            return None
         salt = base64.b64decode(salt, validate=True)
         digest = base64.b64decode(digest, validate=True)
         if len(salt) != 16 or len(digest) != 32:
-            return False
-        actual = hashlib.pbkdf2_hmac('sha256', password.encode(), salt, iterations)
-        return hmac.compare_digest(actual, digest)
+            return None
+        return iterations, salt, digest
     except (ValueError, TypeError):
+        return None
+
+
+def verify_password(password, encoded):
+    parameters = _password_hash_parameters(encoded)
+    if parameters is None:
         return False
+    iterations, salt, digest = parameters
+    actual = hashlib.pbkdf2_hmac('sha256', password.encode(), salt, iterations)
+    return hmac.compare_digest(actual, digest)
 
 
 class Login(BaseModel):
@@ -49,7 +57,7 @@ class Login(BaseModel):
 
 @router.post('/admin/auth/login')
 def login(body: Login, request: Request):
-    if not settings.admin_username or not settings.admin_password_hash or len(settings.jwt_secret) < 32:
+    if not settings.admin_username or _password_hash_parameters(settings.admin_password_hash) is None or len(settings.jwt_secret) < 32:
         raise HTTPException(503, 'Administrator login is not configured')
     # Global process limit bounds password-hash work and does not trust proxy headers.
     now = time.monotonic()
@@ -86,7 +94,7 @@ def publisher():
 <section><form id="login"><label>Usuário<input id="username" autocomplete="username" required maxlength="100"></label><label>Senha<input id="password" type="password" autocomplete="current-password" required maxlength="256"></label><button id="enter">Entrar</button></form><button id="logout" hidden>Sair</button></section>
 <section><label>Pacote candidato JSON<input id="file" type="file" accept=".json,application/json"></label><button id="send" disabled>Enviar para conferência</button></section><p id="status" role="status">Entre para enviar um pacote.</p>
 <script nonce="NONCE">let token='',expires=0;const el=id=>document.getElementById(id);const message=t=>el('status').textContent=t;
-el('login').onsubmit=async e=>{e.preventDefault();el('enter').disabled=true;try{const r=await fetch('/admin/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:el('username').value,password:el('password').value})});const d=await r.json();if(!r.ok)throw Error(r.status===401?'Usuário ou senha incorretos.':r.status===503?'Acesso administrativo ainda não configurado.':r.status===429?'Aguarde um minuto e tente novamente.':'Não foi possível entrar.');token=d.access_token;expires=Date.now()+d.expires_in*1000;el('password').value='';el('send').disabled=false;el('logout').hidden=false;message('Conectado. Selecione o pacote candidato JSON.');}catch(e){message(e.message)}finally{el('enter').disabled=false}};
+el('login').onsubmit=async e=>{e.preventDefault();el('enter').disabled=true;try{const r=await fetch('/admin/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:el('username').value,password:el('password').value})});const d=await r.json();if(!r.ok)throw Error(r.status===401?'Usuário ou senha incorretos.':r.status===503?'Acesso administrativo indisponível. Confira usuário, hash de senha e configuração do servidor. O campo de hash não aceita a senha em texto.':r.status===429?'Aguarde um minuto e tente novamente.':'Não foi possível entrar.');token=d.access_token;expires=Date.now()+d.expires_in*1000;el('password').value='';el('send').disabled=false;el('logout').hidden=false;message('Conectado. Selecione o pacote candidato JSON.');}catch(e){message(e.message)}finally{el('enter').disabled=false}};
 el('logout').onclick=()=>{token='';expires=0;el('send').disabled=true;el('logout').hidden=true;message('Sessão encerrada.')};
 el('send').onclick=async()=>{if(!token||Date.now()>=expires){el('logout').click();message('Sessão expirada. Entre novamente.');return}const f=el('file').files[0];if(!f){message('Selecione o arquivo JSON.');return}if(f.size>5000000){message('O arquivo deve ter até 5 MB.');return}el('send').disabled=true;try{const b=JSON.parse(await f.text());const r=await fetch('/admin/releases',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({version:b.version,package:b.package,signature:b.signature})});const d=await r.json();if(!r.ok)throw Error(r.status===401?'Sessão expirada. Entre novamente.':r.status===403?'Conta sem permissão para enviar.':'Envio falhou. Código '+r.status);message(d.status==='CANDIDATE'?'Pacote recebido para conferência. ID: '+d.id+'\nAinda não está ativo no aplicativo.':'Pacote rejeitado. Confira assinatura e estrutura.');}catch(e){message(e.message)}finally{el('send').disabled=!token}};
 </script></html>'''.replace('NONCE', nonce)
