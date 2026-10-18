@@ -112,4 +112,36 @@ class ReaderAndNewsUiTest {
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("659-92",substring=true)
   }
  }
+
+ @Test fun situationShortcutKeepsMainSearchIndependent() {
+  val context=InstrumentationRegistry.getInstrumentation().targetContext
+  context.getSharedPreferences("qru_news",0).edit()
+   .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
+  ActivityScenario.launch(MainActivity::class.java).use {
+   ui.onNodeWithTag("search_query").performTextReplacement("licenciamento")
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithText("659-92",substring=true).fetchSemanticsNodes().isNotEmpty()
+   }
+   androidx.test.espresso.Espresso.closeSoftKeyboard()
+   ui.onNodeWithTag("tab_SITUACOES").performClick()
+   ui.onNodeWithTag("situation_pneu").performScrollTo().performClick()
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithText("Referências para: pneu").fetchSemanticsNodes().isNotEmpty() &&
+     ui.onAllNodesWithTag("situations_loading").fetchSemanticsNodes().isEmpty()
+   }
+   ui.onNodeWithTag("situations_results").performScrollToIndex(1)
+   ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
+   ui.onAllNodesWithTag("reference_card").onFirst().performClick()
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithText("ABRIR FICHA").fetchSemanticsNodes().isNotEmpty()
+   }
+   androidx.test.espresso.Espresso.pressBack()
+   ui.onNodeWithTag("tab_BUSCA").performClick()
+   ui.onNodeWithTag("search_results").performScrollToIndex(0)
+   ui.onNodeWithTag("search_query").assertTextContains("licenciamento")
+   ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("659-92",substring=true)
+   ui.onNodeWithTag("tab_SITUACOES").performClick()
+   ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
+  }
+ }
 }
