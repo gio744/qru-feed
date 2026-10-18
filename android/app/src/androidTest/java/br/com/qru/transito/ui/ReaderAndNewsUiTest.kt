@@ -150,6 +150,15 @@ class ReaderAndNewsUiTest {
   }
  }
 
+
+ private fun revealInSearch(target:SemanticsNodeInteraction) {
+  repeat(14) {
+   if(target.isDisplayed()) return
+   ui.onNodeWithTag("search_results").performTouchInput { swipeUp() }
+  }
+  target.assertIsDisplayed()
+ }
+
  @Test fun guidedReferenceKeepsSearchAndUsesIndividualFicha() {
   val context=InstrumentationRegistry.getInstrumentation().targetContext
   context.getSharedPreferences("qru_news",0).edit()
@@ -160,11 +169,16 @@ class ReaderAndNewsUiTest {
     ui.onAllNodesWithText("672-61",substring=true).fetchSemanticsNodes().isNotEmpty()
    }
    androidx.test.espresso.Espresso.closeSoftKeyboard()
-   ui.onNodeWithTag("search_results").performScrollToNode(hasText("Análise guiada · habilitação"))
+   android.util.Log.i("QRU_UI_TEST","guide: reveal collapsed form")
+   revealInSearch(ui.onNodeWithText("Análise guiada · habilitação"))
    ui.onNodeWithText("Análise guiada · habilitação").performClick()
-   ui.onNodeWithTag("guide_choice_Validade da CNH").performScrollTo().performClick()
+   android.util.Log.i("QRU_UI_TEST","guide: reveal expiry choice")
+   revealInSearch(ui.onNodeWithTag("guide_choice_Validade da CNH"))
+   ui.onNodeWithTag("guide_choice_Validade da CNH").performClick()
    ui.onNodeWithText("Vencida há mais de 30 dias").performClick()
-   ui.onNodeWithText("CONFERIR 504-50").performScrollTo().performClick()
+   android.util.Log.i("QRU_UI_TEST","guide: reveal reference")
+   revealInSearch(ui.onNodeWithText("CONFERIR 504-50"))
+   ui.onNodeWithText("CONFERIR 504-50").performClick()
    ui.waitUntil(10_000) {
     ui.onAllNodesWithText("ABRIR FICHA").fetchSemanticsNodes().isNotEmpty()
    }
