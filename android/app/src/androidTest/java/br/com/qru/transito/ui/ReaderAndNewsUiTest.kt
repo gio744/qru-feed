@@ -101,6 +101,7 @@ class ReaderAndNewsUiTest {
    androidx.test.espresso.Espresso.pressBack()
    ui.onNodeWithText("ABRIR FICHA").assertExists()
    androidx.test.espresso.Espresso.pressBack()
+   ui.onNodeWithTag("search_results").performScrollToIndex(0)
    ui.onNodeWithTag("search_query").assertTextContains("pneu")
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
    ui.onNodeWithTag("search_query").performTextReplacement("230,v")
