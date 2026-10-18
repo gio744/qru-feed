@@ -153,8 +153,8 @@ class ReaderAndNewsUiTest {
  }
 
 
- private fun revealInSearch(target:SemanticsNodeInteraction) {
-  val list=ui.onNodeWithTag("search_results")
+ private fun revealInSearch(target:SemanticsNodeInteraction,containerTag:String="search_results") {
+  val list=ui.onNodeWithTag(containerTag)
   repeat(18) {
    var moveDown=false
    if(target.isDisplayed()) {
@@ -164,9 +164,11 @@ class ReaderAndNewsUiTest {
     moveDown=bounds.top<viewport.top+8.dp
    }
    list.performTouchInput {
-    if(moveDown) swipeDown(startY=bottom*0.25f,endY=bottom*0.75f)
-    else swipeUp(startY=bottom*0.75f,endY=bottom*0.25f)
+    if(moveDown) swipeDown(startY=bottom*0.25f,endY=bottom*0.75f,durationMillis=500)
+    else swipeUp(startY=bottom*0.75f,endY=bottom*0.25f,durationMillis=500)
    }
+   ui.mainClock.advanceTimeBy(1000)
+   ui.waitForIdle()
   }
   error("Guided control could not be fully revealed within the search viewport")
  }
@@ -192,13 +194,15 @@ class ReaderAndNewsUiTest {
     ui.onAllNodes(isRoot())[index].printToLog("QRU_GUIDE_TREE")
    }
    android.util.Log.i("QRU_UI_TEST","guide: reveal expiry choice")
-   ui.onNodeWithTag("guide_choice_Validade da CNH").performScrollTo().performClick()
+   revealInSearch(ui.onNodeWithTag("guide_choice_Validade da CNH"),"guided_form")
+   ui.onNodeWithTag("guide_choice_Validade da CNH").performClick()
    ui.waitUntil(5_000) {
     ui.onAllNodesWithText("Vencida há mais de 30 dias").fetchSemanticsNodes().isNotEmpty()
    }
    ui.onNodeWithText("Vencida há mais de 30 dias").performClick()
    android.util.Log.i("QRU_UI_TEST","guide: reveal reference")
-   ui.onNodeWithText("CONFERIR 504-50").performScrollTo().performClick()
+   revealInSearch(ui.onNodeWithText("CONFERIR 504-50"),"guided_form")
+   ui.onNodeWithText("CONFERIR 504-50").performClick()
    ui.waitUntil(10_000) {
     ui.onAllNodesWithText("ABRIR FICHA").fetchSemanticsNodes().isNotEmpty()
    }
