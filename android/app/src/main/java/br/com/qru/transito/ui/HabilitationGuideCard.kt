@@ -1,6 +1,10 @@
 package br.com.qru.transito.ui
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Checklist
@@ -33,33 +37,41 @@ private val GuideFactsSaver = listSaver<GuideFacts, String>(
         }
         return
     }
-    Card(modifier=Modifier.fillMaxWidth()) {
-        Column(Modifier.padding(16.dp), verticalArrangement=Arrangement.spacedBy(10.dp)) {
-            Text("ANÁLISE GUIADA • HABILITAÇÃO",color=MaterialTheme.colorScheme.primary)
-            Text("Organize suspensão, reciclagem e validade da CNH.")
-            TextButton(onClick={expanded=!expanded}) { Text(if(expanded) "RECOLHER ANÁLISE" else "ORGANIZAR O CASO") }
-            if(expanded) {
-                Text("Piloto em conferência. Reúne verificações e referências; a validação jurídica do cenário está pendente.",style=MaterialTheme.typography.bodySmall)
-                OutlinedTextField(value=facts.date,onValueChange={facts=facts.copy(date=it)},label={Text("Data do fato (AAAA-MM-DD)")},singleLine=true,modifier=Modifier.fillMaxWidth())
-                GuideChoice("Suspensão",SuspensionState.entries.map{it.label},facts.suspension.ordinal) {
-                    facts=facts.copy(suspension=SuspensionState.entries[it])
-                }
-                GuideChoice("Reciclagem",RecyclingState.entries.map{it.label},facts.recycling.ordinal) {
-                    facts=facts.copy(recycling=RecyclingState.entries[it])
-                }
-                GuideChoice("Validade da CNH",ExpiryState.entries.map{it.label},facts.expiry.ordinal) {
-                    facts=facts.copy(expiry=ExpiryState.entries[it])
-                }
-                val review=HabilitationGuide.review(facts)
-                Text("O QUE CONFERIR",style=MaterialTheme.typography.titleMedium)
-                review.checks.forEach { Text("• $it") }
-                if(review.referenceCodes.isNotEmpty()) {
-                    Text("REFERÊNCIAS RELACIONADAS",style=MaterialTheme.typography.titleMedium)
-                    review.referenceCodes.forEach { code ->
-                        OutlinedButton(onClick={onReference(code)},modifier=Modifier.fillMaxWidth()) { Text("CONFERIR $code") }
+    Dialog(onDismissRequest={expanded=false},properties=DialogProperties(usePlatformDefaultWidth=false)) {
+        Surface(Modifier.fillMaxSize()) {
+            Column(Modifier.fillMaxSize().padding(16.dp),verticalArrangement=Arrangement.spacedBy(12.dp)) {
+                Text("ANÁLISE GUIADA • HABILITAÇÃO",style=MaterialTheme.typography.titleLarge,
+                    color=MaterialTheme.colorScheme.primary)
+                HorizontalDivider()
+                Column(Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()).testTag("guided_form"),
+                    verticalArrangement=Arrangement.spacedBy(10.dp)) {
+                    Text("Organize suspensão, reciclagem e validade da CNH.")
+                    Text("Piloto em conferência. Reúne verificações e referências; a validação jurídica do cenário está pendente.",style=MaterialTheme.typography.bodySmall)
+                    OutlinedTextField(value=facts.date,onValueChange={facts=facts.copy(date=it)},label={Text("Data do fato (AAAA-MM-DD)")},singleLine=true,modifier=Modifier.fillMaxWidth())
+                    GuideChoice("Suspensão",SuspensionState.entries.map{it.label},facts.suspension.ordinal) {
+                        facts=facts.copy(suspension=SuspensionState.entries[it])
+                    }
+                    GuideChoice("Reciclagem",RecyclingState.entries.map{it.label},facts.recycling.ordinal) {
+                        facts=facts.copy(recycling=RecyclingState.entries[it])
+                    }
+                    GuideChoice("Validade da CNH",ExpiryState.entries.map{it.label},facts.expiry.ordinal) {
+                        facts=facts.copy(expiry=ExpiryState.entries[it])
+                    }
+                    val review=HabilitationGuide.review(facts)
+                    Text("O QUE CONFERIR",style=MaterialTheme.typography.titleMedium)
+                    review.checks.forEach { Text("• $it") }
+                    if(review.referenceCodes.isNotEmpty()) {
+                        Text("REFERÊNCIAS RELACIONADAS",style=MaterialTheme.typography.titleMedium)
+                        review.referenceCodes.forEach { code ->
+                            OutlinedButton(onClick={onReference(code)},modifier=Modifier.fillMaxWidth()) { Text("CONFERIR $code") }
+                        }
                     }
                 }
-                TextButton(onClick={facts=GuideFacts()}) { Text("LIMPAR O CASO") }
+                HorizontalDivider()
+                Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
+                    TextButton(onClick={facts=GuideFacts()}) { Text("LIMPAR O CASO") }
+                    TextButton(onClick={expanded=false}) { Text("VOLTAR") }
+                }
             }
         }
     }
