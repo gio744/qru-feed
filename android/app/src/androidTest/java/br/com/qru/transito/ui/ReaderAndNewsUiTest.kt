@@ -164,7 +164,8 @@ class ReaderAndNewsUiTest {
     val scale=ui.density.density
     val top=bounds.top.value*scale
     val bottom=bounds.bottom.value*scale
-    val margin=8f*scale
+    // Edge controls can align with the viewport without extra content padding.
+    val margin=-1f
     android.util.Log.i("QRU_UI_TEST","reveal $containerTag: target=[$top,$bottom], viewport=$viewport")
     if(top>=viewport.top+margin && bottom<=viewport.bottom-margin && target.isDisplayed()) return
     moveDown=top<viewport.top+margin
