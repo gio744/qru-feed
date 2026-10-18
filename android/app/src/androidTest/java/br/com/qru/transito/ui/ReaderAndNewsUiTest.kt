@@ -1,6 +1,7 @@
 package br.com.qru.transito.ui
 
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.*
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
@@ -147,4 +148,82 @@ class ReaderAndNewsUiTest {
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
   }
  }
+
+ @Test fun guidedReferenceKeepsSearchAndUsesIndividualFicha() {
+  val context=InstrumentationRegistry.getInstrumentation().targetContext
+  context.getSharedPreferences("qru_news",0).edit()
+   .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
+  ActivityScenario.launch(MainActivity::class.java).use {
+   ui.onNodeWithTag("search_query").performTextReplacement("pneu")
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithText("672-61",substring=true).fetchSemanticsNodes().isNotEmpty()
+   }
+   androidx.test.espresso.Espresso.closeSoftKeyboard()
+   ui.onNodeWithTag("search_results").performScrollToNode(hasText("Análise guiada · habilitação"))
+   ui.onNodeWithText("Análise guiada · habilitação").performClick()
+   ui.onNodeWithTag("guide_choice_Validade da CNH").performScrollTo().performClick()
+   ui.onNodeWithText("Vencida há mais de 30 dias").performClick()
+   ui.onNodeWithText("CONFERIR 504-50").performScrollTo().performClick()
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithText("ABRIR FICHA").fetchSemanticsNodes().isNotEmpty()
+   }
+   ui.onNodeWithText("código 504-50",substring=true).assertExists()
+   ui.onNodeWithText("ABRIR FICHA").performClick()
+   ui.waitUntil(60_000) {
+    ui.onAllNodesWithTag("pdf_pages").fetchSemanticsNodes().isNotEmpty()
+   }
+   ui.onNodeWithText("Ficha individual • em conferência").assertIsDisplayed()
+   androidx.test.espresso.Espresso.pressBack()
+   androidx.test.espresso.Espresso.pressBack()
+   ui.onNodeWithTag("search_results").performScrollToIndex(0)
+   ui.onNodeWithTag("search_query").assertTextContains("pneu")
+   ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
+  }
+ }
+
+ private fun lookupResult(code:String,key:String=code)=br.com.qru.transito.domain.model.SearchResult(
+  key,"Referência de teste",null,code,"BR","test"
+ )
+
+ private fun verifyGuidedLookupRetry(
+  initialResponse:(String)->List<br.com.qru.transito.domain.model.SearchResult>,
+  expectedMessage:String
+ ) {
+  var calls=0
+  ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+   scenario.onActivity { activity ->
+    activity.setContent { QruTheme {
+     var result by remember { mutableStateOf<br.com.qru.transito.domain.model.SearchResult?>(null) }
+     if(result==null) GuideReferenceLookup("504-50",
+      search={code -> calls++;if(calls==1) initialResponse(code) else listOf(lookupResult(code))},
+      onSelected={result=it},onDismiss={})
+     else androidx.compose.material3.Text("Referência carregada: ${result!!.code}")
+    } }
+   }
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithText(expectedMessage,substring=true).fetchSemanticsNodes().isNotEmpty()
+   }
+   ui.onNodeWithText("Referência carregada:",substring=true).assertDoesNotExist()
+   ui.onNodeWithText("TENTAR NOVAMENTE").performClick()
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithText("Referência carregada: 504-50").fetchSemanticsNodes().isNotEmpty()
+   }
+   org.junit.Assert.assertEquals(2,calls)
+  }
+ }
+
+ @Test fun guidedLookupDoesNotSubstituteRelatedCode() = verifyGuidedLookupRetry(
+  initialResponse={listOf(lookupResult("502-92"))},
+  expectedMessage="não está disponível"
+ )
+
+ @Test fun guidedLookupDoesNotChooseBetweenDuplicateCodes() = verifyGuidedLookupRetry(
+  initialResponse={code->listOf(lookupResult(code,"first"),lookupResult(code,"second"))},
+  expectedMessage="não está disponível"
+ )
+
+ @Test fun guidedLookupCanRetryAfterFailure() = verifyGuidedLookupRetry(
+  initialResponse={throw IllegalStateException("simulated lookup failure")},
+  expectedMessage="Não foi possível consultar"
+ )
 }
