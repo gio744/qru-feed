@@ -34,9 +34,9 @@ private data class PdfFrame(val bitmap:Bitmap,val count:Int)
 @Composable fun OfflinePdfReader(expectedHash:String,assetName:String="resolucao10312026.pdf",title:String="Resolução 1.031/2026",pageCount:Int=20,annexPage:Int?=12,initialPage:Int?=null,onDismiss:()->Unit) {
  val context=LocalContext.current
  val preferences=remember(context) { context.getSharedPreferences("qru_pdf_reading",android.content.Context.MODE_PRIVATE) }
- val savedPage=remember(expectedHash) { preferences.getInt(expectedHash,1) }
+ val savedPage=remember(expectedHash) { runCatching { preferences.getInt(expectedHash,1) }.getOrDefault(1) }
  val startPage=remember(expectedHash,initialPage,pageCount) { initialPdfPage(initialPage,savedPage,pageCount) }
- var page by rememberSaveable(assetName,initialPage) { mutableStateOf(startPage-1) }
+ var page by rememberSaveable(assetName,expectedHash,initialPage) { mutableStateOf(startPage-1) }
  var jumpOpen by rememberSaveable(assetName) { mutableStateOf(false) }
  var jumpText by rememberSaveable(assetName) { mutableStateOf("") }
  val keyboard=LocalSoftwareKeyboardController.current
@@ -44,7 +44,7 @@ private data class PdfFrame(val bitmap:Bitmap,val count:Int)
  var frame by remember { mutableStateOf<PdfFrame?>(null) }
  var failed by remember { mutableStateOf(false) }
  var loading by remember { mutableStateOf(true) }
- LaunchedEffect(assetName,page) {
+ LaunchedEffect(assetName,expectedHash,page) {
   loading=true;failed=false
   val result=withContext(Dispatchers.IO) {
    runCatching {
