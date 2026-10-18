@@ -1,33 +1,63 @@
-# QRU Trânsito — índice offline, 10/10/2026
+# QRU? — QUAL A SITUAÇÃO
 
-O app inclui 418 referências pesquisáveis sem internet. A pesquisa aceita artigo, código com ou sem hífen, palavras com acento e descrições de situações. Os resultados abrem os documentos oficiais registrados no catálogo.
+Aplicativo Android de consulta de referências de trânsito, com catálogo e documentos embarcados para leitura sem internet. Estado documentado em 18/10/2026.
 
-## Conteúdo disponível
+## Recursos implementados
 
-- Busca: referências locais, pesquisa por voz e pesquisa a partir da descrição da ocorrência.
-- CTB: índice por artigo/código e link ao CTB integral oficial.
-- Normas: acesso às fontes oficiais do CONTRAN e do MBFT.
-- Situações: pesquisas por termos práticos; vídeos ainda não disponíveis.
-- Novidades: estado e alterações do app; não representa monitoramento normativo automático.
+- Busca automática durante a digitação, por voz, artigo, código e termos práticos. A coordenação de requisições impede que uma consulta antiga substitua a mais recente.
+- 418 referências pesquisáveis no catálogo embarcado. A busca de “pneu” prioriza 672-61; consultas por artigo e inciso priorizam a correspondência exata.
+- Fichas individuais com páginas delimitadas para 417 referências. A 551-71 permanece sem intervalo individual confirmado; sua investigação está na [issue 36](https://github.com/gio744/qru-feed/issues/36).
+- Biblioteca offline com dez PDFs: o manual original e nove resoluções. A biblioteca permite abrir o documento completo; a ficha pesquisada usa somente o intervalo associado à referência.
+- PDFs com rolagem contínua, pinça, controles de zoom, salto para página, primeira/última e retomada da leitura do documento completo. A ficha não substitui a posição salva do manual.
+- CTB com parte geral e crimes em leitura interna. O catálogo de infrações permanece na busca.
+- Descrição de ocorrência e análise guiada de habilitação, ambas em conferência.
+- Novidade inicial por publicação, com “Não mostrar esta novidade novamente” marcada por padrão. O conteúdo permanece na aba Novidades. A preferência é local; limpar dados ou desinstalar elimina esse histórico.
+- Situações com atalhos de consulta. Vídeos ainda não estão disponíveis.
 
-As 418 referências vieram de QRU_Base_Operacional_v1.json, versão 19. Todas têm validação final pendente. A carga inclui título, código, artigo, termos de busca, fonte e metadados editoriais. Não publica orientações de autuação como validadas. Períodos registrados no catálogo aparecem nas referências, quando disponíveis. O índice não comprova vigência ou correção jurídica de cada ficha.
+A disponibilidade das fontes offline é definida pelo manifesto em `android/app/src/main/assets/norms/pdf-catalog.json`. Os intervalos individuais estão em `reference-page-ranges.json`. A seleção exige correspondência de código, fonte e hash; não deve usar páginas aproximadas ou de outra publicação.
 
-## Compilar a versão de teste instalada em paralelo
+## Limites de conteúdo e publicação
 
-Na pasta android: `gradle -PqruParallelTest testDebugUnitTest assembleDebug`.
+As **418 referências continuam com validação operacional pendente**. Cobertura de busca, fonte oficial e intervalo de PDF não significam aprovação jurídica. Os documentos são publicações originais, não uma consolidação automática de alterações posteriores.
 
-Essa opção usa br.com.qru.testeapp e o certificado de debug em android/test-signing/qru-debug.jks, mantendo compatibilidade entre atualizações de teste. O certificado é exclusivamente de desenvolvimento. Sem a propriedade, o identificador principal permanece br.com.qru.transito.
+O aplicativo consulta o catálogo embarcado quando não existe versão ativa no banco local. Uma versão assinada ativa é consultada sem misturar automaticamente o índice editorial. O recebimento de candidato pelo publicador não ativa conteúdo no aplicativo.
 
-Java/Kotlin: alvo 17; Gradle 8.9; Android SDK 35; Android mínimo API 28. Room exporta o esquema em android/app/schemas. O app usa o índice embarcado quando não existe versão ativa no banco local. Uma versão assinada ativa é consultada sem misturar automaticamente o índice editorial.
+A novidade atual é embarcada no APK; não representa monitoramento normativo automático. Configuração do servidor e código de sincronização não comprovam, por si, publicação de pacote ativo. Não registrar senhas, hashes de autenticação ou chaves privadas neste repositório.
 
-## Verificações
+## Compilar
 
-Ver docs/indice-offline-2026-10-10.json e docs/android-build-indice-2026-10-10.log. Testes de busca e assinatura fazem parte da suíte Android. A instalação e o funcionamento desta atualização no aparelho ainda precisam ser confirmados pelo usuário.
+Na raiz:
 
-Servidor: 17 testes unitários passaram; o teste PostgreSQL permanece pulado sem banco disponível. Sintaxe Python e conversão raw → X.509 da chave pública verificadas. O container de produção foi preparado, mas não executado neste ambiente.
+```bash
+gradle -p android -PqruParallelTest testDebugUnitTest assembleDebug
+```
 
-## Conexão online ainda pendente
+A opção `qruParallelTest` usa `br.com.qru.testeapp` e o certificado exclusivamente de desenvolvimento em `android/test-signing/qru-debug.jks`, mantendo compatibilidade entre atualizações de teste. Sem a propriedade, o identificador permanece `br.com.qru.transito`.
 
-A API ainda não foi hospedada. Os recursos Android continuam com endereço/chave pública de exemplo. O app não agenda atualizações para esse endereço. Para conectar: informar API HTTPS e chave pública do servidor, usar scripts/configure_android_feed.py e reconstruir o APK. Ver docs/servidor-proximo-marco.md.
+Java/Kotlin 17, Gradle 8.9, SDK 35 e Android mínimo API 28. Os PDFs são obtidos no build e conferidos por SHA-256. Room exporta o esquema em `android/app/schemas`.
 
-O Dockerfile usa a raiz do projeto como contexto: `docker build -f backend/Dockerfile .`. É necessário PostgreSQL persistente, migrações, segredo JWT e chave pública válidos. Criação/revisão/ativação no banco real e publicação de conteúdo validado continuam pendentes. A autenticação administrativa exige configuração; o endpoint de token de desenvolvimento não funciona em produção.
+## Validação Android
+
+O workflow **QRU Android Build** executa testes JVM e compila o APK. O workflow **QRU Android UI** executa testes instrumentados em emulador API 29 / Pixel 2, com relatórios e logcat preservados.
+
+Com um emulador descartável conectado:
+
+```bash
+bash scripts/run_android_ui_tests.sh
+```
+
+O script desliga Wi-Fi e dados móveis desse emulador; o computador continua conectado para obter dependências de compilação. A classe `ReaderAndNewsUiTest` cobre PDF, novidade dispensada após recriação de Activity e o fluxo busca → ficha → retorno.
+
+Os resultados do CI devem ser conferidos por commit. Esses cenários não medem FPS ou consumo de memória, não simulam encerramento do processo e não substituem a validação em aparelhos físicos de fabricantes diferentes.
+
+## Servidor
+
+Backend FastAPI/PostgreSQL com migrações, autenticação administrativa e verificação de pacotes assinados. O publicador está na rota `/publicador`; a configuração usa variáveis de ambiente. A senha digitada no login e o hash de senha configurado no servidor têm funções distintas.
+
+O Dockerfile usa a raiz como contexto:
+
+```bash
+docker build -f backend/Dockerfile .
+```
+
+É necessário PostgreSQL persistente, migrações, segredo JWT e chave pública válidos. Consulte os arquivos de configuração e os resultados atuais de execução antes de declarar o servidor pronto. Documentos antigos em `docs/` registram etapas históricas e podem descrever pendências já superadas.
