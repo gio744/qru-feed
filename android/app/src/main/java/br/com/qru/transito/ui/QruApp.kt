@@ -52,7 +52,14 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  QruTheme{
   var tab by rememberSaveable{mutableStateOf(QruTab.BUSCA)}
   var support by rememberSaveable{mutableStateOf<String?>(null)}
-  var showStartupNews by rememberSaveable { mutableStateOf(true) }
+  val newsContext=LocalContext.current
+  val newsPreferences=remember(newsContext) { newsContext.getSharedPreferences("qru_news",android.content.Context.MODE_PRIVATE) }
+  fun seenNews():Set<String> = runCatching { newsPreferences.getStringSet("seen_publications",emptySet()).orEmpty().toSet() }.getOrDefault(emptySet())
+  var showStartupNews by rememberSaveable(CurrentQruNews.id) { mutableStateOf(shouldShowStartupNews(CurrentQruNews.id,seenNews())) }
+  fun dismissStartupNews(dontShowAgain:Boolean) {
+   if(dontShowAgain) newsPreferences.edit().putStringSet("seen_publications",seenNewsAfterDismissal(seenNews(),CurrentQruNews.id,true)).apply()
+   showStartupNews=false
+  }
   val tabStates=rememberSaveableStateHolder()
   val drawer=rememberDrawerState(DrawerValue.Closed)
   val scope=rememberCoroutineScope()
@@ -82,8 +89,8 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    }}
   }
   if(showStartupNews) QruStartupNewsDialog(
-   onContinue={showStartupNews=false},
-   onDetails={showStartupNews=false;tab=QruTab.NOVIDADES}
+   onContinue={dismissStartupNews(it)},
+   onDetails={dismissStartupNews(it);tab=QruTab.NOVIDADES}
   )
   support?.let { kind ->
    AlertDialog(onDismissRequest={support=null},title={Text(if(kind=="help") "Como usar" else "Sobre o QRU")},
