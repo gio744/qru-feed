@@ -330,9 +330,9 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
 
 @Composable private fun QruWordmark(compact:Boolean=false) {
  Image(
-  painter=painterResource(R.mipmap.ic_launcher),
+  painter=painterResource(R.drawable.qru_wordmark),
   contentDescription="QRU?",
-  contentScale=ContentScale.Crop,
+  contentScale=ContentScale.Fit,
   modifier=Modifier.width(if(compact) 144.dp else 180.dp).height(if(compact) 48.dp else 64.dp)
  )
 }
