@@ -6,4 +6,5 @@ adb shell svc data disable
 timeout --signal=TERM --kill-after=15s 8m gradle -p android -PqruParallelTest connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=br.com.qru.transito.ui.ReaderAndNewsUiTest --stacktrace
 qru_test_exit=$?
 adb logcat -d > android-ui-logcat.txt || true
+rg 'QRU_UI_TEST|QRU_GUIDE_TREE' android-ui-logcat.txt | tail -n 240 || true
 exit "$qru_test_exit"
