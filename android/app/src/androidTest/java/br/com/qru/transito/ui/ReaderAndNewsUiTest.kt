@@ -3,6 +3,7 @@ package br.com.qru.transito.ui
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.*
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.test.core.app.ActivityScenario
@@ -152,11 +153,21 @@ class ReaderAndNewsUiTest {
 
 
  private fun revealInSearch(target:SemanticsNodeInteraction) {
-  repeat(14) {
-   if(target.isDisplayed()) return
-   ui.onNodeWithTag("search_results").performTouchInput { swipeUp() }
+  val list=ui.onNodeWithTag("search_results")
+  repeat(18) {
+   var moveDown=false
+   if(target.isDisplayed()) {
+    val bounds=target.getUnclippedBoundsInRoot()
+    val viewport=list.getUnclippedBoundsInRoot()
+    if(bounds.top>=viewport.top+8.dp && bounds.bottom<=viewport.bottom-8.dp) return
+    moveDown=bounds.top<viewport.top+8.dp
+   }
+   list.performTouchInput {
+    if(moveDown) swipeDown(startY=bottom*0.25f,endY=bottom*0.75f)
+    else swipeUp(startY=bottom*0.75f,endY=bottom*0.25f)
+   }
   }
-  target.assertIsDisplayed()
+  error("Guided control could not be fully revealed within the search viewport")
  }
 
  @Test fun guidedReferenceKeepsSearchAndUsesIndividualFicha() {
@@ -175,6 +186,9 @@ class ReaderAndNewsUiTest {
    android.util.Log.i("QRU_UI_TEST","guide: reveal expiry choice")
    revealInSearch(ui.onNodeWithTag("guide_choice_Validade da CNH"))
    ui.onNodeWithTag("guide_choice_Validade da CNH").performClick()
+   ui.waitUntil(5_000) {
+    ui.onAllNodesWithText("Vencida há mais de 30 dias").fetchSemanticsNodes().isNotEmpty()
+   }
    ui.onNodeWithText("Vencida há mais de 30 dias").performClick()
    android.util.Log.i("QRU_UI_TEST","guide: reveal reference")
    revealInSearch(ui.onNodeWithText("CONFERIR 504-50"))
