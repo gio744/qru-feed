@@ -27,7 +27,7 @@ import kotlin.coroutines.coroutineContext
    val result=search(code).singleOrNull { it.code==code }
    coroutineContext.ensureActive()
    if(result!=null) select(result)
-   else message="A referência $code não está disponível de forma única na base atual."
+   else message="A referência $code não está disponível para abertura na base atual."
   } catch(cancelled:CancellationException) { throw cancelled }
     catch(_:Exception) {
      coroutineContext.ensureActive()
