@@ -80,7 +80,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    }
   }){
    Scaffold(bottomBar={NavigationBar{
-    QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},
+    QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},modifier=Modifier.testTag("tab_"+item.name),
      icon={Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
      label={Text(item.label)})}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
@@ -244,8 +244,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
 @Composable private fun CatalogPage(tab:QruTab) {
     val context=LocalContext.current
     val app=context.applicationContext as QruApplication
-    var query by rememberSaveable(tab){mutableStateOf("")}
-    var selected by remember{mutableStateOf<SearchResult?>(null)}
+    if(tab==QruTab.SITUACOES) { SituationsPage();return }
     Column(Modifier.fillMaxSize().verticalScroll(androidx.compose.foundation.rememberScrollState()).padding(20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
         Text(tab.label,style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.primary)
         when(tab) {
@@ -261,17 +260,6 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                 Button(onClick={openOfficialSource(context,"https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao9852022.pdf")},modifier=Modifier.fillMaxWidth()){Text("MBFT — RESOLUÇÃO 985/2022")}
                 Text("Nas fichas, o botão de fonte abre o documento registrado para aquela referência.")
             }
-            QruTab.SITUACOES -> {
-                Text("Consulta por situação")
-                listOf("bafômetro","recusa","CNH vencida","licenciamento","pneu","retrovisor").forEach{term->
-                    OutlinedButton(onClick={query=term},modifier=Modifier.fillMaxWidth()){Text(term)}
-                }
-                if(query.isNotBlank()) {
-                    Text("Referências para: $query")
-                    app.bundledCatalog.search(query).forEach{ReferenceCard(it){selected=it}}
-                }
-                Text("Vídeos ainda não disponíveis.",style=MaterialTheme.typography.bodySmall)
-            }
             QruTab.NOVIDADES -> {
                 QruLatestNewsCard()
                 Text("Recursos desta versão",style=MaterialTheme.typography.titleLarge)
@@ -283,7 +271,43 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             else -> Unit
         }
     }
-    selected?.let{ReferenceDialog(it){selected=null}}
+}
+
+
+@Composable private fun SituationsPage() {
+ val context=LocalContext.current
+ val app=context.applicationContext as QruApplication
+ val vm:SearchViewModel=viewModel(key="situations_search",factory=SearchViewModelFactory(app.searchLegalContent))
+ val state by vm.state.collectAsState()
+ var selected by remember { mutableStateOf<SearchResult?>(null) }
+ LazyColumn(Modifier.fillMaxSize().testTag("situations_results"),
+  contentPadding=PaddingValues(20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
+  item(key="situations_header") {
+   Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(14.dp)) {
+    Text("Situações",style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.primary)
+    Text("Consulta por situação")
+    listOf("bafômetro","recusa","CNH vencida","licenciamento","pneu","retrovisor").forEach { term ->
+     OutlinedButton(onClick={vm.query(term);vm.run()},
+      modifier=Modifier.fillMaxWidth().testTag("situation_"+term)) { Text(term) }
+    }
+    if(state.query.isNotBlank()) Text("Referências para: ${state.query}")
+    if(state.loading) LinearProgressIndicator(Modifier.fillMaxWidth().testTag("situations_loading"))
+   }
+  }
+  items(state.results,key={ "situation:"+it.stableKey },contentType={ "reference" }) { result ->
+   ReferenceCard(result) { selected=result }
+  }
+  item(key="situations_footer") {
+   Column(verticalArrangement=Arrangement.spacedBy(10.dp)) {
+    if(state.query.isNotBlank() && !state.loading && state.results.isEmpty()) {
+     Text(state.message,style=MaterialTheme.typography.bodySmall)
+     TextButton(onClick={vm.run()}) { Text("TENTAR NOVAMENTE") }
+    }
+    Text("Vídeos ainda não disponíveis.",style=MaterialTheme.typography.bodySmall)
+   }
+  }
+ }
+ selected?.let { ReferenceDialog(it) { selected=null } }
 }
 
 @Composable private fun CtbSectionCard(title:String,description:String,onClick:()->Unit) {
