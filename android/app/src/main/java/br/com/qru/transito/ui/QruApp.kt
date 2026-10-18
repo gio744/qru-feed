@@ -1,6 +1,8 @@
 package br.com.qru.transito.ui
 import android.content.ActivityNotFoundException
 import android.widget.Toast
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.layout.ContentScale
@@ -115,7 +117,9 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  val permission=rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()){if(it)launchSpeech() else voiceMessage("Microfone não autorizado. Use o teclado.")}
  fun voice(){if(context.checkSelfPermission(Manifest.permission.RECORD_AUDIO)==PackageManager.PERMISSION_GRANTED)launchSpeech() else permission.launch(Manifest.permission.RECORD_AUDIO)}
 
- Column(Modifier.fillMaxSize().verticalScroll(androidx.compose.foundation.rememberScrollState()).padding(horizontal=16.dp,vertical=12.dp),verticalArrangement=Arrangement.spacedBy(10.dp)){
+ LazyColumn(Modifier.fillMaxSize(),contentPadding=PaddingValues(horizontal=16.dp,vertical=12.dp),verticalArrangement=Arrangement.spacedBy(10.dp)){
+  item(key="search_header") {
+   Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(10.dp)) {
   Box(Modifier.fillMaxWidth()) {
   Column(Modifier.fillMaxWidth(),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(4.dp)) {
   QruWordmark()
@@ -130,7 +134,13 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    keyboardActions=KeyboardActions(onSearch={keyboard?.hide();vm.run()}))
   if(state.loading) LinearProgressIndicator(Modifier.fillMaxWidth())
   Text("Catálogo em conferência • disponível offline", style=MaterialTheme.typography.bodySmall)
-  state.results.forEach{result -> ReferenceCard(result) { selected=result }}
+   }
+  }
+  items(state.results,key={result -> "reference:"+result.stableKey},contentType={"reference"}) { result ->
+   ReferenceCard(result) { selected=result }
+  }
+  item(key="search_tools") {
+   Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(10.dp)) {
   TextButton(onClick={occurrenceExpanded=!occurrenceExpanded},modifier=Modifier.fillMaxWidth().heightIn(min=48.dp)){
    Icon(Icons.Default.Description,null,modifier=Modifier.size(20.dp))
    Spacer(Modifier.width(8.dp))
@@ -149,6 +159,8 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    app.bundledCatalog.all().firstOrNull { it.code==code }?.let { selected=it }
   }
   if(state.message.isNotBlank() && state.message!="Faça uma consulta à base disponível.") Text(state.message,style=MaterialTheme.typography.bodySmall)
+   }
+  }
  }
  selected?.let { ReferenceDialog(it) { selected=null } }
 }
