@@ -3,6 +3,7 @@ package br.com.qru.transito.ui
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.*
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
@@ -182,7 +183,14 @@ class ReaderAndNewsUiTest {
    androidx.test.espresso.Espresso.closeSoftKeyboard()
    android.util.Log.i("QRU_UI_TEST","guide: reveal collapsed form")
    revealInSearch(ui.onNodeWithText("Análise guiada · habilitação"))
-   ui.onNodeWithText("Análise guiada · habilitação").performClick()
+   ui.onNodeWithText("Análise guiada · habilitação").assertHasClickAction()
+    .performSemanticsAction(SemanticsActions.OnClick) { assertTrue(it()) }
+   ui.waitUntil(5_000) {
+    ui.onAllNodesWithTag("guided_form").fetchSemanticsNodes().isNotEmpty()
+   }
+   ui.onAllNodes(isRoot()).fetchSemanticsNodes().indices.forEach { index ->
+    ui.onAllNodes(isRoot())[index].printToLog("QRU_GUIDE_TREE")
+   }
    android.util.Log.i("QRU_UI_TEST","guide: reveal expiry choice")
    ui.onNodeWithTag("guide_choice_Validade da CNH").performScrollTo().performClick()
    ui.waitUntil(5_000) {
