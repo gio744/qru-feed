@@ -23,6 +23,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
@@ -120,7 +121,7 @@ private fun pdfHash(file:File):String {
      TextButton(onClick={attempt++}) { Text("TENTAR NOVAMENTE") }
     } else if(document==null) LinearProgressIndicator(Modifier.fillMaxWidth())
     Box(Modifier.weight(1f).fillMaxWidth()) {
-     if(document!=null) LazyColumn(state=listState,modifier=Modifier.fillMaxSize(),verticalArrangement=Arrangement.spacedBy(12.dp)) {
+     if(document!=null) LazyColumn(state=listState,modifier=Modifier.fillMaxSize().testTag("pdf_pages"),verticalArrangement=Arrangement.spacedBy(12.dp)) {
       items(count=window.count,key={it},contentType={"pdf_page"}) { index ->
        ContinuousPdfPage(document,window.documentIndex(index),zoom,{zoom=it},renderMutex,page==index) {
         if(pageRange==null) preferences.edit().putInt(expectedHash,window.documentIndex(index)+1).apply()
@@ -130,7 +131,7 @@ private fun pdfHash(file:File):String {
     }
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
      TextButton(onClick={zoom=boundedPdfZoom(zoom,1f/1.25f)},enabled=zoom>1f) { Text("−") }
-     TextButton(onClick={zoom=1f}) { Text(String.format(java.util.Locale.ROOT,"%.1f×",zoom)) }
+     TextButton(onClick={zoom=1f},modifier=Modifier.testTag("pdf_zoom_reset")) { Text(String.format(java.util.Locale.ROOT,"%.1f×",zoom)) }
      TextButton(onClick={zoom=boundedPdfZoom(zoom,1.25f)},enabled=zoom<4f) { Text("+") }
      TextButton(onClick=onDismiss) { Text("VOLTAR") }
     }
