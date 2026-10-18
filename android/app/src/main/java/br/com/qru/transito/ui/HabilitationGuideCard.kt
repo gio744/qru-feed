@@ -26,18 +26,18 @@ private val GuideFactsSaver = listSaver<GuideFacts, String>(
     }
 )
 
-@Composable internal fun HabilitationGuideCard(onReference: (String) -> Unit) {
-    var expanded by rememberSaveable { mutableStateOf(false) }
-    var facts by rememberSaveable(stateSaver=GuideFactsSaver) { mutableStateOf(GuideFacts()) }
-    if(!expanded) {
-        TextButton(onClick={expanded=true},modifier=Modifier.fillMaxWidth().heightIn(min=48.dp)) {
-            Icon(Icons.Default.Checklist,null,modifier=Modifier.size(20.dp))
-            Spacer(Modifier.width(8.dp))
-            Text("Análise guiada · habilitação")
-        }
-        return
+@Composable internal fun HabilitationGuideCard(onOpen:()->Unit) {
+    TextButton(onClick=onOpen,modifier=Modifier.fillMaxWidth().heightIn(min=48.dp)) {
+        Icon(Icons.Default.Checklist,null,modifier=Modifier.size(20.dp))
+        Spacer(Modifier.width(8.dp))
+        Text("Análise guiada · habilitação")
     }
-    Dialog(onDismissRequest={expanded=false},properties=DialogProperties(usePlatformDefaultWidth=false)) {
+}
+
+@Composable internal fun HabilitationGuideDialog(expanded:Boolean,onDismiss:()->Unit,onReference:(String)->Unit) {
+    var facts by rememberSaveable(stateSaver=GuideFactsSaver) { mutableStateOf(GuideFacts()) }
+    if(!expanded) return
+    Dialog(onDismissRequest=onDismiss,properties=DialogProperties(usePlatformDefaultWidth=false)) {
         Surface(Modifier.fillMaxSize()) {
             Column(Modifier.fillMaxSize().padding(16.dp),verticalArrangement=Arrangement.spacedBy(12.dp)) {
                 Text("ANÁLISE GUIADA • HABILITAÇÃO",style=MaterialTheme.typography.titleLarge,
@@ -70,7 +70,7 @@ private val GuideFactsSaver = listSaver<GuideFacts, String>(
                 HorizontalDivider()
                 Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
                     TextButton(onClick={facts=GuideFacts()}) { Text("LIMPAR O CASO") }
-                    TextButton(onClick={expanded=false}) { Text("VOLTAR") }
+                    TextButton(onClick=onDismiss) { Text("VOLTAR") }
                 }
             }
         }
