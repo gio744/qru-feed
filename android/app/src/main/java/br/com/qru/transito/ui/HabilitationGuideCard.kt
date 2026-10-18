@@ -8,6 +8,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import br.com.qru.transito.domain.usecase.*
 
@@ -67,7 +68,7 @@ private val GuideFactsSaver = listSaver<GuideFacts, String>(
     var open by remember { mutableStateOf(false) }
     Text(title,style=MaterialTheme.typography.titleSmall)
     Box {
-        OutlinedButton(onClick={open=true},modifier=Modifier.fillMaxWidth()) { Text(options[selected]) }
+        OutlinedButton(onClick={open=true},modifier=Modifier.fillMaxWidth().testTag("guide_choice_"+title)) { Text(options[selected]) }
         DropdownMenu(expanded=open,onDismissRequest={open=false}) {
             options.forEachIndexed { index,label ->
                 DropdownMenuItem(text={Text(label)},onClick={onSelect(index);open=false})
