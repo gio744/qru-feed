@@ -16,7 +16,11 @@ Não é aprovação operacional, consolidação de alterações ou mudança dos 
 
 ## Novidades
 
-Um aviso aparece na abertura da sessão do aplicativo, pode ser fechado e leva à aba Novidades para detalhes. Não reaparece ao apenas girar a tela ou trocar de aba. É conteúdo incluído nesta versão, sem alegação de atualização remota automática desse aviso.
+Uma publicação ainda não dispensada aparece na abertura da sessão. A opção **Não mostrar esta novidade novamente** vem marcada por padrão: continuar, ver detalhes ou dispensar o diálogo salva a leitura desta publicação no aparelho. Ela continua acessível na aba Novidades. Desmarcar permite que o aviso reapareça na próxima sessão; a sessão atual segue normalmente.
+
+A preferência é vinculada ao identificador estável da publicação, não à versão do APK. Atualizações técnicas não repetem o mesmo aviso; uma nova publicação com novo identificador pode aparecer. Não reaparece ao apenas girar a tela ou trocar de aba. Limpar os dados ou reinstalar removendo o aplicativo pode apagar o histórico local. É conteúdo incluído nesta versão, sem alegação de atualização remota automática desse aviso.
+
+Seis testes adicionais verificam publicação nova, publicação lida, nova sessão com a opção desmarcada e preservação do histórico. A persistência e o comportamento visual no aparelho permanecem sujeitos à confirmação após instalar.
 
 A novidade normativa trata dos códigos 757-91 e 757-92 e da aplicação das alterações do anexo do MBFT em 17/10/2026. Fonte: Resolução 1.031/2026, arts. 14 e 16 e Anexo III, disponível integralmente offline. Sua abertura não aprova as fichas.
 
