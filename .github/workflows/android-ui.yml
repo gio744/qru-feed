@@ -4,6 +4,7 @@ on:
     paths:
       - 'android/**'
       - '.github/workflows/android-ui.yml'
+      - 'scripts/run_android_ui_tests.sh'
   workflow_dispatch:
 permissions:
   contents: read
@@ -21,6 +22,8 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools'
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
