@@ -191,6 +191,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     val context=LocalContext.current
     var documents by remember { mutableStateOf<List<OfflinePdfDocument>>(emptyList()) }
     var ranges by remember { mutableStateOf<List<ReferencePageRange>>(emptyList()) }
+    var referenceLoading by remember { mutableStateOf(true) }
     var offlineOpened by rememberSaveable(result.stableKey) { mutableStateOf(false) }
     LaunchedEffect(Unit) {
         val loaded=withContext(Dispatchers.IO) {
@@ -206,7 +207,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             }.getOrDefault(emptyList())
             docs to pages
         }
-        documents=loaded.first;ranges=loaded.second
+        documents=loaded.first;ranges=loaded.second;referenceLoading=false
     }
     val offline=result.source?.let { resolveOfflineReference(documents,ranges,it,result.code) }
     AlertDialog(onDismissRequest=onDismiss,title={Text(result.title)},text={
@@ -220,10 +221,11 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             if(offline!=null) {
                 Text("Ficha individual da publicação original • ${offline.range.last-offline.range.first+1} páginas. Confira também alterações posteriores.",style=MaterialTheme.typography.bodySmall)
                 result.source?.let { source -> TextButton(onClick={openOfficialSource(context,source)}) { Text("VER PUBLICAÇÃO ONLINE") } }
-            } else Text("Ficha individual ainda indisponível nesta versão. A opção abaixo abre a fonte completa.",style=MaterialTheme.typography.bodySmall)
+            } else if(!referenceLoading) Text("Ficha individual ainda indisponível nesta versão. A opção abaixo abre a fonte completa.",style=MaterialTheme.typography.bodySmall)
         }
     },confirmButton={
-        if(offline!=null) TextButton(onClick={offlineOpened=true}) { Text("ABRIR FICHA") }
+        if(referenceLoading) TextButton(onClick={},enabled=false){Text("CARREGANDO")}
+        else if(offline!=null) TextButton(onClick={offlineOpened=true}) { Text("ABRIR FICHA") }
         else result.source?.let{source->TextButton(onClick={openOfficialSource(context,source)}){Text("ABRIR FONTE OFICIAL")}}
       },dismissButton={TextButton(onClick=onDismiss){Text("VOLTAR")}})
     if(offlineOpened && offline!=null) {
@@ -265,7 +267,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             QruTab.NOVIDADES -> {
                 QruLatestNewsCard()
                 Text("Recursos desta versão",style=MaterialTheme.typography.titleLarge)
-                Text("Catálogo • • ${app.bundledCatalog.all().size} referências disponíveis para busca sem internet.")
+                Text("Catálogo • ${app.bundledCatalog.all().size} referências disponíveis para busca sem internet.")
                 Text("Busca por artigo, código e termos práticos. Links para conferir as fontes oficiais.")
                 Text("Validação final das fichas: pendente.")
                 Text("As atualizações de conteúdo são recebidas pelo servidor e verificadas por assinatura. A disponibilidade depende da publicação de um pacote.")
