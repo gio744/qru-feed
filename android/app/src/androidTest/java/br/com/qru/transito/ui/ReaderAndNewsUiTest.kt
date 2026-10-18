@@ -1,7 +1,9 @@
 package br.com.qru.transito.ui
 
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.*
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.test.core.app.ActivityScenario
@@ -19,7 +21,8 @@ import kotlinx.coroutines.test.StandardTestDispatcher
 @RunWith(AndroidJUnit4::class)
 class ReaderAndNewsUiTest {
  // Queue coroutine resumptions instead of recomposing on a PDF I/O worker.
- @get:Rule val ui=createEmptyComposeRule(effectContext=StandardTestDispatcher())
+ @get:Rule(order=0) val ui=createEmptyComposeRule(effectContext=StandardTestDispatcher())
+ @get:Rule(order=1) val testTimeout=org.junit.rules.Timeout.seconds(90)
 
  private fun waitForPage(page:Int) {
   ui.waitUntil(60_000) {
@@ -147,4 +150,133 @@ class ReaderAndNewsUiTest {
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
   }
  }
+
+
+ private fun revealInSearch(target:SemanticsNodeInteraction,containerTag:String="search_results") {
+  val list=ui.onNodeWithTag(containerTag)
+  repeat(18) {
+   var moveDown=false
+   val bounds=try { target.getUnclippedBoundsInRoot() } catch(_:AssertionError) { null }
+   if(bounds!=null) {
+    // A tag inside verticalScroll has content-sized unclipped bounds.
+    // Use its clipped screen rectangle as the actual touch viewport.
+    val viewport=list.fetchSemanticsNode().boundsInRoot
+    val scale=ui.density.density
+    val top=bounds.top.value*scale
+    val bottom=bounds.bottom.value*scale
+    // Edge controls can align with the viewport without extra content padding.
+    val margin=-1f
+    android.util.Log.i("QRU_UI_TEST","reveal $containerTag: target=[$top,$bottom], viewport=$viewport")
+    if(top>=viewport.top+margin && bottom<=viewport.bottom-margin && target.isDisplayed()) return
+    moveDown=top<viewport.top+margin
+   }
+   list.performTouchInput {
+    val start=Offset(center.x,bottom*if(moveDown) 0.25f else 0.75f)
+    val end=Offset(center.x,bottom*if(moveDown) 0.75f else 0.25f)
+    down(start)
+    moveTo(end,delayMillis=500)
+    // A stationary sample removes fling velocity before releasing the control.
+    moveTo(end,delayMillis=250)
+    up()
+   }
+   ui.mainClock.advanceTimeBy(1000)
+   ui.waitForIdle()
+  }
+  error("Guided control could not be fully revealed within the search viewport")
+ }
+
+ @Test fun guidedReferenceKeepsSearchAndUsesIndividualFicha() {
+  val context=InstrumentationRegistry.getInstrumentation().targetContext
+  context.getSharedPreferences("qru_news",0).edit()
+   .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
+  ActivityScenario.launch(MainActivity::class.java).use {
+   ui.onNodeWithTag("search_query").performTextReplacement("pneu")
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithText("672-61",substring=true).fetchSemanticsNodes().isNotEmpty()
+   }
+   androidx.test.espresso.Espresso.closeSoftKeyboard()
+   android.util.Log.i("QRU_UI_TEST","guide: reveal collapsed form")
+   revealInSearch(ui.onNodeWithText("Análise guiada · habilitação"))
+   ui.onNodeWithText("Análise guiada · habilitação").assertHasClickAction()
+    .performSemanticsAction(SemanticsActions.OnClick) { assertTrue(it()) }
+   ui.waitUntil(5_000) {
+    ui.onAllNodesWithTag("guided_form").fetchSemanticsNodes().isNotEmpty()
+   }
+   ui.onAllNodes(isRoot()).fetchSemanticsNodes().indices.forEach { index ->
+    ui.onAllNodes(isRoot())[index].printToLog("QRU_GUIDE_TREE")
+   }
+   android.util.Log.i("QRU_UI_TEST","guide: reveal expiry choice")
+   revealInSearch(ui.onNodeWithTag("guide_choice_Validade da CNH"),"guided_form")
+   ui.onNodeWithTag("guide_choice_Validade da CNH").performClick()
+   ui.waitUntil(5_000) {
+    ui.onAllNodesWithText("Vencida há mais de 30 dias").fetchSemanticsNodes().isNotEmpty()
+   }
+   ui.onNodeWithText("Vencida há mais de 30 dias").performClick()
+   android.util.Log.i("QRU_UI_TEST","guide: reveal reference")
+   revealInSearch(ui.onNodeWithText("CONFERIR 504-50"),"guided_form")
+   ui.onNodeWithText("CONFERIR 504-50").performClick()
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithText("ABRIR FICHA").fetchSemanticsNodes().isNotEmpty()
+   }
+   ui.onNodeWithText("código 504-50",substring=true).assertExists()
+   ui.onNodeWithText("ABRIR FICHA").performClick()
+   ui.waitUntil(60_000) {
+    ui.onAllNodesWithTag("pdf_pages").fetchSemanticsNodes().isNotEmpty()
+   }
+   ui.onNodeWithText("Ficha individual • em conferência").assertIsDisplayed()
+   androidx.test.espresso.Espresso.pressBack()
+   androidx.test.espresso.Espresso.pressBack()
+   ui.onNodeWithTag("guided_form").assertExists()
+   androidx.test.espresso.Espresso.pressBack()
+   ui.onNodeWithTag("guided_form").assertDoesNotExist()
+   ui.onNodeWithTag("search_results").performScrollToIndex(0)
+   ui.onNodeWithTag("search_query").assertTextContains("pneu")
+  }
+ }
+
+ private fun lookupResult(code:String,key:String=code)=br.com.qru.transito.domain.model.SearchResult(
+  key,"Referência de teste",null,code,"BR","test"
+ )
+
+ private fun verifyGuidedLookupRetry(
+  initialResponse:(String)->List<br.com.qru.transito.domain.model.SearchResult>,
+  expectedMessage:String
+ ) {
+  var calls=0
+  ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+   scenario.onActivity { activity ->
+    activity.setContent { QruTheme {
+     var result by remember { mutableStateOf<br.com.qru.transito.domain.model.SearchResult?>(null) }
+     if(result==null) GuideReferenceLookup("504-50",
+      search={code -> calls++;if(calls==1) initialResponse(code) else listOf(lookupResult(code))},
+      onSelected={result=it},onDismiss={})
+     else androidx.compose.material3.Text("Referência carregada: ${result!!.code}")
+    } }
+   }
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithText(expectedMessage,substring=true).fetchSemanticsNodes().isNotEmpty()
+   }
+   ui.onNodeWithText("Referência carregada:",substring=true).assertDoesNotExist()
+   ui.onNodeWithText("TENTAR NOVAMENTE").performClick()
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithText("Referência carregada: 504-50").fetchSemanticsNodes().isNotEmpty()
+   }
+   org.junit.Assert.assertEquals(2,calls)
+  }
+ }
+
+ @Test fun guidedLookupDoesNotSubstituteRelatedCode() = verifyGuidedLookupRetry(
+  initialResponse={listOf(lookupResult("502-92"))},
+  expectedMessage="não está disponível"
+ )
+
+ @Test fun guidedLookupDoesNotChooseBetweenDuplicateCodes() = verifyGuidedLookupRetry(
+  initialResponse={code->listOf(lookupResult(code,"first"),lookupResult(code,"second"))},
+  expectedMessage="não está disponível"
+ )
+
+ @Test fun guidedLookupCanRetryAfterFailure() = verifyGuidedLookupRetry(
+  initialResponse={throw IllegalStateException("simulated lookup failure")},
+  expectedMessage="Não foi possível consultar"
+ )
 }

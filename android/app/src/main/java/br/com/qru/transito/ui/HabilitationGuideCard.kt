@@ -1,6 +1,10 @@
 package br.com.qru.transito.ui
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Checklist
@@ -8,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import br.com.qru.transito.domain.usecase.*
 
@@ -21,44 +26,52 @@ private val GuideFactsSaver = listSaver<GuideFacts, String>(
     }
 )
 
-@Composable internal fun HabilitationGuideCard(onReference: (String) -> Unit) {
-    var expanded by rememberSaveable { mutableStateOf(false) }
-    var facts by rememberSaveable(stateSaver=GuideFactsSaver) { mutableStateOf(GuideFacts()) }
-    if(!expanded) {
-        TextButton(onClick={expanded=true},modifier=Modifier.fillMaxWidth().heightIn(min=48.dp)) {
-            Icon(Icons.Default.Checklist,null,modifier=Modifier.size(20.dp))
-            Spacer(Modifier.width(8.dp))
-            Text("Análise guiada · habilitação")
-        }
-        return
+@Composable internal fun HabilitationGuideCard(onOpen:()->Unit) {
+    TextButton(onClick=onOpen,modifier=Modifier.fillMaxWidth().heightIn(min=48.dp)) {
+        Icon(Icons.Default.Checklist,null,modifier=Modifier.size(20.dp))
+        Spacer(Modifier.width(8.dp))
+        Text("Análise guiada · habilitação")
     }
-    Card(modifier=Modifier.fillMaxWidth()) {
-        Column(Modifier.padding(16.dp), verticalArrangement=Arrangement.spacedBy(10.dp)) {
-            Text("ANÁLISE GUIADA • HABILITAÇÃO",color=MaterialTheme.colorScheme.primary)
-            Text("Organize suspensão, reciclagem e validade da CNH.")
-            TextButton(onClick={expanded=!expanded}) { Text(if(expanded) "RECOLHER ANÁLISE" else "ORGANIZAR O CASO") }
-            if(expanded) {
-                Text("Piloto em conferência. Reúne verificações e referências; a validação jurídica do cenário está pendente.",style=MaterialTheme.typography.bodySmall)
-                OutlinedTextField(value=facts.date,onValueChange={facts=facts.copy(date=it)},label={Text("Data do fato (AAAA-MM-DD)")},singleLine=true,modifier=Modifier.fillMaxWidth())
-                GuideChoice("Suspensão",SuspensionState.entries.map{it.label},facts.suspension.ordinal) {
-                    facts=facts.copy(suspension=SuspensionState.entries[it])
-                }
-                GuideChoice("Reciclagem",RecyclingState.entries.map{it.label},facts.recycling.ordinal) {
-                    facts=facts.copy(recycling=RecyclingState.entries[it])
-                }
-                GuideChoice("Validade da CNH",ExpiryState.entries.map{it.label},facts.expiry.ordinal) {
-                    facts=facts.copy(expiry=ExpiryState.entries[it])
-                }
-                val review=HabilitationGuide.review(facts)
-                Text("O QUE CONFERIR",style=MaterialTheme.typography.titleMedium)
-                review.checks.forEach { Text("• $it") }
-                if(review.referenceCodes.isNotEmpty()) {
-                    Text("REFERÊNCIAS RELACIONADAS",style=MaterialTheme.typography.titleMedium)
-                    review.referenceCodes.forEach { code ->
-                        OutlinedButton(onClick={onReference(code)},modifier=Modifier.fillMaxWidth()) { Text("CONFERIR $code") }
+}
+
+@Composable internal fun HabilitationGuideDialog(expanded:Boolean,onDismiss:()->Unit,onReference:(String)->Unit) {
+    var facts by rememberSaveable(stateSaver=GuideFactsSaver) { mutableStateOf(GuideFacts()) }
+    if(!expanded) return
+    Dialog(onDismissRequest=onDismiss,properties=DialogProperties(usePlatformDefaultWidth=false)) {
+        Surface(Modifier.fillMaxSize()) {
+            Column(Modifier.fillMaxSize().padding(16.dp),verticalArrangement=Arrangement.spacedBy(12.dp)) {
+                Text("ANÁLISE GUIADA • HABILITAÇÃO",style=MaterialTheme.typography.titleLarge,
+                    color=MaterialTheme.colorScheme.primary)
+                HorizontalDivider()
+                Column(Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()).testTag("guided_form"),
+                    verticalArrangement=Arrangement.spacedBy(10.dp)) {
+                    Text("Organize suspensão, reciclagem e validade da CNH.")
+                    Text("Piloto em conferência. Reúne verificações e referências; a validação jurídica do cenário está pendente.",style=MaterialTheme.typography.bodySmall)
+                    OutlinedTextField(value=facts.date,onValueChange={facts=facts.copy(date=it)},label={Text("Data do fato (AAAA-MM-DD)")},singleLine=true,modifier=Modifier.fillMaxWidth())
+                    GuideChoice("Suspensão",SuspensionState.entries.map{it.label},facts.suspension.ordinal) {
+                        facts=facts.copy(suspension=SuspensionState.entries[it])
+                    }
+                    GuideChoice("Reciclagem",RecyclingState.entries.map{it.label},facts.recycling.ordinal) {
+                        facts=facts.copy(recycling=RecyclingState.entries[it])
+                    }
+                    GuideChoice("Validade da CNH",ExpiryState.entries.map{it.label},facts.expiry.ordinal) {
+                        facts=facts.copy(expiry=ExpiryState.entries[it])
+                    }
+                    val review=HabilitationGuide.review(facts)
+                    Text("O QUE CONFERIR",style=MaterialTheme.typography.titleMedium)
+                    review.checks.forEach { Text("• $it") }
+                    if(review.referenceCodes.isNotEmpty()) {
+                        Text("REFERÊNCIAS RELACIONADAS",style=MaterialTheme.typography.titleMedium)
+                        review.referenceCodes.forEach { code ->
+                            OutlinedButton(onClick={onReference(code)},modifier=Modifier.fillMaxWidth()) { Text("CONFERIR $code") }
+                        }
                     }
                 }
-                TextButton(onClick={facts=GuideFacts()}) { Text("LIMPAR O CASO") }
+                HorizontalDivider()
+                Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
+                    TextButton(onClick={facts=GuideFacts()}) { Text("LIMPAR O CASO") }
+                    TextButton(onClick=onDismiss) { Text("VOLTAR") }
+                }
             }
         }
     }
@@ -67,7 +80,7 @@ private val GuideFactsSaver = listSaver<GuideFacts, String>(
     var open by remember { mutableStateOf(false) }
     Text(title,style=MaterialTheme.typography.titleSmall)
     Box {
-        OutlinedButton(onClick={open=true},modifier=Modifier.fillMaxWidth()) { Text(options[selected]) }
+        OutlinedButton(onClick={open=true},modifier=Modifier.fillMaxWidth().testTag("guide_choice_"+title)) { Text(options[selected]) }
         DropdownMenu(expanded=open,onDismissRequest={open=false}) {
             options.forEachIndexed { index,label ->
                 DropdownMenuItem(text={Text(label)},onClick={onSelect(index);open=false})
