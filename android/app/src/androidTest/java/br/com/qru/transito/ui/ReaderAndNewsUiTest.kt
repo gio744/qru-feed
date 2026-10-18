@@ -3,7 +3,6 @@ package br.com.qru.transito.ui
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.*
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
@@ -185,16 +184,13 @@ class ReaderAndNewsUiTest {
    revealInSearch(ui.onNodeWithText("Análise guiada · habilitação"))
    ui.onNodeWithText("Análise guiada · habilitação").performClick()
    android.util.Log.i("QRU_UI_TEST","guide: reveal expiry choice")
-   revealInSearch(ui.onNodeWithTag("guide_choice_Validade da CNH"))
-   ui.onNodeWithTag("guide_choice_Validade da CNH").assertHasClickAction()
-    .performSemanticsAction(SemanticsActions.OnClick) { assertTrue(it()) }
+   ui.onNodeWithTag("guide_choice_Validade da CNH").performScrollTo().performClick()
    ui.waitUntil(5_000) {
     ui.onAllNodesWithText("Vencida há mais de 30 dias").fetchSemanticsNodes().isNotEmpty()
    }
    ui.onNodeWithText("Vencida há mais de 30 dias").performClick()
    android.util.Log.i("QRU_UI_TEST","guide: reveal reference")
-   revealInSearch(ui.onNodeWithText("CONFERIR 504-50"))
-   ui.onNodeWithText("CONFERIR 504-50").performClick()
+   ui.onNodeWithText("CONFERIR 504-50").performScrollTo().performClick()
    ui.waitUntil(10_000) {
     ui.onAllNodesWithText("ABRIR FICHA").fetchSemanticsNodes().isNotEmpty()
    }
@@ -205,6 +201,8 @@ class ReaderAndNewsUiTest {
    }
    ui.onNodeWithText("Ficha individual • em conferência").assertIsDisplayed()
    androidx.test.espresso.Espresso.pressBack()
+   androidx.test.espresso.Espresso.pressBack()
+   ui.onNodeWithTag("guided_form").assertExists()
    androidx.test.espresso.Espresso.pressBack()
    ui.onNodeWithTag("search_results").performScrollToIndex(0)
    ui.onNodeWithTag("search_query").assertTextContains("pneu")
