@@ -120,6 +120,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  var occurrenceExpanded by rememberSaveable{mutableStateOf(false)}
  var selected by remember{mutableStateOf<SearchResult?>(null)}
  var guideReference by remember { mutableStateOf<String?>(null) }
+ var guideExpanded by rememberSaveable { mutableStateOf(false) }
  fun voiceMessage(text:String){Toast.makeText(context,text,Toast.LENGTH_LONG).show()}
  val speech=rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()){r->
   if(r.resultCode==Activity.RESULT_OK) r.data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.firstOrNull()?.let{vm.query(it);vm.run()}
@@ -169,11 +170,12 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
     }
    }
   }
-  HabilitationGuideCard { code -> guideReference=code }
+  HabilitationGuideCard { guideExpanded=true }
   if(state.message.isNotBlank() && state.message!="Faça uma consulta à base disponível.") Text(state.message,style=MaterialTheme.typography.bodySmall)
    }
   }
  }
+ HabilitationGuideDialog(guideExpanded,onDismiss={guideExpanded=false}) { code -> guideReference=code }
  guideReference?.let { code ->
   GuideReferenceLookup(code,search={app.searchLegalContent(it)},
    onSelected={selected=it;guideReference=null},onDismiss={guideReference=null})
