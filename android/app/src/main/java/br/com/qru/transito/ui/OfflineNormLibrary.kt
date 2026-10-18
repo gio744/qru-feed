@@ -80,19 +80,7 @@ private fun normSearch(text:String):String =
  }
  val document=norm
  if(error && category=="Resoluções") Text("A pesquisa no texto da Resolução 1.031 está indisponível. Você pode abrir o PDF completo.")
- val primaryMatches=document!=null && category=="Resoluções" && matchesNorm(document.title,document.subtitle,catalogQuery)
- if(document!=null && primaryMatches) Card(onClick={pdfOpened=true},modifier=Modifier.fillMaxWidth()) {
-  Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
-   Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
-    Text(document.title,style=MaterialTheme.typography.titleMedium,color=MaterialTheme.colorScheme.secondary,modifier=Modifier.weight(1f))
-    Icon(Icons.Default.ChevronRight,"Abrir PDF")
-   }
-   Text(document.subtitle,style=MaterialTheme.typography.bodyMedium)
-   Text("PDF completo offline • texto pesquisável disponível",style=MaterialTheme.typography.bodySmall)
-   TextButton(onClick={opened=true}) { Text("PESQUISAR TEXTO") }
-  }
- }
- AdditionalOfflineNorms(catalogQuery,category,catalog?.filter { document==null || it.file!="resolucao10312026.pdf" },primaryMatches,openSource)
+ AdditionalOfflineNorms(catalogQuery,category,catalog,document!=null,{opened=true},openSource)
  if(pdfOpened && document!=null) OfflinePdfReader(document.pdfSha256) { pdfOpened=false }
  if(opened && document!=null) {
   val needle=normSearch(query.trim())
@@ -130,10 +118,10 @@ private fun normSearch(text:String):String =
  }
 }
 
-@Composable private fun AdditionalOfflineNorms(query:String,category:String,documents:List<OfflinePdfDocument>?,primaryMatches:Boolean,openSource:(String)->Unit) {
+@Composable private fun AdditionalOfflineNorms(query:String,category:String,documents:List<OfflinePdfDocument>?,textAvailable:Boolean,onSearchText:()->Unit,openSource:(String)->Unit) {
  var selectedFile by rememberSaveable { mutableStateOf<String?>(null) }
  val visible=remember(documents,query,category) { documents.orEmpty().filter { it.category==category && matchesNorm(it.title,it.subtitle,query) } }
- if(documents!=null && query.isNotBlank() && visible.isEmpty() && !primaryMatches) Text("Nenhuma norma encontrada. Tente outro número ou assunto.")
+ if(documents!=null && query.isNotBlank() && visible.isEmpty()) Text("Nenhuma norma encontrada. Tente outro número ou assunto.")
  visible.forEach { doc ->
   Card(onClick={selectedFile=doc.file},modifier=Modifier.fillMaxWidth()) {
    Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
@@ -142,6 +130,7 @@ private fun normSearch(text:String):String =
      Icon(Icons.Default.ChevronRight,"Abrir PDF")
     }
     Text(doc.subtitle,style=MaterialTheme.typography.bodyMedium)
+    if(doc.file=="resolucao10312026.pdf" && textAvailable) TextButton(onClick=onSearchText) { Text("PESQUISAR TEXTO") }
     Text("PDF original completo offline • ${doc.pageCount} páginas",style=MaterialTheme.typography.bodySmall)
     TextButton(onClick={openSource(doc.source)},contentPadding=PaddingValues(0.dp)) { Icon(Icons.Default.OpenInNew,null,modifier=Modifier.size(16.dp));Spacer(Modifier.width(6.dp));Text("Fonte oficial",style=MaterialTheme.typography.labelSmall) }
    }
