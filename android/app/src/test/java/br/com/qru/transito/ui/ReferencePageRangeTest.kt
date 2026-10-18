@@ -29,9 +29,19 @@ class ReferencePageRangeTest {
  @Test fun allBundledReferenceRangesResolveAgainstExactCandidateSource() {
   val items=JsonParser.parseString(File("src/main/assets/initial-index.json").readText()).asJsonObject["items"].asJsonArray
   val covered=items.filter { resolveOfflineReference(docs,ranges,it.asJsonObject["source"].asString,it.asJsonObject["code"].asString)!=null }
-  assertEquals(416,covered.size)
-  assertEquals(416,ranges.size)
-  assertEquals(setOf("757-90","551-71"),items.filterNot { it in covered }.map { it.asJsonObject["code"].asString }.toSet())
+  assertEquals(417,covered.size)
+  assertEquals(417,ranges.size)
+  assertEquals(setOf("551-71"),items.filterNot { it in covered }.map { it.asJsonObject["code"].asString }.toSet())
+ }
+ @Test fun historicalRefusalKeepsItsPreviousStatusAndPeriod() {
+  val items=JsonParser.parseString(File("src/main/assets/initial-index.json").readText()).asJsonObject["items"].asJsonArray
+  val previous=items.single { it.asJsonObject["code"].asString=="757-90" }.asJsonObject
+  assertTrue(previous["title"].asString.contains("anterior"))
+  assertEquals("2026-10-16",previous["applies_until"].asString)
+  assertFalse(previous["ready"].asBoolean)
+  val target=resolveOfflineReference(docs,ranges,previous["source"].asString,"757-90")!!
+  assertEquals(110..111,target.range)
+  assertEquals("mbvt20222.pdf",target.document.file)
  }
  @Test fun windowConvertsOnlyItsOwnPages() {
   val window=PdfPageWindow(599,601,830)
