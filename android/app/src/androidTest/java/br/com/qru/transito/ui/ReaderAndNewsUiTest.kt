@@ -157,15 +157,20 @@ class ReaderAndNewsUiTest {
   val list=ui.onNodeWithTag(containerTag)
   repeat(18) {
    var moveDown=false
-   if(target.isDisplayed()) {
-    val bounds=target.getUnclippedBoundsInRoot()
+   val bounds=try { target.getUnclippedBoundsInRoot() } catch(_:AssertionError) { null }
+   if(bounds!=null) {
     val viewport=list.getUnclippedBoundsInRoot()
-    if(bounds.top>=viewport.top+8.dp && bounds.bottom<=viewport.bottom-8.dp) return
+    if(bounds.top>=viewport.top+8.dp && bounds.bottom<=viewport.bottom-8.dp && target.isDisplayed()) return
     moveDown=bounds.top<viewport.top+8.dp
    }
    list.performTouchInput {
-    if(moveDown) swipeDown(startY=bottom*0.25f,endY=bottom*0.75f,durationMillis=500)
-    else swipeUp(startY=bottom*0.75f,endY=bottom*0.25f,durationMillis=500)
+    val start=Offset(center.x,bottom*if(moveDown) 0.25f else 0.75f)
+    val end=Offset(center.x,bottom*if(moveDown) 0.75f else 0.25f)
+    down(start)
+    moveTo(end,delayMillis=500)
+    // A stationary sample removes fling velocity before releasing the control.
+    moveTo(end,delayMillis=250)
+    up()
    }
    ui.mainClock.advanceTimeBy(1000)
    ui.waitForIdle()
