@@ -20,7 +20,8 @@ import kotlinx.coroutines.test.StandardTestDispatcher
 @RunWith(AndroidJUnit4::class)
 class ReaderAndNewsUiTest {
  // Queue coroutine resumptions instead of recomposing on a PDF I/O worker.
- @get:Rule val ui=createEmptyComposeRule(effectContext=StandardTestDispatcher())
+ @get:Rule(order=0) val ui=createEmptyComposeRule(effectContext=StandardTestDispatcher())
+ @get:Rule(order=1) val testTimeout=org.junit.rules.Timeout.seconds(90)
 
  private fun waitForPage(page:Int) {
   ui.waitUntil(60_000) {
