@@ -29,6 +29,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
@@ -139,7 +140,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   }
    IconButton(onClick=onMenu,modifier=Modifier.align(Alignment.TopStart)){Icon(Icons.Default.Menu,"Abrir menu")}
   }
-  OutlinedTextField(state.query,{vm.query(it)},Modifier.fillMaxWidth(),placeholder={Text("Artigo, código ou situação")},
+  OutlinedTextField(state.query,{vm.query(it)},Modifier.fillMaxWidth().testTag("search_query"),placeholder={Text("Artigo, código ou situação")},
    leadingIcon={IconButton(onClick={keyboard?.hide();vm.run()},enabled=state.query.isNotBlank()){Icon(Icons.Default.Search,"Executar consulta")}},
    trailingIcon={IconButton({voice()}){Icon(Icons.Default.Mic,"Pesquisa por voz")}},singleLine=true,
    keyboardOptions=KeyboardOptions(imeAction=ImeAction.Search),
@@ -186,7 +187,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     catch(_:ActivityNotFoundException) { Toast.makeText(context,"Não foi possível abrir a fonte.",Toast.LENGTH_LONG).show() }
 }
 @Composable private fun ReferenceCard(result:SearchResult,onClick:()->Unit) {
-    Card(onClick=onClick,modifier=Modifier.fillMaxWidth()) {
+    Card(onClick=onClick,modifier=Modifier.fillMaxWidth().testTag("reference_card")) {
         Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
             Text(result.title,style=MaterialTheme.typography.titleMedium)
             Text("Art. ${result.article.orEmpty()} • ${result.code.orEmpty()}",color=MaterialTheme.colorScheme.secondary)
