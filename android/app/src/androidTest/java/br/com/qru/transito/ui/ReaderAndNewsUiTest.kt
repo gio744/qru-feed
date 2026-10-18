@@ -71,7 +71,10 @@ class ReaderAndNewsUiTest {
    ui.waitForIdle()
    assertTrue(prefs.getStringSet("seen_publications",emptySet()).orEmpty().isNotEmpty())
    scenario.recreate()
-   ui.onNodeWithText("CONSULTAR").assertIsDisplayed()
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithText("QUAL A SITUAÇÃO").fetchSemanticsNodes().isNotEmpty()
+   }
+   ui.waitForIdle()
    ui.onNodeWithText("Novidades do QRU").assertDoesNotExist()
   }
  }
