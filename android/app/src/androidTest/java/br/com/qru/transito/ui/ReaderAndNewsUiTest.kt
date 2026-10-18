@@ -89,8 +89,9 @@ class ReaderAndNewsUiTest {
     ui.onAllNodesWithText("672-61",substring=true).fetchSemanticsNodes().isNotEmpty()
    }
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
-   ui.onNodeWithTag("search_query").performImeAction()
-   ui.onAllNodesWithTag("reference_card").onFirst().performScrollTo().performClick()
+   androidx.test.espresso.Espresso.closeSoftKeyboard()
+   ui.onNodeWithTag("search_results").performScrollToIndex(1)
+   ui.onAllNodesWithTag("reference_card").onFirst().performClick()
    ui.waitUntil(10_000) {
     ui.onAllNodesWithText("ABRIR FICHA").fetchSemanticsNodes().isNotEmpty()
    }
