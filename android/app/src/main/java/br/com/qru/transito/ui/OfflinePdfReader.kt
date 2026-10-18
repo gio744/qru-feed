@@ -51,6 +51,7 @@ private fun pdfHash(file:File):String {
 
 /** Virtualized continuous pages; only nearby pages allocate bitmaps. */
 @Composable fun OfflinePdfReader(expectedHash:String,assetName:String="resolucao10312026.pdf",title:String="Resolução 1.031/2026",pageCount:Int=20,annexPage:Int?=12,initialPage:Int?=null,onDismiss:()->Unit) {
+ key(expectedHash,initialPage) {
  val context=LocalContext.current
  val preferences=remember(context) { context.getSharedPreferences("qru_pdf_reading",android.content.Context.MODE_PRIVATE) }
  val savedPage=remember(expectedHash) { runCatching { preferences.getInt(expectedHash,1) }.getOrDefault(1) }
@@ -137,6 +138,7 @@ private fun pdfHash(file:File):String {
     keyboardActions=KeyboardActions(onGo={jump()}))
   },confirmButton={TextButton(onClick={jump()},enabled=valid){Text("IR")}},
    dismissButton={TextButton(onClick={jumpOpen=false}){Text("CANCELAR")}})
+ }
  }
 }
 
