@@ -50,13 +50,16 @@ private fun pdfHash(file:File):String {
 }
 
 /** Virtualized continuous pages; only nearby pages allocate bitmaps. */
-@Composable fun OfflinePdfReader(expectedHash:String,assetName:String="resolucao10312026.pdf",title:String="Resolução 1.031/2026",pageCount:Int=20,annexPage:Int?=12,initialPage:Int?=null,onDismiss:()->Unit) {
- key(expectedHash,initialPage) {
+@Composable fun OfflinePdfReader(expectedHash:String,assetName:String="resolucao10312026.pdf",title:String="Resolução 1.031/2026",pageCount:Int=20,annexPage:Int?=12,initialPage:Int?=null,pageRange:IntRange?=null,onDismiss:()->Unit) {
+ key(expectedHash,initialPage,pageRange) {
  val context=LocalContext.current
  val preferences=remember(context) { context.getSharedPreferences("qru_pdf_reading",android.content.Context.MODE_PRIVATE) }
  val savedPage=remember(expectedHash) { runCatching { preferences.getInt(expectedHash,1) }.getOrDefault(1) }
- val startPage=remember(expectedHash,initialPage,pageCount) { initialPdfPage(initialPage,savedPage,pageCount) }
- val listState=rememberLazyListState(initialFirstVisibleItemIndex=startPage-1)
+ val window=remember(pageRange,pageCount) { PdfPageWindow(pageRange?.first ?: 1,pageRange?.last ?: pageCount,pageCount) }
+ val startPage=remember(expectedHash,initialPage,pageCount,window) {
+  initialPdfPage(initialPage,savedPage,pageCount).coerceIn(window.firstPage,window.lastPage)
+ }
+ val listState=rememberLazyListState(initialFirstVisibleItemIndex=window.listIndex(startPage))
  val page by remember { derivedStateOf { listState.firstVisibleItemIndex } }
  val scope=rememberCoroutineScope()
  val keyboard=LocalSoftwareKeyboardController.current
@@ -88,23 +91,23 @@ private fun pdfHash(file:File):String {
   } catch(cancelled:CancellationException) { throw cancelled }
     catch(_:Exception) { failed=true }
  }
- fun go(index:Int) { if(file!=null) scope.launch { listState.scrollToItem(index.coerceIn(0,pageCount-1)) } }
+ fun go(index:Int) { if(file!=null) scope.launch { listState.scrollToItem(index.coerceIn(0,window.count-1)) } }
  Dialog(onDismissRequest=onDismiss,properties=DialogProperties(usePlatformDefaultWidth=false)) {
   Surface(Modifier.fillMaxSize()) {
    Column(Modifier.fillMaxSize().padding(12.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
     Text(title,style=MaterialTheme.typography.titleLarge)
-    Text("Deslize para percorrer as páginas • PDF offline",style=MaterialTheme.typography.bodySmall)
+    Text(if(pageRange==null) "Deslize para percorrer as páginas • PDF offline" else "Ficha individual • em conferência",style=MaterialTheme.typography.bodySmall)
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
      TextButton(onClick={go(page-1)},enabled=page>0 && file!=null){Text("ANTERIOR")}
-     TextButton(onClick={jumpText=(page+1).toString();jumpOpen=true},enabled=file!=null) { Text("${page+1} / $pageCount ▾") }
-     TextButton(onClick={go(page+1)},enabled=page<pageCount-1 && file!=null){Text("PRÓXIMA")}
+     TextButton(onClick={jumpText=(page+1).toString();jumpOpen=true},enabled=file!=null) { Text("${page+1} / ${window.count} ▾") }
+     TextButton(onClick={go(page+1)},enabled=page<window.count-1 && file!=null){Text("PRÓXIMA")}
     }
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
      TextButton(onClick={go(0)},enabled=page!=0 && file!=null){Text("PRIMEIRA")}
-     annexPage?.takeIf { it in 1..pageCount }?.let { first ->
-      TextButton(onClick={go(first-1)},enabled=page!=first-1 && file!=null){Text("ANEXOS · P. $first")}
+     annexPage?.takeIf { it in window.firstPage..window.lastPage }?.let { first ->
+      TextButton(onClick={go(window.listIndex(first))},enabled=page!=window.listIndex(first) && file!=null){Text("ANEXOS · P. $first")}
      }
-     TextButton(onClick={go(pageCount-1)},enabled=page!=pageCount-1 && file!=null){Text("ÚLTIMA")}
+     TextButton(onClick={go(window.count-1)},enabled=page!=window.count-1 && file!=null){Text("ÚLTIMA")}
     }
     val document=file
     if(failed) {
@@ -113,9 +116,9 @@ private fun pdfHash(file:File):String {
     } else if(document==null) LinearProgressIndicator(Modifier.fillMaxWidth())
     Box(Modifier.weight(1f).fillMaxWidth()) {
      if(document!=null) LazyColumn(state=listState,modifier=Modifier.fillMaxSize(),verticalArrangement=Arrangement.spacedBy(12.dp)) {
-      items(count=pageCount,key={it},contentType={"pdf_page"}) { index ->
-       ContinuousPdfPage(document,index,zoom,renderMutex,page==index) {
-        preferences.edit().putInt(expectedHash,index+1).apply()
+      items(count=window.count,key={it},contentType={"pdf_page"}) { index ->
+       ContinuousPdfPage(document,window.documentIndex(index),zoom,renderMutex,page==index) {
+        if(pageRange==null) preferences.edit().putInt(expectedHash,window.documentIndex(index)+1).apply()
        }
       }
      }
@@ -129,11 +132,11 @@ private fun pdfHash(file:File):String {
  }
  if(jumpOpen) {
   val target=jumpText.toIntOrNull()
-  val valid=target!=null && target in 1..pageCount
+  val valid=target!=null && target in 1..window.count
   fun jump() { if(valid) {go(target!!-1);jumpOpen=false;keyboard?.hide()} }
   AlertDialog(onDismissRequest={jumpOpen=false},title={Text("Ir para página")},text={
-   OutlinedTextField(jumpText,{value->jumpText=value.filter { it in '0'..'9' }.take(pageCount.toString().length)},
-    label={Text("Página de 1 a $pageCount")},singleLine=true,isError=jumpText.isNotBlank() && !valid,
+   OutlinedTextField(jumpText,{value->jumpText=value.filter { it in '0'..'9' }.take(window.count.toString().length)},
+    label={Text("Página de 1 a ${window.count}")},singleLine=true,isError=jumpText.isNotBlank() && !valid,
     keyboardOptions=KeyboardOptions(keyboardType=KeyboardType.Number,imeAction=ImeAction.Go),
     keyboardActions=KeyboardActions(onGo={jump()}))
   },confirmButton={TextButton(onClick={jump()},enabled=valid){Text("IR")}},
