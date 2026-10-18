@@ -4,7 +4,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.*
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.semantics.SemanticsActions
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.test.core.app.ActivityScenario
@@ -159,9 +158,16 @@ class ReaderAndNewsUiTest {
    var moveDown=false
    val bounds=try { target.getUnclippedBoundsInRoot() } catch(_:AssertionError) { null }
    if(bounds!=null) {
-    val viewport=list.getUnclippedBoundsInRoot()
-    if(bounds.top>=viewport.top+8.dp && bounds.bottom<=viewport.bottom-8.dp && target.isDisplayed()) return
-    moveDown=bounds.top<viewport.top+8.dp
+    // A tag inside verticalScroll has content-sized unclipped bounds.
+    // Use its clipped screen rectangle as the actual touch viewport.
+    val viewport=list.fetchSemanticsNode().boundsInRoot
+    val scale=ui.density.density
+    val top=bounds.top.value*scale
+    val bottom=bounds.bottom.value*scale
+    val margin=8f*scale
+    android.util.Log.i("QRU_UI_TEST","reveal $containerTag: target=[$top,$bottom], viewport=$viewport")
+    if(top>=viewport.top+margin && bottom<=viewport.bottom-margin && target.isDisplayed()) return
+    moveDown=top<viewport.top+margin
    }
    list.performTouchInput {
     val start=Offset(center.x,bottom*if(moveDown) 0.25f else 0.75f)
