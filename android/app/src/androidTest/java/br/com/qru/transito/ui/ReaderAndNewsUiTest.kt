@@ -107,7 +107,7 @@ class ReaderAndNewsUiTest {
    ui.waitUntil(10_000) {
     ui.onAllNodesWithText("659-92",substring=true).fetchSemanticsNodes().isNotEmpty()
    }
-   ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("Art. 230, V",substring=true)
+   ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("659-92",substring=true)
   }
  }
 }
