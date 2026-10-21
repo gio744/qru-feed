@@ -162,6 +162,28 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   Text("CONSULTA OPERACIONAL  •  CATÁLOGO OFFLINE", style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.secondary)
    }
   }
+  if(state.query.isBlank()) item(key="quick_access") {
+   Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(12.dp)) {
+    Text("ACESSO RÁPIDO",style=MaterialTheme.typography.labelLarge,
+     color=Color(0xFFD9B6FF),fontWeight=FontWeight.SemiBold)
+    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(10.dp)) {
+     QruQuickAction("Infrações",Icons.Default.Gavel,Modifier.weight(1f)) { vm.query("162");vm.run() }
+     QruQuickAction("Medidas",Icons.Default.FactCheck,Modifier.weight(1f)) { occurrenceExpanded=true }
+    }
+    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(10.dp)) {
+     QruQuickAction("Ocorrência",Icons.Default.Description,Modifier.weight(1f)) { occurrenceExpanded=true }
+     QruQuickAction("Habilitação",Icons.Default.AssignmentTurnedIn,Modifier.weight(1f)) { guideExpanded=true }
+    }
+    Text("CONSULTAS FREQUENTES",style=MaterialTheme.typography.labelSmall,color=Color(0xFFD9B6FF))
+    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+     listOf("165-A","162","230 XVIII").forEach { term ->
+      SuggestionChip(onClick={vm.query(term);vm.run()},label={Text(term)})
+     }
+    }
+    Text("Atalhos de pesquisa. Confira sempre a fonte oficial e a regra aplicável ao fato.",
+     style=MaterialTheme.typography.bodySmall,color=Color(0xFFB9A9C9))
+   }
+  }
   items(state.results,key={result -> "reference:"+result.stableKey},contentType={"reference"}) { result ->
    ReferenceCard(result) { selected=result }
   }
@@ -202,6 +224,19 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     try { context.startActivity(Intent(Intent.ACTION_VIEW,uri)) }
     catch(_:ActivityNotFoundException) { Toast.makeText(context,"Não foi possível abrir a fonte.",Toast.LENGTH_LONG).show() }
 }
+@Composable private fun QruQuickAction(label:String,icon:androidx.compose.ui.graphics.vector.ImageVector,
+ modifier:Modifier=Modifier,onClick:()->Unit) {
+ Card(onClick=onClick,modifier=modifier.heightIn(min=84.dp),
+  colors=CardDefaults.cardColors(containerColor=Color(0xFF21172E)),
+  border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF49305F)),
+  shape=RoundedCornerShape(18.dp)) {
+  Column(Modifier.fillMaxWidth().padding(14.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+   Icon(icon,contentDescription=null,tint=Color(0xFFC48DFF))
+   Text(label,style=MaterialTheme.typography.labelLarge,color=Color(0xFFF0E5FA))
+  }
+ }
+}
+
 @Composable private fun ReferenceCard(result:SearchResult,onClick:()->Unit) {
     Card(onClick=onClick,modifier=Modifier.fillMaxWidth().testTag("reference_card")
         .border(1.dp,Color(0xFF49305F),RoundedCornerShape(18.dp)),
