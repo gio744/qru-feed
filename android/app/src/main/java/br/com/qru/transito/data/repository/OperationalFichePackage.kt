@@ -18,6 +18,23 @@ object OperationalFichePackage {
             host in setOf("www.gov.br", "www.planalto.gov.br", "www.camara.leg.br")
     }.getOrDefault(false)
 
+    /**
+     * Explicit package activation requires a known expected SHA-256 digest.
+     * This prevents accidental activation of modified asset bytes.
+     */
+    fun approvedByCodeWithDigest(
+        json: String,
+        activeCodes: Set<String>,
+        expectedSha256: String
+    ): Map<String, OperationalReference> {
+        if (!Regex("[a-fA-F0-9]{64}").matches(expectedSha256)) return emptyMap()
+        val digest = java.security.MessageDigest.getInstance("SHA-256")
+            .digest(json.toByteArray(Charsets.UTF_8))
+            .joinToString("") { "%02x".format(it) }
+        if (!digest.equals(expectedSha256, ignoreCase = true)) return emptyMap()
+        return approvedByCode(json, activeCodes)
+    }
+
     fun approvedByCode(json: String, activeCodes: Set<String>): Map<String, OperationalReference> =
         runCatching {
             val root = JsonParser.parseString(json).asJsonObject
