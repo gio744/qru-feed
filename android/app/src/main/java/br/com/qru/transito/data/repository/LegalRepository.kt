@@ -23,15 +23,15 @@ class LegalRepository(private val db: QruDatabase, private val bundled: BundledC
     suspend fun isActiveReference(result: SearchResult): Boolean = withContext(Dispatchers.IO) {
         val active = db.legalReleaseDao().active()
         if (active == null) {
-            bundled.all().any { it.stableKey == result.stableKey && it.code == result.code &&
-                it.releaseVersion == result.releaseVersion && it.reviewStatus == result.reviewStatus &&
-                    it.source == result.source && it.article == result.article }
+            bundled.all().any { ActiveReferenceIdentity.matches(it, result) }
         } else {
             db.legalDao().activeItems().any {
-                it.stableKey == result.stableKey && it.code == result.code &&
-                    it.releaseVersion == active.version &&
-                    it.releaseVersion == result.releaseVersion && it.reviewStatus == result.reviewStatus &&
-                    it.source == result.source && it.article == result.article
+                ActiveReferenceIdentity.matches(
+                    SearchResult(it.stableKey, it.title, it.article, it.code, it.jurisdiction,
+                        it.releaseVersion, it.source, it.reviewStatus, it.appliesFrom, it.appliesUntil),
+                    result,
+                    active.version
+                )
             }
         }
     }
