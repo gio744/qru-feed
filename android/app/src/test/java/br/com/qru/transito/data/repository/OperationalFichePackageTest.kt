@@ -26,6 +26,14 @@ class OperationalFichePackageTest {
         ).isEmpty())
     }
 
+    @Test fun bundledPackageDigestMatchesVersionedAsset() {
+        val json = "{\\n  \\"schemaVersion\\": 1,\\n  \\"items\\": []\\n}\\n"
+        val digest = java.security.MessageDigest.getInstance("SHA-256")
+            .digest(json.toByteArray(Charsets.UTF_8))
+            .joinToString("") { "%02x".format(it) }
+        assertTrue(digest == "0e5e19436438b496cb29a0243523d31a7369bd1228b84cc6779d8ca88eaeec17")
+    }
+
     @Test fun invalidDigestNeverActivatesEditorialPackage() {
         assertTrue(OperationalFichePackage.approvedByCodeWithDigest(
             """{"schemaVersion":1,"items":[]}""",
