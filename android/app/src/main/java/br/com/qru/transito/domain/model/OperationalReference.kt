@@ -15,6 +15,7 @@ data class OperationalReference(
     fun editorialIssues(): List<String> = buildList {
         if (!Regex("[0-9]{3}-[0-9]{2}").matches(code)) add("invalid_code")
         if (whenApplicable.isEmpty()) add("missing_applicability")
+        if (exceptions.isEmpty()) add("missing_exceptions_assessment")
         if (review.status != OperationalReviewStatus.APPROVED) add("review_pending")
         if (review.reviewer.isBlank()) add("missing_reviewer")
         if (review.reviewedAt.isBlank()) add("missing_review_date")
