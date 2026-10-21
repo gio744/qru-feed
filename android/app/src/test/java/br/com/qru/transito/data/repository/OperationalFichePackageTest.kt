@@ -4,6 +4,21 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class OperationalFichePackageTest {
+    @Test fun officialHostCheckRejectsImpersonation() {
+        assertTrue(OperationalFichePackage.isTrustedOfficialSource(
+            "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm"
+        ))
+        assertTrue(!OperationalFichePackage.isTrustedOfficialSource(
+            "https://www.planalto.gov.br.evil.example/documento"
+        ))
+        assertTrue(!OperationalFichePackage.isTrustedOfficialSource(
+            "https://www.planalto.gov.br@evil.example/documento"
+        ))
+        assertTrue(!OperationalFichePackage.isTrustedOfficialSource(
+            "http://www.planalto.gov.br/documento"
+        ))
+    }
+
     @Test fun emptyVersionedPackageLoadsSafely() {
         assertTrue(OperationalFichePackage.approvedByCode(
             """{"schemaVersion":1,"items":[]}""", setOf("672-61")
