@@ -167,8 +167,8 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
     Text("ACESSO RÁPIDO",style=MaterialTheme.typography.labelLarge,
      color=Color(0xFFD9B6FF),fontWeight=FontWeight.SemiBold)
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(10.dp)) {
-     QruQuickAction("Infrações",Icons.Default.Gavel,Modifier.weight(1f)) { vm.query("162");vm.run() }
-     QruQuickAction("Medidas",Icons.Default.FactCheck,Modifier.weight(1f)) { occurrenceExpanded=true }
+     QruQuickAction("Art. 162",Icons.Default.Gavel,Modifier.weight(1f)) { vm.query("162");vm.run() }
+     QruQuickAction("Art. 270",Icons.Default.FactCheck,Modifier.weight(1f)) { vm.query("270");vm.run() }
     }
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(10.dp)) {
      QruQuickAction("Ocorrência",Icons.Default.Description,Modifier.weight(1f)) { occurrenceExpanded=true }
