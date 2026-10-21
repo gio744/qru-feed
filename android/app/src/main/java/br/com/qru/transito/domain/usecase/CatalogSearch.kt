@@ -23,7 +23,7 @@ object CatalogSearch {
     }
     private fun articleOrder(article: String?): Pair<Int, Int> {
         val normalized = normalize(article.orEmpty())
-        val match = Regex("""^\\s*(\\d+)(?:\\s*[,–-]\\s*([ivxlcdm]+))?""").find(normalized)
+        val match = Regex("""^\s*(\d+)(?:\s*[,–-]\s*([ivxlcdm]+))?""").find(normalized)
             ?: return Int.MAX_VALUE to Int.MAX_VALUE
         val number = match.groupValues[1].toIntOrNull() ?: Int.MAX_VALUE
         val inciso = match.groupValues[2].takeIf { it.isNotEmpty() }?.let(::romanValue) ?: 0
