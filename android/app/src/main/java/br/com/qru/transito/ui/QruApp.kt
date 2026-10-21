@@ -14,6 +14,9 @@ import androidx.compose.ui.layout.ContentScale
 import br.com.qru.transito.R
 import android.Manifest
 import android.app.Activity
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import br.com.qru.transito.domain.model.SearchResult
@@ -441,6 +444,15 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                     examples.forEachIndexed { index,item ->
                         Text("EXEMPLO ${index+1}",fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
                         Text(item.text)
+                        OutlinedButton(onClick={
+                            val clipboard=context.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager
+                            clipboard?.setPrimaryClip(ClipData.newPlainText("Observação AIT — QRU",item.text))
+                            Toast.makeText(context,"Observação copiada. Confira e adapte aos fatos constatados.",Toast.LENGTH_LONG).show()
+                        },modifier=Modifier.fillMaxWidth()) {
+                            Icon(Icons.Default.ContentCopy,contentDescription=null,modifier=Modifier.size(18.dp))
+                            Spacer(Modifier.width(8.dp))
+                            Text("COPIAR OBSERVAÇÃO")
+                        }
                         item.evidence.forEach { source ->
                             TextButton(onClick={openOfficialSource(context,source.url)}) {
                                 Text("Fundamento: ${source.locator}",style=MaterialTheme.typography.bodySmall)
