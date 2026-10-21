@@ -16,5 +16,25 @@ class LegalRepository(private val db: QruDatabase, private val bundled: BundledC
                 it.source, it.reviewStatus, it.appliesFrom, it.appliesUntil), it.searchText)
         }, query)
     }
+    /**
+     * Resolve eligibility against the current release, not a possibly stale search result.
+     * A bundled reference is eligible only when no database release is active.
+     */
+    suspend fun isActiveReference(result: SearchResult): Boolean = withContext(Dispatchers.IO) {
+        val active = db.legalReleaseDao().active()
+        if (active == null) {
+            bundled.all().any { ActiveReferenceIdentity.matches(it, result) }
+        } else {
+            db.legalDao().activeItems().any {
+                ActiveReferenceIdentity.matches(
+                    SearchResult(it.stableKey, it.title, it.article, it.code, it.jurisdiction,
+                        it.releaseVersion, it.source, it.reviewStatus, it.appliesFrom, it.appliesUntil),
+                    result,
+                    active.version
+                )
+            }
+        }
+    }
+
     suspend fun activeVersion() = db.legalReleaseDao().active()?.version
 }

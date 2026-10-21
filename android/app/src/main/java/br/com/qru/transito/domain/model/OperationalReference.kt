@@ -15,10 +15,19 @@ data class OperationalReference(
     fun editorialIssues(): List<String> = buildList {
         if (!Regex("[0-9]{3}-[0-9]{2}").matches(code)) add("invalid_code")
         if (whenApplicable.isEmpty()) add("missing_applicability")
+        if (exceptions.isEmpty()) add("missing_exceptions_assessment")
         if (review.status != OperationalReviewStatus.APPROVED) add("review_pending")
         if (review.reviewer.isBlank()) add("missing_reviewer")
         if (review.reviewedAt.isBlank()) add("missing_review_date")
+        else {
+            val date = try { java.time.LocalDate.parse(review.reviewedAt) }
+                catch (_: Exception) { null }
+            if (date == null || date.isAfter(java.time.LocalDate.now()))
+                add("invalid_review_date")
+        }
         if (review.unresolvedIssues.isNotEmpty()) add("unresolved_issues")
+        if (review.unresolvedIssues.any { it.isBlank() }) add("blank_unresolved_issue")
+        if (review.reviewer.isNotBlank() && (review.reviewer.trim().length < 3 || review.reviewer.none { it.isLetter() })) add("invalid_reviewer")
         val statements = whenApplicable + exceptions + observations +
             measures.flatMap { listOf(it.rule) + it.conditions }
         if (statements.any { it.text.isBlank() || it.evidence.isEmpty() ||

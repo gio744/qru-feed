@@ -92,13 +92,30 @@ val bundleNormPdf = tasks.register("bundleNormPdf") {
                 destination.parentFile.mkdirs()
                 val temporary=File(destination.parentFile,"$name.download")
                 try {
-                    val connection=URI(doc["source"] as String).toURL().openConnection()
-                    connection.connectTimeout=30000;connection.readTimeout=60000
-                    connection.setRequestProperty("User-Agent","QRU-document-build/1.0")
-                    connection.getInputStream().use { input ->
-                        temporary.outputStream().use { output -> input.copyTo(output) }
+                    var lastFailure: Exception? = null
+                    for (attempt in 1..3) {
+                        try {
+                            val connection=URI(doc["source"] as String).toURL().openConnection()
+                            connection.connectTimeout=30000;connection.readTimeout=60000
+                            connection.setRequestProperty("User-Agent","QRU-document-build/1.0")
+                            connection.getInputStream().use { input ->
+                                temporary.outputStream().use { output -> input.copyTo(output) }
+                            }
+                            lastFailure=null
+                            break
+                        } catch (failure: java.io.IOException) {
+                            lastFailure=failure
+                            temporary.delete()
+                            if(attempt<3) Thread.sleep(1500L * attempt)
+                        }
                     }
-                    check(fingerprint(temporary)==expected) { "Official PDF bytes changed: $name" }
+                    if(lastFailure!=null) throw lastFailure
+                    val actual=fingerprint(temporary)
+                    check(actual==expected) {
+                        "Official PDF integrity mismatch: $name; expected SHA-256=$expected; " +
+                            "downloaded SHA-256=$actual; source=${doc["source"]}. " +
+                            "Review the official publication before changing the pinned hash."
+                    }
                     Files.move(temporary.toPath(),destination.toPath(),StandardCopyOption.REPLACE_EXISTING)
                 } finally { temporary.delete() }
             }

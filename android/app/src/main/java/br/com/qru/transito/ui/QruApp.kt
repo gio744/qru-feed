@@ -12,6 +12,9 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import br.com.qru.transito.domain.model.SearchResult
+import br.com.qru.transito.domain.model.OperationalReferencePublication
+import br.com.qru.transito.data.repository.OperationalFichePackage
+import br.com.qru.transito.domain.model.OperationalReference
 import android.content.pm.PackageManager
 import android.speech.RecognizerIntent
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -223,10 +226,57 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
         documents=loaded.first;ranges=loaded.second;referenceLoading=false
     }
     val offline=result.source?.let { resolveOfflineReference(documents,ranges,it,result.code) }
+    // Editorial package starts empty. Never infer approval from a bundled PDF or search result.
+    var approvedOperationalFiche by remember(result.stableKey) { mutableStateOf<OperationalReference?>(null) }
+    LaunchedEffect(result.stableKey) {
+        approvedOperationalFiche = withContext(Dispatchers.IO) {
+            runCatching {
+                val json = context.assets.open("operational/approved-fiches.json")
+                    .bufferedReader().use { it.readText() }
+                // Recheck the selected result against the active catalog before publication.
+                val code = result.code ?: return@runCatching null
+                val expectedDigest = context.assets.open("operational/approved-fiches.sha256")
+                    .bufferedReader().use { it.readText().trim() }
+                val app = context.applicationContext as QruApplication
+                if (!app.legalRepository.isActiveReference(result)) return@runCatching null
+                OperationalFichePackage.approvedByCodeWithDigest(json, setOf(code), expectedDigest)[code]
+            }.getOrNull()
+        }
+    }
     AlertDialog(onDismissRequest=onDismiss,title={Text(result.title)},text={
         Column(Modifier.verticalScroll(androidx.compose.foundation.rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
             Text("Art. ${result.article.orEmpty()} • código ${result.code.orEmpty()}")
-            Text("Referência em conferência. A validação final da ficha está pendente.")
+            if (approvedOperationalFiche == null) Text("Referência em conferência. A validação final da ficha está pendente.")
+            Text("QUANDO AUTUAR",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
+            if (approvedOperationalFiche == null) Text("Orientação operacional ainda não aprovada. Consulte a ficha oficial antes de decidir.")
+            else approvedOperationalFiche?.whenApplicable?.forEach { item ->
+                Text(item.text)
+                item.evidence.forEach { source ->
+                    TextButton(onClick={ openOfficialSource(context, source.url) }) {
+                        Text("Fonte oficial: ${source.locator}", style=MaterialTheme.typography.bodySmall)
+                    }
+                }
+            }
+            Text("QUANDO NÃO AUTUAR / EXCEÇÕES",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
+            if (approvedOperationalFiche == null) Text("Exceções e hipóteses de não enquadramento pendentes de revisão técnica.")
+            else approvedOperationalFiche?.exceptions?.forEach { item ->
+                Text(item.text)
+                item.evidence.forEach { source ->
+                    TextButton(onClick={ openOfficialSource(context, source.url) }) {
+                        Text("Fonte oficial: ${source.locator}", style=MaterialTheme.typography.bodySmall)
+                    }
+                }
+            }
+            Text("MEDIDAS ADMINISTRATIVAS",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
+            if (approvedOperationalFiche == null) Text("Retenção, remoção e regularização dependem da norma aplicável e de conferência editorial.")
+            else approvedOperationalFiche?.measures?.forEach { item ->
+                Text(item.rule.text)
+                item.rule.evidence.forEach { source ->
+                    TextButton(onClick={ openOfficialSource(context, source.url) }) {
+                        Text("Fonte oficial: ${source.locator}", style=MaterialTheme.typography.bodySmall)
+                    }
+                }
+            }
             Text(result.reviewStatus,style=MaterialTheme.typography.bodySmall)
             if(result.appliesFrom.isNotBlank()) Text("Início registrado no catálogo: ${result.appliesFrom}")
             if(result.appliesUntil.isNotBlank()) Text("Fim registrado no catálogo: ${result.appliesUntil}")

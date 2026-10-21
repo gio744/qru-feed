@@ -9,6 +9,7 @@ class OperationalReferenceTest {
     private fun complete() = OperationalReference(
         code = "672-61",
         whenApplicable = listOf(statement),
+        exceptions = listOf(statement),
         review = OperationalReview(OperationalReviewStatus.APPROVED, "Revisor de teste", "2026-10-17")
     )
 
