@@ -10,4 +10,7 @@ object OperationalReferencePublication {
 
     fun approvedForCode(reference: OperationalReference?, requestedCode: String?): Boolean =
         requestedCode != null && reference?.code == requestedCode && approvedForDisplay(reference)
+
+    fun approvedForCatalog(reference: OperationalReference?, requestedCode: String?, activeCodes: Set<String>): Boolean =
+        requestedCode != null && requestedCode in activeCodes && approvedForCode(reference, requestedCode)
 }
