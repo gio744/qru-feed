@@ -416,7 +416,9 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             }
             }
             QruExpandableSection("ENQUADRAMENTOS RELACIONADOS",referenceKey=result.stableKey) {
-            Text("Consulte outros artigos somente quando os respectivos requisitos legais estiverem presentes. Nenhuma indicação automática foi validada para esta ficha.")
+            Text("Nenhuma combinação ou enquadramento alternativo é sugerido automaticamente.",fontWeight=FontWeight.SemiBold)
+            Text("Para comparar referências, utilize a busca do QRU e abra cada ficha individual. Verifique os elementos de cada infração, a responsabilidade e a regra aplicável à data do fato.",style=MaterialTheme.typography.bodySmall)
+            Text("A coexistência de artigos em uma pesquisa não comprova concurso de infrações nem autoriza autuação cumulativa.",style=MaterialTheme.typography.bodySmall)
             }
             QruExpandableSection("MEDIDAS ADMINISTRATIVAS",referenceKey=result.stableKey) {
             if (approvedOperationalFiche == null) Text("Retenção, remoção e regularização dependem da norma aplicável e de conferência editorial.")
