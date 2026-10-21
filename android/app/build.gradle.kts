@@ -98,7 +98,12 @@ val bundleNormPdf = tasks.register("bundleNormPdf") {
                     connection.getInputStream().use { input ->
                         temporary.outputStream().use { output -> input.copyTo(output) }
                     }
-                    check(fingerprint(temporary)==expected) { "Official PDF bytes changed: $name" }
+                    val actual=fingerprint(temporary)
+                    check(actual==expected) {
+                        "Official PDF integrity mismatch: $name; expected SHA-256=$expected; " +
+                            "downloaded SHA-256=$actual; source=${doc[\"source\"]}. " +
+                            "Review the official publication before changing the pinned hash."
+                    }
                     Files.move(temporary.toPath(),destination.toPath(),StandardCopyOption.REPLACE_EXISTING)
                 } finally { temporary.delete() }
             }
