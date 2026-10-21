@@ -167,16 +167,16 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
     Text("ACESSO RÁPIDO",style=MaterialTheme.typography.labelLarge,
      color=Color(0xFFD9B6FF),fontWeight=FontWeight.SemiBold)
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(10.dp)) {
-     QruQuickAction("Art. 162",Icons.Default.Gavel,Modifier.weight(1f)) { vm.query("162");vm.run() }
-     QruQuickAction("Art. 270",Icons.Default.FactCheck,Modifier.weight(1f)) { vm.query("270");vm.run() }
+     QruQuickAction("230, V",Icons.Default.Gavel,Modifier.weight(1f)) { vm.query("65992");vm.run() }
+     QruQuickAction("Art. 167",Icons.Default.FactCheck,Modifier.weight(1f)) { vm.query("167");vm.run() }
     }
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(10.dp)) {
-     QruQuickAction("Ocorrência",Icons.Default.Description,Modifier.weight(1f)) { occurrenceExpanded=true }
-     QruQuickAction("Habilitação",Icons.Default.AssignmentTurnedIn,Modifier.weight(1f)) { guideExpanded=true }
+     QruQuickAction("162, I",Icons.Default.Description,Modifier.weight(1f)) { vm.query("162, I");vm.run() }
+     QruQuickAction("Art. 252",Icons.Default.AssignmentTurnedIn,Modifier.weight(1f)) { vm.query("252");vm.run() }
     }
     Text("CONSULTAS FREQUENTES",style=MaterialTheme.typography.labelSmall,color=Color(0xFFD9B6FF))
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
-     listOf("165-A","162","230 XVIII").forEach { term ->
+     listOf("165-A","230 XVIII","181").forEach { term ->
       SuggestionChip(onClick={vm.query(term);vm.run()},label={Text(term)})
      }
     }
