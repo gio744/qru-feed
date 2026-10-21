@@ -236,7 +236,9 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                 // A result code is eligible only if it exists in the active search catalog;
                 // the package reader separately enforces editorial review and uniqueness.
                 val code = result.code ?: return@runCatching null
-                OperationalFichePackage.approvedByCode(json, setOf(code))[code]
+                val expectedDigest = context.assets.open("operational/approved-fiches.sha256")
+                    .bufferedReader().use { it.readText().trim() }
+                OperationalFichePackage.approvedByCodeWithDigest(json, setOf(code), expectedDigest)[code]
             }.getOrNull()
         }
     }
