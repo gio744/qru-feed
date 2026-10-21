@@ -23,7 +23,15 @@ object OperationalFichePackage {
                     ?: error("Null operational reference")
             }
             // An invalid entry invalidates the whole package, avoiding partial publication.
-            require(references.all { it.editorialIssues().isEmpty() }) { "Unapproved editorial content" }
+            require(references.all { reference ->
+                reference.editorialIssues().isEmpty() &&
+                    (reference.whenApplicable + reference.exceptions + reference.observations +
+                        reference.measures.flatMap { listOf(it.rule) + it.conditions })
+                        .flatMap { it.evidence }
+                        .all { evidence -> evidence.url.startsWith("https://www.gov.br/") ||
+                            evidence.url.startsWith("https://www.planalto.gov.br/") ||
+                            evidence.url.startsWith("https://www.camara.leg.br/") }
+            }) { "Unapproved editorial content or unsupported source host" }
             require(references.map { it.code }.distinct().size == references.size) { "Duplicate code" }
             OperationalReferencePublication.approvedByCode(references, activeCodes)
         }.getOrDefault(emptyMap())
