@@ -381,7 +381,19 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     AlertDialog(onDismissRequest=onDismiss,containerColor=Color(0xFF191326),shape=RoundedCornerShape(24.dp),title={Text(result.title,fontWeight=FontWeight.SemiBold)},text={
         Column(Modifier.verticalScroll(androidx.compose.foundation.rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
             Text("Art. ${result.article.orEmpty()}  •  código ${result.code.orEmpty()}",color=Color(0xFFD2A8FF),style=MaterialTheme.typography.labelLarge)
-            if (approvedOperationalFiche == null) Text("REFERÊNCIA EM CONFERÊNCIA • validação jurídica pendente",color=Color(0xFFD7BDDE),style=MaterialTheme.typography.labelSmall)
+            if (approvedOperationalFiche == null) {
+                Text("REFERÊNCIA EM CONFERÊNCIA • validação jurídica pendente",color=Color(0xFFD7BDDE),style=MaterialTheme.typography.labelSmall)
+                Text("As seções abaixo não constituem orientação de autuação enquanto não houver aprovação editorial.",style=MaterialTheme.typography.bodySmall)
+            } else {
+                Text("ORIENTAÇÃO OPERACIONAL APROVADA • confira a vigência e as fontes",color=Color(0xFFBCE7D0),style=MaterialTheme.typography.labelSmall)
+            }
+            result.source?.let { source ->
+                OutlinedButton(onClick={openOfficialSource(context,source)},modifier=Modifier.fillMaxWidth()) {
+                    Icon(Icons.Default.OpenInNew,contentDescription=null,modifier=Modifier.size(18.dp))
+                    Spacer(Modifier.width(8.dp))
+                    Text("CONSULTAR FONTE OFICIAL")
+                }
+            }
             QruExpandableSection("QUANDO AUTUAR",initiallyOpen=true) {
             if (approvedOperationalFiche == null) Text("Orientação operacional ainda não aprovada. Consulte a ficha oficial antes de decidir.")
             else approvedOperationalFiche?.whenApplicable?.forEach { item ->
