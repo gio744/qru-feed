@@ -29,6 +29,16 @@ class OperationalReferenceEditorialTest {
             .editorialIssues().contains("review_pending"))
     }
 
+    @Test fun malformedReviewDateCannotApproveReference() {
+        assertTrue(reference(reviewedAt = "20/10/2026")
+            .editorialIssues().contains("invalid_review_date"))
+    }
+
+    @Test fun futureReviewDateCannotApproveReference() {
+        assertTrue(reference(reviewedAt = "2999-01-01")
+            .editorialIssues().contains("invalid_review_date"))
+    }
+
     @Test fun missingReviewerAndDateBlockEditorialReadiness() {
         val issues = reference(reviewer = "", reviewedAt = "").editorialIssues()
         assertTrue(issues.contains("missing_reviewer"))
