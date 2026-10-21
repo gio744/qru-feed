@@ -389,7 +389,6 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             }
             result.source?.let { source ->
                 OutlinedButton(onClick={openOfficialSource(context,source)},modifier=Modifier.fillMaxWidth()) {
-                    Icon(Icons.Default.OpenInNew,contentDescription=null,modifier=Modifier.size(18.dp))
                     Spacer(Modifier.width(8.dp))
                     Text("CONSULTAR FONTE OFICIAL")
                 }
