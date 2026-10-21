@@ -19,6 +19,13 @@ class OperationalFichePackageTest {
         ))
     }
 
+    @Test fun unexpectedPackageMetadataFailsClosed() {
+        assertTrue(OperationalFichePackage.approvedByCode(
+            """{"schemaVersion":1,"items":[],"forceApproved":true}""",
+            setOf("672-61")
+        ).isEmpty())
+    }
+
     @Test fun emptyVersionedPackageLoadsSafely() {
         assertTrue(OperationalFichePackage.approvedByCode(
             """{"schemaVersion":1,"items":[]}""", setOf("672-61")
