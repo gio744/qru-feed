@@ -30,6 +30,13 @@ class CatalogSearchTest {
     @Test fun narrativeFindsReference(){assertEquals("cnh",CatalogSearch.search(entries,"condutor dirigindo com cnh vencida").first().stableKey)}
     @Test fun unknownOrEmptySearchDoesNotReturnAll(){assertTrue(CatalogSearch.search(entries,"").isEmpty());assertTrue(CatalogSearch.search(entries,"abacaxi").isEmpty())}
 
+    @Test fun exactTyreArticleAndIncisoFindsItsOwnFiche() {
+        val catalog = bundledEntries()
+        for (query in listOf("230 XVIII", "230, XVIII", "art. 230, XVIII", "672-61")) {
+            assertEquals("672-61", CatalogSearch.search(catalog, query).first().code)
+        }
+    }
+
     @Test fun bundledTyreSearchDoesNotReturnUnrelatedEquipment() {
         val catalog=bundledEntries()
         assertEquals("672-61",CatalogSearch.search(catalog,"pneu").first().code)
