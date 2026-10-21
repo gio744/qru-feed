@@ -421,12 +421,38 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             QruExpandableSection("MEDIDAS ADMINISTRATIVAS",referenceKey=result.stableKey) {
             if (approvedOperationalFiche == null) Text("Retenção, remoção e regularização dependem da norma aplicável e de conferência editorial.")
             else approvedOperationalFiche?.measures?.forEach { item ->
+                Text("MODALIDADE: " + when(item.kind.name) {
+                    "RETENTION" -> "RETENÇÃO"
+                    "REMOVAL" -> "REMOÇÃO"
+                    else -> "SEM MEDIDA PREVISTA NA FICHA"
+                },fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
                 Text(item.rule.text)
                 item.rule.evidence.forEach { source ->
                     TextButton(onClick={ openOfficialSource(context, source.url) }) {
                         Text("Fonte oficial: ${source.locator}", style=MaterialTheme.typography.bodySmall)
                     }
                 }
+                item.conditions.forEach { condition ->
+                    Text("CONDIÇÃO: ${condition.text}",style=MaterialTheme.typography.bodySmall)
+                    condition.evidence.forEach { source ->
+                        TextButton(onClick={openOfficialSource(context,source.url)}) {
+                            Text("Fundamento da condição: ${source.locator}",style=MaterialTheme.typography.bodySmall)
+                        }
+                    }
+                }
+                item.deadline?.let { deadline ->
+                    Text("PRAZO MÁXIMO REGISTRADO: ${deadline.maximumDays} dias",style=MaterialTheme.typography.bodySmall)
+                    Text(deadline.legalBasis.text,style=MaterialTheme.typography.bodySmall)
+                    deadline.legalBasis.evidence.forEach { source ->
+                        TextButton(onClick={openOfficialSource(context,source.url)}) {
+                            Text("Fundamento do prazo: ${source.locator}",style=MaterialTheme.typography.bodySmall)
+                        }
+                    }
+                }
+                item.systemDependency?.let { dependency ->
+                    Text("DEPENDÊNCIA OPERACIONAL: $dependency",style=MaterialTheme.typography.bodySmall)
+                }
+                HorizontalDivider(color=Color(0xFF49305F))
             }
             }
             Text(result.reviewStatus,style=MaterialTheme.typography.bodySmall)
