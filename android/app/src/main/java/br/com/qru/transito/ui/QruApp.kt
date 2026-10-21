@@ -432,6 +432,24 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                 }
             }
             }
+            QruExpandableSection("EXEMPLOS DE OBSERVAÇÃO NO AIT",referenceKey=result.stableKey) {
+                Text("Utilize somente os dados efetivamente constatados. Adapte o modelo ao caso concreto; não registre fatos presumidos.",style=MaterialTheme.typography.bodySmall)
+                val examples=approvedOperationalFiche?.observations.orEmpty()
+                if(examples.isEmpty()) {
+                    Text("Exemplos específicos deste enquadramento aguardam revisão e aprovação editorial. Consulte o MBFT e a norma vigente antes de preencher o AIT.")
+                } else {
+                    examples.forEachIndexed { index,item ->
+                        Text("EXEMPLO ${index+1}",fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
+                        Text(item.text)
+                        item.evidence.forEach { source ->
+                            TextButton(onClick={openOfficialSource(context,source.url)}) {
+                                Text("Fundamento: ${source.locator}",style=MaterialTheme.typography.bodySmall)
+                            }
+                        }
+                        HorizontalDivider(color=Color(0xFF49305F))
+                    }
+                }
+            }
             QruExpandableSection("ENQUADRAMENTOS RELACIONADOS",referenceKey=result.stableKey) {
             Text("Nenhuma combinação ou enquadramento alternativo é sugerido automaticamente.",fontWeight=FontWeight.SemiBold)
             Text("Para comparar referências, utilize a busca do QRU e abra cada ficha individual. Verifique os elementos de cada infração, a responsabilidade e a regra aplicável à data do fato.",style=MaterialTheme.typography.bodySmall)
