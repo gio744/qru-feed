@@ -3,6 +3,10 @@ import android.content.ActivityNotFoundException
 import android.widget.Toast
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.layout.ContentScale
@@ -82,7 +86,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
     TextButton(onClick={scope.launch{drawer.close()}},modifier=Modifier.padding(12.dp)){Text("FECHAR MENU")}
    }
   }){
-   Scaffold(bottomBar={NavigationBar{
+   Scaffold(bottomBar={NavigationBar(containerColor=Color(0xFF15101E)){
     QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},modifier=Modifier.testTag("tab_"+item.name),
      icon={Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
      label={Text(item.label)})}
@@ -138,7 +142,10 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  LazyColumn(Modifier.fillMaxSize().testTag("search_results"),contentPadding=PaddingValues(horizontal=16.dp,vertical=12.dp),verticalArrangement=Arrangement.spacedBy(10.dp)){
   item(key="search_header") {
    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(10.dp)) {
-  Box(Modifier.fillMaxWidth()) {
+  Box(Modifier.fillMaxWidth().background(
+   brush=Brush.linearGradient(listOf(Color(0xFF241047),Color(0xFF5620A0),Color(0xFF35114D))),
+   shape=RoundedCornerShape(24.dp)
+  ).border(1.dp,Color(0xFF6D3BA0),RoundedCornerShape(24.dp)).padding(vertical=18.dp,horizontal=10.dp)) {
   Column(Modifier.fillMaxWidth(),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(4.dp)) {
   QruWordmark()
   Text("QUAL A SITUAÇÃO",style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.secondary)
@@ -151,7 +158,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    keyboardOptions=KeyboardOptions(imeAction=ImeAction.Search),
    keyboardActions=KeyboardActions(onSearch={keyboard?.hide();vm.run()}))
   if(state.loading) LinearProgressIndicator(Modifier.fillMaxWidth())
-  Text("Catálogo em conferência • disponível offline", style=MaterialTheme.typography.bodySmall)
+  Text("CONSULTA OPERACIONAL  •  CATÁLOGO OFFLINE", style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.secondary)
    }
   }
   items(state.results,key={result -> "reference:"+result.stableKey},contentType={"reference"}) { result ->
@@ -195,11 +202,16 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     catch(_:ActivityNotFoundException) { Toast.makeText(context,"Não foi possível abrir a fonte.",Toast.LENGTH_LONG).show() }
 }
 @Composable private fun ReferenceCard(result:SearchResult,onClick:()->Unit) {
-    Card(onClick=onClick,modifier=Modifier.fillMaxWidth().testTag("reference_card")) {
-        Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
-            Text(result.title,style=MaterialTheme.typography.titleMedium)
-            Text("Art. ${result.article.orEmpty()} • ${result.code.orEmpty()}",color=MaterialTheme.colorScheme.secondary)
-            Text("Em conferência",style=MaterialTheme.typography.bodySmall)
+    Card(onClick=onClick,modifier=Modifier.fillMaxWidth().testTag("reference_card")
+        .border(1.dp,Color(0xFF49305F),RoundedCornerShape(18.dp)),
+        shape=RoundedCornerShape(18.dp),
+        colors=CardDefaults.cardColors(containerColor=Color(0xFF191326))) {
+        Column(Modifier.padding(16.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+            Text(result.title,style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.SemiBold)
+            Text("Art. ${result.article.orEmpty()}  •  ${result.code.orEmpty()}",
+                color=Color(0xFFD2A8FF),style=MaterialTheme.typography.bodyMedium)
+            Text("REFERÊNCIA EM CONFERÊNCIA",color=Color(0xFFB9A9C9),
+                style=MaterialTheme.typography.labelSmall)
         }
     }
 }
