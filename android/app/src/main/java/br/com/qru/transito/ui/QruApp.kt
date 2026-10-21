@@ -3,6 +3,7 @@ import android.content.ActivityNotFoundException
 import android.widget.Toast
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -265,7 +266,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
       style=MaterialTheme.typography.bodySmall)
    }
   }
-  androidx.compose.foundation.lazy.itemsIndexed(state.results,key={_,result -> "reference:"+result.stableKey},
+  itemsIndexed(state.results,key={_,result -> "reference:"+result.stableKey},
       contentType={_,_->"reference"}) { index,result ->
    Column(verticalArrangement=Arrangement.spacedBy(6.dp)) {
     if(articleNumber!=null) {
