@@ -140,6 +140,42 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  val permission=rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()){if(it)launchSpeech() else voiceMessage("Microfone não autorizado. Use o teclado.")}
  fun voice(){if(context.checkSelfPermission(Manifest.permission.RECORD_AUDIO)==PackageManager.PERMISSION_GRANTED)launchSpeech() else permission.launch(Manifest.permission.RECORD_AUDIO)}
 
+ val quickOptions=listOf(
+  "230, V" to "65992","Art. 167" to "167","162, I" to "162, I",
+  "Art. 252" to "252","165-A" to "165-A","230 XVIII" to "230 XVIII",
+  "Art. 181" to "181","Art. 208" to "208","Art. 230" to "230",
+  "Art. 244" to "244","Art. 168" to "168","Art. 195" to "195"
+ )
+ val quickPrefs=remember(context) { context.getSharedPreferences("qru_quick_access",android.content.Context.MODE_PRIVATE) }
+ var quickKeys by remember {
+  mutableStateOf((0..3).map { index ->
+   quickPrefs.getString("slot_$index",null)?.takeIf { saved -> quickOptions.any { it.first==saved } }
+    ?:quickOptions[index].first
+  })
+ }
+ var editingQuick by rememberSaveable { mutableStateOf(false) }
+ var editingSlot by rememberSaveable { mutableIntStateOf(-1) }
+ fun selectQuick(slot:Int,label:String) {
+  val updated=quickKeys.toMutableList()
+  val other=updated.indexOf(label)
+  if(other>=0 && other!=slot) updated[other]=updated[slot]
+  updated[slot]=label
+  quickKeys=updated
+  quickPrefs.edit().apply {
+   updated.forEachIndexed { index,value -> putString("slot_$index",value) }
+  }.apply()
+  editingSlot=-1
+ }
+ if(editingSlot>=0) AlertDialog(
+  onDismissRequest={editingSlot=-1},
+  title={Text("Escolher atalho")},
+  text={Column(Modifier.verticalScroll(androidx.compose.foundation.rememberScrollState())) {
+   quickOptions.forEach { (label,_) ->
+    TextButton(onClick={selectQuick(editingSlot,label)},modifier=Modifier.fillMaxWidth()) { Text(label) }
+   }
+  }},
+  confirmButton={TextButton(onClick={editingSlot=-1}){Text("CANCELAR")}}
+ )
  LazyColumn(Modifier.fillMaxSize().testTag("search_results"),contentPadding=PaddingValues(horizontal=16.dp,vertical=12.dp),verticalArrangement=Arrangement.spacedBy(10.dp)){
   item(key="search_header") {
    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(10.dp)) {
@@ -164,15 +200,27 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   }
   if(state.query.isBlank()) item(key="quick_access") {
    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(12.dp)) {
-    Text("ACESSO RÁPIDO",style=MaterialTheme.typography.labelLarge,
-     color=Color(0xFFD9B6FF),fontWeight=FontWeight.SemiBold)
-    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(10.dp)) {
-     QruQuickAction("230, V",Icons.Default.Gavel,Modifier.weight(1f)) { vm.query("65992");vm.run() }
-     QruQuickAction("Art. 167",Icons.Default.FactCheck,Modifier.weight(1f)) { vm.query("167");vm.run() }
+    Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically) {
+     Text("ACESSO RÁPIDO",Modifier.weight(1f),style=MaterialTheme.typography.labelLarge,
+      color=Color(0xFFD9B6FF),fontWeight=FontWeight.SemiBold)
+     TextButton(onClick={editingQuick=!editingQuick}) {
+      Icon(Icons.Default.Edit,null,Modifier.size(16.dp))
+      Spacer(Modifier.width(4.dp))
+      Text(if(editingQuick) "CONCLUIR" else "PERSONALIZAR")
+     }
     }
-    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(10.dp)) {
-     QruQuickAction("162, I",Icons.Default.Description,Modifier.weight(1f)) { vm.query("162, I");vm.run() }
-     QruQuickAction("Art. 252",Icons.Default.AssignmentTurnedIn,Modifier.weight(1f)) { vm.query("252");vm.run() }
+    for(row in 0..1) {
+     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(10.dp)) {
+      for(column in 0..1) {
+       val slot=row*2+column
+       val label=quickKeys[slot]
+       val query=quickOptions.firstOrNull { it.first==label }?.second ?: label
+       QruQuickAction(label,if(editingQuick) Icons.Default.Edit else Icons.Default.Gavel,
+        Modifier.weight(1f)) {
+        if(editingQuick) editingSlot=slot else { vm.query(query);vm.run() }
+       }
+      }
+     }
     }
     Text("CONSULTAS FREQUENTES",style=MaterialTheme.typography.labelSmall,color=Color(0xFFD9B6FF))
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
