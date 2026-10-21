@@ -559,7 +559,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
    }
   }
  }
- selected?.let { ReferenceDialog(it) { selected=null } }
+ selected?.let { ReferenceDialog(it,onDismiss={selected=null}) }
 }
 
 @Composable private fun CtbSectionCard(title:String,description:String,onClick:()->Unit) {
