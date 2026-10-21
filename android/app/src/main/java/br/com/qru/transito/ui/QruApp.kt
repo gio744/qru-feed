@@ -255,29 +255,45 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
      style=MaterialTheme.typography.bodySmall,color=Color(0xFFB9A9C9))
    }
   }
-  // Numeric article queries display their subdivisions in legal order.
+  // Full-article queries are grouped into collapsible legal subdivisions.
   val articleNumber=state.query.trim().replace(Regex("^(?i)art(?:igo)?\\.?\\s*"),"")
       .takeIf { it.matches(Regex("\\d+")) }
-  if(articleNumber!=null && state.results.isNotEmpty()) item(key="article_hierarchy_header") {
-   Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(4.dp)) {
-    Text("ART. $articleNumber • DESDOBRAMENTOS",color=Color(0xFFD9B6FF),
+  if(articleNumber!=null && state.results.isNotEmpty()) {
+   item(key="article_hierarchy_header") {
+    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(4.dp)) {
+     Text("ART. $articleNumber • DESDOBRAMENTOS",color=Color(0xFFD9B6FF),
       style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.Bold)
-    Text("Incisos em ordem legal. Toque em um enquadramento para abrir sua ficha individual.",
+     Text("Toque no inciso para expandir ou recolher seus enquadramentos.",
       style=MaterialTheme.typography.bodySmall)
+    }
    }
-  }
-  itemsIndexed(state.results,key={_,result -> "reference:"+result.stableKey},
-      contentType={_,_->"reference"}) { index,result ->
-   Column(verticalArrangement=Arrangement.spacedBy(6.dp)) {
-    if(articleNumber!=null) {
-     val inciso=result.article.orEmpty().substringAfter(',',"").trim()
-     val previous=state.results.getOrNull(index-1)?.article.orEmpty().substringAfter(',',"").trim()
-     if(index==0 || inciso!=previous) {
-      Text(if(inciso.isBlank()) "ARTIGO $articleNumber" else "INCISO $inciso",
-       color=Color(0xFFD2A8FF),fontWeight=FontWeight.SemiBold,
-       style=MaterialTheme.typography.labelLarge)
+   val groups=state.results.groupBy { it.article.orEmpty().substringAfter(',',"").trim() }
+   groups.forEach { (inciso,results) ->
+    item(key="inciso:$articleNumber:$inciso") {
+     var expanded by rememberSaveable(articleNumber,inciso) { mutableStateOf(true) }
+     Column(verticalArrangement=Arrangement.spacedBy(8.dp)) {
+      Surface(onClick={expanded=!expanded},color=Color(0xFF24182F),
+       shape=RoundedCornerShape(14.dp),
+       border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF49305F))) {
+       Row(Modifier.fillMaxWidth().padding(horizontal=14.dp,vertical=12.dp),
+        verticalAlignment=Alignment.CenterVertically) {
+        Text(if(inciso.isBlank()) "ARTIGO $articleNumber" else "INCISO $inciso",
+         modifier=Modifier.weight(1f),fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
+        Text("${results.size} enquadramento(s)",style=MaterialTheme.typography.labelSmall)
+        Spacer(Modifier.width(6.dp))
+        Icon(if(expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+         contentDescription=if(expanded) "Recolher inciso" else "Expandir inciso")
+       }
+      }
+      if(expanded) results.forEach { result ->
+       ReferenceCard(result) { selected=result }
+      }
      }
     }
+   }
+  } else {
+   items(state.results,key={result -> "reference:"+result.stableKey},
+    contentType={"reference"}) { result ->
     ReferenceCard(result) { selected=result }
    }
   }
