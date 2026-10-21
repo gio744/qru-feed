@@ -17,6 +17,7 @@ class OperationalReferenceEditorialTest {
     ) = OperationalReference(
         code = "757-90",
         whenApplicable = whenApplicable,
+        exceptions = listOf(SourcedStatement("Exceções avaliadas; verificar norma aplicável", listOf(evidence))),
         review = OperationalReview(status, reviewer, reviewedAt, unresolved)
     )
 
@@ -48,6 +49,11 @@ class OperationalReferenceEditorialTest {
     @Test fun unresolvedIssuesBlockEditorialReadiness() {
         assertTrue(reference(unresolved = listOf("Conferir norma vigente"))
             .editorialIssues().contains("unresolved_issues"))
+    }
+
+    @Test fun missingExceptionsAssessmentBlocksPublication() {
+        val issues = reference().copy(exceptions = emptyList()).editorialIssues()
+        assertTrue(issues.contains("missing_exceptions_assessment"))
     }
 
     @Test fun missingApplicabilityBlocksEditorialReadiness() {
