@@ -246,13 +246,22 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             if (approvedOperationalFiche == null) Text("Referência em conferência. A validação final da ficha está pendente.")
             Text("QUANDO AUTUAR",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
             if (approvedOperationalFiche == null) Text("Orientação operacional ainda não aprovada. Consulte a ficha oficial antes de decidir.")
-            else approvedOperationalFiche?.whenApplicable?.forEach { Text(it.text) }
+            else approvedOperationalFiche?.whenApplicable?.forEach { item ->
+                Text(item.text)
+                item.evidence.forEach { source -> Text("Fonte: ${source.locator} — ${source.url}", style=MaterialTheme.typography.bodySmall) }
+            }
             Text("QUANDO NÃO AUTUAR / EXCEÇÕES",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
             if (approvedOperationalFiche == null) Text("Exceções e hipóteses de não enquadramento pendentes de revisão técnica.")
-            else approvedOperationalFiche?.exceptions?.forEach { Text(it.text) }
+            else approvedOperationalFiche?.exceptions?.forEach { item ->
+                Text(item.text)
+                item.evidence.forEach { source -> Text("Fonte: ${source.locator} — ${source.url}", style=MaterialTheme.typography.bodySmall) }
+            }
             Text("MEDIDAS ADMINISTRATIVAS",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
             if (approvedOperationalFiche == null) Text("Retenção, remoção e regularização dependem da norma aplicável e de conferência editorial.")
-            else approvedOperationalFiche?.measures?.forEach { Text(it.rule.text) }
+            else approvedOperationalFiche?.measures?.forEach { item ->
+                Text(item.rule.text)
+                item.rule.evidence.forEach { source -> Text("Fonte: ${source.locator} — ${source.url}", style=MaterialTheme.typography.bodySmall) }
+            }
             Text(result.reviewStatus,style=MaterialTheme.typography.bodySmall)
             if(result.appliesFrom.isNotBlank()) Text("Início registrado no catálogo: ${result.appliesFrom}")
             if(result.appliesUntil.isNotBlank()) Text("Fim registrado no catálogo: ${result.appliesUntil}")
