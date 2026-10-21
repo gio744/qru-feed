@@ -180,6 +180,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   }},
   confirmButton={TextButton(onClick={editingSlot=-1}){Text("CANCELAR")}}
  )
+ var collapsedIncisos by rememberSaveable { mutableStateOf(listOf<String>()) }
  LazyColumn(Modifier.fillMaxSize().testTag("search_results"),contentPadding=PaddingValues(horizontal=16.dp,vertical=12.dp),verticalArrangement=Arrangement.spacedBy(10.dp)){
   item(key="search_header") {
    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(10.dp)) {
@@ -265,14 +266,21 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
       style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.Bold)
      Text("Toque no inciso para expandir ou recolher seus enquadramentos.",
       style=MaterialTheme.typography.bodySmall)
+     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+      OutlinedButton(onClick={
+       collapsedIncisos=state.results.map { "$articleNumber:"+it.article.orEmpty().substringAfter(',',"").trim() }.distinct()
+      }) { Text("RECOLHER TODOS") }
+      TextButton(onClick={collapsedIncisos=emptyList()}) { Text("EXPANDIR TODOS") }
+     }
     }
    }
    val groups=state.results.groupBy { it.article.orEmpty().substringAfter(',',"").trim() }
    groups.forEach { (inciso,results) ->
     item(key="inciso:$articleNumber:$inciso") {
-     var expanded by rememberSaveable(articleNumber,inciso) { mutableStateOf(true) }
+     val groupKey="$articleNumber:$inciso"
+     val expanded=groupKey !in collapsedIncisos
      Column(verticalArrangement=Arrangement.spacedBy(8.dp)) {
-      Surface(onClick={expanded=!expanded},color=Color(0xFF24182F),
+      Surface(onClick={collapsedIncisos=if(expanded) collapsedIncisos+groupKey else collapsedIncisos-groupKey},color=Color(0xFF24182F),
        shape=RoundedCornerShape(14.dp),
        border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF49305F))) {
        Row(Modifier.fillMaxWidth().padding(horizontal=14.dp,vertical=12.dp),
