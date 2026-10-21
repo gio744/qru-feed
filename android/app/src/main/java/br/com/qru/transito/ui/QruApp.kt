@@ -255,10 +255,10 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             }.getOrNull()
         }
     }
-    AlertDialog(onDismissRequest=onDismiss,title={Text(result.title)},text={
+    AlertDialog(onDismissRequest=onDismiss,containerColor=Color(0xFF191326),shape=RoundedCornerShape(24.dp),title={Text(result.title,fontWeight=FontWeight.SemiBold)},text={
         Column(Modifier.verticalScroll(androidx.compose.foundation.rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
-            Text("Art. ${result.article.orEmpty()} • código ${result.code.orEmpty()}")
-            if (approvedOperationalFiche == null) Text("Referência em conferência. A validação final da ficha está pendente.")
+            Text("Art. ${result.article.orEmpty()}  •  código ${result.code.orEmpty()}",color=Color(0xFFD2A8FF),style=MaterialTheme.typography.labelLarge)
+            if (approvedOperationalFiche == null) Text("REFERÊNCIA EM CONFERÊNCIA • validação jurídica pendente",color=Color(0xFFD7BDDE),style=MaterialTheme.typography.labelSmall)
             Text("QUANDO AUTUAR",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
             if (approvedOperationalFiche == null) Text("Orientação operacional ainda não aprovada. Consulte a ficha oficial antes de decidir.")
             else approvedOperationalFiche?.whenApplicable?.forEach { item ->
@@ -313,7 +313,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     val app=context.applicationContext as QruApplication
     if(tab==QruTab.SITUACOES) { SituationsPage();return }
     Column(Modifier.fillMaxSize().verticalScroll(androidx.compose.foundation.rememberScrollState()).padding(20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
-        Text(tab.label,style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.primary)
+        Text(tab.label,style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.secondary,fontWeight=FontWeight.Bold)
         when(tab) {
             QruTab.CTB -> {
                 CtbOfflineContents { url -> openOfficialSource(context,url) }
@@ -351,7 +351,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
   contentPadding=PaddingValues(20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
   item(key="situations_header") {
    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(14.dp)) {
-    Text("Situações",style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.primary)
+    Text("Situações",style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.secondary,fontWeight=FontWeight.Bold)
     Text("Consulta por situação")
     listOf("bafômetro","recusa","CNH vencida","licenciamento","pneu","retrovisor").forEach { term ->
      OutlinedButton(onClick={vm.query(term);vm.run()},
