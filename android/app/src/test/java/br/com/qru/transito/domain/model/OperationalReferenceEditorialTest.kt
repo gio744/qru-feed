@@ -40,6 +40,11 @@ class OperationalReferenceEditorialTest {
             .editorialIssues().contains("invalid_review_date"))
     }
 
+    @Test fun numericOnlyReviewerDoesNotSatisfyIdentification() {
+        assertTrue(reference(reviewer = "123456")
+            .editorialIssues().contains("invalid_reviewer"))
+    }
+
     @Test fun abbreviatedReviewerDoesNotSatisfyIdentification() {
         assertTrue(reference(reviewer = "X")
             .editorialIssues().contains("invalid_reviewer"))
