@@ -36,6 +36,18 @@ class OperationalReferencePublicationTest {
         assertTrue(OperationalReferencePublication.approvedForCatalog(approved(), "672-61", setOf("672-61")))
     }
 
+    @Test fun approvedLookupExcludesInactivePendingAndDuplicateFiches() {
+        val valid = approved()
+        val pending = approved().copy(code = "659-92", review = OperationalReview())
+        val lookup = OperationalReferencePublication.approvedByCode(
+            listOf(valid, pending), setOf("672-61", "659-92")
+        )
+        assertTrue(lookup.keys == setOf("672-61"))
+        assertTrue(OperationalReferencePublication.approvedByCode(
+            listOf(valid, valid), setOf("672-61")
+        ).isEmpty())
+    }
+
     @Test fun duplicatePackagesForSameCodeNeverPublishByAccident() {
         val item = approved()
         assertTrue(OperationalReferencePublication.findApproved(listOf(item), "672-61", setOf("672-61")) != null)
