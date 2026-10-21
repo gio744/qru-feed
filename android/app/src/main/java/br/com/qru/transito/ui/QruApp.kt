@@ -269,8 +269,8 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                     }
                 }
             }
-            Text("QUANDO NÃO AUTUAR / EXCEÇÕES",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
-            if (approvedOperationalFiche == null) Text("Exceções e hipóteses de não enquadramento pendentes de revisão técnica.")
+            Text("QUANDO ESTE ARTIGO NÃO SE APLICA",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
+            if (approvedOperationalFiche == null) Text("Hipóteses de não enquadramento pendentes de revisão jurídica. A ausência de requisitos deste artigo não significa necessariamente outra infração.")
             else approvedOperationalFiche?.exceptions?.forEach { item ->
                 Text(item.text)
                 item.evidence.forEach { source ->
@@ -279,6 +279,8 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                     }
                 }
             }
+            Text("ENQUADRAMENTOS RELACIONADOS",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
+            Text("Consulte outros artigos somente quando os respectivos requisitos legais estiverem presentes. Nenhuma indicação automática foi validada para esta ficha.")
             Text("MEDIDAS ADMINISTRATIVAS",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
             if (approvedOperationalFiche == null) Text("Retenção, remoção e regularização dependem da norma aplicável e de conferência editorial.")
             else approvedOperationalFiche?.measures?.forEach { item ->
