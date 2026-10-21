@@ -40,6 +40,11 @@ class OperationalReferenceEditorialTest {
             .editorialIssues().contains("invalid_review_date"))
     }
 
+    @Test fun abbreviatedReviewerDoesNotSatisfyIdentification() {
+        assertTrue(reference(reviewer = "X")
+            .editorialIssues().contains("invalid_reviewer"))
+    }
+
     @Test fun missingReviewerAndDateBlockEditorialReadiness() {
         val issues = reference(reviewer = "", reviewedAt = "").editorialIssues()
         assertTrue(issues.contains("missing_reviewer"))
