@@ -228,6 +228,25 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
       SuggestionChip(onClick={vm.query(term);vm.run()},label={Text(term)})
      }
     }
+    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+     TextButton(onClick={occurrenceExpanded=!occurrenceExpanded}) {
+      Icon(Icons.Default.Description,null,Modifier.size(18.dp))
+      Spacer(Modifier.width(4.dp))
+      Text("Ocorrência")
+     }
+     TextButton(onClick={guideExpanded=true}) {
+      Icon(Icons.Default.FactCheck,null,Modifier.size(18.dp))
+      Spacer(Modifier.width(4.dp))
+      Text("Análise guiada")
+     }
+    }
+    if(occurrenceExpanded) {
+     OutlinedTextField(occurrence,{occurrence=it},Modifier.fillMaxWidth(),
+      label={Text("Descreva os fatos observados")},minLines=3)
+     Button(onClick={keyboard?.hide();vm.query(occurrence);vm.run()},enabled=occurrence.isNotBlank()) {
+      Text("BUSCAR REFERÊNCIAS")
+     }
+    }
     Text("Atalhos de pesquisa. Confira sempre a fonte oficial e a regra aplicável ao fato.",
      style=MaterialTheme.typography.bodySmall,color=Color(0xFFB9A9C9))
    }
@@ -235,7 +254,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   items(state.results,key={result -> "reference:"+result.stableKey},contentType={"reference"}) { result ->
    ReferenceCard(result) { selected=result }
   }
-  item(key="search_tools") {
+  if(state.query.isNotBlank()) item(key="search_tools") {
    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(10.dp)) {
   TextButton(onClick={occurrenceExpanded=!occurrenceExpanded},modifier=Modifier.fillMaxWidth().heightIn(min=48.dp)){
    Icon(Icons.Default.Description,null,modifier=Modifier.size(20.dp))
