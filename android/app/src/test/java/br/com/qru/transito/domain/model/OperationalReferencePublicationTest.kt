@@ -36,6 +36,17 @@ class OperationalReferencePublicationTest {
         assertTrue(OperationalReferencePublication.approvedForCatalog(approved(), "672-61", setOf("672-61")))
     }
 
+    @Test fun duplicatePackagesForSameCodeNeverPublishByAccident() {
+        val item = approved()
+        assertTrue(OperationalReferencePublication.findApproved(listOf(item), "672-61", setOf("672-61")) != null)
+        assertTrue(OperationalReferencePublication.findApproved(listOf(item, item), "672-61", setOf("672-61")) == null)
+    }
+
+    @Test fun missingOrInactiveCodeNeverResolves() {
+        assertTrue(OperationalReferencePublication.findApproved(listOf(approved()), "659-92", setOf("659-92")) == null)
+        assertTrue(OperationalReferencePublication.findApproved(listOf(approved()), "672-61", emptySet()) == null)
+    }
+
     @Test fun structurallyApprovedReferenceCanPassGateForOwnCode() {
         assertTrue(OperationalReferencePublication.approvedForCode(approved(), "672-61"))
     }
