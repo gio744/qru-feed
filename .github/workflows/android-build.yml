@@ -44,6 +44,16 @@ jobs:
           test -f android/app/build.gradle.kts
           test -f android/app/src/main/AndroidManifest.xml
 
+      # Preserve only checksum-verified official PDFs between workflow runs.
+      # A new official publication still requires an exact SHA-256 match in Gradle.
+      - name: Restore verified official PDF cache
+        uses: actions/cache@v4
+        with:
+          path: android/app/build/generated/normAssets/norms
+          key: qru-official-pdfs-${{ runner.os }}-${{ hashFiles('android/app/src/main/assets/norms/pdf-catalog.json') }}
+          restore-keys: |
+            qru-official-pdfs-${{ runner.os }}-
+
       - name: Compile and unit test
         working-directory: android
         run: gradle -PqruParallelTest testDebugUnitTest assembleDebug --stacktrace --warning-mode all
