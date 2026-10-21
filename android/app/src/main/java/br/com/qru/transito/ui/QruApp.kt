@@ -12,6 +12,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import br.com.qru.transito.domain.model.SearchResult
+import br.com.qru.transito.domain.model.OperationalReferencePublication
 import android.content.pm.PackageManager
 import android.speech.RecognizerIntent
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -223,10 +224,12 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
         documents=loaded.first;ranges=loaded.second;referenceLoading=false
     }
     val offline=result.source?.let { resolveOfflineReference(documents,ranges,it,result.code) }
+    // No reviewed editorial package is loaded yet: fail closed instead of inferring approval from PDFs.
+    val approvedOperationalFiche = OperationalReferencePublication.approvedForCode(null, result.code)
     AlertDialog(onDismissRequest=onDismiss,title={Text(result.title)},text={
         Column(Modifier.verticalScroll(androidx.compose.foundation.rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
             Text("Art. ${result.article.orEmpty()} • código ${result.code.orEmpty()}")
-            Text("Referência em conferência. A validação final da ficha está pendente.")
+            if (!approvedOperationalFiche) Text("Referência em conferência. A validação final da ficha está pendente.")
             Text("QUANDO AUTUAR",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
             Text("Orientação operacional ainda não aprovada. Consulte a ficha oficial antes de decidir.")
             Text("QUANDO NÃO AUTUAR / EXCEÇÕES",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
