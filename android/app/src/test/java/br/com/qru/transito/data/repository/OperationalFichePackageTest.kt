@@ -34,6 +34,15 @@ class OperationalFichePackageTest {
         assertTrue(digest == "0e5e19436438b496cb29a0243523d31a7369bd1228b84cc6779d8ca88eaeec17")
     }
 
+    @Test fun matchingDigestAllowsEmptyPackageWithoutPublishingContent() {
+        val json = "{\n  \"schemaVersion\": 1,\n  \"items\": []\n}\n"
+        assertTrue(OperationalFichePackage.approvedByCodeWithDigest(
+            json,
+            setOf("672-61"),
+            "0e5e19436438b496cb29a0243523d31a7369bd1228b84cc6779d8ca88eaeec17"
+        ).isEmpty())
+    }
+
     @Test fun invalidDigestNeverActivatesEditorialPackage() {
         assertTrue(OperationalFichePackage.approvedByCodeWithDigest(
             """{"schemaVersion":1,"items":[]}""",
