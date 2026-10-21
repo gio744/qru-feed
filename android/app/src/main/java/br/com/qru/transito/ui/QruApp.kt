@@ -280,7 +280,17 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   GuideReferenceLookup(code,search={app.searchLegalContent(it)},
    onSelected={selected=it;guideReference=null},onDismiss={guideReference=null})
  }
- selected?.let { ReferenceDialog(it) { selected=null } }
+ selected?.let { current ->
+  val index=state.results.indexOfFirst { it.stableKey==current.stableKey }
+  ReferenceDialog(
+   result=current,
+   onDismiss={selected=null},
+   onPrevious=if(index>0) ({ selected=state.results[index-1] }) else null,
+   onNext=if(index>=0 && index<state.results.lastIndex) ({ selected=state.results[index+1] }) else null,
+   position=if(index>=0) index+1 else null,
+   total=if(index>=0) state.results.size else null
+  )
+ }
 }
 
 private fun openOfficialSource(context: android.content.Context, url: String) {
@@ -338,7 +348,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
  }
 }
 
-@Composable private fun ReferenceDialog(result:SearchResult,onDismiss:()->Unit) {
+@Composable private fun ReferenceDialog(result:SearchResult,onDismiss:()->Unit,onPrevious:(()->Unit)?=null,onNext:(()->Unit)?=null,position:Int?=null,total:Int?=null) {
     val context=LocalContext.current
     var documents by remember { mutableStateOf<List<OfflinePdfDocument>>(emptyList()) }
     var ranges by remember { mutableStateOf<List<ReferencePageRange>>(emptyList()) }
@@ -381,6 +391,13 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     AlertDialog(onDismissRequest=onDismiss,containerColor=Color(0xFF191326),shape=RoundedCornerShape(24.dp),title={Text(result.title,fontWeight=FontWeight.SemiBold)},text={
         Column(Modifier.verticalScroll(androidx.compose.foundation.rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
             Text("Art. ${result.article.orEmpty()}  •  código ${result.code.orEmpty()}",color=Color(0xFFD2A8FF),style=MaterialTheme.typography.labelLarge)
+            if(position!=null && total!=null && total>1) {
+                Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.SpaceBetween) {
+                    TextButton(onClick={onPrevious ?: {}},enabled=onPrevious!=null) { Text("ANTERIOR") }
+                    Text("$position de $total",style=MaterialTheme.typography.labelSmall,color=Color(0xFFD2A8FF))
+                    TextButton(onClick={onNext ?: {}},enabled=onNext!=null) { Text("PRÓXIMA") }
+                }
+            }
             if (approvedOperationalFiche == null) {
                 Text("REFERÊNCIA EM CONFERÊNCIA • validação jurídica pendente",color=Color(0xFFD7BDDE),style=MaterialTheme.typography.labelSmall)
                 Text("As seções abaixo não constituem orientação de autuação enquanto não houver aprovação editorial.",style=MaterialTheme.typography.bodySmall)
