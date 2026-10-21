@@ -26,6 +26,7 @@ data class OperationalReference(
                 add("invalid_review_date")
         }
         if (review.unresolvedIssues.isNotEmpty()) add("unresolved_issues")
+        if (review.unresolvedIssues.any { it.isBlank() }) add("blank_unresolved_issue")
         if (review.reviewer.isNotBlank() && (review.reviewer.trim().length < 3 || review.reviewer.none { it.isLetter() })) add("invalid_reviewer")
         val statements = whenApplicable + exceptions + observations +
             measures.flatMap { listOf(it.rule) + it.conditions }
