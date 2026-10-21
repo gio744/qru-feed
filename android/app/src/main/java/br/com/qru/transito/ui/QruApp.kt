@@ -3,6 +3,7 @@ import android.content.ActivityNotFoundException
 import android.widget.Toast
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.ui.graphics.Brush
@@ -215,6 +216,26 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
         }
     }
 }
+@Composable private fun QruExpandableSection(title:String,initiallyOpen:Boolean=false,content:@Composable ColumnScope.()->Unit) {
+ var expanded by rememberSaveable { mutableStateOf(initiallyOpen) }
+ Surface(color=Color(0xFF21172E),shape=RoundedCornerShape(16.dp),
+  border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF49305F))) {
+  Column {
+   Row(Modifier.fillMaxWidth().clickable { expanded=!expanded }.padding(14.dp),
+    verticalAlignment=Alignment.CenterVertically) {
+    Text(title,Modifier.weight(1f),style=MaterialTheme.typography.labelLarge,
+     color=Color(0xFFE1C3FF),fontWeight=FontWeight.SemiBold)
+    Icon(if(expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+     contentDescription=if(expanded) "Recolher" else "Expandir",tint=Color(0xFFC48DFF))
+   }
+   if(expanded) {
+    HorizontalDivider(color=Color(0xFF49305F))
+    Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(8.dp),content=content)
+   }
+  }
+ }
+}
+
 @Composable private fun ReferenceDialog(result:SearchResult,onDismiss:()->Unit) {
     val context=LocalContext.current
     var documents by remember { mutableStateOf<List<OfflinePdfDocument>>(emptyList()) }
@@ -259,7 +280,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
         Column(Modifier.verticalScroll(androidx.compose.foundation.rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
             Text("Art. ${result.article.orEmpty()}  •  código ${result.code.orEmpty()}",color=Color(0xFFD2A8FF),style=MaterialTheme.typography.labelLarge)
             if (approvedOperationalFiche == null) Text("REFERÊNCIA EM CONFERÊNCIA • validação jurídica pendente",color=Color(0xFFD7BDDE),style=MaterialTheme.typography.labelSmall)
-            Text("QUANDO AUTUAR",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
+            QruExpandableSection("QUANDO AUTUAR",initiallyOpen=true) {
             if (approvedOperationalFiche == null) Text("Orientação operacional ainda não aprovada. Consulte a ficha oficial antes de decidir.")
             else approvedOperationalFiche?.whenApplicable?.forEach { item ->
                 Text(item.text)
@@ -269,7 +290,8 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                     }
                 }
             }
-            Text("QUANDO ESTE ARTIGO NÃO SE APLICA",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
+            }
+            QruExpandableSection("QUANDO ESTE ARTIGO NÃO SE APLICA") {
             if (approvedOperationalFiche == null) Text("Hipóteses de não enquadramento pendentes de revisão jurídica. A ausência de requisitos deste artigo não significa necessariamente outra infração.")
             else approvedOperationalFiche?.exceptions?.forEach { item ->
                 Text(item.text)
@@ -279,9 +301,11 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                     }
                 }
             }
-            Text("ENQUADRAMENTOS RELACIONADOS",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
+            }
+            QruExpandableSection("ENQUADRAMENTOS RELACIONADOS") {
             Text("Consulte outros artigos somente quando os respectivos requisitos legais estiverem presentes. Nenhuma indicação automática foi validada para esta ficha.")
-            Text("MEDIDAS ADMINISTRATIVAS",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
+            }
+            QruExpandableSection("MEDIDAS ADMINISTRATIVAS") {
             if (approvedOperationalFiche == null) Text("Retenção, remoção e regularização dependem da norma aplicável e de conferência editorial.")
             else approvedOperationalFiche?.measures?.forEach { item ->
                 Text(item.rule.text)
@@ -290,6 +314,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                         Text("Fonte oficial: ${source.locator}", style=MaterialTheme.typography.bodySmall)
                     }
                 }
+            }
             }
             Text(result.reviewStatus,style=MaterialTheme.typography.bodySmall)
             if(result.appliesFrom.isNotBlank()) Text("Início registrado no catálogo: ${result.appliesFrom}")
