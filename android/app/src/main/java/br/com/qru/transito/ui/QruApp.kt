@@ -254,8 +254,31 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
      style=MaterialTheme.typography.bodySmall,color=Color(0xFFB9A9C9))
    }
   }
-  items(state.results,key={result -> "reference:"+result.stableKey},contentType={"reference"}) { result ->
-   ReferenceCard(result) { selected=result }
+  // Numeric article queries display their subdivisions in legal order.
+  val articleNumber=state.query.trim().replace(Regex("^(?i)art(?:igo)?\\.?\\s*"),"")
+      .takeIf { it.matches(Regex("\\d+")) }
+  if(articleNumber!=null && state.results.isNotEmpty()) item(key="article_hierarchy_header") {
+   Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(4.dp)) {
+    Text("ART. $articleNumber • DESDOBRAMENTOS",color=Color(0xFFD9B6FF),
+      style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.Bold)
+    Text("Incisos em ordem legal. Toque em um enquadramento para abrir sua ficha individual.",
+      style=MaterialTheme.typography.bodySmall)
+   }
+  }
+  androidx.compose.foundation.lazy.itemsIndexed(state.results,key={_,result -> "reference:"+result.stableKey},
+      contentType={_,_->"reference"}) { index,result ->
+   Column(verticalArrangement=Arrangement.spacedBy(6.dp)) {
+    if(articleNumber!=null) {
+     val inciso=result.article.orEmpty().substringAfter(',',"").trim()
+     val previous=state.results.getOrNull(index-1)?.article.orEmpty().substringAfter(',',"").trim()
+     if(index==0 || inciso!=previous) {
+      Text(if(inciso.isBlank()) "ARTIGO $articleNumber" else "INCISO $inciso",
+       color=Color(0xFFD2A8FF),fontWeight=FontWeight.SemiBold,
+       style=MaterialTheme.typography.labelLarge)
+     }
+    }
+    ReferenceCard(result) { selected=result }
+   }
   }
   if(state.query.isNotBlank()) item(key="search_tools") {
    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(10.dp)) {
