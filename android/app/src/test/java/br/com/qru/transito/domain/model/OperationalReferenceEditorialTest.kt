@@ -56,6 +56,12 @@ class OperationalReferenceEditorialTest {
         assertTrue(issues.contains("missing_review_date"))
     }
 
+    @Test fun blankUnresolvedIssueIsDetected() {
+        val issues = reference(unresolved = listOf("  ")).editorialIssues()
+        assertTrue(issues.contains("unresolved_issues"))
+        assertTrue(issues.contains("blank_unresolved_issue"))
+    }
+
     @Test fun unresolvedIssuesBlockEditorialReadiness() {
         assertTrue(reference(unresolved = listOf("Conferir norma vigente"))
             .editorialIssues().contains("unresolved_issues"))
