@@ -318,8 +318,8 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
         }
     }
 }
-@Composable private fun QruExpandableSection(title:String,initiallyOpen:Boolean=false,content:@Composable ColumnScope.()->Unit) {
- var expanded by rememberSaveable { mutableStateOf(initiallyOpen) }
+@Composable private fun QruExpandableSection(title:String,referenceKey:String,initiallyOpen:Boolean=false,content:@Composable ColumnScope.()->Unit) {
+ var expanded by rememberSaveable(referenceKey,title) { mutableStateOf(initiallyOpen) }
  Surface(color=Color(0xFF21172E),shape=RoundedCornerShape(16.dp),
   border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF49305F))) {
   Column {
@@ -393,7 +393,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                     Text("CONSULTAR FONTE OFICIAL")
                 }
             }
-            QruExpandableSection("QUANDO AUTUAR",initiallyOpen=true) {
+            QruExpandableSection("QUANDO AUTUAR",referenceKey=result.stableKey,initiallyOpen=true) {
             if (approvedOperationalFiche == null) Text("Orientação operacional ainda não aprovada. Consulte a ficha oficial antes de decidir.")
             else approvedOperationalFiche?.whenApplicable?.forEach { item ->
                 Text(item.text)
@@ -404,7 +404,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                 }
             }
             }
-            QruExpandableSection("QUANDO ESTE ARTIGO NÃO SE APLICA") {
+            QruExpandableSection("QUANDO ESTE ARTIGO NÃO SE APLICA",referenceKey=result.stableKey) {
             if (approvedOperationalFiche == null) Text("Hipóteses de não enquadramento pendentes de revisão jurídica. A ausência de requisitos deste artigo não significa necessariamente outra infração.")
             else approvedOperationalFiche?.exceptions?.forEach { item ->
                 Text(item.text)
@@ -415,10 +415,10 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                 }
             }
             }
-            QruExpandableSection("ENQUADRAMENTOS RELACIONADOS") {
+            QruExpandableSection("ENQUADRAMENTOS RELACIONADOS",referenceKey=result.stableKey) {
             Text("Consulte outros artigos somente quando os respectivos requisitos legais estiverem presentes. Nenhuma indicação automática foi validada para esta ficha.")
             }
-            QruExpandableSection("MEDIDAS ADMINISTRATIVAS") {
+            QruExpandableSection("MEDIDAS ADMINISTRATIVAS",referenceKey=result.stableKey) {
             if (approvedOperationalFiche == null) Text("Retenção, remoção e regularização dependem da norma aplicável e de conferência editorial.")
             else approvedOperationalFiche?.measures?.forEach { item ->
                 Text(item.rule.text)
