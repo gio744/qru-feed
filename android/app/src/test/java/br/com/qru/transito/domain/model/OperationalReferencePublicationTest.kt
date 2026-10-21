@@ -30,6 +30,12 @@ class OperationalReferencePublicationTest {
         assertFalse(OperationalReferencePublication.approvedForCode(approved(), null))
     }
 
+    @Test fun referenceOutsideActiveCatalogCannotPublish() {
+        assertFalse(OperationalReferencePublication.approvedForCatalog(approved(), "672-61", emptySet()))
+        assertFalse(OperationalReferencePublication.approvedForCatalog(approved(), "672-61", setOf("659-92")))
+        assertTrue(OperationalReferencePublication.approvedForCatalog(approved(), "672-61", setOf("672-61")))
+    }
+
     @Test fun structurallyApprovedReferenceCanPassGateForOwnCode() {
         assertTrue(OperationalReferencePublication.approvedForCode(approved(), "672-61"))
     }
