@@ -10,6 +10,14 @@ import com.google.gson.JsonParser
  * publishing incomplete or unreviewed traffic-enforcement guidance.
  */
 object OperationalFichePackage {
+    internal fun isTrustedOfficialSource(url: String): Boolean = runCatching {
+        val uri = java.net.URI(url)
+        val host = uri.host?.lowercase(java.util.Locale.ROOT)
+        uri.scheme == "https" && uri.rawUserInfo == null &&
+            uri.port == -1 && uri.rawFragment == null &&
+            host in setOf("www.gov.br", "www.planalto.gov.br", "www.camara.leg.br")
+    }.getOrDefault(false)
+
     fun approvedByCode(json: String, activeCodes: Set<String>): Map<String, OperationalReference> =
         runCatching {
             val root = JsonParser.parseString(json).asJsonObject
@@ -28,9 +36,7 @@ object OperationalFichePackage {
                     (reference.whenApplicable + reference.exceptions + reference.observations +
                         reference.measures.flatMap { listOf(it.rule) + it.conditions })
                         .flatMap { it.evidence }
-                        .all { evidence -> evidence.url.startsWith("https://www.gov.br/") ||
-                            evidence.url.startsWith("https://www.planalto.gov.br/") ||
-                            evidence.url.startsWith("https://www.camara.leg.br/") }
+                        .all { evidence -> isTrustedOfficialSource(evidence.url) }
             }) { "Unapproved editorial content or unsupported source host" }
             require(references.map { it.code }.distinct().size == references.size) { "Duplicate code" }
             OperationalReferencePublication.approvedByCode(references, activeCodes)
