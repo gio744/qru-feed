@@ -287,7 +287,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
         verticalAlignment=Alignment.CenterVertically) {
         Text(if(inciso.isBlank()) "ARTIGO $articleNumber" else "INCISO $inciso",
          modifier=Modifier.weight(1f),fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
-        Text("${results.size} enquadramento(s)",style=MaterialTheme.typography.labelSmall)
+        Text("${results.size} ${if(results.size==1) "enquadramento" else "enquadramentos"}",style=MaterialTheme.typography.labelSmall)
         Spacer(Modifier.width(6.dp))
         Icon(if(expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
          contentDescription=if(expanded) "Recolher inciso" else "Expandir inciso")
