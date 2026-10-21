@@ -22,6 +22,9 @@ object OperationalFichePackage {
         runCatching {
             val root = JsonParser.parseString(json).asJsonObject
             require(root.get("schemaVersion").asInt == 1) { "Unsupported editorial package version" }
+            require(root.keySet() == setOf("schemaVersion", "items")) {
+                "Unexpected editorial package fields"
+            }
             val items = root.getAsJsonArray("items")
             require(items.size() <= 10000) { "Package exceeds item limit" }
             val gson = Gson()
