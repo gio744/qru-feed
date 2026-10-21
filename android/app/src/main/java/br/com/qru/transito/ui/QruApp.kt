@@ -233,11 +233,12 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             runCatching {
                 val json = context.assets.open("operational/approved-fiches.json")
                     .bufferedReader().use { it.readText() }
-                // A result code is eligible only if it exists in the active search catalog;
-                // the package reader separately enforces editorial review and uniqueness.
+                // Recheck the selected result against the active catalog before publication.
                 val code = result.code ?: return@runCatching null
                 val expectedDigest = context.assets.open("operational/approved-fiches.sha256")
                     .bufferedReader().use { it.readText().trim() }
+                val app = context.applicationContext as QruApplication
+                if (!app.legalRepository.isActiveReference(result)) return@runCatching null
                 OperationalFichePackage.approvedByCodeWithDigest(json, setOf(code), expectedDigest)[code]
             }.getOrNull()
         }
