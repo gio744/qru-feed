@@ -13,6 +13,7 @@ import android.content.Intent
 import android.net.Uri
 import br.com.qru.transito.domain.model.SearchResult
 import br.com.qru.transito.domain.model.OperationalReferencePublication
+import br.com.qru.transito.data.repository.OperationalFichePackage
 import br.com.qru.transito.domain.model.OperationalReference
 import android.content.pm.PackageManager
 import android.speech.RecognizerIntent
@@ -226,10 +227,19 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     }
     val offline=result.source?.let { resolveOfflineReference(documents,ranges,it,result.code) }
     // No reviewed editorial package is loaded yet: fail closed instead of inferring approval from PDFs.
-    val editorialPackages = emptyList<OperationalReference>() // No approved package importer is connected yet.
-    val approvedOperationalFiche = OperationalReferencePublication.findApproved(
-        editorialPackages, result.code, editorialPackages.map { it.code }.toSet()
-    )
+    var approvedOperationalFiche by remember(result.stableKey) { mutableStateOf<OperationalReference?>(null) }
+    LaunchedEffect(result.stableKey) {
+        approvedOperationalFiche = withContext(Dispatchers.IO) {
+            runCatching {
+                val json = context.assets.open("operational/approved-fiches.json")
+                    .bufferedReader().use { it.readText() }
+                // A result code is eligible only if it exists in the active search catalog;
+                // the package reader separately enforces editorial review and uniqueness.
+                val code = result.code ?: return@runCatching null
+                OperationalFichePackage.approvedByCode(json, setOf(code))[code]
+            }.getOrNull()
+        }
+    }
     AlertDialog(onDismissRequest=onDismiss,title={Text(result.title)},text={
         Column(Modifier.verticalScroll(androidx.compose.foundation.rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
             Text("Art. ${result.article.orEmpty()} • código ${result.code.orEmpty()}")
