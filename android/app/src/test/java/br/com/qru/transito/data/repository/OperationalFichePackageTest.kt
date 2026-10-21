@@ -26,6 +26,19 @@ class OperationalFichePackageTest {
         ).isEmpty())
     }
 
+    @Test fun invalidDigestNeverActivatesEditorialPackage() {
+        assertTrue(OperationalFichePackage.approvedByCodeWithDigest(
+            """{"schemaVersion":1,"items":[]}""",
+            setOf("672-61"),
+            "incorrect"
+        ).isEmpty())
+        assertTrue(OperationalFichePackage.approvedByCodeWithDigest(
+            """{"schemaVersion":1,"items":[]}""",
+            setOf("672-61"),
+            "0".repeat(64)
+        ).isEmpty())
+    }
+
     @Test fun emptyVersionedPackageLoadsSafely() {
         assertTrue(OperationalFichePackage.approvedByCode(
             """{"schemaVersion":1,"items":[]}""", setOf("672-61")
