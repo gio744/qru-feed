@@ -18,6 +18,12 @@ data class OperationalReference(
         if (review.status != OperationalReviewStatus.APPROVED) add("review_pending")
         if (review.reviewer.isBlank()) add("missing_reviewer")
         if (review.reviewedAt.isBlank()) add("missing_review_date")
+        else {
+            val date = try { java.time.LocalDate.parse(review.reviewedAt) }
+                catch (_: Exception) { null }
+            if (date == null || date.isAfter(java.time.LocalDate.now()))
+                add("invalid_review_date")
+        }
         if (review.unresolvedIssues.isNotEmpty()) add("unresolved_issues")
         val statements = whenApplicable + exceptions + observations +
             measures.flatMap { listOf(it.rule) + it.conditions }
