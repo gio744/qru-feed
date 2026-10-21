@@ -226,7 +226,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
         documents=loaded.first;ranges=loaded.second;referenceLoading=false
     }
     val offline=result.source?.let { resolveOfflineReference(documents,ranges,it,result.code) }
-    // No reviewed editorial package is loaded yet: fail closed instead of inferring approval from PDFs.
+    // Editorial package starts empty. Never infer approval from a bundled PDF or search result.
     var approvedOperationalFiche by remember(result.stableKey) { mutableStateOf<OperationalReference?>(null) }
     LaunchedEffect(result.stableKey) {
         approvedOperationalFiche = withContext(Dispatchers.IO) {
