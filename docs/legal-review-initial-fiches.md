@@ -45,6 +45,18 @@
 - O [texto da Resolução 1.031/2026](https://anttlegis.antt.gov.br/action/ActionDatalegis.php?acao=abrirTextoAto&cod_menu=7145&cod_modulo=420&nomeTitulo=codigos&numeroAto=00001031&orgao=CONTRAN%2FMT&seqAto=000&tipo=RES&valorAno=2026) dispõe no art. 8º, §1º sobre recusa na ausência de pelo menos dois sinais; no §2º, sobre presença de pelo menos dois sinais; e no §3º, sobre oferta regular do procedimento. Esses elementos devem ser tratados como **condições jurídicas**, não palavras-chave isoladas.
 - O [MBFT original de 2022](https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf) traz ficha 165-A código **757-90**, mas é referência histórica que pode ter sido alterada em 2026. **Não carregar automaticamente código/observação desse PDF como vigente sem comparar o anexo alterador.**
 
+## Anexo III efetivamente localizado — fichas MBFT atualizadas (21/10/2026)
+
+**Fonte primária:** [Anexos I, II e III da Resolução CONTRAN 1.031/2026](https://anexosportal.datalegis.net/arquivos/1932319.pdf), **página 4 (índice PDF: 3)**. A página do anexo contém imagens das fichas; não confiar apenas na extração textual, que omite o conteúdo das tabelas.
+
+**Confirmado por inspeção visual do Anexo III:**
+- **Art. 165-A, código 757-91:** recusa ao teste em aparelho destinado à medição do teor alcoólico no ar alveolar, na ausência de pelo menos dois sinais de alteração da capacidade psicomotora.
+- **Art. 165-A, código 757-92:** recusa ao teste em aparelho destinado à verificação da presença de outras substâncias psicoativas, na ausência de pelo menos dois sinais.
+- A ficha orienta que, presentes dois ou mais sinais comprovadores, seja analisado o **art. 165**, e não o 165-A; também veda a lavratura simultânea de 165 e 165-A na mesma abordagem.
+- **Atenção ao catálogo:** o código antigo **757-90** do MBFT de 2022 não deve ser tratado como único enquadramento vigente da recusa. Antes de alterar o catálogo do aplicativo, confrontar todas as fichas e códigos do Anexo III com o banco atual e executar testes de busca.
+
+**Status:** identificação documental e leitura visual concluídas para os dois códigos 757-91/757-92; ainda faltam validação editorial completa, análise de medidas e observações para publicação no app.
+
 ## Matriz de revisão
 
 | Prioridade | Dispositivo | Questão a conferir nas fontes oficiais | Status |
