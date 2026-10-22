@@ -34,6 +34,16 @@ class CatalogSearchTest {
                 CatalogSearch.search(references, query).mapNotNull { it.code }.toSet())
         }
     }
+    @Test fun bundled230IncisoVContainsBothRealOfflineFiches() {
+        val catalog = bundledEntries()
+        val expected = setOf("659-91", "659-92")
+        assertEquals(expected, catalog.filter { it.result.article == "230, V" }
+            .mapNotNull { it.result.code }.toSet())
+        for (query in listOf("230, V", "230 V", "art. 230, V")) {
+            assertEquals(expected, CatalogSearch.search(catalog, query)
+                .mapNotNull { it.code }.toSet())
+        }
+    }
     @Test fun articleDoesNotConfuse165With165A(){assertEquals(listOf("alcool"),CatalogSearch.search(entries,"artigo 165").map{it.stableKey})}
     @Test fun hyphenatedArticleKeepsLetter(){assertEquals(listOf("recusa"),CatalogSearch.search(entries,"165-A").map{it.stableKey})}
     @Test fun codeWithOrWithoutSeparatorFindsSameEntry(){for(q in listOf("504-50","50450"))assertEquals("cnh",CatalogSearch.search(entries,q).first().stableKey)}
