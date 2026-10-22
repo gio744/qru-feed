@@ -30,10 +30,13 @@ object QruVideoCatalog {
     internal fun trustedMediaUrl(value: String): Boolean = runCatching {
         val uri = URI(value)
         val host = uri.host?.lowercase(Locale.ROOT)
+        val path = uri.rawPath.orEmpty().lowercase(Locale.ROOT)
         uri.scheme == "https" && uri.rawUserInfo == null &&
             uri.port == -1 && uri.rawFragment == null &&
+            uri.rawQuery == null &&
             host != null && (host == "qru.app.br" || host.endsWith(".qru.app.br")) &&
-            !uri.rawPath.isNullOrBlank()
+            path.startsWith("/") && path.endsWith(".mp4") &&
+            !path.contains("%2f") && !path.contains("%5c")
     }.getOrDefault(false)
 
     internal fun trustedYoutubeUrl(value: String): Boolean = runCatching {
