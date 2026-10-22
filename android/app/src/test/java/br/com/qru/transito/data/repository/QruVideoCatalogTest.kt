@@ -39,6 +39,24 @@ class QruVideoCatalogTest {
         assertTrue(QruVideoCatalog.published("""{"schemaVersion":2,"items":[]}""").isEmpty())
     }
 
+    @Test fun rejectsMissingOrInvalidMediaChecksum() {
+        val valid = packageJson()
+        assertTrue(QruVideoCatalog.published(valid.replace(
+            "\"sha256\":\"${"a".repeat(64)}\",", ""
+        )).isEmpty())
+        assertTrue(QruVideoCatalog.published(valid.replace(
+            "a".repeat(64), "not-a-valid-checksum"
+        )).isEmpty())
+    }
+
+    @Test fun rejectsUntrustedYoutubeLinks() {
+        val valid = packageJson()
+        assertTrue(QruVideoCatalog.published(valid.replace(
+            "https://www.youtube.com/watch?v=abc123",
+            "https://www.youtube.com.evil.example/watch?v=abc123"
+        )).isEmpty())
+    }
+
     @Test fun emptyCatalogIsSafeUntilEditorialRelease() {
         assertTrue(QruVideoCatalog.published("""{"schemaVersion":1,"items":[]}""").isEmpty())
     }
