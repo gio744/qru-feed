@@ -23,6 +23,7 @@ import android.net.Uri
 import br.com.qru.transito.domain.model.SearchResult
 import br.com.qru.transito.domain.model.OperationalReferencePublication
 import br.com.qru.transito.data.repository.OperationalFichePackage
+import br.com.qru.transito.data.repository.QruVideoCatalog
 import br.com.qru.transito.domain.model.OperationalReference
 import android.content.pm.PackageManager
 import android.speech.RecognizerIntent
@@ -618,6 +619,13 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
 
 @Composable private fun SituationsPage() {
  val context=LocalContext.current
+ val studioVideos=remember(context) {
+  runCatching {
+   context.assets.open("studio/videos.json").bufferedReader().use { reader ->
+    QruVideoCatalog.published(reader.readText())
+   }
+  }.getOrDefault(emptyList())
+ }
  val app=context.applicationContext as QruApplication
  val vm:SearchViewModel=viewModel(key="situations_search",factory=SearchViewModelFactory(app.searchLegalContent))
  val state by vm.state.collectAsState()
@@ -663,6 +671,33 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     }
     if(state.query.isNotBlank()) Text("Referências para: ${state.query}")
     if(state.loading) LinearProgressIndicator(Modifier.fillMaxWidth().testTag("situations_loading"))
+   }
+  }
+  if(studioVideos.isNotEmpty()) {
+   item(key="studio_video_heading") {
+    Text("VÍDEOS REVISADOS",style=MaterialTheme.typography.titleMedium,
+     color=MaterialTheme.colorScheme.secondary)
+   }
+   items(studioVideos,key={ "studio:"+it.id },contentType={ "video" }) { video ->
+    Card(Modifier.fillMaxWidth()) {
+     Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+      Text(video.title,style=MaterialTheme.typography.titleMedium)
+      Text(video.description,style=MaterialTheme.typography.bodyMedium)
+      Text("Referência: ${video.legalReference}",style=MaterialTheme.typography.bodySmall)
+      Row(horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+       TextButton(onClick={
+        val intent=Intent(Intent.ACTION_VIEW,Uri.parse(video.videoUrl))
+        runCatching { context.startActivity(intent) }
+         .onFailure { Toast.makeText(context,"Não foi possível abrir o vídeo.",Toast.LENGTH_SHORT).show() }
+       }) { Icon(Icons.Default.PlayArrow,contentDescription=null);Text("ASSISTIR") }
+       TextButton(onClick={
+        val intent=Intent(Intent.ACTION_VIEW,Uri.parse(video.youtubeUrl ?: video.videoUrl))
+        runCatching { context.startActivity(intent) }
+         .onFailure { Toast.makeText(context,"Não foi possível abrir o link.",Toast.LENGTH_SHORT).show() }
+       }) { Text("ABRIR LINK") }
+      }
+     }
+    }
    }
   }
   items(state.results,key={ "situation:"+it.stableKey },contentType={ "reference" }) { result ->
