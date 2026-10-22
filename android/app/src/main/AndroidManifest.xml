@@ -2,6 +2,7 @@
 <uses-permission android:name="android.permission.INTERNET"/>
 <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 <application android:name=".QruApplication" android:allowBackup="false" android:icon="@mipmap/ic_launcher" android:label="QRU Trânsito" android:theme="@style/Theme.QRU">
+<provider android:name="androidx.core.content.FileProvider" android:authorities="${applicationId}.files" android:exported="false" android:grantUriPermissions="true"><meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/qru_file_paths"/></provider>
 <activity android:name=".MainActivity" android:exported="true">
 <intent-filter>
 <action android:name="android.intent.action.MAIN"/>
