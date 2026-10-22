@@ -24,6 +24,7 @@ import br.com.qru.transito.domain.model.SearchResult
 import br.com.qru.transito.domain.model.OperationalReferencePublication
 import br.com.qru.transito.data.repository.OperationalFichePackage
 import br.com.qru.transito.data.repository.QruVideoCatalog
+import br.com.qru.transito.data.repository.QruStudioIntegrity
 import br.com.qru.transito.domain.model.OperationalReference
 import android.content.pm.PackageManager
 import android.speech.RecognizerIntent
@@ -688,7 +689,13 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
       val localFile=java.io.File(
        context.getExternalFilesDir(android.os.Environment.DIRECTORY_MOVIES),
        "qru-studio-"+video.id+".mp4")
-      val offlineAvailable=remember(video.id,offlineRefresh) { localFile.isFile && localFile.length()>0L }
+      val offlineAvailable=remember(video.id,video.sha256,offlineRefresh) {
+       QruStudioIntegrity.matches(localFile,video.sha256)
+      }
+      if(localFile.isFile && !offlineAvailable) {
+       Text("Arquivo offline não validado. Exclua e baixe novamente.",
+        style=MaterialTheme.typography.bodySmall)
+      }
       if(offlineAvailable) {
        Text("Arquivo local disponível",style=MaterialTheme.typography.labelSmall,
         color=MaterialTheme.colorScheme.secondary)
