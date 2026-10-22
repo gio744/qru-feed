@@ -61,7 +61,27 @@
         "administrativeMeasuresApproved": false,
         "observationExamplesApproved": false,
         "independentReviewCompleted": false
-      }
+      },
+      "verifiedNormativeNotes": [
+        {
+          "topic": "vigencia",
+          "finding": "Resolução CONTRAN 1.031/2026 publicada em 18/08/2026; alteração do MBFT com vigência após 60 dias; demais dispositivos desde a publicação",
+          "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+          "locator": "Resolução 1031, situação; arts. 14 a 16"
+        },
+        {
+          "topic": "medida_administrativa",
+          "finding": "Art. 11: veículo retido até apresentação de condutor habilitado submetido à fiscalização; sem condutor apto, recolhimento ao depósito",
+          "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+          "locator": "Resolução 1031, art. 11; conferir texto integral antes da publicação"
+        },
+        {
+          "topic": "documento_habilitacao",
+          "finding": "Art. 12: agente não promove recolhimento do documento de habilitação em decorrência das infrações previstas na resolução",
+          "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+          "locator": "Resolução 1031, art. 12; conferir texto integral antes da publicação"
+        }
+      ]
     },
     {
       "code": "516-92",
@@ -122,7 +142,27 @@
         "administrativeMeasuresApproved": false,
         "observationExamplesApproved": false,
         "independentReviewCompleted": false
-      }
+      },
+      "verifiedNormativeNotes": [
+        {
+          "topic": "vigencia",
+          "finding": "Resolução CONTRAN 1.031/2026 publicada em 18/08/2026; alteração do MBFT com vigência após 60 dias; demais dispositivos desde a publicação",
+          "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+          "locator": "Resolução 1031, situação; arts. 14 a 16"
+        },
+        {
+          "topic": "medida_administrativa",
+          "finding": "Art. 11: veículo retido até apresentação de condutor habilitado submetido à fiscalização; sem condutor apto, recolhimento ao depósito",
+          "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+          "locator": "Resolução 1031, art. 11; conferir texto integral antes da publicação"
+        },
+        {
+          "topic": "documento_habilitacao",
+          "finding": "Art. 12: agente não promove recolhimento do documento de habilitação em decorrência das infrações previstas na resolução",
+          "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+          "locator": "Resolução 1031, art. 12; conferir texto integral antes da publicação"
+        }
+      ]
     },
     {
       "code": "757-91",
@@ -182,7 +222,27 @@
         "administrativeMeasuresApproved": false,
         "observationExamplesApproved": false,
         "independentReviewCompleted": false
-      }
+      },
+      "verifiedNormativeNotes": [
+        {
+          "topic": "vigencia",
+          "finding": "Resolução CONTRAN 1.031/2026 publicada em 18/08/2026; alteração do MBFT com vigência após 60 dias; demais dispositivos desde a publicação",
+          "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+          "locator": "Resolução 1031, situação; arts. 14 a 16"
+        },
+        {
+          "topic": "medida_administrativa",
+          "finding": "Art. 11: veículo retido até apresentação de condutor habilitado submetido à fiscalização; sem condutor apto, recolhimento ao depósito",
+          "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+          "locator": "Resolução 1031, art. 11; conferir texto integral antes da publicação"
+        },
+        {
+          "topic": "documento_habilitacao",
+          "finding": "Art. 12: agente não promove recolhimento do documento de habilitação em decorrência das infrações previstas na resolução",
+          "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+          "locator": "Resolução 1031, art. 12; conferir texto integral antes da publicação"
+        }
+      ]
     },
     {
       "code": "757-92",
@@ -242,7 +302,27 @@
         "administrativeMeasuresApproved": false,
         "observationExamplesApproved": false,
         "independentReviewCompleted": false
-      }
+      },
+      "verifiedNormativeNotes": [
+        {
+          "topic": "vigencia",
+          "finding": "Resolução CONTRAN 1.031/2026 publicada em 18/08/2026; alteração do MBFT com vigência após 60 dias; demais dispositivos desde a publicação",
+          "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+          "locator": "Resolução 1031, situação; arts. 14 a 16"
+        },
+        {
+          "topic": "medida_administrativa",
+          "finding": "Art. 11: veículo retido até apresentação de condutor habilitado submetido à fiscalização; sem condutor apto, recolhimento ao depósito",
+          "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+          "locator": "Resolução 1031, art. 11; conferir texto integral antes da publicação"
+        },
+        {
+          "topic": "documento_habilitacao",
+          "finding": "Art. 12: agente não promove recolhimento do documento de habilitação em decorrência das infrações previstas na resolução",
+          "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+          "locator": "Resolução 1031, art. 12; conferir texto integral antes da publicação"
+        }
+      ]
     }
   ]
 }
