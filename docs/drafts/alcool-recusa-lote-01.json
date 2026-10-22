@@ -81,7 +81,17 @@
           "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
           "locator": "Resolução 1031, art. 12; conferir texto integral antes da publicação"
         }
-      ]
+      ],
+      "normativeCrosscheck": {
+        "officialIndex": "https://www.gov.br/transportes/pt-br/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+        "act": "Resolução CONTRAN 1.031/2026",
+        "checkedTopics": [
+          "Revogação da Resolução 432/2013",
+          "Alteração do Anexo da Resolução 985/2022",
+          "Vigência diferenciada da alteração do MBFT"
+        ],
+        "openIssue": "Confirmar a ficha integral no Anexo III publicado e resolver remissões divergentes antes de marcar texto legal como verificado"
+      }
     },
     {
       "code": "516-92",
@@ -162,7 +172,17 @@
           "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
           "locator": "Resolução 1031, art. 12; conferir texto integral antes da publicação"
         }
-      ]
+      ],
+      "normativeCrosscheck": {
+        "officialIndex": "https://www.gov.br/transportes/pt-br/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+        "act": "Resolução CONTRAN 1.031/2026",
+        "checkedTopics": [
+          "Revogação da Resolução 432/2013",
+          "Alteração do Anexo da Resolução 985/2022",
+          "Vigência diferenciada da alteração do MBFT"
+        ],
+        "openIssue": "Confirmar a ficha integral no Anexo III publicado e resolver remissões divergentes antes de marcar texto legal como verificado"
+      }
     },
     {
       "code": "757-91",
@@ -184,7 +204,8 @@
         "unresolvedIssues": [
           "Conferir integralmente a ficha MBFT vigente",
           "Documentar condições e exceções por fonte oficial",
-          "Revisar medidas administrativas e observações"
+          "Revisar medidas administrativas e observações",
+          "Conferir referência ao código 757-90 presente em reprodução do DOU de 18/08/2026 versus códigos específicos 757-91/757-92; não corrigir silenciosamente a norma"
         ]
       },
       "reviewNotes": {
@@ -242,7 +263,17 @@
           "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
           "locator": "Resolução 1031, art. 12; conferir texto integral antes da publicação"
         }
-      ]
+      ],
+      "normativeCrosscheck": {
+        "officialIndex": "https://www.gov.br/transportes/pt-br/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+        "act": "Resolução CONTRAN 1.031/2026",
+        "checkedTopics": [
+          "Revogação da Resolução 432/2013",
+          "Alteração do Anexo da Resolução 985/2022",
+          "Vigência diferenciada da alteração do MBFT"
+        ],
+        "openIssue": "Confirmar a ficha integral no Anexo III publicado e resolver remissões divergentes antes de marcar texto legal como verificado"
+      }
     },
     {
       "code": "757-92",
@@ -264,7 +295,8 @@
         "unresolvedIssues": [
           "Conferir integralmente a ficha MBFT vigente",
           "Documentar condições e exceções por fonte oficial",
-          "Revisar medidas administrativas e observações"
+          "Revisar medidas administrativas e observações",
+          "Conferir referência ao código 757-90 presente em reprodução do DOU de 18/08/2026 versus códigos específicos 757-91/757-92; não corrigir silenciosamente a norma"
         ]
       },
       "reviewNotes": {
@@ -322,7 +354,17 @@
           "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
           "locator": "Resolução 1031, art. 12; conferir texto integral antes da publicação"
         }
-      ]
+      ],
+      "normativeCrosscheck": {
+        "officialIndex": "https://www.gov.br/transportes/pt-br/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+        "act": "Resolução CONTRAN 1.031/2026",
+        "checkedTopics": [
+          "Revogação da Resolução 432/2013",
+          "Alteração do Anexo da Resolução 985/2022",
+          "Vigência diferenciada da alteração do MBFT"
+        ],
+        "openIssue": "Confirmar a ficha integral no Anexo III publicado e resolver remissões divergentes antes de marcar texto legal como verificado"
+      }
     }
   ]
 }
