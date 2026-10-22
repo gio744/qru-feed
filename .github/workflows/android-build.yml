@@ -2,7 +2,7 @@ name: QRU Android Build
 on:
   workflow_dispatch:
   push:
-    paths: ['android/**','scripts/audit_reference_ranges.py','android/app/src/main/assets/norms/**','.github/workflows/android-build.yml']
+    paths: ['android/**','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json','android/app/src/main/assets/norms/**','.github/workflows/android-build.yml']
   pull_request:
     paths: ['android/**','scripts/audit_reference_ranges.py']
 jobs:
@@ -46,6 +46,9 @@ jobs:
 
       - name: Audit offline PDF reference ranges
         run: python scripts/audit_reference_ranges.py
+
+      - name: Validate operational card editorial metadata
+        run: python scripts/validate_operational_cards.py
 
       - name: Compile and unit test
         working-directory: android
