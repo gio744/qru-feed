@@ -22,7 +22,9 @@
         "unresolvedIssues": [
           "Conferir integralmente a ficha MBFT vigente",
           "Documentar condições e exceções por fonte oficial",
-          "Revisar medidas administrativas e observações"
+          "Revisar medidas administrativas e observações",
+          "Conferir requisitos específicos do AIT do art. 165 no art. 10 da Resolução 1.031/2026, quando aplicável",
+          "Conferir medidas do art. 11 e não recolhimento do documento de habilitação (art. 12)"
         ]
       },
       "reviewNotes": {
@@ -83,14 +85,17 @@
         }
       ],
       "normativeCrosscheck": {
-        "officialIndex": "https://www.gov.br/transportes/pt-br/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+        "officialIndex": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
         "act": "Resolução CONTRAN 1.031/2026",
         "checkedTopics": [
           "Revogação da Resolução 432/2013",
           "Alteração do Anexo da Resolução 985/2022",
-          "Vigência diferenciada da alteração do MBFT"
+          "Vigência diferenciada da alteração do MBFT",
+          "Art. 10: informações específicas no AIT do art. 165",
+          "Art. 11: retenção até apresentação de condutor habilitado submetido à fiscalização",
+          "Art. 12: não recolhimento físico do documento de habilitação"
         ],
-        "openIssue": "Confirmar a ficha integral no Anexo III publicado e resolver remissões divergentes antes de marcar texto legal como verificado"
+        "openIssue": "A publicação oficial lista a Resolução 1.031/2026 e confirma alteração do Anexo da 985/2022; obter e confrontar a redação integral do Anexo III e a remissão a 757-90 antes de aprovar cada código"
       }
     },
     {
@@ -113,7 +118,9 @@
         "unresolvedIssues": [
           "Conferir integralmente a ficha MBFT vigente",
           "Documentar condições e exceções por fonte oficial",
-          "Revisar medidas administrativas e observações"
+          "Revisar medidas administrativas e observações",
+          "Conferir requisitos específicos do AIT do art. 165 no art. 10 da Resolução 1.031/2026, quando aplicável",
+          "Conferir medidas do art. 11 e não recolhimento do documento de habilitação (art. 12)"
         ]
       },
       "reviewNotes": {
@@ -174,14 +181,17 @@
         }
       ],
       "normativeCrosscheck": {
-        "officialIndex": "https://www.gov.br/transportes/pt-br/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+        "officialIndex": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
         "act": "Resolução CONTRAN 1.031/2026",
         "checkedTopics": [
           "Revogação da Resolução 432/2013",
           "Alteração do Anexo da Resolução 985/2022",
-          "Vigência diferenciada da alteração do MBFT"
+          "Vigência diferenciada da alteração do MBFT",
+          "Art. 10: informações específicas no AIT do art. 165",
+          "Art. 11: retenção até apresentação de condutor habilitado submetido à fiscalização",
+          "Art. 12: não recolhimento físico do documento de habilitação"
         ],
-        "openIssue": "Confirmar a ficha integral no Anexo III publicado e resolver remissões divergentes antes de marcar texto legal como verificado"
+        "openIssue": "A publicação oficial lista a Resolução 1.031/2026 e confirma alteração do Anexo da 985/2022; obter e confrontar a redação integral do Anexo III e a remissão a 757-90 antes de aprovar cada código"
       }
     },
     {
@@ -205,7 +215,9 @@
           "Conferir integralmente a ficha MBFT vigente",
           "Documentar condições e exceções por fonte oficial",
           "Revisar medidas administrativas e observações",
-          "Conferir referência ao código 757-90 presente em reprodução do DOU de 18/08/2026 versus códigos específicos 757-91/757-92; não corrigir silenciosamente a norma"
+          "Conferir referência ao código 757-90 presente em reprodução do DOU de 18/08/2026 versus códigos específicos 757-91/757-92; não corrigir silenciosamente a norma",
+          "Conferir requisitos específicos do AIT do art. 165 no art. 10 da Resolução 1.031/2026, quando aplicável",
+          "Conferir medidas do art. 11 e não recolhimento do documento de habilitação (art. 12)"
         ]
       },
       "reviewNotes": {
@@ -265,14 +277,17 @@
         }
       ],
       "normativeCrosscheck": {
-        "officialIndex": "https://www.gov.br/transportes/pt-br/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+        "officialIndex": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
         "act": "Resolução CONTRAN 1.031/2026",
         "checkedTopics": [
           "Revogação da Resolução 432/2013",
           "Alteração do Anexo da Resolução 985/2022",
-          "Vigência diferenciada da alteração do MBFT"
+          "Vigência diferenciada da alteração do MBFT",
+          "Art. 10: informações específicas no AIT do art. 165",
+          "Art. 11: retenção até apresentação de condutor habilitado submetido à fiscalização",
+          "Art. 12: não recolhimento físico do documento de habilitação"
         ],
-        "openIssue": "Confirmar a ficha integral no Anexo III publicado e resolver remissões divergentes antes de marcar texto legal como verificado"
+        "openIssue": "A publicação oficial lista a Resolução 1.031/2026 e confirma alteração do Anexo da 985/2022; obter e confrontar a redação integral do Anexo III e a remissão a 757-90 antes de aprovar cada código"
       }
     },
     {
@@ -296,7 +311,9 @@
           "Conferir integralmente a ficha MBFT vigente",
           "Documentar condições e exceções por fonte oficial",
           "Revisar medidas administrativas e observações",
-          "Conferir referência ao código 757-90 presente em reprodução do DOU de 18/08/2026 versus códigos específicos 757-91/757-92; não corrigir silenciosamente a norma"
+          "Conferir referência ao código 757-90 presente em reprodução do DOU de 18/08/2026 versus códigos específicos 757-91/757-92; não corrigir silenciosamente a norma",
+          "Conferir requisitos específicos do AIT do art. 165 no art. 10 da Resolução 1.031/2026, quando aplicável",
+          "Conferir medidas do art. 11 e não recolhimento do documento de habilitação (art. 12)"
         ]
       },
       "reviewNotes": {
@@ -356,14 +373,17 @@
         }
       ],
       "normativeCrosscheck": {
-        "officialIndex": "https://www.gov.br/transportes/pt-br/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+        "officialIndex": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
         "act": "Resolução CONTRAN 1.031/2026",
         "checkedTopics": [
           "Revogação da Resolução 432/2013",
           "Alteração do Anexo da Resolução 985/2022",
-          "Vigência diferenciada da alteração do MBFT"
+          "Vigência diferenciada da alteração do MBFT",
+          "Art. 10: informações específicas no AIT do art. 165",
+          "Art. 11: retenção até apresentação de condutor habilitado submetido à fiscalização",
+          "Art. 12: não recolhimento físico do documento de habilitação"
         ],
-        "openIssue": "Confirmar a ficha integral no Anexo III publicado e resolver remissões divergentes antes de marcar texto legal como verificado"
+        "openIssue": "A publicação oficial lista a Resolução 1.031/2026 e confirma alteração do Anexo da 985/2022; obter e confrontar a redação integral do Anexo III e a remissão a 757-90 antes de aprovar cada código"
       }
     }
   ]
