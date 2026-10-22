@@ -695,6 +695,22 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
       if(localFile.isFile && !offlineAvailable) {
        Text("Arquivo offline não validado. Exclua e baixe novamente.",
         style=MaterialTheme.typography.bodySmall)
+       TextButton(onClick={
+        runCatching { localFile.delete() }.onSuccess { deleted ->
+         if(deleted) {
+          offlineRefresh++
+          Toast.makeText(context,"Arquivo inválido excluído.",Toast.LENGTH_SHORT).show()
+         } else {
+          Toast.makeText(context,"Não foi possível excluir o arquivo.",Toast.LENGTH_SHORT).show()
+         }
+        }.onFailure {
+         Toast.makeText(context,"Não foi possível excluir o arquivo.",Toast.LENGTH_SHORT).show()
+        }
+       }) { Icon(Icons.Default.DeleteOutline,contentDescription=null);Text("EXCLUIR ARQUIVO INVÁLIDO") }
+      }
+      TextButton(onClick={offlineRefresh++}) {
+       Icon(Icons.Default.Refresh,contentDescription=null)
+       Text("VERIFICAR DOWNLOADS")
       }
       if(offlineAvailable) {
        Text("Arquivo local disponível",style=MaterialTheme.typography.labelSmall,
