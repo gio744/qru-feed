@@ -57,6 +57,23 @@
 
 **Status:** identificação documental e leitura visual concluídas para os dois códigos 757-91/757-92; ainda faltam validação editorial completa, análise de medidas e observações para publicação no app.
 
+## Roteiro de homologação das fichas 165 e 165-A — fase editorial
+
+**Não publicar como orientação aprovada.** Antes da ativação, o revisor deverá preencher para cada código (**516-91, 516-92, 757-91, 757-92**) os seguintes campos, confrontando a redação atual do Anexo III da Resolução 1.031/2026 e as disposições do CTB:
+
+| Verificação | 516-91 | 516-92 | 757-91 | 757-92 |
+|---|---|---|---|---|
+| Hipótese específica e meio de constatação | Pendente | Pendente | Pendente | Pendente |
+| Sinais e sua documentação, quando exigidos | Pendente | Pendente | Pendente | Pendente |
+| Procedimento ofertado e registro de recusa, quando cabível | Pendente | Pendente | Pendente | Pendente |
+| Hipóteses de não aplicação e distinção entre códigos | Pendente | Pendente | Pendente | Pendente |
+| Medidas administrativas e condições | Pendente | Pendente | Pendente | Pendente |
+| Modelo de observação fiel à constatação | Pendente | Pendente | Pendente | Pendente |
+| URL oficial e localizador da ficha vigente | Pendente | Pendente | Pendente | Pendente |
+| Revisor, data, digest e testes | Pendente | Pendente | Pendente | Pendente |
+
+**Critério de aceite:** todas as células justificadas por fonte oficial, com revisão identificada. Códigos históricos não devem substituir os códigos específicos vigentes. O catálogo existente já contém os quatro códigos acima; não duplicar registros.
+
 ## Matriz de revisão
 
 | Prioridade | Dispositivo | Questão a conferir nas fontes oficiais | Status |
