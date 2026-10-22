@@ -19,6 +19,37 @@ class OperationalFichePackageTest {
         ))
     }
 
+    @Test fun deadlineEvidenceMustUseTrustedOfficialHost() {
+        val official = "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm"
+        val fake = "https://www.planalto.gov.br.evil.example/ctb"
+        fun evidence(url: String) = """{"url":"$url","locator":"Art. 270"}"""
+        fun statement(url: String) = """{"text":"Texto de teste","evidence":[${evidence(url)}]}"""
+        val json = """{
+            "schemaVersion":1,
+            "items":[{
+                "code":"672-61",
+                "whenApplicable":[${statement(official)}],
+                "exceptions":[${statement(official)}],
+                "measures":[{
+                    "kind":"RETENTION",
+                    "rule":${statement(official)},
+                    "conditions":[${statement(official)}],
+                    "deadline":{
+                        "maximumDays":1,
+                        "legalBasis":${statement(fake)}
+                    }
+                }],
+                "review":{
+                    "status":"APPROVED",
+                    "reviewer":"Revisor de teste",
+                    "reviewedAt":"2026-01-01",
+                    "unresolvedIssues":[]
+                }
+            }]
+        }""".trimIndent()
+        assertTrue(OperationalFichePackage.approvedByCode(json,setOf("672-61")).isEmpty())
+    }
+
     @Test fun unexpectedPackageMetadataFailsClosed() {
         assertTrue(OperationalFichePackage.approvedByCode(
             """{"schemaVersion":1,"items":[],"forceApproved":true}""",
