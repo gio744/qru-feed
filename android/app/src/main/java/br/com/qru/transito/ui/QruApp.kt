@@ -684,6 +684,27 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
       Text(video.title,style=MaterialTheme.typography.titleMedium)
       Text(video.description,style=MaterialTheme.typography.bodyMedium)
       Text("Referência: ${video.legalReference}",style=MaterialTheme.typography.bodySmall)
+      val localFile=java.io.File(
+       context.getExternalFilesDir(android.os.Environment.DIRECTORY_MOVIES),
+       "qru-studio-"+video.id+".mp4")
+      if(localFile.isFile && localFile.length()>0L) {
+       Text("Arquivo local disponível",style=MaterialTheme.typography.labelSmall,
+        color=MaterialTheme.colorScheme.secondary)
+       TextButton(onClick={
+        runCatching {
+         val uri=androidx.core.content.FileProvider.getUriForFile(
+          context,context.packageName+".files",localFile)
+         val intent=Intent(Intent.ACTION_VIEW).apply {
+          setDataAndType(uri,"video/mp4")
+          addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+         }
+         context.startActivity(intent)
+        }.onFailure {
+         Toast.makeText(context,"Não foi possível reproduzir o arquivo local.",
+          Toast.LENGTH_LONG).show()
+        }
+       }) { Icon(Icons.Default.PlayCircle,contentDescription=null);Text("ASSISTIR OFFLINE") }
+      }
       Row(horizontalArrangement=Arrangement.spacedBy(8.dp)) {
        TextButton(onClick={
         val intent=Intent(Intent.ACTION_VIEW,Uri.parse(video.videoUrl))
