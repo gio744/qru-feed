@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "description": "Modelo editorial de ficha operacional. Não substitui validação jurídica e não é carregado automaticamente pelo app.",
+  "required": [
+    "codigo",
+    "artigo",
+    "descricao",
+    "quandoAutuar",
+    "quandoNaoAutuar",
+    "constatacao",
+    "abordagem",
+    "responsavel",
+    "medidasAdministrativas",
+    "fontes",
+    "revisao"
+  ],
+  "fields": {
+    "codigo": "Código MBFT",
+    "artigo": "Artigo e desdobramento do CTB",
+    "descricao": "Descrição oficial da infração",
+    "quandoAutuar": "Condições de incidência e prova necessária",
+    "quandoNaoAutuar": "Hipóteses de não incidência e distinções",
+    "constatacao": "Meio de constatação e documentação",
+    "abordagem": "Regra de abordagem e exceções fundamentadas",
+    "responsavel": "Condutor/proprietário/outros conforme CTB art. 257",
+    "medidasAdministrativas": "Retenção, remoção, regularização e exceções",
+    "fontes": "Norma, artigo, URL oficial, versão e data de vigência",
+    "revisao": "status, revisor, data, observações"
+  },
+  "statusPermitidos": [
+    "pendente",
+    "em_revisao",
+    "validada"
+  ],
+  "criterioPublicacao": "status validada com fontes e data; pendentes devem ser identificadas como não validadas"
+}
