@@ -11,6 +11,7 @@ class QruVideoCatalogTest {
           "description":"Simulação educativa","legalReference":"CTB arts. 165 e 165-A",
           "reviewedBy":"$reviewedBy","reviewedAt":"2026-10-22",
           "videoUrl":"$url","durationSeconds":60,
+          "sha256":"${"a".repeat(64)}",
           "youtubeUrl":"https://www.youtube.com/watch?v=abc123"
         }]}
     """.trimIndent()
