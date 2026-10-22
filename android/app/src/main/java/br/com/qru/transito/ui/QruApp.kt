@@ -519,6 +519,12 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             Text("Se os requisitos deste enquadramento não estiverem presentes, examine outras hipóteses somente quando os fatos constatados e a legislação vigente as sustentarem.",style=MaterialTheme.typography.bodySmall)
             Text("INFRAÇÃO NÃO CARACTERIZADA COM OS DADOS DISPONÍVEIS",fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
             Text("Quando não houver elementos suficientes para caracterizar uma infração, não presuma outra apenas para gerar uma autuação. A ausência de comprovação não equivale a uma conclusão definitiva sobre todos os fatos.",style=MaterialTheme.typography.bodySmall)
+            HorizontalDivider(color=Color(0xFF49305F))
+            Text("CHECKLIST PARA CONFERÊNCIA",fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
+            Text("1. Qual fato foi diretamente constatado? Registre apenas os elementos observáveis.",style=MaterialTheme.typography.bodySmall)
+            Text("2. Todos os requisitos do enquadramento consultado estão presentes? Confira a ficha oficial vigente.",style=MaterialTheme.typography.bodySmall)
+            Text("3. Existe alguma condição, exceção ou regra especial aplicável ao veículo, condutor ou circunstância?",style=MaterialTheme.typography.bodySmall)
+            Text("4. Se cogitar outro artigo, confira separadamente seus requisitos e medidas administrativas antes de decidir.",style=MaterialTheme.typography.bodySmall)
             Text("Sugestões automáticas baseadas em narrativa ainda não estão disponíveis nem validadas.",style=MaterialTheme.typography.labelSmall)
             }
             QruExpandableSection("MEDIDAS ADMINISTRATIVAS",referenceKey=result.stableKey) {
