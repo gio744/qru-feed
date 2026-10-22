@@ -18,11 +18,13 @@ data class QruVideo(
     val reviewedAt: String,
     val videoUrl: String,
     val youtubeUrl: String? = null,
-    val durationSeconds: Int
+    val durationSeconds: Int,
+    val sha256: String
 )
 
 object QruVideoCatalog {
     private val idPattern = Regex("[a-z0-9][a-z0-9-]{2,79}")
+    private val shaPattern = Regex("[a-fA-F0-9]{64}")
     private val datePattern = Regex("\\d{4}-\\d{2}-\\d{2}")
 
     internal fun trustedMediaUrl(value: String): Boolean = runCatching {
@@ -53,10 +55,10 @@ object QruVideoCatalog {
             val item = entry.asJsonObject
             require(item.keySet() == setOf(
                 "id", "title", "description", "legalReference",
-                "reviewedBy", "reviewedAt", "videoUrl", "durationSeconds"
+                "reviewedBy", "reviewedAt", "videoUrl", "durationSeconds", "sha256"
             ) || item.keySet() == setOf(
                 "id", "title", "description", "legalReference",
-                "reviewedBy", "reviewedAt", "videoUrl", "durationSeconds", "youtubeUrl"
+                "reviewedBy", "reviewedAt", "videoUrl", "durationSeconds", "youtubeUrl", "sha256"
             ))
             fun required(key: String): String = item.get(key).asString.trim()
                 .also { require(it.isNotEmpty() && it.length <= 500) }
@@ -71,9 +73,11 @@ object QruVideoCatalog {
             require(youtube == null || trustedYoutubeUrl(youtube))
             val duration = item.get("durationSeconds").asInt
             require(duration in 1..7200)
+            val checksum = required("sha256")
+            require(shaPattern.matches(checksum))
             QruVideo(id, required("title"), required("description"),
                 required("legalReference"), required("reviewedBy"), date,
-                media, youtube, duration)
+                media, youtube, duration, checksum.lowercase(Locale.ROOT))
         }
     }.getOrDefault(emptyList())
 }
