@@ -25,6 +25,20 @@
 - Segundo [comunicado oficial do Ministério dos Transportes](https://www.gov.br/transportes/pt-br/assuntos/noticias-/2026/08/contran-atualiza-regras-da-lei-seca-e-procedimentos-de-fiscalizacao/), na mesma abordagem não se lavram simultaneamente autos pelos arts. **165 e 165-A** em relação à mesma verificação. A ficha específica e os requisitos concretos ainda devem ser conferidos antes de publicar orientação operacional.
 - **Status editorial:** fundamentos normativos identificados e registrados, mas não equivalem a ficha aprovada; faltam análise de casos, anexos atuais e revisão independente.
 
+## Pré-análise normativa — arts. 165 e 165-A (não publicada no app)
+
+**Base consultada:** [CTB compilado — Planalto](https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm), [Resolução CONTRAN 1.031/2026 — texto normativo](https://anttlegis.antt.gov.br/action/ActionDatalegis.php?acao=abrirTextoAto&cod_menu=7145&cod_modulo=420&nomeTitulo=codigos&numeroAto=00001031&orgao=CONTRAN%2FMT&seqAto=000&tipo=RES&valorAno=2026), [índice oficial CONTRAN](https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran).
+
+| Questão operacional | Fundamento identificado | Condição para publicar |
+|---|---|---|
+| Pré-teste/teste passivo positivo | Art. 4º, §2º, Res. 1.031/2026: apenas indicativo; não fundamenta sozinho a autuação | Conferir procedimentos subsequentes e ficha MBFT vigente |
+| Constatação por sinais | Art. 7º, §§1º-2º: pelo menos dois sinais que em conjunto comprovem a situação, descritos no AIT ou termo específico | Validar formulário/anexo II e registro concreto |
+| Recusa sem sinais suficientes | Art. 8º, §§1º e 3º: art. 165-A conforme recusa a procedimento regularmente ofertado, desde que ausentes pelo menos dois sinais | Verificar ficha de fiscalização e prova da oferta/recusa |
+| Recusa com pelo menos dois sinais comprovadores | Art. 8º, §2º: consequências do art. 165, sem prejuízo da análise do art. 306 | Conferir anexos, circunstâncias e medidas administrativas |
+| Autuação cumulativa 165 + 165-A na mesma abordagem | [Comunicado do Ministério dos Transportes](https://www.gov.br/transportes/pt-br/assuntos/noticias-/2026/08/contran-atualiza-regras-da-lei-seca-e-procedimentos-de-fiscalizacao/) informa que não devem ser lavrados simultaneamente | Conferir redação e ficha atualizadas antes da orientação final |
+
+**Atenção:** a tabela é um roteiro de revisão, não uma ficha homologada; ainda faltam códigos vigentes, medidas administrativas detalhadas, modelos de observação e validação editorial.
+
 ## Matriz de revisão
 
 | Prioridade | Dispositivo | Questão a conferir nas fontes oficiais | Status |
