@@ -627,10 +627,39 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
   item(key="situations_header") {
    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(14.dp)) {
     Text("Situações",style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.secondary,fontWeight=FontWeight.Bold)
-    Text("Consulta por situação")
-    listOf("bafômetro","recusa","CNH vencida","licenciamento","pneu","retrovisor").forEach { term ->
-     OutlinedButton(onClick={vm.query(term);vm.run()},
-      modifier=Modifier.fillMaxWidth().testTag("situation_"+term)) { Text(term) }
+    Text("Encontre a referência legal antes de assistir à explicação.",
+     style=MaterialTheme.typography.bodyMedium)
+    Text("CONSULTAS RÁPIDAS",style=MaterialTheme.typography.labelMedium,
+     color=MaterialTheme.colorScheme.secondary)
+    val popularSituations=listOf(
+     "bafômetro","recusa","CNH vencida","licenciamento","pneu","retrovisor"
+    )
+    popularSituations.chunked(2).forEach { pair ->
+     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+      pair.forEach { term ->
+       OutlinedButton(onClick={vm.query(term);vm.run()},
+        modifier=Modifier.weight(1f).testTag("situation_"+term),
+        contentPadding=PaddingValues(horizontal=8.dp,vertical=10.dp)) {
+        Text(term,maxLines=1,style=MaterialTheme.typography.labelMedium)
+       }
+      }
+     }
+    }
+    Card(Modifier.fillMaxWidth()) {
+     Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
+      Row(verticalAlignment=Alignment.CenterVertically,
+       horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+       Icon(Icons.Default.OndemandVideo,contentDescription=null,
+        tint=MaterialTheme.colorScheme.secondary)
+       Text("QRU Studio",style=MaterialTheme.typography.titleMedium,
+        fontWeight=FontWeight.Bold)
+      }
+      Text("Vídeos operacionais em preparação.",
+       style=MaterialTheme.typography.bodyMedium)
+      Text("Os episódios serão publicados somente após revisão jurídica. " +
+       "A biblioteca terá acesso às fichas e suporte a vídeos offline.",
+       style=MaterialTheme.typography.bodySmall)
+     }
     }
     if(state.query.isNotBlank()) Text("Referências para: ${state.query}")
     if(state.loading) LinearProgressIndicator(Modifier.fillMaxWidth().testTag("situations_loading"))
@@ -645,7 +674,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
      Text(state.message,style=MaterialTheme.typography.bodySmall)
      TextButton(onClick={vm.run()}) { Text("TENTAR NOVAMENTE") }
     }
-    Text("Vídeos ainda não disponíveis.",style=MaterialTheme.typography.bodySmall)
+
    }
   }
  }
