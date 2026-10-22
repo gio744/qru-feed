@@ -23,6 +23,17 @@ class CatalogSearchTest {
         for(q in listOf("230,V","230, V","art. 230, V","ARTIGO 230 v"))
             assertEquals("licenciamento",CatalogSearch.search(related,q).first().stableKey)
     }
+    @Test fun exact230IncisoVReturnsAllMatchingBreakdownsOnly() {
+        val references = listOf(
+            IndexedReference(SearchResult("a", "Licenciamento A", "230, V", "659-91", "BR", "draft"), "licenciamento"),
+            IndexedReference(SearchResult("b", "Licenciamento B", "230, V", "659-92", "BR", "draft"), "licenciamento"),
+            IndexedReference(SearchResult("c", "Outro inciso", "230, XVIII", "672-61", "BR", "draft"), "230 V licenciamento")
+        )
+        for (query in listOf("230, V", "230 V", "art. 230, V")) {
+            assertEquals(setOf("659-91", "659-92"),
+                CatalogSearch.search(references, query).mapNotNull { it.code }.toSet())
+        }
+    }
     @Test fun articleDoesNotConfuse165With165A(){assertEquals(listOf("alcool"),CatalogSearch.search(entries,"artigo 165").map{it.stableKey})}
     @Test fun hyphenatedArticleKeepsLetter(){assertEquals(listOf("recusa"),CatalogSearch.search(entries,"165-A").map{it.stableKey})}
     @Test fun codeWithOrWithoutSeparatorFindsSameEntry(){for(q in listOf("504-50","50450"))assertEquals("cnh",CatalogSearch.search(entries,q).first().stableKey)}
