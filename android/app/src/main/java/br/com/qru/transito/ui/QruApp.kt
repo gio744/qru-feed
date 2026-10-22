@@ -698,9 +698,24 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
         }) { Text("YOUTUBE") }
        }
        TextButton(onClick={
-        val intent=Intent(Intent.ACTION_VIEW,Uri.parse(video.videoUrl))
-        runCatching { context.startActivity(intent) }
-         .onFailure { Toast.makeText(context,"Não foi possível abrir o download.",Toast.LENGTH_SHORT).show() }
+        val request=android.app.DownloadManager.Request(Uri.parse(video.videoUrl))
+         .setTitle(video.title)
+         .setDescription("Vídeo QRU Studio para consulta offline")
+         .setNotificationVisibility(
+          android.app.DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+         .setDestinationInExternalFilesDir(
+          context,android.os.Environment.DIRECTORY_MOVIES,"qru-studio-"+video.id+".mp4")
+        runCatching {
+         val manager=context.getSystemService(Context.DOWNLOAD_SERVICE)
+          as android.app.DownloadManager
+         manager.enqueue(request)
+        }.onSuccess {
+         Toast.makeText(context,"Download iniciado. Acompanhe nas notificações.",
+          Toast.LENGTH_LONG).show()
+        }.onFailure {
+         Toast.makeText(context,"Não foi possível iniciar o download.",
+          Toast.LENGTH_LONG).show()
+        }
        }) { Icon(Icons.Default.Download,contentDescription=null);Text("BAIXAR") }
       }
      }
