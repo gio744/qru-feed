@@ -692,12 +692,13 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
       var offlineAvailable by remember(video.id,video.sha256) { mutableStateOf(false) }
       var downloadRequested by remember(video.id) { mutableStateOf(false) }
       var downloadId by remember(video.id) { mutableStateOf<Long?>(null) }
+      var videoRefresh by remember(video.id) { mutableIntStateOf(0) }
       DisposableEffect(context,video.id) {
        val receiver=object : android.content.BroadcastReceiver() {
         override fun onReceive(receiverContext: Context?, intent: Intent?) {
          if(intent?.action==android.app.DownloadManager.ACTION_DOWNLOAD_COMPLETE &&
           intent.getLongExtra(android.app.DownloadManager.EXTRA_DOWNLOAD_ID,-1L)==downloadId) {
-          offlineRefresh++
+          videoRefresh++
          }
         }
        }
@@ -708,7 +709,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
        onDispose { runCatching { context.unregisterReceiver(receiver) } }
       }
       var checkingOffline by remember(video.id,video.sha256) { mutableStateOf(true) }
-      LaunchedEffect(video.id,video.sha256,offlineRefresh) {
+      LaunchedEffect(video.id,video.sha256,videoRefresh) {
        checkingOffline=true
        offlineAvailable=withContext(Dispatchers.IO) {
         QruStudioIntegrity.matches(localFile,video.sha256)
@@ -724,7 +725,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
        TextButton(onClick={
         runCatching { localFile.delete() }.onSuccess { deleted ->
          if(deleted) {
-          offlineRefresh++
+          videoRefresh++
           Toast.makeText(context,"Arquivo inválido excluído.",Toast.LENGTH_SHORT).show()
          } else {
           Toast.makeText(context,"Não foi possível excluir o arquivo.",Toast.LENGTH_SHORT).show()
@@ -738,7 +739,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
        Text("Download solicitado. Verifique as notificações e atualize a conferência após a conclusão.",
         style=MaterialTheme.typography.bodySmall)
       }
-      TextButton(onClick={offlineRefresh++}) {
+      TextButton(onClick={videoRefresh++}) {
        Icon(Icons.Default.Refresh,contentDescription=null)
        Text("VERIFICAR DOWNLOADS")
       }
@@ -748,7 +749,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
        TextButton(onClick={
         runCatching {
          if(localFile.delete()) {
-          offlineRefresh++
+          videoRefresh++
           Toast.makeText(context,"Vídeo offline excluído.",Toast.LENGTH_SHORT).show()
          } else {
           Toast.makeText(context,"Não foi possível excluir o vídeo.",Toast.LENGTH_SHORT).show()
