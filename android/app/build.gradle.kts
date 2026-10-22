@@ -104,10 +104,12 @@ val bundleNormPdf = tasks.register("bundleNormPdf") {
                                 temporary.outputStream().use { output -> input.copyTo(output) }
                             }
                             val header=temporary.inputStream().use { it.readNBytes(5) }
-                            check(header.contentEquals("%PDF-".toByteArray(Charsets.US_ASCII))) {
-                                "Official PDF response is not a PDF: $name; HTTP=${status ?: "unknown"}; " +
-                                    "Content-Type=$contentType; bytes=${temporary.length()}; " +
-                                    "source=${doc["source"]}. Keep pinned SHA-256 unchanged."
+                            if (!header.contentEquals("%PDF-".toByteArray(Charsets.US_ASCII))) {
+                                throw java.io.IOException(
+                                    "Official PDF response is not a PDF: $name; HTTP=${status ?: "unknown"}; " +
+                                        "Content-Type=$contentType; bytes=${temporary.length()}; " +
+                                        "source=${doc["source"]}. Keep pinned SHA-256 unchanged."
+                                )
                             }
                             lastFailure=null
                             break
