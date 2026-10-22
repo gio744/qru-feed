@@ -690,6 +690,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
        context.getExternalFilesDir(android.os.Environment.DIRECTORY_MOVIES),
        "qru-studio-"+video.id+".mp4")
       var offlineAvailable by remember(video.id,video.sha256) { mutableStateOf(false) }
+      var downloadRequested by remember(video.id) { mutableStateOf(false) }
       var checkingOffline by remember(video.id,video.sha256) { mutableStateOf(true) }
       LaunchedEffect(video.id,video.sha256,offlineRefresh) {
        checkingOffline=true
@@ -716,6 +717,10 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
          Toast.makeText(context,"Não foi possível excluir o arquivo.",Toast.LENGTH_SHORT).show()
         }
        }) { Icon(Icons.Default.DeleteOutline,contentDescription=null);Text("EXCLUIR ARQUIVO INVÁLIDO") }
+      }
+      if(downloadRequested && !offlineAvailable) {
+       Text("Download solicitado. Verifique as notificações e atualize a conferência após a conclusão.",
+        style=MaterialTheme.typography.bodySmall)
       }
       TextButton(onClick={offlineRefresh++}) {
        Icon(Icons.Default.Refresh,contentDescription=null)
@@ -777,6 +782,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
           as android.app.DownloadManager
          manager.enqueue(request)
         }.onSuccess {
+         downloadRequested=true
          Toast.makeText(context,"Download iniciado. Acompanhe nas notificações.",
           Toast.LENGTH_LONG).show()
         }.onFailure {
