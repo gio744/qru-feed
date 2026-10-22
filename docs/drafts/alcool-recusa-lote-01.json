@@ -24,6 +24,33 @@
           "Documentar condições e exceções por fonte oficial",
           "Revisar medidas administrativas e observações"
         ]
+      },
+      "reviewNotes": {
+        "normativeBasis": [
+          {
+            "url": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+            "locator": "Art. 165 do CTB",
+            "verification": "Conferir redação vigente, conduta e sanções"
+          },
+          {
+            "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+            "locator": "Resolução CONTRAN 1.031/2026 e Anexo III (MBFT)",
+            "verification": "Conferir meios de constatação, critérios, ficha específica e medidas"
+          }
+        ],
+        "factQuestions": [
+          "Qual meio legal de constatação foi utilizado e documentado?",
+          "Os elementos da infração estão presentes e descritos sem inferências?",
+          "Se houver sinais, quais foram individualmente observados e registrados?",
+          "Houve recusa? Em caso afirmativo, quais fatos exigem diferenciar 165 de 165-A?",
+          "Há indícios para avaliação autônoma do art. 306, sem presumir crime?",
+          "As medidas administrativas e exceções foram conferidas na ficha vigente?"
+        ],
+        "editorialWarnings": [
+          "Roteiro de revisão; não é instrução de autuação aprovada",
+          "Não presumir estado de influência por mera recusa ou pré-teste indicativo",
+          "Não publicar exemplos de AIT sem conferência jurídica e factual"
+        ]
       }
     },
     {
@@ -47,6 +74,33 @@
           "Conferir integralmente a ficha MBFT vigente",
           "Documentar condições e exceções por fonte oficial",
           "Revisar medidas administrativas e observações"
+        ]
+      },
+      "reviewNotes": {
+        "normativeBasis": [
+          {
+            "url": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+            "locator": "Art. 165 do CTB",
+            "verification": "Conferir redação vigente, conduta e sanções"
+          },
+          {
+            "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+            "locator": "Resolução CONTRAN 1.031/2026 e Anexo III (MBFT)",
+            "verification": "Conferir meios de constatação, critérios, ficha específica e medidas"
+          }
+        ],
+        "factQuestions": [
+          "Qual meio legal de constatação foi utilizado e documentado?",
+          "Os elementos da infração estão presentes e descritos sem inferências?",
+          "Se houver sinais, quais foram individualmente observados e registrados?",
+          "Houve recusa? Em caso afirmativo, quais fatos exigem diferenciar 165 de 165-A?",
+          "Há indícios para avaliação autônoma do art. 306, sem presumir crime?",
+          "As medidas administrativas e exceções foram conferidas na ficha vigente?"
+        ],
+        "editorialWarnings": [
+          "Roteiro de revisão; não é instrução de autuação aprovada",
+          "Não presumir estado de influência por mera recusa ou pré-teste indicativo",
+          "Não publicar exemplos de AIT sem conferência jurídica e factual"
         ]
       }
     },
