@@ -690,11 +690,18 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
         runCatching { context.startActivity(intent) }
          .onFailure { Toast.makeText(context,"Não foi possível abrir o vídeo.",Toast.LENGTH_SHORT).show() }
        }) { Icon(Icons.Default.PlayArrow,contentDescription=null);Text("ASSISTIR") }
+       if(video.youtubeUrl != null) {
+        TextButton(onClick={
+         val intent=Intent(Intent.ACTION_VIEW,Uri.parse(video.youtubeUrl))
+         runCatching { context.startActivity(intent) }
+          .onFailure { Toast.makeText(context,"Não foi possível abrir o YouTube.",Toast.LENGTH_SHORT).show() }
+        }) { Text("YOUTUBE") }
+       }
        TextButton(onClick={
-        val intent=Intent(Intent.ACTION_VIEW,Uri.parse(video.youtubeUrl ?: video.videoUrl))
+        val intent=Intent(Intent.ACTION_VIEW,Uri.parse(video.videoUrl))
         runCatching { context.startActivity(intent) }
-         .onFailure { Toast.makeText(context,"Não foi possível abrir o link.",Toast.LENGTH_SHORT).show() }
-       }) { Text("ABRIR LINK") }
+         .onFailure { Toast.makeText(context,"Não foi possível abrir o download.",Toast.LENGTH_SHORT).show() }
+       }) { Icon(Icons.Default.Download,contentDescription=null);Text("BAIXAR") }
       }
      }
     }
