@@ -691,10 +691,12 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
        "qru-studio-"+video.id+".mp4")
       var offlineAvailable by remember(video.id,video.sha256) { mutableStateOf(false) }
       var downloadRequested by remember(video.id) { mutableStateOf(false) }
+      var downloadId by remember(video.id) { mutableStateOf<Long?>(null) }
       DisposableEffect(context,video.id) {
        val receiver=object : android.content.BroadcastReceiver() {
         override fun onReceive(receiverContext: Context?, intent: Intent?) {
-         if(intent?.action==android.app.DownloadManager.ACTION_DOWNLOAD_COMPLETE) {
+         if(intent?.action==android.app.DownloadManager.ACTION_DOWNLOAD_COMPLETE &&
+          intent.getLongExtra(android.app.DownloadManager.EXTRA_DOWNLOAD_ID,-1L)==downloadId) {
           offlineRefresh++
          }
         }
@@ -795,7 +797,8 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
          val manager=context.getSystemService(Context.DOWNLOAD_SERVICE)
           as android.app.DownloadManager
          manager.enqueue(request)
-        }.onSuccess {
+        }.onSuccess { queuedId ->
+         downloadId=queuedId
          downloadRequested=true
          Toast.makeText(context,"Download iniciado. Acompanhe nas notificações.",
           Toast.LENGTH_LONG).show()
