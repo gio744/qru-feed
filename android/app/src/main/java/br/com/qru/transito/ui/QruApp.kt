@@ -147,7 +147,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  fun voice(){if(context.checkSelfPermission(Manifest.permission.RECORD_AUDIO)==PackageManager.PERMISSION_GRANTED)launchSpeech() else permission.launch(Manifest.permission.RECORD_AUDIO)}
 
  val quickOptions=listOf(
-  "230, V" to "65992","Art. 167" to "167","162, I" to "162, I",
+  "230, V" to "230, V","Art. 167" to "167","162, I" to "162, I",
   "Art. 252" to "252","165-A" to "165-A","230 XVIII" to "230 XVIII",
   "Art. 181" to "181","Art. 208" to "208","Art. 230" to "230",
   "Art. 244" to "244","Art. 168" to "168","Art. 195" to "195"
