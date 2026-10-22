@@ -2,9 +2,9 @@ name: QRU Android Build
 on:
   workflow_dispatch:
   push:
-    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','.github/workflows/android-build.yml']
+    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py','.github/workflows/android-build.yml']
   pull_request:
-    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py']
+    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py']
 jobs:
   debug-apk:
     runs-on: ubuntu-latest
@@ -55,7 +55,9 @@ jobs:
             qru-official-pdfs-${{ runner.os }}-
 
       - name: Verify unpublished editorial drafts remain blocked
-        run: python scripts/validate_operational_drafts.py
+        run: |
+          python scripts/validate_operational_drafts.py
+          python -m unittest discover -s scripts -p 'test_validate_operational_drafts.py' -v
 
       - name: Compile and unit test
         working-directory: android
