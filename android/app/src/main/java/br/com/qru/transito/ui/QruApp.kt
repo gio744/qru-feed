@@ -514,6 +514,12 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             Text("Nenhuma combinação ou enquadramento alternativo é sugerido automaticamente.",fontWeight=FontWeight.SemiBold)
             Text("Para comparar referências, utilize a busca do QRU e abra cada ficha individual. Verifique os elementos de cada infração, a responsabilidade e a regra aplicável à data do fato.",style=MaterialTheme.typography.bodySmall)
             Text("A coexistência de artigos em uma pesquisa não comprova concurso de infrações nem autoriza autuação cumulativa.",style=MaterialTheme.typography.bodySmall)
+            HorizontalDivider(color=Color(0xFF49305F))
+            Text("ANÁLISE DE ALTERNATIVAS",fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
+            Text("Se os requisitos deste enquadramento não estiverem presentes, examine outras hipóteses somente quando os fatos constatados e a legislação vigente as sustentarem.",style=MaterialTheme.typography.bodySmall)
+            Text("NENHUMA INFRAÇÃO IDENTIFICADA",fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
+            Text("Quando não houver elementos suficientes para caracterizar uma infração, não presuma outra apenas para gerar uma autuação. A ausência de comprovação não equivale a uma conclusão definitiva sobre todos os fatos.",style=MaterialTheme.typography.bodySmall)
+            Text("Sugestões automáticas baseadas em narrativa ainda não estão disponíveis nem validadas.",style=MaterialTheme.typography.labelSmall)
             }
             QruExpandableSection("MEDIDAS ADMINISTRATIVAS",referenceKey=result.stableKey) {
             if (approvedOperationalFiche == null) Text("Retenção, remoção e regularização dependem da norma aplicável e de conferência editorial.")
