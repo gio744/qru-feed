@@ -2,9 +2,9 @@ name: QRU Android Build
 on:
   workflow_dispatch:
   push:
-    paths: ['android/**','.github/workflows/android-build.yml']
+    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','.github/workflows/android-build.yml']
   pull_request:
-    paths: ['android/**']
+    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py']
 jobs:
   debug-apk:
     runs-on: ubuntu-latest
@@ -53,6 +53,9 @@ jobs:
           key: qru-official-pdfs-${{ runner.os }}-${{ hashFiles('android/app/src/main/assets/norms/pdf-catalog.json') }}
           restore-keys: |
             qru-official-pdfs-${{ runner.os }}-
+
+      - name: Verify unpublished editorial drafts remain blocked
+        run: python scripts/validate_operational_drafts.py
 
       - name: Compile and unit test
         working-directory: android
