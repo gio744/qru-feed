@@ -51,6 +51,16 @@
           "Não presumir estado de influência por mera recusa ou pré-teste indicativo",
           "Não publicar exemplos de AIT sem conferência jurídica e factual"
         ]
+      },
+      "editorialProgress": {
+        "sourceLinksIdentified": true,
+        "legalTextVerified": false,
+        "mbftIndividualFicheVerified": false,
+        "applicabilityApproved": false,
+        "exceptionsApproved": false,
+        "administrativeMeasuresApproved": false,
+        "observationExamplesApproved": false,
+        "independentReviewCompleted": false
       }
     },
     {
@@ -102,6 +112,16 @@
           "Não presumir estado de influência por mera recusa ou pré-teste indicativo",
           "Não publicar exemplos de AIT sem conferência jurídica e factual"
         ]
+      },
+      "editorialProgress": {
+        "sourceLinksIdentified": true,
+        "legalTextVerified": false,
+        "mbftIndividualFicheVerified": false,
+        "applicabilityApproved": false,
+        "exceptionsApproved": false,
+        "administrativeMeasuresApproved": false,
+        "observationExamplesApproved": false,
+        "independentReviewCompleted": false
       }
     },
     {
@@ -152,6 +172,16 @@
           "Não inferir infração a partir de palavras-chave ou mera suspeita",
           "Não usar código histórico 757-90 como substituto do código específico"
         ]
+      },
+      "editorialProgress": {
+        "sourceLinksIdentified": true,
+        "legalTextVerified": false,
+        "mbftIndividualFicheVerified": false,
+        "applicabilityApproved": false,
+        "exceptionsApproved": false,
+        "administrativeMeasuresApproved": false,
+        "observationExamplesApproved": false,
+        "independentReviewCompleted": false
       }
     },
     {
@@ -202,6 +232,16 @@
           "Não inferir infração a partir de palavras-chave ou mera suspeita",
           "Não usar código histórico 757-90 como substituto do código específico"
         ]
+      },
+      "editorialProgress": {
+        "sourceLinksIdentified": true,
+        "legalTextVerified": false,
+        "mbftIndividualFicheVerified": false,
+        "applicabilityApproved": false,
+        "exceptionsApproved": false,
+        "administrativeMeasuresApproved": false,
+        "observationExamplesApproved": false,
+        "independentReviewCompleted": false
       }
     }
   ]
