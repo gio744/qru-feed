@@ -18,6 +18,13 @@
 
 **Limite desta etapa:** fontes e pontos de atenção identificados; fichas individuais do MBFT e suas redações atuais ainda precisam ser conferidas. Nenhuma orientação foi aprovada para publicação.
 
+## Achados jurídicos verificados — fiscalização de álcool (21/10/2026)
+
+- A **Resolução CONTRAN 1.031/2026** foi publicada em 18/08/2026 e revogou a Resolução 432/2013. Seu art. 16 estabelece vigência na publicação para os dispositivos gerais e **60 dias após a publicação** para a alteração do anexo do MBFT prevista no art. 14. Fonte: [texto normativo](https://anttlegis.antt.gov.br/action/ActionDatalegis.php?acao=abrirTextoAto&cod_menu=7145&cod_modulo=420&nomeTitulo=codigos&numeroAto=00001031&orgao=CONTRAN%2FMT&seqAto=000&tipo=RES&valorAno=2026) e [índice oficial CONTRAN](https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran).
+- A triagem por pré-teste/teste passivo é **apenas indicativa** e não basta isoladamente para autuação; art. 4º, §2º, da Resolução 1.031/2026. A constatação deve observar os meios do art. 3º.
+- Segundo [comunicado oficial do Ministério dos Transportes](https://www.gov.br/transportes/pt-br/assuntos/noticias-/2026/08/contran-atualiza-regras-da-lei-seca-e-procedimentos-de-fiscalizacao/), na mesma abordagem não se lavram simultaneamente autos pelos arts. **165 e 165-A** em relação à mesma verificação. A ficha específica e os requisitos concretos ainda devem ser conferidos antes de publicar orientação operacional.
+- **Status editorial:** fundamentos normativos identificados e registrados, mas não equivalem a ficha aprovada; faltam análise de casos, anexos atuais e revisão independente.
+
 ## Matriz de revisão
 
 | Prioridade | Dispositivo | Questão a conferir nas fontes oficiais | Status |
