@@ -4,7 +4,7 @@ on:
   push:
     paths: ['android/**','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json','android/app/src/main/assets/norms/**','.github/workflows/android-build.yml']
   pull_request:
-    paths: ['android/**','scripts/audit_reference_ranges.py']
+    paths: ['android/**','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json']
 jobs:
   debug-apk:
     runs-on: ubuntu-latest
