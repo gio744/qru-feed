@@ -106,7 +106,33 @@
           "Submeter a revisão independente antes de assinar e ativar"
         ],
         "publicationGate": "Não copiar estes rascunhos para approved-fiches.json; não definir status APPROVED antes de evidências e revisão"
-      }
+      },
+      "articleLevelFindings": [
+        {
+          "locator": "Res. 1.031/2026, art. 4º, §2º",
+          "summary": "Pré-teste passivo tem resultado exclusivamente indicativo, insuficiente isoladamente para caracterizar a infração",
+          "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
+          "reviewScope": "Texto do artigo, não ficha individual MBFT"
+        },
+        {
+          "locator": "Res. 1.031/2026, art. 7º, §§1º-2º",
+          "summary": "Constatação por sinais requer pelo menos dois sinais que, em conjunto, comprovem a alteração; documentar no AIT ou termo que o acompanhe",
+          "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
+          "reviewScope": "Texto do artigo, não ficha individual MBFT"
+        },
+        {
+          "locator": "Res. 1.031/2026, art. 8º, §§1º-3º",
+          "summary": "Recusa regularmente ofertada sem pelo menos dois sinais: 165-A; com pelo menos dois sinais comprovadores: 165; verificar fatos e prova concreta",
+          "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
+          "reviewScope": "Texto do artigo, não ficha individual MBFT"
+        },
+        {
+          "locator": "Res. 1.031/2026, arts. 10-12",
+          "summary": "Requisitos de documentação do AIT do art. 165, retenção e providências quanto ao veículo, não recolhimento físico da CNH",
+          "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
+          "reviewScope": "Texto do artigo, não ficha individual MBFT"
+        }
+      ]
     },
     {
       "code": "516-92",
@@ -212,7 +238,33 @@
           "Submeter a revisão independente antes de assinar e ativar"
         ],
         "publicationGate": "Não copiar estes rascunhos para approved-fiches.json; não definir status APPROVED antes de evidências e revisão"
-      }
+      },
+      "articleLevelFindings": [
+        {
+          "locator": "Res. 1.031/2026, art. 4º, §2º",
+          "summary": "Pré-teste passivo tem resultado exclusivamente indicativo, insuficiente isoladamente para caracterizar a infração",
+          "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
+          "reviewScope": "Texto do artigo, não ficha individual MBFT"
+        },
+        {
+          "locator": "Res. 1.031/2026, art. 7º, §§1º-2º",
+          "summary": "Constatação por sinais requer pelo menos dois sinais que, em conjunto, comprovem a alteração; documentar no AIT ou termo que o acompanhe",
+          "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
+          "reviewScope": "Texto do artigo, não ficha individual MBFT"
+        },
+        {
+          "locator": "Res. 1.031/2026, art. 8º, §§1º-3º",
+          "summary": "Recusa regularmente ofertada sem pelo menos dois sinais: 165-A; com pelo menos dois sinais comprovadores: 165; verificar fatos e prova concreta",
+          "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
+          "reviewScope": "Texto do artigo, não ficha individual MBFT"
+        },
+        {
+          "locator": "Res. 1.031/2026, arts. 10-12",
+          "summary": "Requisitos de documentação do AIT do art. 165, retenção e providências quanto ao veículo, não recolhimento físico da CNH",
+          "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
+          "reviewScope": "Texto do artigo, não ficha individual MBFT"
+        }
+      ]
     },
     {
       "code": "757-91",
@@ -318,7 +370,33 @@
           "Submeter a revisão independente antes de assinar e ativar"
         ],
         "publicationGate": "Não copiar estes rascunhos para approved-fiches.json; não definir status APPROVED antes de evidências e revisão"
-      }
+      },
+      "articleLevelFindings": [
+        {
+          "locator": "Res. 1.031/2026, art. 4º, §2º",
+          "summary": "Pré-teste passivo tem resultado exclusivamente indicativo, insuficiente isoladamente para caracterizar a infração",
+          "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
+          "reviewScope": "Texto do artigo, não ficha individual MBFT"
+        },
+        {
+          "locator": "Res. 1.031/2026, art. 7º, §§1º-2º",
+          "summary": "Constatação por sinais requer pelo menos dois sinais que, em conjunto, comprovem a alteração; documentar no AIT ou termo que o acompanhe",
+          "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
+          "reviewScope": "Texto do artigo, não ficha individual MBFT"
+        },
+        {
+          "locator": "Res. 1.031/2026, art. 8º, §§1º-3º",
+          "summary": "Recusa regularmente ofertada sem pelo menos dois sinais: 165-A; com pelo menos dois sinais comprovadores: 165; verificar fatos e prova concreta",
+          "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
+          "reviewScope": "Texto do artigo, não ficha individual MBFT"
+        },
+        {
+          "locator": "Res. 1.031/2026, arts. 10-12",
+          "summary": "Requisitos de documentação do AIT do art. 165, retenção e providências quanto ao veículo, não recolhimento físico da CNH",
+          "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
+          "reviewScope": "Texto do artigo, não ficha individual MBFT"
+        }
+      ]
     },
     {
       "code": "757-92",
@@ -424,7 +502,33 @@
           "Submeter a revisão independente antes de assinar e ativar"
         ],
         "publicationGate": "Não copiar estes rascunhos para approved-fiches.json; não definir status APPROVED antes de evidências e revisão"
-      }
+      },
+      "articleLevelFindings": [
+        {
+          "locator": "Res. 1.031/2026, art. 4º, §2º",
+          "summary": "Pré-teste passivo tem resultado exclusivamente indicativo, insuficiente isoladamente para caracterizar a infração",
+          "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
+          "reviewScope": "Texto do artigo, não ficha individual MBFT"
+        },
+        {
+          "locator": "Res. 1.031/2026, art. 7º, §§1º-2º",
+          "summary": "Constatação por sinais requer pelo menos dois sinais que, em conjunto, comprovem a alteração; documentar no AIT ou termo que o acompanhe",
+          "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
+          "reviewScope": "Texto do artigo, não ficha individual MBFT"
+        },
+        {
+          "locator": "Res. 1.031/2026, art. 8º, §§1º-3º",
+          "summary": "Recusa regularmente ofertada sem pelo menos dois sinais: 165-A; com pelo menos dois sinais comprovadores: 165; verificar fatos e prova concreta",
+          "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
+          "reviewScope": "Texto do artigo, não ficha individual MBFT"
+        },
+        {
+          "locator": "Res. 1.031/2026, arts. 10-12",
+          "summary": "Requisitos de documentação do AIT do art. 165, retenção e providências quanto ao veículo, não recolhimento físico da CNH",
+          "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
+          "reviewScope": "Texto do artigo, não ficha individual MBFT"
+        }
+      ]
     }
   ]
 }
