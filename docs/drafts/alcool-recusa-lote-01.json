@@ -132,7 +132,37 @@
           "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
           "reviewScope": "Texto do artigo, não ficha individual MBFT"
         }
-      ]
+      ],
+      "operationalDecisionReview": {
+        "status": "PENDING_MBFT_CROSSCHECK",
+        "questions": [
+          {
+            "question": "Qual foi o procedimento ofertado e qual o registro documental da oferta?",
+            "evidenceRequired": "AIT, termo ou documento correspondente"
+          },
+          {
+            "question": "Há recusa expressa documentada?",
+            "evidenceRequired": "Relato objetivo e registro do procedimento"
+          },
+          {
+            "question": "Há pelo menos dois sinais individualizados que, em conjunto, comprovam alteração psicomotora?",
+            "evidenceRequired": "Descrição dos sinais no AIT ou termo, sem presumir pelo número isolado"
+          },
+          {
+            "question": "Qual enquadramento específico é sustentado pelos fatos?",
+            "evidenceRequired": "Confronto dos arts. 165/165-A e da ficha MBFT vigente"
+          },
+          {
+            "question": "Quais medidas administrativas efetivamente cabem?",
+            "evidenceRequired": "CTB e arts. 10 a 12 da Res. 1.031/2026"
+          }
+        ],
+        "doNotPublishUntil": [
+          "Verificação da redação integral do Anexo III",
+          "Conferência do código individual e suas exceções",
+          "Revisão independente documentada"
+        ]
+      }
     },
     {
       "code": "516-92",
@@ -264,7 +294,37 @@
           "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
           "reviewScope": "Texto do artigo, não ficha individual MBFT"
         }
-      ]
+      ],
+      "operationalDecisionReview": {
+        "status": "PENDING_MBFT_CROSSCHECK",
+        "questions": [
+          {
+            "question": "Qual foi o procedimento ofertado e qual o registro documental da oferta?",
+            "evidenceRequired": "AIT, termo ou documento correspondente"
+          },
+          {
+            "question": "Há recusa expressa documentada?",
+            "evidenceRequired": "Relato objetivo e registro do procedimento"
+          },
+          {
+            "question": "Há pelo menos dois sinais individualizados que, em conjunto, comprovam alteração psicomotora?",
+            "evidenceRequired": "Descrição dos sinais no AIT ou termo, sem presumir pelo número isolado"
+          },
+          {
+            "question": "Qual enquadramento específico é sustentado pelos fatos?",
+            "evidenceRequired": "Confronto dos arts. 165/165-A e da ficha MBFT vigente"
+          },
+          {
+            "question": "Quais medidas administrativas efetivamente cabem?",
+            "evidenceRequired": "CTB e arts. 10 a 12 da Res. 1.031/2026"
+          }
+        ],
+        "doNotPublishUntil": [
+          "Verificação da redação integral do Anexo III",
+          "Conferência do código individual e suas exceções",
+          "Revisão independente documentada"
+        ]
+      }
     },
     {
       "code": "757-91",
@@ -396,7 +456,37 @@
           "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
           "reviewScope": "Texto do artigo, não ficha individual MBFT"
         }
-      ]
+      ],
+      "operationalDecisionReview": {
+        "status": "PENDING_MBFT_CROSSCHECK",
+        "questions": [
+          {
+            "question": "Qual foi o procedimento ofertado e qual o registro documental da oferta?",
+            "evidenceRequired": "AIT, termo ou documento correspondente"
+          },
+          {
+            "question": "Há recusa expressa documentada?",
+            "evidenceRequired": "Relato objetivo e registro do procedimento"
+          },
+          {
+            "question": "Há pelo menos dois sinais individualizados que, em conjunto, comprovam alteração psicomotora?",
+            "evidenceRequired": "Descrição dos sinais no AIT ou termo, sem presumir pelo número isolado"
+          },
+          {
+            "question": "Qual enquadramento específico é sustentado pelos fatos?",
+            "evidenceRequired": "Confronto dos arts. 165/165-A e da ficha MBFT vigente"
+          },
+          {
+            "question": "Quais medidas administrativas efetivamente cabem?",
+            "evidenceRequired": "CTB e arts. 10 a 12 da Res. 1.031/2026"
+          }
+        ],
+        "doNotPublishUntil": [
+          "Verificação da redação integral do Anexo III",
+          "Conferência do código individual e suas exceções",
+          "Revisão independente documentada"
+        ]
+      }
     },
     {
       "code": "757-92",
@@ -528,7 +618,37 @@
           "source": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026",
           "reviewScope": "Texto do artigo, não ficha individual MBFT"
         }
-      ]
+      ],
+      "operationalDecisionReview": {
+        "status": "PENDING_MBFT_CROSSCHECK",
+        "questions": [
+          {
+            "question": "Qual foi o procedimento ofertado e qual o registro documental da oferta?",
+            "evidenceRequired": "AIT, termo ou documento correspondente"
+          },
+          {
+            "question": "Há recusa expressa documentada?",
+            "evidenceRequired": "Relato objetivo e registro do procedimento"
+          },
+          {
+            "question": "Há pelo menos dois sinais individualizados que, em conjunto, comprovam alteração psicomotora?",
+            "evidenceRequired": "Descrição dos sinais no AIT ou termo, sem presumir pelo número isolado"
+          },
+          {
+            "question": "Qual enquadramento específico é sustentado pelos fatos?",
+            "evidenceRequired": "Confronto dos arts. 165/165-A e da ficha MBFT vigente"
+          },
+          {
+            "question": "Quais medidas administrativas efetivamente cabem?",
+            "evidenceRequired": "CTB e arts. 10 a 12 da Res. 1.031/2026"
+          }
+        ],
+        "doNotPublishUntil": [
+          "Verificação da redação integral do Anexo III",
+          "Conferência do código individual e suas exceções",
+          "Revisão independente documentada"
+        ]
+      }
     }
   ]
 }
