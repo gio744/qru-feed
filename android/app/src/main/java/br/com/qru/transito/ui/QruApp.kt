@@ -691,7 +691,12 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
        "qru-studio-"+video.id+".mp4")
       var offlineAvailable by remember(video.id,video.sha256) { mutableStateOf(false) }
       var downloadRequested by remember(video.id) { mutableStateOf(false) }
-      var downloadId by remember(video.id) { mutableStateOf<Long?>(null) }
+      val downloadPreferences=remember(context) {
+       context.getSharedPreferences("qru_studio_downloads",Context.MODE_PRIVATE)
+      }
+      var downloadId by remember(video.id) {
+       mutableStateOf(downloadPreferences.getLong(video.id,-1L).takeIf { it>0L })
+      }
       var videoRefresh by remember(video.id) { mutableIntStateOf(0) }
       DisposableEffect(context,video.id) {
        val receiver=object : android.content.BroadcastReceiver() {
@@ -800,6 +805,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
          manager.enqueue(request)
         }.onSuccess { queuedId ->
          downloadId=queuedId
+         downloadPreferences.edit().putLong(video.id,queuedId).apply()
          downloadRequested=true
          Toast.makeText(context,"Download iniciado. Acompanhe nas notificações.",
           Toast.LENGTH_LONG).show()
