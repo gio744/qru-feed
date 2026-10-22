@@ -1,5 +1,6 @@
 import java.security.MessageDigest
 import java.io.File
+import java.io.IOException
 import java.net.URI
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
@@ -105,7 +106,7 @@ val bundleNormPdf = tasks.register("bundleNormPdf") {
                             }
                             val header=temporary.inputStream().use { it.readNBytes(5) }
                             if (!header.contentEquals("%PDF-".toByteArray(Charsets.US_ASCII))) {
-                                throw java.io.IOException(
+                                throw IOException(
                                     "Official PDF response is not a PDF: $name; HTTP=${status ?: "unknown"}; " +
                                         "Content-Type=$contentType; bytes=${temporary.length()}; " +
                                         "source=${doc["source"]}. Keep pinned SHA-256 unchanged."
