@@ -2,9 +2,9 @@ name: QRU Android Build
 on:
   workflow_dispatch:
   push:
-    paths: ['android/**','.github/workflows/android-build.yml']
+    paths: ['android/**','scripts/audit_reference_ranges.py','android/app/src/main/assets/norms/**','.github/workflows/android-build.yml']
   pull_request:
-    paths: ['android/**']
+    paths: ['android/**','scripts/audit_reference_ranges.py']
 jobs:
   debug-apk:
     runs-on: ubuntu-latest
@@ -43,6 +43,9 @@ jobs:
           test -f android/settings.gradle.kts
           test -f android/app/build.gradle.kts
           test -f android/app/src/main/AndroidManifest.xml
+
+      - name: Audit offline PDF reference ranges
+        run: python scripts/audit_reference_ranges.py
 
       - name: Compile and unit test
         working-directory: android
