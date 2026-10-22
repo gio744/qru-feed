@@ -39,6 +39,12 @@
 
 **Atenção:** a tabela é um roteiro de revisão, não uma ficha homologada; ainda faltam códigos vigentes, medidas administrativas detalhadas, modelos de observação e validação editorial.
 
+## Checagem adicional — vigência e fonte primária (21/10/2026)
+
+- O [índice oficial do CONTRAN](https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran) confirma publicação da Resolução **1.031/2026 em 18/08/2026** e a regra de **60 dias** para alteração do anexo do MBFT. Em 21/10/2026, esse prazo já transcorreu; **usar a ficha atualizada, não o PDF original de 2022 isoladamente**.
+- O [texto da Resolução 1.031/2026](https://anttlegis.antt.gov.br/action/ActionDatalegis.php?acao=abrirTextoAto&cod_menu=7145&cod_modulo=420&nomeTitulo=codigos&numeroAto=00001031&orgao=CONTRAN%2FMT&seqAto=000&tipo=RES&valorAno=2026) dispõe no art. 8º, §1º sobre recusa na ausência de pelo menos dois sinais; no §2º, sobre presença de pelo menos dois sinais; e no §3º, sobre oferta regular do procedimento. Esses elementos devem ser tratados como **condições jurídicas**, não palavras-chave isoladas.
+- O [MBFT original de 2022](https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf) traz ficha 165-A código **757-90**, mas é referência histórica que pode ter sido alterada em 2026. **Não carregar automaticamente código/observação desse PDF como vigente sem comparar o anexo alterador.**
+
 ## Matriz de revisão
 
 | Prioridade | Dispositivo | Questão a conferir nas fontes oficiais | Status |
