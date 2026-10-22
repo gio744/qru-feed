@@ -38,6 +38,8 @@ def main():
             for field in ("quandoAutuar", "quandoNaoAutuar", "constatacao", "abordagem", "responsavel", "medidasAdministrativas"):
                 if not isinstance(data[field], str) or not data[field].strip():
                     errors.append(f"{path.name}: validated with empty {field}")
+    if count == 0:
+        print("WARNING: no operational cards found; validation coverage is zero.")
     print(f"Operational card structure: {count} files, {len(errors)} errors")
     for error in errors:
         print("ERROR:", error)
