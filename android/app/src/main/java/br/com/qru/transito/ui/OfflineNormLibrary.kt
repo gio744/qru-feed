@@ -152,6 +152,6 @@ internal fun matchesNorm(title:String,subtitle:String,query:String):Boolean {
 /** Chronological hierarchy for norms: year, then number, both descending. */
 internal fun normYear(title:String):Int = Regex("(?:19|20)\\d{2}").find(title)?.value?.toIntOrNull() ?: 0
 internal fun normNumber(title:String):Int {
- val match=Regex("(?:Resolução|Portaria|Deliberação)\\s*(?:n[º°o.]\\s*)?([0-9][0-9.]*)",RegexOption.IGNORE_CASE).find(title)
+ val match=Regex("(?:Resolução|Portaria|Deliberação)\\s*(?:CONTRAN\\s*)?(?:n[º°o.]\\s*)?([0-9][0-9.]*)",RegexOption.IGNORE_CASE).find(title)
  return match?.groupValues?.get(1)?.replace(".","")?.toIntOrNull() ?: 0
 }
