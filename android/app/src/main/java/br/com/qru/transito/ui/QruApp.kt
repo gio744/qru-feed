@@ -618,6 +618,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
 
 
 @Composable private fun SituationsPage() {
+ var offlineRefresh by remember { mutableIntStateOf(0) }
  val context=LocalContext.current
  val studioVideos=remember(context) {
   runCatching {
@@ -687,12 +688,14 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
       val localFile=java.io.File(
        context.getExternalFilesDir(android.os.Environment.DIRECTORY_MOVIES),
        "qru-studio-"+video.id+".mp4")
-      if(localFile.isFile && localFile.length()>0L) {
+      val offlineAvailable=remember(video.id,offlineRefresh) { localFile.isFile && localFile.length()>0L }
+      if(offlineAvailable) {
        Text("Arquivo local disponível",style=MaterialTheme.typography.labelSmall,
         color=MaterialTheme.colorScheme.secondary)
        TextButton(onClick={
         runCatching {
          if(localFile.delete()) {
+          offlineRefresh++
           Toast.makeText(context,"Vídeo offline excluído.",Toast.LENGTH_SHORT).show()
          } else {
           Toast.makeText(context,"Não foi possível excluir o vídeo.",Toast.LENGTH_SHORT).show()
