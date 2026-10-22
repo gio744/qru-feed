@@ -692,6 +692,17 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
         color=MaterialTheme.colorScheme.secondary)
        TextButton(onClick={
         runCatching {
+         if(localFile.delete()) {
+          Toast.makeText(context,"Vídeo offline excluído.",Toast.LENGTH_SHORT).show()
+         } else {
+          Toast.makeText(context,"Não foi possível excluir o vídeo.",Toast.LENGTH_SHORT).show()
+         }
+        }.onFailure {
+         Toast.makeText(context,"Não foi possível excluir o vídeo.",Toast.LENGTH_SHORT).show()
+        }
+       }) { Icon(Icons.Default.DeleteOutline,contentDescription=null);Text("EXCLUIR ARQUIVO") }
+       TextButton(onClick={
+        runCatching {
          val uri=androidx.core.content.FileProvider.getUriForFile(
           context,context.packageName+".files",localFile)
          val intent=Intent(Intent.ACTION_VIEW).apply {
