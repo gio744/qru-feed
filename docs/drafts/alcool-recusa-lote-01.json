@@ -96,6 +96,16 @@
           "Art. 12: não recolhimento físico do documento de habilitação"
         ],
         "openIssue": "A publicação oficial lista a Resolução 1.031/2026 e confirma alteração do Anexo da 985/2022; obter e confrontar a redação integral do Anexo III e a remissão a 757-90 antes de aprovar cada código"
+      },
+      "reviewWorkflow": {
+        "phase": "SOURCE_VERIFICATION_REQUIRED",
+        "nextActions": [
+          "Obter texto integral da ficha correspondente no Anexo III da Resolução 1.031/2026",
+          "Transcrever os critérios da ficha com indicação precisa de página/item",
+          "Confrontar requisitos do AIT e medidas administrativas com o CTB vigente",
+          "Submeter a revisão independente antes de assinar e ativar"
+        ],
+        "publicationGate": "Não copiar estes rascunhos para approved-fiches.json; não definir status APPROVED antes de evidências e revisão"
       }
     },
     {
@@ -192,6 +202,16 @@
           "Art. 12: não recolhimento físico do documento de habilitação"
         ],
         "openIssue": "A publicação oficial lista a Resolução 1.031/2026 e confirma alteração do Anexo da 985/2022; obter e confrontar a redação integral do Anexo III e a remissão a 757-90 antes de aprovar cada código"
+      },
+      "reviewWorkflow": {
+        "phase": "SOURCE_VERIFICATION_REQUIRED",
+        "nextActions": [
+          "Obter texto integral da ficha correspondente no Anexo III da Resolução 1.031/2026",
+          "Transcrever os critérios da ficha com indicação precisa de página/item",
+          "Confrontar requisitos do AIT e medidas administrativas com o CTB vigente",
+          "Submeter a revisão independente antes de assinar e ativar"
+        ],
+        "publicationGate": "Não copiar estes rascunhos para approved-fiches.json; não definir status APPROVED antes de evidências e revisão"
       }
     },
     {
@@ -288,6 +308,16 @@
           "Art. 12: não recolhimento físico do documento de habilitação"
         ],
         "openIssue": "A publicação oficial lista a Resolução 1.031/2026 e confirma alteração do Anexo da 985/2022; obter e confrontar a redação integral do Anexo III e a remissão a 757-90 antes de aprovar cada código"
+      },
+      "reviewWorkflow": {
+        "phase": "SOURCE_VERIFICATION_REQUIRED",
+        "nextActions": [
+          "Obter texto integral da ficha correspondente no Anexo III da Resolução 1.031/2026",
+          "Transcrever os critérios da ficha com indicação precisa de página/item",
+          "Confrontar requisitos do AIT e medidas administrativas com o CTB vigente",
+          "Submeter a revisão independente antes de assinar e ativar"
+        ],
+        "publicationGate": "Não copiar estes rascunhos para approved-fiches.json; não definir status APPROVED antes de evidências e revisão"
       }
     },
     {
@@ -384,6 +414,16 @@
           "Art. 12: não recolhimento físico do documento de habilitação"
         ],
         "openIssue": "A publicação oficial lista a Resolução 1.031/2026 e confirma alteração do Anexo da 985/2022; obter e confrontar a redação integral do Anexo III e a remissão a 757-90 antes de aprovar cada código"
+      },
+      "reviewWorkflow": {
+        "phase": "SOURCE_VERIFICATION_REQUIRED",
+        "nextActions": [
+          "Obter texto integral da ficha correspondente no Anexo III da Resolução 1.031/2026",
+          "Transcrever os critérios da ficha com indicação precisa de página/item",
+          "Confrontar requisitos do AIT e medidas administrativas com o CTB vigente",
+          "Submeter a revisão independente antes de assinar e ativar"
+        ],
+        "publicationGate": "Não copiar estes rascunhos para approved-fiches.json; não definir status APPROVED antes de evidências e revisão"
       }
     }
   ]
