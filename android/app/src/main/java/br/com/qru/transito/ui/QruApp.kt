@@ -691,6 +691,20 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
        "qru-studio-"+video.id+".mp4")
       var offlineAvailable by remember(video.id,video.sha256) { mutableStateOf(false) }
       var downloadRequested by remember(video.id) { mutableStateOf(false) }
+      DisposableEffect(context,video.id) {
+       val receiver=object : android.content.BroadcastReceiver() {
+        override fun onReceive(receiverContext: Context?, intent: Intent?) {
+         if(intent?.action==android.app.DownloadManager.ACTION_DOWNLOAD_COMPLETE) {
+          offlineRefresh++
+         }
+        }
+       }
+       val filter=android.content.IntentFilter(
+        android.app.DownloadManager.ACTION_DOWNLOAD_COMPLETE)
+       androidx.core.content.ContextCompat.registerReceiver(
+        context,receiver,filter,androidx.core.content.ContextCompat.RECEIVER_NOT_EXPORTED)
+       onDispose { runCatching { context.unregisterReceiver(receiver) } }
+      }
       var checkingOffline by remember(video.id,video.sha256) { mutableStateOf(true) }
       LaunchedEffect(video.id,video.sha256,offlineRefresh) {
        checkingOffline=true
