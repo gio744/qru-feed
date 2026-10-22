@@ -10,6 +10,14 @@
 - Exemplos de observação devem descrever somente fatos diretamente constatados; nenhuma narrativa fictícia pode ser apresentada como registro real.
 - Revisão independente e registro de responsável/data antes de publicar; conferir digest e testes do pacote.
 
+## Fontes oficiais identificadas (conferência preliminar — 21/10/2026)
+
+- [Índice oficial das Resoluções CONTRAN](https://www.gov.br/transportes/pt-br/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran): identifica a **Resolução 985/2022** como base do MBFT, com alterações posteriores (incluindo 1003/2023, 1009/2024, 1012/2024, 1013/2024 e 1031/2026). **Não usar ficha desatualizada sem conferir as alterações.**
+- [Resolução CONTRAN 1.031/2026 no índice oficial](https://www.gov.br/transportes/pt-br/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran): disciplina procedimentos relativos à fiscalização de álcool e outras substâncias, revoga a Resolução 432/2013 e altera o MBFT. Confirmar vigência específica dos dispositivos e anexos antes das fichas 165/165-A.
+- [Resolução CONTRAN 911/2022](https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucao-contran-no-911-de-28-de-marco-de-2022): prevê, **em contexto específico de circulação de veículo novo antes do registro**, hipóteses distintas de aplicação dos arts. 230, V e 232. Não generalizar essas hipóteses para veículos estrangeiros.
+
+**Limite desta etapa:** fontes e pontos de atenção identificados; fichas individuais do MBFT e suas redações atuais ainda precisam ser conferidas. Nenhuma orientação foi aprovada para publicação.
+
 ## Matriz de revisão
 
 | Prioridade | Dispositivo | Questão a conferir nas fontes oficiais | Status |
