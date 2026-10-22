@@ -47,6 +47,19 @@ class CatalogSearchTest {
         assertEquals(setOf("661-02","664-50","672-61","663-71","663-72"),codes)
     }
 
+    @Test fun alcoholRefusalCatalogKeepsNewCodesAndLabelsLegacyAsHistorical() {
+        val json=JsonParser.parseString(File("src/main/assets/initial-index.json").readText()).asJsonObject
+        val refusal=json.getAsJsonArray("items").map { it.asJsonObject }
+            .filter { it.get("article").asString=="165-A" }
+        val byCode=refusal.associateBy { it.get("code").asString }
+        assertTrue(byCode.keys.containsAll(setOf("757-91","757-92")))
+        assertTrue(byCode["757-91"]!!.get("title").asString.contains("álcool"))
+        assertTrue(byCode["757-92"]!!.get("title").asString.contains("substância"))
+        assertTrue(byCode["757-90"]!!.get("title").asString.contains("anterior"))
+        assertEquals("757-91",CatalogSearch.search(bundledEntries(),"75791").first().code)
+        assertEquals("757-92",CatalogSearch.search(bundledEntries(),"75792").first().code)
+    }
+
     private fun bundledEntries(): List<IndexedReference> {
         val json=JsonParser.parseString(File("src/main/assets/initial-index.json").readText()).asJsonObject
         return json.getAsJsonArray("items").map { element ->
