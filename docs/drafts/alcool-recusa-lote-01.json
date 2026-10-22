@@ -72,6 +72,32 @@
           "Documentar condições e exceções por fonte oficial",
           "Revisar medidas administrativas e observações"
         ]
+      },
+      "reviewNotes": {
+        "normativeBasis": [
+          {
+            "url": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+            "locator": "Art. 165-A do CTB",
+            "verification": "Conferir redação vigente e hipótese específica"
+          },
+          {
+            "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+            "locator": "Resolução CONTRAN 1.031/2026, arts. 3º, 7º e 8º; Anexo III",
+            "verification": "Conferir texto integral e ficha individual vigente"
+          }
+        ],
+        "factQuestions": [
+          "Qual procedimento específico foi regularmente ofertado ao condutor?",
+          "A recusa foi constatada e documentada?",
+          "Há pelo menos dois sinais que, em conjunto, comprovem alteração da capacidade psicomotora?",
+          "Há fatos documentados que exijam análise do art. 165 em vez do art. 165-A?",
+          "O enquadramento e as medidas foram conferidos na ficha atualizada do MBFT?"
+        ],
+        "editorialWarnings": [
+          "Roteiro de revisão, não orientação automática de autuação",
+          "Não inferir infração a partir de palavras-chave ou mera suspeita",
+          "Não usar código histórico 757-90 como substituto do código específico"
+        ]
       }
     },
     {
@@ -95,6 +121,32 @@
           "Conferir integralmente a ficha MBFT vigente",
           "Documentar condições e exceções por fonte oficial",
           "Revisar medidas administrativas e observações"
+        ]
+      },
+      "reviewNotes": {
+        "normativeBasis": [
+          {
+            "url": "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+            "locator": "Art. 165-A do CTB",
+            "verification": "Conferir redação vigente e hipótese específica"
+          },
+          {
+            "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+            "locator": "Resolução CONTRAN 1.031/2026, arts. 3º, 7º e 8º; Anexo III",
+            "verification": "Conferir texto integral e ficha individual vigente"
+          }
+        ],
+        "factQuestions": [
+          "Qual procedimento específico foi regularmente ofertado ao condutor?",
+          "A recusa foi constatada e documentada?",
+          "Há pelo menos dois sinais que, em conjunto, comprovem alteração da capacidade psicomotora?",
+          "Há fatos documentados que exijam análise do art. 165 em vez do art. 165-A?",
+          "O enquadramento e as medidas foram conferidos na ficha atualizada do MBFT?"
+        ],
+        "editorialWarnings": [
+          "Roteiro de revisão, não orientação automática de autuação",
+          "Não inferir infração a partir de palavras-chave ou mera suspeita",
+          "Não usar código histórico 757-90 como substituto do código específico"
         ]
       }
     }
