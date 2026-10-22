@@ -689,10 +689,19 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
       val localFile=java.io.File(
        context.getExternalFilesDir(android.os.Environment.DIRECTORY_MOVIES),
        "qru-studio-"+video.id+".mp4")
-      val offlineAvailable=remember(video.id,video.sha256,offlineRefresh) {
-       QruStudioIntegrity.matches(localFile,video.sha256)
+      var offlineAvailable by remember(video.id,video.sha256) { mutableStateOf(false) }
+      var checkingOffline by remember(video.id,video.sha256) { mutableStateOf(true) }
+      LaunchedEffect(video.id,video.sha256,offlineRefresh) {
+       checkingOffline=true
+       offlineAvailable=withContext(Dispatchers.IO) {
+        QruStudioIntegrity.matches(localFile,video.sha256)
+       }
+       checkingOffline=false
       }
-      if(localFile.isFile && !offlineAvailable) {
+      if(checkingOffline) {
+       Text("Verificando vídeo offline...",style=MaterialTheme.typography.bodySmall)
+      }
+      if(!checkingOffline && localFile.isFile && !offlineAvailable) {
        Text("Arquivo offline não validado. Exclua e baixe novamente.",
         style=MaterialTheme.typography.bodySmall)
        TextButton(onClick={
@@ -712,7 +721,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
        Icon(Icons.Default.Refresh,contentDescription=null)
        Text("VERIFICAR DOWNLOADS")
       }
-      if(offlineAvailable) {
+      if(!checkingOffline && offlineAvailable) {
        Text("Arquivo local disponível",style=MaterialTheme.typography.labelSmall,
         color=MaterialTheme.colorScheme.secondary)
        TextButton(onClick={
