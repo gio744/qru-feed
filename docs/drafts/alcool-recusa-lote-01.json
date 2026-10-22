@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "editorial-draft-1",
+  "purpose": "Revisão humana fora do aplicativo; NÃO é pacote de publicação",
+  "items": [
+    {
+      "code": "516-91",
+      "title": "Art. 165 — influência de álcool",
+      "publication": "BLOCKED_PENDING_LEGAL_REVIEW",
+      "sourceChecklist": [
+        "CTB vigente: dispositivo e sanção",
+        "Resolução CONTRAN 1.031/2026: dispositivo pertinente",
+        "Anexo III da Resolução 1.031/2026: ficha MBFT correspondente"
+      ],
+      "whenApplicable": [],
+      "exceptions": [],
+      "observations": [],
+      "measures": [],
+      "review": {
+        "status": "PENDING",
+        "reviewer": "",
+        "reviewedAt": "",
+        "unresolvedIssues": [
+          "Conferir integralmente a ficha MBFT vigente",
+          "Documentar condições e exceções por fonte oficial",
+          "Revisar medidas administrativas e observações"
+        ]
+      }
+    },
+    {
+      "code": "516-92",
+      "title": "Art. 165 — influência de outra substância psicoativa",
+      "publication": "BLOCKED_PENDING_LEGAL_REVIEW",
+      "sourceChecklist": [
+        "CTB vigente: dispositivo e sanção",
+        "Resolução CONTRAN 1.031/2026: dispositivo pertinente",
+        "Anexo III da Resolução 1.031/2026: ficha MBFT correspondente"
+      ],
+      "whenApplicable": [],
+      "exceptions": [],
+      "observations": [],
+      "measures": [],
+      "review": {
+        "status": "PENDING",
+        "reviewer": "",
+        "reviewedAt": "",
+        "unresolvedIssues": [
+          "Conferir integralmente a ficha MBFT vigente",
+          "Documentar condições e exceções por fonte oficial",
+          "Revisar medidas administrativas e observações"
+        ]
+      }
+    },
+    {
+      "code": "757-91",
+      "title": "Art. 165-A — recusa ao teste de álcool",
+      "publication": "BLOCKED_PENDING_LEGAL_REVIEW",
+      "sourceChecklist": [
+        "CTB vigente: dispositivo e sanção",
+        "Resolução CONTRAN 1.031/2026: dispositivo pertinente",
+        "Anexo III da Resolução 1.031/2026: ficha MBFT correspondente"
+      ],
+      "whenApplicable": [],
+      "exceptions": [],
+      "observations": [],
+      "measures": [],
+      "review": {
+        "status": "PENDING",
+        "reviewer": "",
+        "reviewedAt": "",
+        "unresolvedIssues": [
+          "Conferir integralmente a ficha MBFT vigente",
+          "Documentar condições e exceções por fonte oficial",
+          "Revisar medidas administrativas e observações"
+        ]
+      }
+    },
+    {
+      "code": "757-92",
+      "title": "Art. 165-A — recusa ao teste de outras substâncias psicoativas",
+      "publication": "BLOCKED_PENDING_LEGAL_REVIEW",
+      "sourceChecklist": [
+        "CTB vigente: dispositivo e sanção",
+        "Resolução CONTRAN 1.031/2026: dispositivo pertinente",
+        "Anexo III da Resolução 1.031/2026: ficha MBFT correspondente"
+      ],
+      "whenApplicable": [],
+      "exceptions": [],
+      "observations": [],
+      "measures": [],
+      "review": {
+        "status": "PENDING",
+        "reviewer": "",
+        "reviewedAt": "",
+        "unresolvedIssues": [
+          "Conferir integralmente a ficha MBFT vigente",
+          "Documentar condições e exceções por fonte oficial",
+          "Revisar medidas administrativas e observações"
+        ]
+      }
+    }
+  ]
+}
