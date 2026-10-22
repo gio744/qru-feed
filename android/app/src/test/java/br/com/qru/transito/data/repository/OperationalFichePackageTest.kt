@@ -37,7 +37,7 @@ class OperationalFichePackageTest {
     }
 
     @Test fun tamperedDigestCannotActivateEvenWellFormedPackage() {
-        val original = "{\\n  \\"schemaVersion\\": 1,\\n  \\"items\\": []\\n}\\n"
+        val original = """{"schemaVersion":1,"items":[]}"""
         val digest = java.security.MessageDigest.getInstance("SHA-256")
             .digest(original.toByteArray(Charsets.UTF_8))
             .joinToString("") { "%02x".format(it) }
