@@ -1,42 +1,42 @@
 {
-  "status": "fontes_oficiais_localizadas_pendentes_de_incorporacao_offline",
+  "status": "quatro_paginas_pdf_oficiais_verificadas_pdf_1030_pendente",
   "updated": "2026-10-22",
-  "note": "Manifesto de preparação; não representa PDFs incluídos no APK. Validar downloads, SHA-256, páginas, licenciamento e vigência antes de incluir em pdf-catalog.json.",
+  "note": "URLs verificadas em páginas oficiais do Ministério dos Transportes em 22/10/2026. Não implica que PDFs foram baixados, validados por SHA-256, incorporados ou testados offline no APK.",
   "items": [
     {
       "number": 1026,
       "year": 2026,
       "subject": "RENAVE; consultar retificação",
       "official_page": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10262026R.pdf",
-      "validation": "pendente"
+      "validation": "pagina_oficial_confirmada; binario_SHA256_e_integracao_offline_pendentes"
     },
     {
       "number": 1027,
       "year": 2026,
       "subject": "Registro, licenciamento e transferência",
       "official_page": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10272026.pdf",
-      "validation": "pendente"
+      "validation": "pagina_oficial_confirmada; binario_SHA256_e_integracao_offline_pendentes"
     },
     {
       "number": 1028,
       "year": 2026,
       "subject": "Transição free flow",
       "official_page": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10282026.pdf",
-      "validation": "pendente"
+      "validation": "pagina_oficial_confirmada; binario_SHA256_e_integracao_offline_pendentes"
     },
     {
       "number": 1029,
       "year": 2026,
       "subject": "Prorrogação CNH e ACC; conferir Deliberação 279/2026",
       "official_page": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10292026.pdf",
-      "validation": "pendente"
+      "validation": "pagina_oficial_confirmada; binario_SHA256_e_integracao_offline_pendentes"
     },
     {
       "number": 1030,
       "year": 2026,
       "subject": "Equipamentos geradores de imagens",
       "official_index": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
-      "validation": "PDF individual pendente"
+      "validation": "consta_no_indice_oficial; PDF_individual_e_integracao_offline_pendentes"
     }
   ]
 }
