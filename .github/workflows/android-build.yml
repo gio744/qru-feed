@@ -2,9 +2,9 @@ name: QRU Android Build
 on:
   workflow_dispatch:
   push:
-    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py','.github/workflows/android-build.yml']
+    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json','.github/workflows/android-build.yml']
   pull_request:
-    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py']
+    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json']
 jobs:
   debug-apk:
     runs-on: ubuntu-latest
