@@ -20,6 +20,10 @@ jobs:
           python-version: '3.12'
       - name: Validate Android project wiring
         run: python3 scripts/validate_project.py
+      - name: Check unpublished operational drafts
+        run: |
+          python3 scripts/validate_operational_drafts.py
+          python3 -m unittest discover -s scripts -p 'test_validate_operational_drafts.py' -v
   publication-readiness:
     runs-on: ubuntu-latest
     timeout-minutes: 10
