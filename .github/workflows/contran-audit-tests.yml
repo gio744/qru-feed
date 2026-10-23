@@ -5,6 +5,12 @@ on:
       - 'scripts/audit_pending_contran_pdfs.py'
       - 'scripts/test_audit_pending_contran_pdfs.py'
       - '.github/workflows/contran-audit-tests.yml'
+      - 'android/app/src/main/assets/norms/pending-official-2026.json'
+  push:
+    paths:
+      - 'scripts/audit_pending_contran_pdfs.py'
+      - 'scripts/test_audit_pending_contran_pdfs.py'
+      - '.github/workflows/contran-audit-tests.yml'
   workflow_dispatch:
 permissions:
   contents: read
