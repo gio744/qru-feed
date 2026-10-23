@@ -15,7 +15,7 @@ MANIFEST = ROOT / "android/app/src/main/assets/norms/pending-official-2026.json"
 
 
 def inspect(entry):
-    url = entry.get("official_page")
+    url = entry.get("official_pdf_url") or entry.get("official_page")
     if not url:
         return {"number": entry["number"], "status": "missing_official_pdf_url"}
     try:
