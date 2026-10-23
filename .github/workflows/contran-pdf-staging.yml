@@ -2,6 +2,11 @@ name: Preparar PDFs CONTRAN 2026
 
 on:
   workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Ramificação com script e manifesto'
+        required: true
+        default: 'feature/operational-accordion-distinctive'
 
 permissions:
   contents: read
@@ -12,6 +17,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
