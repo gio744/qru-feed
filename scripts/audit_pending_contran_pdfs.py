@@ -40,10 +40,25 @@ def inspect(entry):
         return {"number": entry["number"], "status": "download_failed", "error": str(exc)}
 
 
+def summarize(results):
+    """Provide actionable counts without masking failed documents."""
+    counts = {}
+    for item in results:
+        status = item["status"]
+        counts[status] = counts.get(status, 0) + 1
+    return {
+        "total": len(results),
+        "verified": counts.get("pdf_verified_for_download", 0),
+        "pending": sum(value for status, value in counts.items() if status != "pdf_verified_for_download"),
+        "by_status": counts,
+        "pending_numbers": [item["number"] for item in results if item["status"] != "pdf_verified_for_download"],
+    }
+
+
 def main():
     items = json.loads(MANIFEST.read_text(encoding="utf-8"))["items"]
     results = [inspect(item) for item in items]
-    print(json.dumps({"results": results}, ensure_ascii=False, indent=2))
+    print(json.dumps({"summary": summarize(results), "results": results}, ensure_ascii=False, indent=2))
     return int(any(item["status"] != "pdf_verified_for_download" for item in results))
 
 

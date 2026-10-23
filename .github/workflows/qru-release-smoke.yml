@@ -1,0 +1,43 @@
+name: QRU Release Smoke
+on:
+  pull_request:
+    paths:
+      - 'android/**'
+      - 'backend/**'
+      - 'scripts/validate_project.py'
+      - '.github/workflows/qru-release-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  project-structure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate Android project wiring
+        run: python3 scripts/validate_project.py
+      - name: Check unpublished operational drafts
+        run: |
+          python3 scripts/validate_operational_drafts.py
+          python3 -m unittest discover -s scripts -p 'test_validate_operational_drafts.py' -v
+  publication-readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+      - name: Install backend dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Test legal publication readiness
+        run: python -m pytest tests/test_release_readiness_gate.py -q
