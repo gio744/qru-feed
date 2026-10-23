@@ -11,6 +11,7 @@ jobs:
     timeout-minutes: 25
     permissions:
       contents: read
+      actions: read
     env:
       ANDROID_COMPILE_SDK: "35"
     steps:
@@ -49,6 +50,17 @@ jobs:
 
       - name: Validate operational card editorial metadata
         run: python scripts/validate_operational_cards.py
+
+      - name: Restore SHA-pinned CONTRAN staging PDFs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          run_id=$(gh run list --repo "${{ github.repository }}" --workflow contran-pdf-staging.yml --branch feature/operational-accordion-distinctive --status success --limit 20 --json databaseId --jq '.[0].databaseId')
+          test -n "$run_id"
+          mkdir -p /tmp/qru-contran-stage
+          gh run download "$run_id" --repo "${{ github.repository }}" --name contran-pdfs-1026-1029-staging --dir /tmp/qru-contran-stage
+          python3 scripts/restore_verified_contran_pdfs.py /tmp/qru-contran-stage android/app/build/generated/normAssets/norms
 
       - name: Compile and unit test
         working-directory: android
