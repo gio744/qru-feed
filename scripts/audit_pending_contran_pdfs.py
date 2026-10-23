@@ -23,15 +23,17 @@ def inspect(entry):
         with urllib.request.urlopen(request, timeout=35) as response:
             data = response.read(25 * 1024 * 1024 + 1)
             final_url = response.geturl()
+            content_type = response.headers.get("Content-Type", "unknown")
         if len(data) > 25 * 1024 * 1024:
             return {"number": entry["number"], "status": "file_too_large"}
         if not data.startswith(b"%PDF-") or b"%%EOF" not in data[-4096:]:
-            return {"number": entry["number"], "status": "not_a_complete_pdf", "url": final_url}
+            return {"number": entry["number"], "status": "not_a_complete_pdf", "url": final_url, "content_type": content_type, "bytes": len(data), "header_hex": data[:16].hex()}
         return {
             "number": entry["number"],
             "status": "pdf_verified_for_download",
             "url": final_url,
             "bytes": len(data),
+            "content_type": content_type,
             "sha256": hashlib.sha256(data).hexdigest(),
         }
     except Exception as exc:
