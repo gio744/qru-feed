@@ -1,0 +1,26 @@
+name: Preparar PDFs CONTRAN 2026
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Baixar PDFs oficiais e verificar integridade SHA-256
+        run: python3 scripts/download_verified_contran_pdfs.py
+      - name: Disponibilizar PDFs verificados e manifesto
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: contran-pdfs-1026-1029-staging
+          path: build/contran-pdfs-staging/
+          if-no-files-found: warn
