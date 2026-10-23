@@ -51,6 +51,14 @@ jobs:
       - name: Validate operational card editorial metadata
         run: python scripts/validate_operational_cards.py
 
+      - name: Restore previously verified PDF cache
+        uses: actions/cache/restore@v4
+        with:
+          path: android/app/build/generated/normAssets/norms
+          key: qru-norms-sha256-${{ hashFiles('android/app/src/main/assets/norms/pdf-catalog.json') }}
+          restore-keys: |
+            qru-norms-sha256-
+
       - name: Restore SHA-pinned CONTRAN staging PDFs
         env:
           GH_TOKEN: ${{ github.token }}
@@ -65,6 +73,13 @@ jobs:
       - name: Compile and unit test
         working-directory: android
         run: gradle -PqruParallelTest testDebugUnitTest assembleDebug --stacktrace --warning-mode all
+
+      - name: Save verified PDF cache
+        if: success()
+        uses: actions/cache/save@v4
+        with:
+          path: android/app/build/generated/normAssets/norms
+          key: qru-norms-sha256-${{ hashFiles('android/app/src/main/assets/norms/pdf-catalog.json') }}
 
       - name: Verify and register APK
         run: |
