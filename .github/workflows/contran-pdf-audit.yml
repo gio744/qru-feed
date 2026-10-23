@@ -2,6 +2,11 @@ name: Auditoria PDFs CONTRAN pendentes
 
 on:
   workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Branch contendo o manifesto e o script de auditoria'
+        required: true
+        default: 'feature/operational-accordion-distinctive'
 
 permissions:
   contents: read
@@ -12,11 +17,16 @@ jobs:
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - name: Verificar downloads oficiais e SHA-256
-        run: python3 scripts/audit_pending_contran_pdfs.py | tee contran-audit-report.json
+        shell: bash
+        run: |
+          set -o pipefail
+          python3 scripts/audit_pending_contran_pdfs.py | tee contran-audit-report.json
       - name: Guardar relatorio mesmo em caso de falha
         if: always()
         uses: actions/upload-artifact@v4
