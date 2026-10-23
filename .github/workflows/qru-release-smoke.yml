@@ -5,6 +5,18 @@ on:
       - 'android/**'
       - 'backend/**'
       - 'scripts/validate_project.py'
+      - 'scripts/validate_operational_drafts.py'
+      - 'scripts/test_validate_operational_drafts.py'
+      - '.github/workflows/qru-release-smoke.yml'
+  push:
+    branches:
+      - 'feature/operational-accordion-distinctive'
+    paths:
+      - 'android/**'
+      - 'backend/**'
+      - 'scripts/validate_project.py'
+      - 'scripts/validate_operational_drafts.py'
+      - 'scripts/test_validate_operational_drafts.py'
       - '.github/workflows/qru-release-smoke.yml'
   workflow_dispatch:
 permissions:
