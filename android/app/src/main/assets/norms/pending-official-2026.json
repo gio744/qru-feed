@@ -1,0 +1,42 @@
+{
+  "status": "fontes_oficiais_localizadas_pendentes_de_incorporacao_offline",
+  "updated": "2026-10-22",
+  "note": "Manifesto de preparação; não representa PDFs incluídos no APK. Validar downloads, SHA-256, páginas, licenciamento e vigência antes de incluir em pdf-catalog.json.",
+  "items": [
+    {
+      "number": 1026,
+      "year": 2026,
+      "subject": "RENAVE; consultar retificação",
+      "official_page": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10262026R.pdf",
+      "validation": "pendente"
+    },
+    {
+      "number": 1027,
+      "year": 2026,
+      "subject": "Registro, licenciamento e transferência",
+      "official_page": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10272026.pdf",
+      "validation": "pendente"
+    },
+    {
+      "number": 1028,
+      "year": 2026,
+      "subject": "Transição free flow",
+      "official_page": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10282026.pdf",
+      "validation": "pendente"
+    },
+    {
+      "number": 1029,
+      "year": 2026,
+      "subject": "Prorrogação CNH e ACC; conferir Deliberação 279/2026",
+      "official_page": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10292026.pdf",
+      "validation": "pendente"
+    },
+    {
+      "number": 1030,
+      "year": 2026,
+      "subject": "Equipamentos geradores de imagens",
+      "official_index": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
+      "validation": "PDF individual pendente"
+    }
+  ]
+}
