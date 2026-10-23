@@ -2,7 +2,6 @@
 import importlib.util
 from pathlib import Path
 from unittest.mock import patch
-import io
 import unittest
 
 MODULE = Path(__file__).with_name("audit_pending_contran_pdfs.py")
@@ -24,6 +23,16 @@ class FakeResponse:
 
 
 class AuditTests(unittest.TestCase):
+    def test_summary_lists_pending_documents(self):
+        report = audit.summarize([
+            {"number": 1026, "status": "pdf_verified_for_download"},
+            {"number": 1030, "status": "missing_official_pdf_url"},
+        ])
+        self.assertEqual(report["total"], 2)
+        self.assertEqual(report["verified"], 1)
+        self.assertEqual(report["pending"], 1)
+        self.assertEqual(report["pending_numbers"], [1030])
+
     def test_missing_direct_url_fails_closed(self):
         result = audit.inspect({"number": 1030, "official_index": "https://www.gov.br/index"})
         self.assertEqual(result["status"], "missing_official_pdf_url")
