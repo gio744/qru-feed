@@ -1,0 +1,26 @@
+name: Auditoria PDFs CONTRAN pendentes
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verificar downloads oficiais e SHA-256
+        run: python3 scripts/audit_pending_contran_pdfs.py | tee contran-audit-report.json
+      - name: Guardar relatorio mesmo em caso de falha
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: contran-pdf-audit
+          path: contran-audit-report.json
+          if-no-files-found: warn
