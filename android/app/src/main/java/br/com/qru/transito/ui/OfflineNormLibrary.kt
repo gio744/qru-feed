@@ -120,7 +120,7 @@ private fun normSearch(text:String):String =
 
 @Composable private fun AdditionalOfflineNorms(query:String,category:String,documents:List<OfflinePdfDocument>?,textAvailable:Boolean,onSearchText:()->Unit,openSource:(String)->Unit) {
  var selectedFile by rememberSaveable { mutableStateOf<String?>(null) }
- val visible=remember(documents,query,category) { documents.orEmpty().filter { it.category==category && matchesNorm(it.title,it.subtitle,query) } }
+ val visible=remember(documents,query,category) { documents.orEmpty().filter { it.category==category && matchesNorm(it.title,it.subtitle,query) }.sortedWith(compareByDescending<OfflinePdfDocument> { normYear(it.title) }.thenByDescending { normNumber(it.title) }.thenBy { it.title }) }
  if(documents!=null && query.isNotBlank() && visible.isEmpty()) Text("Nenhuma norma encontrada. Tente outro número ou assunto.")
  visible.forEach { doc ->
   Card(onClick={selectedFile=doc.file},modifier=Modifier.fillMaxWidth()) {
@@ -147,4 +147,11 @@ internal fun matchesNorm(title:String,subtitle:String,query:String):Boolean {
  val tokens=normalized(query).split(" ").filter { it.isNotBlank() }
  val text=normalized("$title $subtitle")
  return tokens.all { text.contains(it) }
+}
+
+/** Chronological hierarchy for norms: year, then number, both descending. */
+internal fun normYear(title:String):Int = Regex("(?:19|20)\\d{2}").find(title)?.value?.toIntOrNull() ?: 0
+internal fun normNumber(title:String):Int {
+ val match=Regex("(?:Resolução|Portaria|Deliberação)\\s*(?:CONTRAN\\s*)?(?:n[º°o.]\\s*)?([0-9][0-9.]*)",RegexOption.IGNORE_CASE).find(title)
+ return match?.groupValues?.get(1)?.replace(".","")?.toIntOrNull() ?: 0
 }
