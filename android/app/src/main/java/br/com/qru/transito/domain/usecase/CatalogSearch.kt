@@ -9,6 +9,26 @@ object CatalogSearch {
     fun normalize(value: String): String = Normalizer.normalize(value, Normalizer.Form.NFD)
         .replace(Regex("\\p{M}+"), "").lowercase(Locale.ROOT)
     private val stopWords = setOf("art", "artigo", "artigos", "o", "a", "os", "as", "de", "do", "da", "dos", "das", "e", "com", "sem", "um", "uma", "que", "para", "por", "no", "na", "ao", "condutor", "veiculo", "dirigir", "dirigindo")
+    // Keep inciso order legal/numeric, rather than alphabetical title order.
+    private fun romanValue(value: String): Int {
+        val values = mapOf('i' to 1, 'v' to 5, 'x' to 10, 'l' to 50, 'c' to 100, 'd' to 500, 'm' to 1000)
+        var total = 0
+        var previous = 0
+        for (letter in value.reversed()) {
+            val current = values[letter] ?: return Int.MAX_VALUE
+            total += if (current < previous) -current else current
+            previous = current
+        }
+        return total
+    }
+    private fun articleOrder(article: String?): Pair<Int, Int> {
+        val normalized = normalize(article.orEmpty())
+        val match = Regex("""^\s*(\d+)(?:\s*[,–-]\s*([ivxlcdm]+))?""").find(normalized)
+            ?: return Int.MAX_VALUE to Int.MAX_VALUE
+        val number = match.groupValues[1].toIntOrNull() ?: Int.MAX_VALUE
+        val inciso = match.groupValues[2].takeIf { it.isNotEmpty() }?.let(::romanValue) ?: 0
+        return number to inciso
+    }
     fun search(entries: List<IndexedReference>, query: String): List<SearchResult> {
         val normalized = normalize(query)
         val tokens = normalized.split(Regex("[^a-z0-9]+"))
@@ -33,12 +53,13 @@ object CatalogSearch {
             val exactInciso = incisoQuery && resultParts.joinToString(",") == exactIncisoKey
             val exactArticle = numericQuery && normalize(result.article.orEmpty()).substringBefore(',')
                 .replace(Regex("[^a-z0-9]"), "") == numericKey
-            if (numericQuery && !exactCode && !exactArticle) null
+            if (incisoQuery && !exactInciso && !exactCode) null
+            else if (numericQuery && !exactCode && !exactArticle) null
             else if (!exactCode && matches < (tokens.size + 1) / 2) null
             else (if (exactCode) 1000 else if (exactInciso) 800 else if (exactArticle) 300 else 0) +
                 (if (genericTyreQuery && code == "67261") 150 else 0) +
                 matches * 20 + tokens.count { title.contains(it) } * 5 to result
-        }.sortedWith(compareByDescending<Pair<Int, SearchResult>> { it.first }.thenBy { it.second.title })
+        }.sortedWith(compareByDescending<Pair<Int, SearchResult>> { it.first }.thenBy { articleOrder(it.second.article).first }.thenBy { articleOrder(it.second.article).second }.thenBy { it.second.title })
             .take(50).map { it.second }
     }
 }
