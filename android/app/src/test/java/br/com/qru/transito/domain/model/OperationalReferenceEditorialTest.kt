@@ -99,6 +99,30 @@ class OperationalReferenceEditorialTest {
         assertTrue(issues.contains("invalid_deadline"))
     }
 
+    @Test fun deadlineWithoutEvidenceFailsEditorialReview() {
+        val ref = reference().copy(measures = listOf(AdministrativeMeasure(
+            kind = AdministrativeMeasureKind.RETENTION,
+            rule = statement,
+            conditions = listOf(statement),
+            deadline = OperationalDeadline(
+                1, SourcedStatement("Prazo de teste sem fonte", emptyList())
+            )
+        )))
+        val issues = ref.editorialIssues()
+        assertTrue(issues.contains("invalid_deadline"))
+        assertTrue(issues.contains("incomplete_evidence"))
+    }
+
+    @Test fun completeDeadlineEvidencePassesEditorialChecks() {
+        val ref = reference().copy(measures = listOf(AdministrativeMeasure(
+            kind = AdministrativeMeasureKind.RETENTION,
+            rule = statement,
+            conditions = listOf(statement),
+            deadline = OperationalDeadline(1, statement)
+        )))
+        assertTrue(ref.editorialIssues().isEmpty())
+    }
+
     @Test fun completeMeasureCanPassEditorialChecks() {
         val ref = reference().copy(measures = listOf(AdministrativeMeasure(
             kind = AdministrativeMeasureKind.RETENTION,
