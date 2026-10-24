@@ -15,6 +15,14 @@ class CatalogSearchTest {
         IndexedReference(SearchResult("cnh","CNH vencida","162, V","504-50","BR","draft"),"carteira vencida habilitacao"),
         IndexedReference(SearchResult("pneu","Conjunto roda-pneu","230, X","660-20","BR","draft"),"roda pneu tamanho")
     )
+    @Test fun exactCodeWinsOverLowerNumberedArticle() {
+        val references = listOf(
+            IndexedReference(SearchResult("older", "Related reference", "165", "757-91", "BR", "test"), "75791"),
+            IndexedReference(SearchResult("exact", "Exact code", "230, XVIII", "672-61", "BR", "test"), "75791")
+        )
+        assertEquals("older", CatalogSearch.search(references, "757-91").first().stableKey)
+        assertEquals("exact", CatalogSearch.search(references, "672-61").first().stableKey)
+    }
     @Test fun exactArticleAndIncisoComesBeforeRelatedReferences(){
         val related = listOf(
             IndexedReference(SearchResult("outro","A referência relacionada","230, XVIII","672-61","BR","draft"),"230 V licenciamento"),
