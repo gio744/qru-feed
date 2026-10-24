@@ -59,6 +59,11 @@ jobs:
           python scripts/validate_operational_drafts.py
           python -m unittest discover -s scripts -p 'test_validate_operational_drafts.py' -v
 
+      - name: Audit offline PDF mapping and editorial cards
+        run: |
+          python scripts/audit_reference_ranges.py
+          python scripts/validate_operational_cards.py
+
       - name: Compile and unit test
         working-directory: android
         run: gradle -PqruParallelTest testDebugUnitTest assembleDebug --stacktrace --warning-mode all
