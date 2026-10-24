@@ -2,7 +2,7 @@ name: QRU Android Build
 on:
   workflow_dispatch:
   push:
-    paths: ['android/**','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json','android/app/src/main/assets/norms/**','.github/workflows/android-build.yml']
+    paths: ['android/**','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','scripts/validate_norm_pdf_catalog.py','scripts/test_validate_norm_pdf_catalog.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json','android/app/src/main/assets/norms/**','.github/workflows/android-build.yml']
   pull_request:
     paths: ['android/**','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json']
 jobs:
@@ -44,6 +44,11 @@ jobs:
           test -f android/settings.gradle.kts
           test -f android/app/build.gradle.kts
           test -f android/app/src/main/AndroidManifest.xml
+
+      - name: Validate offline PDF catalog and tampering protections
+        run: |
+          python3 scripts/validate_norm_pdf_catalog.py
+          python3 -m unittest discover -s scripts -p 'test_validate_norm_pdf_catalog.py' -v
 
       - name: Audit offline PDF reference ranges
         run: python scripts/audit_reference_ranges.py
