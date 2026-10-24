@@ -3,17 +3,28 @@ import android.content.ActivityNotFoundException
 import android.widget.Toast
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.layout.ContentScale
 import br.com.qru.transito.R
 import android.Manifest
 import android.app.Activity
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import br.com.qru.transito.domain.model.SearchResult
 import br.com.qru.transito.domain.model.OperationalReferencePublication
 import br.com.qru.transito.data.repository.OperationalFichePackage
+import br.com.qru.transito.data.repository.QruVideoCatalog
+import br.com.qru.transito.data.repository.QruStudioIntegrity
 import br.com.qru.transito.domain.model.OperationalReference
 import android.content.pm.PackageManager
 import android.speech.RecognizerIntent
@@ -82,7 +93,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
     TextButton(onClick={scope.launch{drawer.close()}},modifier=Modifier.padding(12.dp)){Text("FECHAR MENU")}
    }
   }){
-   Scaffold(bottomBar={NavigationBar{
+   Scaffold(bottomBar={NavigationBar(containerColor=Color(0xFF15101E)){
     QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},modifier=Modifier.testTag("tab_"+item.name),
      icon={Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
      label={Text(item.label)})}
@@ -135,10 +146,50 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  val permission=rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()){if(it)launchSpeech() else voiceMessage("Microfone não autorizado. Use o teclado.")}
  fun voice(){if(context.checkSelfPermission(Manifest.permission.RECORD_AUDIO)==PackageManager.PERMISSION_GRANTED)launchSpeech() else permission.launch(Manifest.permission.RECORD_AUDIO)}
 
+ val quickOptions=listOf(
+  "230, V" to "230, V","Art. 167" to "167","162, I" to "162, I",
+  "Art. 252" to "252","165-A" to "165-A","230 XVIII" to "230 XVIII",
+  "Art. 181" to "181","Art. 208" to "208","Art. 230" to "230",
+  "Art. 244" to "244","Art. 168" to "168","Art. 195" to "195"
+ )
+ val quickPrefs=remember(context) { context.getSharedPreferences("qru_quick_access",android.content.Context.MODE_PRIVATE) }
+ var quickKeys by remember {
+  mutableStateOf((0..3).map { index ->
+   quickPrefs.getString("slot_$index",null)?.takeIf { saved -> quickOptions.any { it.first==saved } }
+    ?:quickOptions[index].first
+  })
+ }
+ var editingQuick by rememberSaveable { mutableStateOf(false) }
+ var editingSlot by rememberSaveable { mutableIntStateOf(-1) }
+ fun selectQuick(slot:Int,label:String) {
+  val updated=quickKeys.toMutableList()
+  val other=updated.indexOf(label)
+  if(other>=0 && other!=slot) updated[other]=updated[slot]
+  updated[slot]=label
+  quickKeys=updated
+  quickPrefs.edit().apply {
+   updated.forEachIndexed { index,value -> putString("slot_$index",value) }
+  }.apply()
+  editingSlot=-1
+ }
+ if(editingSlot>=0) AlertDialog(
+  onDismissRequest={editingSlot=-1},
+  title={Text("Escolher atalho")},
+  text={Column(Modifier.verticalScroll(androidx.compose.foundation.rememberScrollState())) {
+   quickOptions.forEach { (label,_) ->
+    TextButton(onClick={selectQuick(editingSlot,label)},modifier=Modifier.fillMaxWidth()) { Text(label) }
+   }
+  }},
+  confirmButton={TextButton(onClick={editingSlot=-1}){Text("CANCELAR")}}
+ )
+ var expandedIncisos by rememberSaveable { mutableStateOf(listOf<String>()) }
  LazyColumn(Modifier.fillMaxSize().testTag("search_results"),contentPadding=PaddingValues(horizontal=16.dp,vertical=12.dp),verticalArrangement=Arrangement.spacedBy(10.dp)){
   item(key="search_header") {
    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(10.dp)) {
-  Box(Modifier.fillMaxWidth()) {
+  Box(Modifier.fillMaxWidth().background(
+   brush=Brush.linearGradient(listOf(Color(0xFF241047),Color(0xFF5620A0),Color(0xFF35114D))),
+   shape=RoundedCornerShape(24.dp)
+  ).border(1.dp,Color(0xFF6D3BA0),RoundedCornerShape(24.dp)).padding(vertical=18.dp,horizontal=10.dp)) {
   Column(Modifier.fillMaxWidth(),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(4.dp)) {
   QruWordmark()
   Text("QUAL A SITUAÇÃO",style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.secondary)
@@ -151,13 +202,112 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    keyboardOptions=KeyboardOptions(imeAction=ImeAction.Search),
    keyboardActions=KeyboardActions(onSearch={keyboard?.hide();vm.run()}))
   if(state.loading) LinearProgressIndicator(Modifier.fillMaxWidth())
-  Text("Catálogo em conferência • disponível offline", style=MaterialTheme.typography.bodySmall)
+  Text("CONSULTA OPERACIONAL  •  CATÁLOGO OFFLINE", style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.secondary)
    }
   }
-  items(state.results,key={result -> "reference:"+result.stableKey},contentType={"reference"}) { result ->
-   ReferenceCard(result) { selected=result }
+  if(state.query.isBlank()) item(key="quick_access") {
+   Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(12.dp)) {
+    Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically) {
+     Text("ACESSO RÁPIDO",Modifier.weight(1f),style=MaterialTheme.typography.labelLarge,
+      color=Color(0xFFD9B6FF),fontWeight=FontWeight.SemiBold)
+     TextButton(onClick={editingQuick=!editingQuick}) {
+      Icon(Icons.Default.Edit,null,Modifier.size(16.dp))
+      Spacer(Modifier.width(4.dp))
+      Text(if(editingQuick) "CONCLUIR" else "PERSONALIZAR")
+     }
+    }
+    for(row in 0..1) {
+     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(10.dp)) {
+      for(column in 0..1) {
+       val slot=row*2+column
+       val label=quickKeys[slot]
+       val query=quickOptions.firstOrNull { it.first==label }?.second ?: label
+       QruQuickAction(label,if(editingQuick) Icons.Default.Edit else Icons.Default.Gavel,
+        Modifier.weight(1f)) {
+        if(editingQuick) editingSlot=slot else { vm.query(query);vm.run() }
+       }
+      }
+     }
+    }
+    Text("CONSULTAS FREQUENTES",style=MaterialTheme.typography.labelSmall,color=Color(0xFFD9B6FF))
+    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+     listOf("165-A","230 XVIII","181").forEach { term ->
+      SuggestionChip(onClick={vm.query(term);vm.run()},label={Text(term)})
+     }
+    }
+    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+     TextButton(onClick={occurrenceExpanded=!occurrenceExpanded}) {
+      Icon(Icons.Default.Description,null,Modifier.size(18.dp))
+      Spacer(Modifier.width(4.dp))
+      Text("Ocorrência")
+     }
+     TextButton(onClick={guideExpanded=true}) {
+      Icon(Icons.Default.FactCheck,null,Modifier.size(18.dp))
+      Spacer(Modifier.width(4.dp))
+      Text("Análise guiada")
+     }
+    }
+    if(occurrenceExpanded) {
+     OutlinedTextField(occurrence,{occurrence=it},Modifier.fillMaxWidth(),
+      label={Text("Descreva os fatos observados")},minLines=3)
+     Button(onClick={keyboard?.hide();vm.query(occurrence);vm.run()},enabled=occurrence.isNotBlank()) {
+      Text("BUSCAR REFERÊNCIAS")
+     }
+    }
+    Text("Atalhos de pesquisa. Confira sempre a fonte oficial e a regra aplicável ao fato.",
+     style=MaterialTheme.typography.bodySmall,color=Color(0xFFB9A9C9))
+   }
   }
-  item(key="search_tools") {
+  // Full-article queries are grouped into collapsible legal subdivisions.
+  val articleNumber=state.query.trim().replace(Regex("^(?i)art(?:igo)?\\.?\\s*"),"")
+      .takeIf { it.matches(Regex("\\d+")) }
+  if(articleNumber!=null && state.results.isNotEmpty()) {
+   item(key="article_hierarchy_header") {
+    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(4.dp)) {
+     Text("ART. $articleNumber • DESDOBRAMENTOS",color=Color(0xFFD9B6FF),
+      style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.Bold)
+     Text("Os incisos começam recolhidos. Toque para consultar os enquadramentos.",
+      style=MaterialTheme.typography.bodySmall)
+     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+      OutlinedButton(onClick={
+       expandedIncisos=emptyList()
+      }) { Text("RECOLHER TODOS") }
+      TextButton(onClick={expandedIncisos=state.results.map { "$articleNumber:"+it.article.orEmpty().substringAfter(',',"").trim() }.distinct()}) { Text("EXPANDIR TODOS") }
+     }
+    }
+   }
+   val groups=state.results.groupBy { it.article.orEmpty().substringAfter(',',"").trim() }
+   groups.forEach { (inciso,results) ->
+    item(key="inciso:$articleNumber:$inciso") {
+     val groupKey="$articleNumber:$inciso"
+     val expanded=groupKey in expandedIncisos
+     Column(verticalArrangement=Arrangement.spacedBy(8.dp)) {
+      Surface(onClick={expandedIncisos=if(expanded) expandedIncisos-groupKey else expandedIncisos+groupKey},color=Color(0xFF24182F),
+       shape=RoundedCornerShape(14.dp),
+       border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF49305F))) {
+       Row(Modifier.fillMaxWidth().padding(horizontal=14.dp,vertical=12.dp),
+        verticalAlignment=Alignment.CenterVertically) {
+        Text(if(inciso.isBlank()) "ARTIGO $articleNumber" else "INCISO $inciso",
+         modifier=Modifier.weight(1f),fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
+        Text("${results.size} ${if(results.size==1) "enquadramento" else "enquadramentos"}",style=MaterialTheme.typography.labelSmall)
+        Spacer(Modifier.width(6.dp))
+        Icon(if(expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+         contentDescription=if(expanded) "Recolher inciso" else "Expandir inciso")
+       }
+      }
+      if(expanded) results.forEach { result ->
+       ReferenceCard(result) { selected=result }
+      }
+     }
+    }
+   }
+  } else {
+   items(state.results,key={result -> "reference:"+result.stableKey},
+    contentType={"reference"}) { result ->
+    ReferenceCard(result) { selected=result }
+   }
+  }
+  if(state.query.isNotBlank()) item(key="search_tools") {
    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(10.dp)) {
   TextButton(onClick={occurrenceExpanded=!occurrenceExpanded},modifier=Modifier.fillMaxWidth().heightIn(min=48.dp)){
    Icon(Icons.Default.Description,null,modifier=Modifier.size(20.dp))
@@ -183,7 +333,17 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   GuideReferenceLookup(code,search={app.searchLegalContent(it)},
    onSelected={selected=it;guideReference=null},onDismiss={guideReference=null})
  }
- selected?.let { ReferenceDialog(it) { selected=null } }
+ selected?.let { current ->
+  val index=state.results.indexOfFirst { it.stableKey==current.stableKey }
+  ReferenceDialog(
+   result=current,
+   onDismiss={selected=null},
+   onPrevious=if(index>0) ({ selected=state.results[index-1] }) else null,
+   onNext=if(index>=0 && index<state.results.lastIndex) ({ selected=state.results[index+1] }) else null,
+   position=if(index>=0) index+1 else null,
+   total=if(index>=0) state.results.size else null
+  )
+ }
 }
 
 private fun openOfficialSource(context: android.content.Context, url: String) {
@@ -194,16 +354,54 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     try { context.startActivity(Intent(Intent.ACTION_VIEW,uri)) }
     catch(_:ActivityNotFoundException) { Toast.makeText(context,"Não foi possível abrir a fonte.",Toast.LENGTH_LONG).show() }
 }
+@Composable private fun QruQuickAction(label:String,icon:androidx.compose.ui.graphics.vector.ImageVector,
+ modifier:Modifier=Modifier,onClick:()->Unit) {
+ Card(onClick=onClick,modifier=modifier.heightIn(min=84.dp),
+  colors=CardDefaults.cardColors(containerColor=Color(0xFF21172E)),
+  border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF49305F)),
+  shape=RoundedCornerShape(18.dp)) {
+  Column(Modifier.fillMaxWidth().padding(14.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+   Icon(icon,contentDescription=null,tint=Color(0xFFC48DFF))
+   Text(label,style=MaterialTheme.typography.labelLarge,color=Color(0xFFF0E5FA))
+  }
+ }
+}
+
 @Composable private fun ReferenceCard(result:SearchResult,onClick:()->Unit) {
-    Card(onClick=onClick,modifier=Modifier.fillMaxWidth().testTag("reference_card")) {
-        Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
-            Text(result.title,style=MaterialTheme.typography.titleMedium)
-            Text("Art. ${result.article.orEmpty()} • ${result.code.orEmpty()}",color=MaterialTheme.colorScheme.secondary)
-            Text("Em conferência",style=MaterialTheme.typography.bodySmall)
+    Card(onClick=onClick,modifier=Modifier.fillMaxWidth().testTag("reference_card")
+        .border(1.dp,Color(0xFF49305F),RoundedCornerShape(18.dp)),
+        shape=RoundedCornerShape(18.dp),
+        colors=CardDefaults.cardColors(containerColor=Color(0xFF191326))) {
+        Column(Modifier.padding(16.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+            Text(result.title,style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.SemiBold)
+            Text("Art. ${result.article.orEmpty()}  •  ${result.code.orEmpty()}",
+                color=Color(0xFFD2A8FF),style=MaterialTheme.typography.bodyMedium)
+            Text("REFERÊNCIA EM CONFERÊNCIA",color=Color(0xFFB9A9C9),
+                style=MaterialTheme.typography.labelSmall)
         }
     }
 }
-@Composable private fun ReferenceDialog(result:SearchResult,onDismiss:()->Unit) {
+@Composable private fun QruExpandableSection(title:String,referenceKey:String,initiallyOpen:Boolean=false,content:@Composable ColumnScope.()->Unit) {
+ var expanded by rememberSaveable(referenceKey,title) { mutableStateOf(initiallyOpen) }
+ Surface(color=Color(0xFF21172E),shape=RoundedCornerShape(16.dp),
+  border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF49305F))) {
+  Column {
+   Row(Modifier.fillMaxWidth().clickable { expanded=!expanded }.padding(14.dp),
+    verticalAlignment=Alignment.CenterVertically) {
+    Text(title,Modifier.weight(1f),style=MaterialTheme.typography.labelLarge,
+     color=Color(0xFFE1C3FF),fontWeight=FontWeight.SemiBold)
+    Icon(if(expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+     contentDescription=if(expanded) "Recolher" else "Expandir",tint=Color(0xFFC48DFF))
+   }
+   if(expanded) {
+    HorizontalDivider(color=Color(0xFF49305F))
+    Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(8.dp),content=content)
+   }
+  }
+ }
+}
+
+@Composable private fun ReferenceDialog(result:SearchResult,onDismiss:()->Unit,onPrevious:(()->Unit)?=null,onNext:(()->Unit)?=null,position:Int?=null,total:Int?=null) {
     val context=LocalContext.current
     var documents by remember { mutableStateOf<List<OfflinePdfDocument>>(emptyList()) }
     var ranges by remember { mutableStateOf<List<ReferencePageRange>>(emptyList()) }
@@ -243,11 +441,29 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             }.getOrNull()
         }
     }
-    AlertDialog(onDismissRequest=onDismiss,title={Text(result.title)},text={
+    AlertDialog(onDismissRequest=onDismiss,containerColor=Color(0xFF191326),shape=RoundedCornerShape(24.dp),title={Text(result.title,fontWeight=FontWeight.SemiBold)},text={
         Column(Modifier.verticalScroll(androidx.compose.foundation.rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
-            Text("Art. ${result.article.orEmpty()} • código ${result.code.orEmpty()}")
-            if (approvedOperationalFiche == null) Text("Referência em conferência. A validação final da ficha está pendente.")
-            Text("QUANDO AUTUAR",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
+            Text("Art. ${result.article.orEmpty()}  •  código ${result.code.orEmpty()}",color=Color(0xFFD2A8FF),style=MaterialTheme.typography.labelLarge)
+            if(position!=null && total!=null && total>1) {
+                Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.SpaceBetween) {
+                    TextButton(onClick={onPrevious ?: {}},enabled=onPrevious!=null) { Text("ANTERIOR") }
+                    Text("$position de $total",style=MaterialTheme.typography.labelSmall,color=Color(0xFFD2A8FF))
+                    TextButton(onClick={onNext ?: {}},enabled=onNext!=null) { Text("PRÓXIMA") }
+                }
+            }
+            if (approvedOperationalFiche == null) {
+                Text("REFERÊNCIA EM CONFERÊNCIA • validação jurídica pendente",color=Color(0xFFD7BDDE),style=MaterialTheme.typography.labelSmall)
+                Text("As seções abaixo não constituem orientação de autuação enquanto não houver aprovação editorial.",style=MaterialTheme.typography.bodySmall)
+            } else {
+                Text("ORIENTAÇÃO OPERACIONAL APROVADA • confira a vigência e as fontes",color=Color(0xFFBCE7D0),style=MaterialTheme.typography.labelSmall)
+            }
+            result.source?.let { source ->
+                OutlinedButton(onClick={openOfficialSource(context,source)},modifier=Modifier.fillMaxWidth()) {
+                    Spacer(Modifier.width(8.dp))
+                    Text("CONSULTAR FONTE OFICIAL")
+                }
+            }
+            QruExpandableSection("QUANDO AUTUAR",referenceKey=result.stableKey,initiallyOpen=true) {
             if (approvedOperationalFiche == null) Text("Orientação operacional ainda não aprovada. Consulte a ficha oficial antes de decidir.")
             else approvedOperationalFiche?.whenApplicable?.forEach { item ->
                 Text(item.text)
@@ -257,8 +473,9 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                     }
                 }
             }
-            Text("QUANDO NÃO AUTUAR / EXCEÇÕES",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
-            if (approvedOperationalFiche == null) Text("Exceções e hipóteses de não enquadramento pendentes de revisão técnica.")
+            }
+            QruExpandableSection("QUANDO ESTE ARTIGO NÃO SE APLICA",referenceKey=result.stableKey) {
+            if (approvedOperationalFiche == null) Text("Hipóteses de não enquadramento pendentes de revisão jurídica. A ausência de requisitos deste artigo não significa necessariamente outra infração.")
             else approvedOperationalFiche?.exceptions?.forEach { item ->
                 Text(item.text)
                 item.evidence.forEach { source ->
@@ -267,15 +484,87 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                     }
                 }
             }
-            Text("MEDIDAS ADMINISTRATIVAS",style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.primary)
+            }
+            QruExpandableSection("EXEMPLOS DE OBSERVAÇÃO NO AIT",referenceKey=result.stableKey) {
+                Text("Utilize somente os dados efetivamente constatados. Adapte o modelo ao caso concreto; não registre fatos presumidos.",style=MaterialTheme.typography.bodySmall)
+                val examples=approvedOperationalFiche?.observations.orEmpty()
+                if(examples.isEmpty()) {
+                    Text("Exemplos específicos deste enquadramento aguardam revisão e aprovação editorial. Consulte o MBFT e a norma vigente antes de preencher o AIT.")
+                } else {
+                    examples.forEachIndexed { index,item ->
+                        Text("EXEMPLO ${index+1}",fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
+                        Text(item.text)
+                        OutlinedButton(onClick={
+                            val clipboard=context.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager
+                            clipboard?.setPrimaryClip(ClipData.newPlainText("Observação AIT — QRU",item.text))
+                            Toast.makeText(context,"Observação copiada. Confira e adapte aos fatos constatados.",Toast.LENGTH_LONG).show()
+                        },modifier=Modifier.fillMaxWidth()) {
+                            Icon(Icons.Default.ContentCopy,contentDescription=null,modifier=Modifier.size(18.dp))
+                            Spacer(Modifier.width(8.dp))
+                            Text("COPIAR OBSERVAÇÃO")
+                        }
+                        item.evidence.forEach { source ->
+                            TextButton(onClick={openOfficialSource(context,source.url)}) {
+                                Text("Fundamento: ${source.locator}",style=MaterialTheme.typography.bodySmall)
+                            }
+                        }
+                        HorizontalDivider(color=Color(0xFF49305F))
+                    }
+                }
+            }
+            QruExpandableSection("ENQUADRAMENTOS RELACIONADOS",referenceKey=result.stableKey) {
+            Text("Nenhuma combinação ou enquadramento alternativo é sugerido automaticamente.",fontWeight=FontWeight.SemiBold)
+            Text("Para comparar referências, utilize a busca do QRU e abra cada ficha individual. Verifique os elementos de cada infração, a responsabilidade e a regra aplicável à data do fato.",style=MaterialTheme.typography.bodySmall)
+            Text("A coexistência de artigos em uma pesquisa não comprova concurso de infrações nem autoriza autuação cumulativa.",style=MaterialTheme.typography.bodySmall)
+            HorizontalDivider(color=Color(0xFF49305F))
+            Text("ANÁLISE DE ALTERNATIVAS",fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
+            Text("Se os requisitos deste enquadramento não estiverem presentes, examine outras hipóteses somente quando os fatos constatados e a legislação vigente as sustentarem.",style=MaterialTheme.typography.bodySmall)
+            Text("INFRAÇÃO NÃO CARACTERIZADA COM OS DADOS DISPONÍVEIS",fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
+            Text("Quando não houver elementos suficientes para caracterizar uma infração, não presuma outra apenas para gerar uma autuação. A ausência de comprovação não equivale a uma conclusão definitiva sobre todos os fatos.",style=MaterialTheme.typography.bodySmall)
+            HorizontalDivider(color=Color(0xFF49305F))
+            Text("CHECKLIST PARA CONFERÊNCIA",fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
+            Text("1. Qual fato foi diretamente constatado? Registre apenas os elementos observáveis.",style=MaterialTheme.typography.bodySmall)
+            Text("2. Todos os requisitos do enquadramento consultado estão presentes? Confira a ficha oficial vigente.",style=MaterialTheme.typography.bodySmall)
+            Text("3. Existe alguma condição, exceção ou regra especial aplicável ao veículo, condutor ou circunstância?",style=MaterialTheme.typography.bodySmall)
+            Text("4. Se cogitar outro artigo, confira separadamente seus requisitos e medidas administrativas antes de decidir.",style=MaterialTheme.typography.bodySmall)
+            Text("Sugestões automáticas baseadas em narrativa ainda não estão disponíveis nem validadas.",style=MaterialTheme.typography.labelSmall)
+            }
+            QruExpandableSection("MEDIDAS ADMINISTRATIVAS",referenceKey=result.stableKey) {
             if (approvedOperationalFiche == null) Text("Retenção, remoção e regularização dependem da norma aplicável e de conferência editorial.")
             else approvedOperationalFiche?.measures?.forEach { item ->
+                Text("MODALIDADE: " + when(item.kind.name) {
+                    "RETENTION" -> "RETENÇÃO"
+                    "REMOVAL" -> "REMOÇÃO"
+                    else -> "SEM MEDIDA PREVISTA NA FICHA"
+                },fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
                 Text(item.rule.text)
                 item.rule.evidence.forEach { source ->
                     TextButton(onClick={ openOfficialSource(context, source.url) }) {
                         Text("Fonte oficial: ${source.locator}", style=MaterialTheme.typography.bodySmall)
                     }
                 }
+                item.conditions.forEach { condition ->
+                    Text("CONDIÇÃO: ${condition.text}",style=MaterialTheme.typography.bodySmall)
+                    condition.evidence.forEach { source ->
+                        TextButton(onClick={openOfficialSource(context,source.url)}) {
+                            Text("Fundamento da condição: ${source.locator}",style=MaterialTheme.typography.bodySmall)
+                        }
+                    }
+                }
+                item.deadline?.let { deadline ->
+                    Text("PRAZO MÁXIMO REGISTRADO: ${deadline.maximumDays} dias",style=MaterialTheme.typography.bodySmall)
+                    Text(deadline.legalBasis.text,style=MaterialTheme.typography.bodySmall)
+                    deadline.legalBasis.evidence.forEach { source ->
+                        TextButton(onClick={openOfficialSource(context,source.url)}) {
+                            Text("Fundamento do prazo: ${source.locator}",style=MaterialTheme.typography.bodySmall)
+                        }
+                    }
+                }
+                item.systemDependency?.let { dependency ->
+                    Text("DEPENDÊNCIA OPERACIONAL: $dependency",style=MaterialTheme.typography.bodySmall)
+                }
+                HorizontalDivider(color=Color(0xFF49305F))
+            }
             }
             Text(result.reviewStatus,style=MaterialTheme.typography.bodySmall)
             if(result.appliesFrom.isNotBlank()) Text("Início registrado no catálogo: ${result.appliesFrom}")
@@ -301,7 +590,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     val app=context.applicationContext as QruApplication
     if(tab==QruTab.SITUACOES) { SituationsPage();return }
     Column(Modifier.fillMaxSize().verticalScroll(androidx.compose.foundation.rememberScrollState()).padding(20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
-        Text(tab.label,style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.primary)
+        Text(tab.label,style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.secondary,fontWeight=FontWeight.Bold)
         when(tab) {
             QruTab.CTB -> {
                 CtbOfflineContents { url -> openOfficialSource(context,url) }
@@ -330,7 +619,15 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
 
 
 @Composable private fun SituationsPage() {
+ var offlineRefresh by remember { mutableIntStateOf(0) }
  val context=LocalContext.current
+ val studioVideos=remember(context) {
+  runCatching {
+   context.assets.open("studio/videos.json").bufferedReader().use { reader ->
+    QruVideoCatalog.published(reader.readText())
+   }
+  }.getOrDefault(emptyList())
+ }
  val app=context.applicationContext as QruApplication
  val vm:SearchViewModel=viewModel(key="situations_search",factory=SearchViewModelFactory(app.searchLegalContent))
  val state by vm.state.collectAsState()
@@ -339,14 +636,187 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
   contentPadding=PaddingValues(20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
   item(key="situations_header") {
    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(14.dp)) {
-    Text("Situações",style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.primary)
-    Text("Consulta por situação")
-    listOf("bafômetro","recusa","CNH vencida","licenciamento","pneu","retrovisor").forEach { term ->
-     OutlinedButton(onClick={vm.query(term);vm.run()},
-      modifier=Modifier.fillMaxWidth().testTag("situation_"+term)) { Text(term) }
+    Text("Situações",style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.secondary,fontWeight=FontWeight.Bold)
+    Text("Encontre a referência legal antes de assistir à explicação.",
+     style=MaterialTheme.typography.bodyMedium)
+    Text("CONSULTAS RÁPIDAS",style=MaterialTheme.typography.labelMedium,
+     color=MaterialTheme.colorScheme.secondary)
+    val popularSituations=listOf(
+     "bafômetro","recusa","CNH vencida","licenciamento","pneu","retrovisor"
+    )
+    popularSituations.chunked(2).forEach { pair ->
+     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+      pair.forEach { term ->
+       OutlinedButton(onClick={vm.query(term);vm.run()},
+        modifier=Modifier.weight(1f).testTag("situation_"+term),
+        contentPadding=PaddingValues(horizontal=8.dp,vertical=10.dp)) {
+        Text(term,maxLines=1,style=MaterialTheme.typography.labelMedium)
+       }
+      }
+     }
+    }
+    Card(Modifier.fillMaxWidth()) {
+     Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
+      Row(verticalAlignment=Alignment.CenterVertically,
+       horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+       Icon(Icons.Default.OndemandVideo,contentDescription=null,
+        tint=MaterialTheme.colorScheme.secondary)
+       Text("QRU Studio",style=MaterialTheme.typography.titleMedium,
+        fontWeight=FontWeight.Bold)
+      }
+      Text("Vídeos operacionais em preparação.",
+       style=MaterialTheme.typography.bodyMedium)
+      Text("Os episódios serão publicados somente após revisão jurídica. " +
+       "A biblioteca terá acesso às fichas e suporte a vídeos offline.",
+       style=MaterialTheme.typography.bodySmall)
+     }
     }
     if(state.query.isNotBlank()) Text("Referências para: ${state.query}")
     if(state.loading) LinearProgressIndicator(Modifier.fillMaxWidth().testTag("situations_loading"))
+   }
+  }
+  if(studioVideos.isNotEmpty()) {
+   item(key="studio_video_heading") {
+    Text("VÍDEOS REVISADOS",style=MaterialTheme.typography.titleMedium,
+     color=MaterialTheme.colorScheme.secondary)
+   }
+   items(studioVideos,key={ "studio:"+it.id },contentType={ "video" }) { video ->
+    Card(Modifier.fillMaxWidth()) {
+     Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+      Text(video.title,style=MaterialTheme.typography.titleMedium)
+      Text(video.description,style=MaterialTheme.typography.bodyMedium)
+      Text("Referência: ${video.legalReference}",style=MaterialTheme.typography.bodySmall)
+      val localFile=java.io.File(
+       context.getExternalFilesDir(android.os.Environment.DIRECTORY_MOVIES),
+       "qru-studio-"+video.id+".mp4")
+      var offlineAvailable by remember(video.id,video.sha256) { mutableStateOf(false) }
+      var downloadRequested by remember(video.id) { mutableStateOf(false) }
+      val downloadPreferences=remember(context) {
+       context.getSharedPreferences("qru_studio_downloads",Context.MODE_PRIVATE)
+      }
+      var downloadId by remember(video.id) {
+       mutableStateOf(downloadPreferences.getLong(video.id,-1L).takeIf { it>0L })
+      }
+      var videoRefresh by remember(video.id) { mutableIntStateOf(0) }
+      DisposableEffect(context,video.id) {
+       val receiver=object : android.content.BroadcastReceiver() {
+        override fun onReceive(receiverContext: Context?, intent: Intent?) {
+         if(intent?.action==android.app.DownloadManager.ACTION_DOWNLOAD_COMPLETE &&
+          intent.getLongExtra(android.app.DownloadManager.EXTRA_DOWNLOAD_ID,-1L)==downloadId) {
+          videoRefresh++
+         }
+        }
+       }
+       val filter=android.content.IntentFilter(
+        android.app.DownloadManager.ACTION_DOWNLOAD_COMPLETE)
+       androidx.core.content.ContextCompat.registerReceiver(
+        context,receiver,filter,androidx.core.content.ContextCompat.RECEIVER_NOT_EXPORTED)
+       onDispose { runCatching { context.unregisterReceiver(receiver) } }
+      }
+      var checkingOffline by remember(video.id,video.sha256) { mutableStateOf(true) }
+      LaunchedEffect(video.id,video.sha256,videoRefresh) {
+       checkingOffline=true
+       offlineAvailable=withContext(Dispatchers.IO) {
+        QruStudioIntegrity.matches(localFile,video.sha256)
+       }
+       checkingOffline=false
+      }
+      if(checkingOffline) {
+       Text("Verificando vídeo offline...",style=MaterialTheme.typography.bodySmall)
+      }
+      if(!checkingOffline && localFile.isFile && !offlineAvailable) {
+       Text("Arquivo offline não validado. Exclua e baixe novamente.",
+        style=MaterialTheme.typography.bodySmall)
+       TextButton(onClick={
+        runCatching { localFile.delete() }.onSuccess { deleted ->
+         if(deleted) {
+          videoRefresh++
+          Toast.makeText(context,"Arquivo inválido excluído.",Toast.LENGTH_SHORT).show()
+         } else {
+          Toast.makeText(context,"Não foi possível excluir o arquivo.",Toast.LENGTH_SHORT).show()
+         }
+        }.onFailure {
+         Toast.makeText(context,"Não foi possível excluir o arquivo.",Toast.LENGTH_SHORT).show()
+        }
+       }) { Icon(Icons.Default.DeleteOutline,contentDescription=null);Text("EXCLUIR ARQUIVO INVÁLIDO") }
+      }
+      if(downloadRequested && !offlineAvailable) {
+       Text("Download solicitado. Verifique as notificações e atualize a conferência após a conclusão.",
+        style=MaterialTheme.typography.bodySmall)
+      }
+      TextButton(onClick={videoRefresh++}) {
+       Icon(Icons.Default.Refresh,contentDescription=null)
+       Text("VERIFICAR DOWNLOADS")
+      }
+      if(!checkingOffline && offlineAvailable) {
+       Text("Arquivo local disponível",style=MaterialTheme.typography.labelSmall,
+        color=MaterialTheme.colorScheme.secondary)
+       TextButton(onClick={
+        runCatching {
+         if(localFile.delete()) {
+          videoRefresh++
+          Toast.makeText(context,"Vídeo offline excluído.",Toast.LENGTH_SHORT).show()
+         } else {
+          Toast.makeText(context,"Não foi possível excluir o vídeo.",Toast.LENGTH_SHORT).show()
+         }
+        }.onFailure {
+         Toast.makeText(context,"Não foi possível excluir o vídeo.",Toast.LENGTH_SHORT).show()
+        }
+       }) { Icon(Icons.Default.DeleteOutline,contentDescription=null);Text("EXCLUIR ARQUIVO") }
+       TextButton(onClick={
+        runCatching {
+         val uri=androidx.core.content.FileProvider.getUriForFile(
+          context,context.packageName+".files",localFile)
+         val intent=Intent(Intent.ACTION_VIEW).apply {
+          setDataAndType(uri,"video/mp4")
+          addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+         }
+         context.startActivity(intent)
+        }.onFailure {
+         Toast.makeText(context,"Não foi possível reproduzir o arquivo local.",
+          Toast.LENGTH_LONG).show()
+        }
+       }) { Icon(Icons.Default.PlayCircle,contentDescription=null);Text("ASSISTIR OFFLINE") }
+      }
+      Row(horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+       TextButton(onClick={
+        val intent=Intent(Intent.ACTION_VIEW,Uri.parse(video.videoUrl))
+        runCatching { context.startActivity(intent) }
+         .onFailure { Toast.makeText(context,"Não foi possível abrir o vídeo.",Toast.LENGTH_SHORT).show() }
+       }) { Icon(Icons.Default.PlayArrow,contentDescription=null);Text("ASSISTIR") }
+       if(video.youtubeUrl != null) {
+        TextButton(onClick={
+         val intent=Intent(Intent.ACTION_VIEW,Uri.parse(video.youtubeUrl))
+         runCatching { context.startActivity(intent) }
+          .onFailure { Toast.makeText(context,"Não foi possível abrir o YouTube.",Toast.LENGTH_SHORT).show() }
+        }) { Text("YOUTUBE") }
+       }
+       TextButton(onClick={
+        val request=android.app.DownloadManager.Request(Uri.parse(video.videoUrl))
+         .setTitle(video.title)
+         .setDescription("Vídeo QRU Studio para consulta offline")
+         .setNotificationVisibility(
+          android.app.DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+         .setDestinationInExternalFilesDir(
+          context,android.os.Environment.DIRECTORY_MOVIES,"qru-studio-"+video.id+".mp4")
+        runCatching {
+         val manager=context.getSystemService(Context.DOWNLOAD_SERVICE)
+          as android.app.DownloadManager
+         manager.enqueue(request)
+        }.onSuccess { queuedId ->
+         downloadId=queuedId
+         downloadPreferences.edit().putLong(video.id,queuedId).apply()
+         downloadRequested=true
+         Toast.makeText(context,"Download iniciado. Acompanhe nas notificações.",
+          Toast.LENGTH_LONG).show()
+        }.onFailure {
+         Toast.makeText(context,"Não foi possível iniciar o download.",
+          Toast.LENGTH_LONG).show()
+        }
+       }) { Icon(Icons.Default.Download,contentDescription=null);Text("BAIXAR") }
+      }
+     }
+    }
    }
   }
   items(state.results,key={ "situation:"+it.stableKey },contentType={ "reference" }) { result ->
@@ -358,11 +828,11 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
      Text(state.message,style=MaterialTheme.typography.bodySmall)
      TextButton(onClick={vm.run()}) { Text("TENTAR NOVAMENTE") }
     }
-    Text("Vídeos ainda não disponíveis.",style=MaterialTheme.typography.bodySmall)
+
    }
   }
  }
- selected?.let { ReferenceDialog(it) { selected=null } }
+ selected?.let { ReferenceDialog(it,onDismiss={selected=null}) }
 }
 
 @Composable private fun CtbSectionCard(title:String,description:String,onClick:()->Unit) {

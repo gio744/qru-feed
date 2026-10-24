@@ -1,5 +1,6 @@
 import java.security.MessageDigest
 import java.io.File
+import java.io.IOException
 import java.net.URI
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
@@ -98,8 +99,18 @@ val bundleNormPdf = tasks.register("bundleNormPdf") {
                             val connection=URI(doc["source"] as String).toURL().openConnection()
                             connection.connectTimeout=30000;connection.readTimeout=60000
                             connection.setRequestProperty("User-Agent","QRU-document-build/1.0")
+                            val contentType=connection.contentType ?: "unknown"
+                            val status=(connection as? java.net.HttpURLConnection)?.responseCode
                             connection.getInputStream().use { input ->
                                 temporary.outputStream().use { output -> input.copyTo(output) }
+                            }
+                            val header=temporary.inputStream().use { it.readNBytes(5) }
+                            if (!header.contentEquals("%PDF-".toByteArray(Charsets.US_ASCII))) {
+                                throw IOException(
+                                    "Official PDF response is not a PDF: $name; HTTP=${status ?: "unknown"}; " +
+                                        "Content-Type=$contentType; bytes=${temporary.length()}; " +
+                                        "source=${doc["source"]}. Keep pinned SHA-256 unchanged."
+                                )
                             }
                             lastFailure=null
                             break

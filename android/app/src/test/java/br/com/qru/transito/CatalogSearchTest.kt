@@ -15,6 +15,14 @@ class CatalogSearchTest {
         IndexedReference(SearchResult("cnh","CNH vencida","162, V","504-50","BR","draft"),"carteira vencida habilitacao"),
         IndexedReference(SearchResult("pneu","Conjunto roda-pneu","230, X","660-20","BR","draft"),"roda pneu tamanho")
     )
+    @Test fun exactCodeWinsOverLowerNumberedArticle() {
+        val references = listOf(
+            IndexedReference(SearchResult("older", "Related reference", "165", "757-91", "BR", "test"), "75791"),
+            IndexedReference(SearchResult("exact", "Exact code", "230, XVIII", "672-61", "BR", "test"), "75791")
+        )
+        assertEquals("older", CatalogSearch.search(references, "757-91").first().stableKey)
+        assertEquals("exact", CatalogSearch.search(references, "672-61").first().stableKey)
+    }
     @Test fun exactArticleAndIncisoComesBeforeRelatedReferences(){
         val related = listOf(
             IndexedReference(SearchResult("outro","A referência relacionada","230, XVIII","672-61","BR","draft"),"230 V licenciamento"),
@@ -22,6 +30,27 @@ class CatalogSearchTest {
         )
         for(q in listOf("230,V","230, V","art. 230, V","ARTIGO 230 v"))
             assertEquals("licenciamento",CatalogSearch.search(related,q).first().stableKey)
+    }
+    @Test fun exact230IncisoVReturnsAllMatchingBreakdownsOnly() {
+        val references = listOf(
+            IndexedReference(SearchResult("a", "Licenciamento A", "230, V", "659-91", "BR", "draft"), "licenciamento"),
+            IndexedReference(SearchResult("b", "Licenciamento B", "230, V", "659-92", "BR", "draft"), "licenciamento"),
+            IndexedReference(SearchResult("c", "Outro inciso", "230, XVIII", "672-61", "BR", "draft"), "230 V licenciamento")
+        )
+        for (query in listOf("230, V", "230 V", "art. 230, V")) {
+            assertEquals(setOf("659-91", "659-92"),
+                CatalogSearch.search(references, query).mapNotNull { it.code }.toSet())
+        }
+    }
+    @Test fun bundled230IncisoVContainsBothRealOfflineFiches() {
+        val catalog = bundledEntries()
+        val expected = setOf("659-91", "659-92")
+        assertEquals(expected, catalog.filter { it.result.article == "230, V" }
+            .mapNotNull { it.result.code }.toSet())
+        for (query in listOf("230, V", "230 V", "art. 230, V")) {
+            assertEquals(expected, CatalogSearch.search(catalog, query)
+                .mapNotNull { it.code }.toSet())
+        }
     }
     @Test fun articleDoesNotConfuse165With165A(){assertEquals(listOf("alcool"),CatalogSearch.search(entries,"artigo 165").map{it.stableKey})}
     @Test fun hyphenatedArticleKeepsLetter(){assertEquals(listOf("recusa"),CatalogSearch.search(entries,"165-A").map{it.stableKey})}
@@ -45,6 +74,19 @@ class CatalogSearchTest {
         val codes=CatalogSearch.search(catalog,"pneu").mapNotNull { it.code }.toSet()
         assertTrue(codes.containsAll(setOf("661-02","664-50","672-61")))
         assertEquals(setOf("661-02","664-50","672-61","663-71","663-72"),codes)
+    }
+
+    @Test fun alcoholRefusalCatalogKeepsNewCodesAndLabelsLegacyAsHistorical() {
+        val json=JsonParser.parseString(File("src/main/assets/initial-index.json").readText()).asJsonObject
+        val refusal=json.getAsJsonArray("items").map { it.asJsonObject }
+            .filter { it.get("article").asString=="165-A" }
+        val byCode=refusal.associateBy { it.get("code").asString }
+        assertTrue(byCode.keys.containsAll(setOf("757-91","757-92")))
+        assertTrue(byCode["757-91"]!!.get("title").asString.contains("álcool"))
+        assertTrue(byCode["757-92"]!!.get("title").asString.contains("substância"))
+        assertTrue(byCode["757-90"]!!.get("title").asString.contains("anterior"))
+        assertEquals("757-91",CatalogSearch.search(bundledEntries(),"75791").first().code)
+        assertEquals("757-92",CatalogSearch.search(bundledEntries(),"75792").first().code)
     }
 
     private fun bundledEntries(): List<IndexedReference> {
