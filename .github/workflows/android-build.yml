@@ -69,11 +69,19 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          run_id=$(gh run list --repo "${{ github.repository }}" --workflow contran-pdf-staging.yml --status success --limit 20 --json databaseId --jq '.[0].databaseId')
-          test -n "$run_id"
           mkdir -p /tmp/qru-contran-stage
-          gh run download "$run_id" --repo "${{ github.repository }}" --name contran-pdfs-1026-1029-staging --dir /tmp/qru-contran-stage
-          python3 scripts/restore_verified_contran_pdfs.py /tmp/qru-contran-stage android/app/build/generated/normAssets/norms
+          restored=false
+          for run_id in $(gh run list --repo "${{ github.repository }}" --workflow contran-pdf-staging.yml --status success --limit 20 --json databaseId --jq '.[].databaseId'); do
+            if gh run download "$run_id" --repo "${{ github.repository }}" --name contran-pdfs-1026-1029-staging --dir /tmp/qru-contran-stage; then
+              python3 scripts/restore_verified_contran_pdfs.py /tmp/qru-contran-stage android/app/build/generated/normAssets/norms
+              restored=true
+              break
+            fi
+            rm -rf /tmp/qru-contran-stage/*
+          done
+          if [ "$restored" != true ]; then
+            echo "No downloadable successful CONTRAN staging artifact found; Gradle will retrieve SHA-pinned originals."
+          fi
 
       - name: Compile and unit test
         working-directory: android
