@@ -24,7 +24,7 @@ def validate(entries):
         if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
             raise ValueError(f"Missing or invalid SHA-256 for {name}")
         source = doc.get("source")
-        if not isinstance(source, str) or not source.startswith("https://www.gov.br/"):
+        if not isinstance(source, str) or not re.fullmatch(r"https://www\\.gov\\.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/[A-Za-z0-9._-]+\\.pdf/@@display-file/file", source):
             raise ValueError(f"Unapproved PDF source for {name}")
         pages = doc.get("pageCount")
         if type(pages) is not int or pages < 1:
