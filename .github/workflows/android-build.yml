@@ -2,9 +2,9 @@ name: QRU Android Build
 on:
   workflow_dispatch:
   push:
-    paths: ['android/**','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json','android/app/src/main/assets/norms/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py','.github/workflows/android-build.yml']
+    paths: ['android/**','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json','android/app/src/main/assets/norms/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py','scripts/validate_norm_pdf_catalog.py','.github/workflows/android-build.yml']
   pull_request:
-    paths: ['android/**','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py']
+    paths: ['android/**','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py','scripts/validate_norm_pdf_catalog.py']
 jobs:
   debug-apk:
     runs-on: ubuntu-latest
@@ -49,6 +49,9 @@ jobs:
         run: |
           python scripts/validate_operational_drafts.py
           python -m unittest discover -s scripts -p 'test_validate_operational_drafts.py' -v
+
+      - name: Validate SHA-pinned offline PDF catalog
+        run: python3 scripts/validate_norm_pdf_catalog.py
 
       - name: Audit offline PDF reference ranges
         run: python scripts/audit_reference_ranges.py
