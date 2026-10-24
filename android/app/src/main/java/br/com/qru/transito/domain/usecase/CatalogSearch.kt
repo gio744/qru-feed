@@ -53,13 +53,13 @@ object CatalogSearch {
             val exactInciso = incisoQuery && resultParts.joinToString(",") == exactIncisoKey
             val exactArticle = numericQuery && normalize(result.article.orEmpty()).substringBefore(',')
                 .replace(Regex("[^a-z0-9]"), "") == numericKey
-            if (incisoQuery && !exactInciso) null
+            if (incisoQuery && !exactInciso && !exactCode) null
             else if (numericQuery && !exactCode && !exactArticle) null
             else if (!exactCode && matches < (tokens.size + 1) / 2) null
             else (if (exactCode) 1000 else if (exactInciso) 800 else if (exactArticle) 300 else 0) +
                 (if (genericTyreQuery && code == "67261") 150 else 0) +
                 matches * 20 + tokens.count { title.contains(it) } * 5 to result
-        }.sortedWith(if (numericQuery) compareBy<Pair<Int, SearchResult>> { articleOrder(it.second.article).first }.thenBy { articleOrder(it.second.article).second }.thenByDescending { it.first }.thenBy { it.second.title } else compareByDescending<Pair<Int, SearchResult>> { it.first }.thenBy { articleOrder(it.second.article).first }.thenBy { articleOrder(it.second.article).second }.thenBy { it.second.title })
+        }.sortedWith(compareByDescending<Pair<Int, SearchResult>> { it.first }.thenBy { articleOrder(it.second.article).first }.thenBy { articleOrder(it.second.article).second }.thenBy { it.second.title })
             .take(50).map { it.second }
     }
 }
