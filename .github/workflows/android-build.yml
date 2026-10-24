@@ -11,6 +11,7 @@ jobs:
     timeout-minutes: 25
     permissions:
       contents: read
+      actions: read
     env:
       ANDROID_COMPILE_SDK: "35"
     steps:
@@ -50,9 +51,41 @@ jobs:
       - name: Validate operational card editorial metadata
         run: python scripts/validate_operational_cards.py
 
+      - name: Restore previously verified PDF cache
+        uses: actions/cache/restore@v4
+        with:
+          path: android/app/build/generated/normAssets/norms
+          key: qru-norms-sha256-${{ hashFiles('android/app/src/main/assets/norms/pdf-catalog.json') }}
+          restore-keys: |
+            qru-norms-sha256-
+
+      - name: Restore SHA-pinned CONTRAN staging PDFs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          run_id=$(gh run list --repo "${{ github.repository }}" --workflow contran-pdf-staging.yml --status success --limit 20 --json databaseId --jq '.[0].databaseId')
+          test -n "$run_id"
+          mkdir -p /tmp/qru-contran-stage
+          gh run download "$run_id" --repo "${{ github.repository }}" --name contran-pdfs-1026-1029-staging --dir /tmp/qru-contran-stage
+          python3 scripts/restore_verified_contran_pdfs.py /tmp/qru-contran-stage android/app/build/generated/normAssets/norms
+
       - name: Compile and unit test
         working-directory: android
         run: gradle -PqruParallelTest testDebugUnitTest assembleDebug --stacktrace --warning-mode all
+
+      - name: Verify cached PDFs before saving
+        if: always()
+        id: pdf-cache-verification
+        continue-on-error: true
+        run: python3 scripts/verify_cached_norm_pdfs.py
+
+      - name: Save verified PDF cache even after a build failure
+        if: always() && steps.pdf-cache-verification.outcome == 'success'
+        uses: actions/cache/save@v4
+        with:
+          path: android/app/build/generated/normAssets/norms
+          key: qru-norms-sha256-${{ hashFiles('android/app/src/main/assets/norms/pdf-catalog.json') }}
 
       - name: Verify and register APK
         run: |
