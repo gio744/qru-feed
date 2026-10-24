@@ -29,7 +29,10 @@ data class OperationalReference(
         if (review.unresolvedIssues.any { it.isBlank() }) add("blank_unresolved_issue")
         if (review.reviewer.isNotBlank() && (review.reviewer.trim().length < 3 || review.reviewer.none { it.isLetter() })) add("invalid_reviewer")
         val statements = whenApplicable + exceptions + observations +
-            measures.flatMap { listOf(it.rule) + it.conditions }
+            measures.flatMap { measure ->
+                listOf(measure.rule) + measure.conditions +
+                    listOfNotNull(measure.deadline?.legalBasis)
+            }
         if (statements.any { it.text.isBlank() || it.evidence.isEmpty() ||
                     it.evidence.any { source -> !source.isComplete() } }) add("incomplete_evidence")
         if (measures.any { it.kind != AdministrativeMeasureKind.NONE && it.conditions.isEmpty() })
