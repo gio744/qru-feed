@@ -73,6 +73,8 @@ jobs:
           restored=false
           for run_id in $(gh run list --repo "${{ github.repository }}" --workflow contran-pdf-staging.yml --status success --limit 20 --json databaseId --jq '.[].databaseId'); do
             if gh run download "$run_id" --repo "${{ github.repository }}" --name contran-pdfs-1026-1029-staging --dir /tmp/qru-contran-stage; then
+              # An artifact that downloads but fails verification must stop the build.
+              # Never silently replace a suspicious staged document.
               python3 scripts/restore_verified_contran_pdfs.py /tmp/qru-contran-stage android/app/build/generated/normAssets/norms
               restored=true
               break
