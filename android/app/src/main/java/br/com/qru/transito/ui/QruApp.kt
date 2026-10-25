@@ -81,8 +81,13 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   ModalNavigationDrawer(drawerState=drawer,drawerContent={
    ModalDrawerSheet {
     Column(Modifier.padding(24.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
-     QruWordmark(compact=true)
-     Text("QUAL A SITUAÇÃO",style=MaterialTheme.typography.labelLarge)
+     Row(verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)) {
+      Image(painter=painterResource(R.drawable.qru_neo_q_mark),contentDescription="Símbolo Q azul-neon do QRU",modifier=Modifier.size(54.dp).testTag("qru_neo_drawer_mark"))
+      Column {
+       Text("QRU NEO",color=Color(0xFFBCE8FF),fontWeight=FontWeight.Bold,style=MaterialTheme.typography.titleLarge)
+       Text("QUAL A SITUAÇÃO",color=Color(0xFF879AAF),style=MaterialTheme.typography.labelMedium)
+      }
+     }
     }
     NavigationDrawerItem(label={Text("Como usar")},selected=false,
      icon={Icon(Icons.Default.HelpOutline,null)},onClick={support="help";scope.launch{drawer.close()}})
@@ -93,13 +98,20 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
     TextButton(onClick={scope.launch{drawer.close()}},modifier=Modifier.padding(12.dp)){Text("FECHAR MENU")}
    }
   }){
-   Scaffold(bottomBar={NavigationBar(containerColor=Color(0xFF15101E)){
+   Scaffold(bottomBar={NavigationBar(containerColor=Color(0xFF0B1727)){
     QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},modifier=Modifier.testTag("tab_"+item.name),
      icon={Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
-     label={Text(item.label)})}
+     label={Text(item.label)},
+     colors=NavigationBarItemDefaults.colors(
+      selectedIconColor=Color(0xFFBCE8FF),
+      selectedTextColor=Color(0xFFBCE8FF),
+      indicatorColor=Color(0xFF173D65),
+      unselectedIconColor=Color(0xFF879AAF),
+      unselectedTextColor=Color(0xFF879AAF)
+     ))}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
     tabStates.SaveableStateProvider(tab.name) {
-     if(tab==QruTab.BUSCA) SearchHome{scope.launch{drawer.open()}} else CatalogPage(tab)
+     if(tab==QruTab.BUSCA) SearchHome(onMenu={scope.launch{drawer.open()}},onNavigate={tab=it}) else CatalogPage(tab)
     }
    }}
   }
@@ -124,7 +136,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  }
 }
 
-@Composable private fun SearchHome(onMenu:()->Unit){
+@Composable private fun SearchHome(onMenu:()->Unit,onNavigate:(QruTab)->Unit){
  val context=LocalContext.current
  val app=context.applicationContext as QruApplication
  val vm:SearchViewModel=viewModel(factory=SearchViewModelFactory(app.searchLegalContent))
@@ -187,11 +199,11 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   item(key="search_header") {
    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(10.dp)) {
   Box(Modifier.fillMaxWidth().background(
-   brush=Brush.linearGradient(listOf(Color(0xFF241047),Color(0xFF5620A0),Color(0xFF35114D))),
+   brush=Brush.linearGradient(listOf(Color(0xFF0B203A),Color(0xFF164F86),Color(0xFF102B49))),
    shape=RoundedCornerShape(24.dp)
-  ).border(1.dp,Color(0xFF6D3BA0),RoundedCornerShape(24.dp)).padding(vertical=18.dp,horizontal=10.dp)) {
+  ).border(1.dp,Color(0xFF368BD4),RoundedCornerShape(24.dp)).padding(vertical=12.dp,horizontal=10.dp)) {
   Column(Modifier.fillMaxWidth(),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(4.dp)) {
-  QruWordmark()
+  QruWordmark(compact=true)
   Text("QUAL A SITUAÇÃO",style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.secondary)
   }
    IconButton(onClick=onMenu,modifier=Modifier.align(Alignment.TopStart)){Icon(Icons.Default.Menu,"Abrir menu")}
@@ -200,22 +212,44 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    leadingIcon={IconButton(onClick={keyboard?.hide();vm.run()},enabled=state.query.isNotBlank()){Icon(Icons.Default.Search,"Executar consulta")}},
    trailingIcon={IconButton({voice()}){Icon(Icons.Default.Mic,"Pesquisa por voz")}},singleLine=true,
    keyboardOptions=KeyboardOptions(imeAction=ImeAction.Search),
-   keyboardActions=KeyboardActions(onSearch={keyboard?.hide();vm.run()}))
+   keyboardActions=KeyboardActions(onSearch={keyboard?.hide();vm.run()}),
+   shape=RoundedCornerShape(18.dp),
+   colors=OutlinedTextFieldDefaults.colors(
+    focusedBorderColor=Color(0xFF62B9FF),
+    unfocusedBorderColor=Color(0xFF52718F),
+    focusedContainerColor=Color(0xFF101D30),
+    unfocusedContainerColor=Color(0xFF101D30),
+    cursorColor=Color(0xFF9BD7FF)
+   ))
   if(state.loading) LinearProgressIndicator(Modifier.fillMaxWidth())
   Text("CONSULTA OPERACIONAL  •  CATÁLOGO OFFLINE", style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.secondary)
+   }
+  }
+  if(state.query.isBlank()) item(key="neo_navigation") {
+   Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(10.dp)) {
+    Text("EXPLORAR QRU",style=MaterialTheme.typography.labelLarge,
+     color=Color(0xFF9BD7FF),fontWeight=FontWeight.SemiBold)
+    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+     QruNeoNavigationTile("CTB",Icons.Default.MenuBook,Color(0xFF62B9FF),Modifier.weight(1f)){onNavigate(QruTab.CTB)}
+     QruNeoNavigationTile("Normas",Icons.Default.Gavel,Color(0xFFB49BFF),Modifier.weight(1f)){onNavigate(QruTab.NORMAS)}
+     QruNeoNavigationTile("Situações",Icons.Default.PlayCircle,Color(0xFF63D8BD),Modifier.weight(1f)){onNavigate(QruTab.SITUACOES)}
+     QruNeoNavigationTile("Novidades",Icons.Default.NewReleases,Color(0xFFFFCF70),Modifier.weight(1f)){onNavigate(QruTab.NOVIDADES)}
+    }
    }
   }
   if(state.query.isBlank()) item(key="quick_access") {
    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(12.dp)) {
     Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically) {
-     Text("ACESSO RÁPIDO",Modifier.weight(1f),style=MaterialTheme.typography.labelLarge,
-      color=Color(0xFFD9B6FF),fontWeight=FontWeight.SemiBold)
+     Text("SEU PAINEL OPERACIONAL",Modifier.weight(1f),style=MaterialTheme.typography.labelLarge,
+      color=Color(0xFF9BD7FF),fontWeight=FontWeight.SemiBold)
      TextButton(onClick={editingQuick=!editingQuick}) {
       Icon(Icons.Default.Edit,null,Modifier.size(16.dp))
       Spacer(Modifier.width(4.dp))
       Text(if(editingQuick) "CONCLUIR" else "PERSONALIZAR")
      }
     }
+    Text("Consulte em segundos os artigos mais utilizados na fiscalização.",
+     style=MaterialTheme.typography.bodySmall,color=Color(0xFFB6C9DC))
     for(row in 0..1) {
      Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(10.dp)) {
       for(column in 0..1) {
@@ -229,7 +263,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
       }
      }
     }
-    Text("CONSULTAS FREQUENTES",style=MaterialTheme.typography.labelSmall,color=Color(0xFFD9B6FF))
+    Text("CONSULTAS FREQUENTES",style=MaterialTheme.typography.labelSmall,color=Color(0xFF9BD7FF))
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
      listOf("165-A","230 XVIII","181").forEach { term ->
       SuggestionChip(onClick={vm.query(term);vm.run()},label={Text(term)})
@@ -255,7 +289,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
      }
     }
     Text("Atalhos de pesquisa. Confira sempre a fonte oficial e a regra aplicável ao fato.",
-     style=MaterialTheme.typography.bodySmall,color=Color(0xFFB9A9C9))
+     style=MaterialTheme.typography.bodySmall,color=Color(0xFFB6C9DC))
    }
   }
   // Full-article queries are grouped into collapsible legal subdivisions.
@@ -264,7 +298,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   if(articleNumber!=null && state.results.isNotEmpty()) {
    item(key="article_hierarchy_header") {
     Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(4.dp)) {
-     Text("ART. $articleNumber • DESDOBRAMENTOS",color=Color(0xFFD9B6FF),
+     Text("ART. $articleNumber • DESDOBRAMENTOS",color=Color(0xFF9BD7FF),
       style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.Bold)
      Text("Os incisos começam recolhidos. Toque para consultar os enquadramentos.",
       style=MaterialTheme.typography.bodySmall)
@@ -282,13 +316,13 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
      val groupKey="$articleNumber:$inciso"
      val expanded=groupKey in expandedIncisos
      Column(verticalArrangement=Arrangement.spacedBy(8.dp)) {
-      Surface(onClick={expandedIncisos=if(expanded) expandedIncisos-groupKey else expandedIncisos+groupKey},color=Color(0xFF24182F),
+      Surface(onClick={expandedIncisos=if(expanded) expandedIncisos-groupKey else expandedIncisos+groupKey},color=Color(0xFF14263B),
        shape=RoundedCornerShape(14.dp),
-       border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF49305F))) {
+       border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF315B83))) {
        Row(Modifier.fillMaxWidth().padding(horizontal=14.dp,vertical=12.dp),
         verticalAlignment=Alignment.CenterVertically) {
         Text(if(inciso.isBlank()) "ARTIGO $articleNumber" else "INCISO $inciso",
-         modifier=Modifier.weight(1f),fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
+         modifier=Modifier.weight(1f),fontWeight=FontWeight.SemiBold,color=Color(0xFFA8DBFF))
         Text("${results.size} ${if(results.size==1) "enquadramento" else "enquadramentos"}",style=MaterialTheme.typography.labelSmall)
         Spacer(Modifier.width(6.dp))
         Icon(if(expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
@@ -354,47 +388,63 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     try { context.startActivity(Intent(Intent.ACTION_VIEW,uri)) }
     catch(_:ActivityNotFoundException) { Toast.makeText(context,"Não foi possível abrir a fonte.",Toast.LENGTH_LONG).show() }
 }
+@Composable private fun QruNeoNavigationTile(label:String,icon:androidx.compose.ui.graphics.vector.ImageVector,
+ accent:Color,modifier:Modifier=Modifier,onClick:()->Unit) {
+ Card(onClick=onClick,modifier=modifier.heightIn(min=90.dp),
+  shape=RoundedCornerShape(16.dp),
+  colors=CardDefaults.cardColors(containerColor=Color(0xFF101D30)),
+  border=androidx.compose.foundation.BorderStroke(1.dp,accent.copy(alpha=0.55f))) {
+  Column(Modifier.fillMaxWidth().padding(vertical=12.dp,horizontal=4.dp),
+   horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(8.dp)) {
+   Icon(icon,contentDescription=null,tint=accent,modifier=Modifier.size(26.dp))
+   Text(label,style=MaterialTheme.typography.labelSmall,color=Color(0xFFF2F7FF),maxLines=1)
+  }
+ }
+}
+
 @Composable private fun QruQuickAction(label:String,icon:androidx.compose.ui.graphics.vector.ImageVector,
  modifier:Modifier=Modifier,onClick:()->Unit) {
  Card(onClick=onClick,modifier=modifier.heightIn(min=84.dp),
-  colors=CardDefaults.cardColors(containerColor=Color(0xFF21172E)),
-  border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF49305F)),
+  colors=CardDefaults.cardColors(containerColor=Color(0xFF112338)),
+  border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF315B83)),
   shape=RoundedCornerShape(18.dp)) {
   Column(Modifier.fillMaxWidth().padding(14.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
-   Icon(icon,contentDescription=null,tint=Color(0xFFC48DFF))
-   Text(label,style=MaterialTheme.typography.labelLarge,color=Color(0xFFF0E5FA))
+   Box(Modifier.size(36.dp).background(Color(0xFF173C5D),RoundedCornerShape(12.dp)),contentAlignment=Alignment.Center) {
+    Icon(icon,contentDescription=null,tint=Color(0xFF9BD7FF),modifier=Modifier.size(22.dp))
+   }
+   Text(label,style=MaterialTheme.typography.labelLarge,color=Color(0xFFEDF6FF),fontWeight=FontWeight.SemiBold)
   }
  }
 }
 
 @Composable private fun ReferenceCard(result:SearchResult,onClick:()->Unit) {
     Card(onClick=onClick,modifier=Modifier.fillMaxWidth().testTag("reference_card")
-        .border(1.dp,Color(0xFF49305F),RoundedCornerShape(18.dp)),
+        .border(1.dp,Color(0xFF315B83),RoundedCornerShape(18.dp)),
         shape=RoundedCornerShape(18.dp),
-        colors=CardDefaults.cardColors(containerColor=Color(0xFF191326))) {
+        colors=CardDefaults.cardColors(containerColor=Color(0xFF101D30))) {
         Column(Modifier.padding(16.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
             Text(result.title,style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.SemiBold)
             Text("Art. ${result.article.orEmpty()}  •  ${result.code.orEmpty()}",
-                color=Color(0xFFD2A8FF),style=MaterialTheme.typography.bodyMedium)
-            Text("REFERÊNCIA EM CONFERÊNCIA",color=Color(0xFFB9A9C9),
+                color=Color(0xFFA8DBFF),style=MaterialTheme.typography.bodyMedium)
+            Text("REFERÊNCIA EM CONFERÊNCIA",color=Color(0xFFB6C9DC),
                 style=MaterialTheme.typography.labelSmall)
         }
     }
 }
 @Composable private fun QruExpandableSection(title:String,referenceKey:String,initiallyOpen:Boolean=false,content:@Composable ColumnScope.()->Unit) {
  var expanded by rememberSaveable(referenceKey,title) { mutableStateOf(initiallyOpen) }
- Surface(color=Color(0xFF21172E),shape=RoundedCornerShape(16.dp),
-  border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF49305F))) {
+ Surface(color=Color(0xFF112338),shape=RoundedCornerShape(16.dp),
+  border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF315B83))) {
   Column {
    Row(Modifier.fillMaxWidth().clickable { expanded=!expanded }.padding(14.dp),
     verticalAlignment=Alignment.CenterVertically) {
     Text(title,Modifier.weight(1f),style=MaterialTheme.typography.labelLarge,
-     color=Color(0xFFE1C3FF),fontWeight=FontWeight.SemiBold)
+     color=Color(0xFFB9E3FF),fontWeight=FontWeight.SemiBold)
     Icon(if(expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-     contentDescription=if(expanded) "Recolher" else "Expandir",tint=Color(0xFFC48DFF))
+     contentDescription=if(expanded) "Recolher" else "Expandir",tint=Color(0xFF78C5FF))
    }
    if(expanded) {
-    HorizontalDivider(color=Color(0xFF49305F))
+    HorizontalDivider(color=Color(0xFF315B83))
     Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(8.dp),content=content)
    }
   }
@@ -441,21 +491,21 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             }.getOrNull()
         }
     }
-    AlertDialog(onDismissRequest=onDismiss,containerColor=Color(0xFF191326),shape=RoundedCornerShape(24.dp),title={Text(result.title,fontWeight=FontWeight.SemiBold)},text={
+    AlertDialog(onDismissRequest=onDismiss,containerColor=Color(0xFF101D30),shape=RoundedCornerShape(24.dp),title={Text(result.title,fontWeight=FontWeight.SemiBold)},text={
         Column(Modifier.verticalScroll(androidx.compose.foundation.rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
-            Text("Art. ${result.article.orEmpty()}  •  código ${result.code.orEmpty()}",color=Color(0xFFD2A8FF),style=MaterialTheme.typography.labelLarge)
+            Text("Art. ${result.article.orEmpty()}  •  código ${result.code.orEmpty()}",color=Color(0xFFA8DBFF),style=MaterialTheme.typography.labelLarge)
             if(position!=null && total!=null && total>1) {
                 Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.SpaceBetween) {
                     TextButton(onClick={onPrevious ?: {}},enabled=onPrevious!=null) { Text("ANTERIOR") }
-                    Text("$position de $total",style=MaterialTheme.typography.labelSmall,color=Color(0xFFD2A8FF))
+                    Text("$position de $total",style=MaterialTheme.typography.labelSmall,color=Color(0xFFA8DBFF))
                     TextButton(onClick={onNext ?: {}},enabled=onNext!=null) { Text("PRÓXIMA") }
                 }
             }
             if (approvedOperationalFiche == null) {
-                Text("REFERÊNCIA EM CONFERÊNCIA • validação jurídica pendente",color=Color(0xFFD7BDDE),style=MaterialTheme.typography.labelSmall)
+                Text("REFERÊNCIA EM CONFERÊNCIA • validação jurídica pendente",color=Color(0xFFB5CDE2),style=MaterialTheme.typography.labelSmall)
                 Text("As seções abaixo não constituem orientação de autuação enquanto não houver aprovação editorial.",style=MaterialTheme.typography.bodySmall)
             } else {
-                Text("ORIENTAÇÃO OPERACIONAL APROVADA • confira a vigência e as fontes",color=Color(0xFFBCE7D0),style=MaterialTheme.typography.labelSmall)
+                Text("ORIENTAÇÃO OPERACIONAL APROVADA • confira a vigência e as fontes",color=Color(0xFF8CE5CA),style=MaterialTheme.typography.labelSmall)
             }
             result.source?.let { source ->
                 OutlinedButton(onClick={openOfficialSource(context,source)},modifier=Modifier.fillMaxWidth()) {
@@ -492,7 +542,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                     Text("Exemplos específicos deste enquadramento aguardam revisão e aprovação editorial. Consulte o MBFT e a norma vigente antes de preencher o AIT.")
                 } else {
                     examples.forEachIndexed { index,item ->
-                        Text("EXEMPLO ${index+1}",fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
+                        Text("EXEMPLO ${index+1}",fontWeight=FontWeight.SemiBold,color=Color(0xFFA8DBFF))
                         Text(item.text)
                         OutlinedButton(onClick={
                             val clipboard=context.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager
@@ -508,7 +558,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                                 Text("Fundamento: ${source.locator}",style=MaterialTheme.typography.bodySmall)
                             }
                         }
-                        HorizontalDivider(color=Color(0xFF49305F))
+                        HorizontalDivider(color=Color(0xFF315B83))
                     }
                 }
             }
@@ -516,13 +566,13 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             Text("Nenhuma combinação ou enquadramento alternativo é sugerido automaticamente.",fontWeight=FontWeight.SemiBold)
             Text("Para comparar referências, utilize a busca do QRU e abra cada ficha individual. Verifique os elementos de cada infração, a responsabilidade e a regra aplicável à data do fato.",style=MaterialTheme.typography.bodySmall)
             Text("A coexistência de artigos em uma pesquisa não comprova concurso de infrações nem autoriza autuação cumulativa.",style=MaterialTheme.typography.bodySmall)
-            HorizontalDivider(color=Color(0xFF49305F))
-            Text("ANÁLISE DE ALTERNATIVAS",fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
+            HorizontalDivider(color=Color(0xFF315B83))
+            Text("ANÁLISE DE ALTERNATIVAS",fontWeight=FontWeight.SemiBold,color=Color(0xFFA8DBFF))
             Text("Se os requisitos deste enquadramento não estiverem presentes, examine outras hipóteses somente quando os fatos constatados e a legislação vigente as sustentarem.",style=MaterialTheme.typography.bodySmall)
-            Text("INFRAÇÃO NÃO CARACTERIZADA COM OS DADOS DISPONÍVEIS",fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
+            Text("INFRAÇÃO NÃO CARACTERIZADA COM OS DADOS DISPONÍVEIS",fontWeight=FontWeight.SemiBold,color=Color(0xFFA8DBFF))
             Text("Quando não houver elementos suficientes para caracterizar uma infração, não presuma outra apenas para gerar uma autuação. A ausência de comprovação não equivale a uma conclusão definitiva sobre todos os fatos.",style=MaterialTheme.typography.bodySmall)
-            HorizontalDivider(color=Color(0xFF49305F))
-            Text("CHECKLIST PARA CONFERÊNCIA",fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
+            HorizontalDivider(color=Color(0xFF315B83))
+            Text("CHECKLIST PARA CONFERÊNCIA",fontWeight=FontWeight.SemiBold,color=Color(0xFFA8DBFF))
             Text("1. Qual fato foi diretamente constatado? Registre apenas os elementos observáveis.",style=MaterialTheme.typography.bodySmall)
             Text("2. Todos os requisitos do enquadramento consultado estão presentes? Confira a ficha oficial vigente.",style=MaterialTheme.typography.bodySmall)
             Text("3. Existe alguma condição, exceção ou regra especial aplicável ao veículo, condutor ou circunstância?",style=MaterialTheme.typography.bodySmall)
@@ -536,7 +586,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                     "RETENTION" -> "RETENÇÃO"
                     "REMOVAL" -> "REMOÇÃO"
                     else -> "SEM MEDIDA PREVISTA NA FICHA"
-                },fontWeight=FontWeight.SemiBold,color=Color(0xFFD2A8FF))
+                },fontWeight=FontWeight.SemiBold,color=Color(0xFFA8DBFF))
                 Text(item.rule.text)
                 item.rule.evidence.forEach { source ->
                     TextButton(onClick={ openOfficialSource(context, source.url) }) {
@@ -563,7 +613,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                 item.systemDependency?.let { dependency ->
                     Text("DEPENDÊNCIA OPERACIONAL: $dependency",style=MaterialTheme.typography.bodySmall)
                 }
-                HorizontalDivider(color=Color(0xFF49305F))
+                HorizontalDivider(color=Color(0xFF315B83))
             }
             }
             Text(result.reviewStatus,style=MaterialTheme.typography.bodySmall)
