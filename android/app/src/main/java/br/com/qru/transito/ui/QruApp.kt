@@ -81,8 +81,13 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   ModalNavigationDrawer(drawerState=drawer,drawerContent={
    ModalDrawerSheet {
     Column(Modifier.padding(24.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
-     QruWordmark(compact=true)
-     Text("QUAL A SITUAÇÃO",style=MaterialTheme.typography.labelLarge)
+     Row(verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)) {
+      Image(painter=painterResource(R.drawable.qru_neo_q_mark),contentDescription="Símbolo experimental QRU NEO",modifier=Modifier.size(54.dp))
+      Column {
+       Text("QRU NEO",color=Color(0xFFBCE8FF),fontWeight=FontWeight.Bold,style=MaterialTheme.typography.titleLarge)
+       Text("QUAL A SITUAÇÃO",color=Color(0xFF879AAF),style=MaterialTheme.typography.labelMedium)
+      }
+     }
     }
     NavigationDrawerItem(label={Text("Como usar")},selected=false,
      icon={Icon(Icons.Default.HelpOutline,null)},onClick={support="help";scope.launch{drawer.close()}})
