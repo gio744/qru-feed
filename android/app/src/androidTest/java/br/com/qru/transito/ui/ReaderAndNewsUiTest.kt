@@ -142,7 +142,8 @@ class ReaderAndNewsUiTest {
     ui.onAllNodesWithText("ABRIR FICHA").fetchSemanticsNodes().isNotEmpty()
    }
    androidx.test.espresso.Espresso.pressBack()
-   ui.onNodeWithTag("tab_BUSCA").performClick()
+   ui.onNodeWithContentDescription("Abrir menu").performClick()
+   ui.onNodeWithText("Busca").performClick()
    ui.onNodeWithTag("search_results").performScrollToIndex(0)
    ui.onNodeWithTag("search_query").assertTextContains("licenciamento")
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("659-92",substring=true)
