@@ -92,7 +92,14 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
      label={Text(item.label)})}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
     tabStates.SaveableStateProvider(tab.name) {
-     if(tab==QruTab.BUSCA) SearchHome{scope.launch{drawer.open()}} else CatalogPage(tab)
+     if(tab==QruTab.BUSCA) SearchHome{scope.launch{drawer.open()}} else {
+      CatalogPage(tab)
+      // Keep the navigation drawer accessible from every section.
+      IconButton(
+       onClick={scope.launch{drawer.open()}},
+       modifier=Modifier.align(Alignment.TopEnd)
+      ){ Icon(Icons.Default.Menu,"Abrir menu") }
+     }
     }
    }}
   }
