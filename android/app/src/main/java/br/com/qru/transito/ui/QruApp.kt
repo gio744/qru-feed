@@ -49,7 +49,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.google.gson.Gson
 
-enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),SITUACOES("Situações"),NOVIDADES("Novidades")}
+enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),SITUACOES("Situações"),NOVIDADES("Novidades"),MAIS("Mais")}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable fun QruApp(){
@@ -77,14 +77,16 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
      icon={Icon(Icons.Default.HelpOutline,null)},onClick={support="help";scope.launch{drawer.close()}})
     NavigationDrawerItem(label={Text("Fontes oficiais")},selected=false,
      icon={Icon(Icons.Default.MenuBook,null)},onClick={tab=QruTab.NORMAS;scope.launch{drawer.close()}})
+    NavigationDrawerItem(label={Text("Novidades")},selected=false,
+     icon={Icon(Icons.Default.Notifications,null)},onClick={tab=QruTab.NOVIDADES;scope.launch{drawer.close()}})
     NavigationDrawerItem(label={Text("Sobre o QRU")},selected=false,
      icon={Icon(Icons.Default.Info,null)},onClick={support="about";scope.launch{drawer.close()}})
     TextButton(onClick={scope.launch{drawer.close()}},modifier=Modifier.padding(12.dp)){Text("FECHAR MENU")}
    }
   }){
    Scaffold(bottomBar={NavigationBar{
-    QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},modifier=Modifier.testTag("tab_"+item.name),
-     icon={Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
+    listOf(QruTab.CTB,QruTab.NORMAS,QruTab.BUSCA,QruTab.SITUACOES,QruTab.MAIS).forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},modifier=Modifier.testTag("tab_"+item.name),
+     icon={if(item==QruTab.BUSCA) Text("Q?",style=MaterialTheme.typography.headlineMedium,fontWeight=FontWeight.Bold,color=MaterialTheme.colorScheme.primary) else Icon(when(item){QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.MAIS->Icons.Default.GridView;else->Icons.Default.Search},item.label)},
      label={Text(item.label)})}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
     tabStates.SaveableStateProvider(tab.name) {
@@ -300,6 +302,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     val context=LocalContext.current
     val app=context.applicationContext as QruApplication
     if(tab==QruTab.SITUACOES) { SituationsPage();return }
+    if(tab==QruTab.MAIS) { MoreLibraryPage(onOpenNorms={ /* Normas estão no rodapé */ });return }
     Column(Modifier.fillMaxSize().verticalScroll(androidx.compose.foundation.rememberScrollState()).padding(20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
         Text(tab.label,style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.primary)
         when(tab) {
@@ -385,4 +388,45 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
   contentScale=ContentScale.Fit,
   modifier=Modifier.width(if(compact) 144.dp else 180.dp).height(if(compact) 48.dp else 64.dp)
  )
+}
+
+
+/** Biblioteca especializada: entradas em preparação não simulam conteúdo publicado. */
+@Composable private fun MoreLibraryPage(onOpenNorms:()->Unit) {
+ val topics=listOf(
+  "MBFT" to "Manual Brasileiro de Fiscalização",
+  "Sinalização" to "Placas e marcas viárias",
+  "Equipamentos" to "Requisitos e irregularidades",
+  "Alcoolemia" to "Testes e procedimentos",
+  "Guias operacionais" to "Orientações de fiscalização",
+  "Habilitação" to "CNH, PPD e categorias",
+  "Engate" to "Requisitos técnicos",
+  "Dicionário" to "Termos de trânsito",
+  "Crimes" to "Crimes de trânsito",
+  "Sinistros" to "Providências administrativas",
+  "Licenciamento" to "Documentos e regularização",
+  "Velocidade" to "Limites e fiscalização",
+  "Acordos" to "Regras internacionais",
+  "Anotações" to "Recurso futuro"
+ )
+ Column(Modifier.fillMaxSize().verticalScroll(androidx.compose.foundation.rememberScrollState()).padding(16.dp),
+  verticalArrangement=Arrangement.spacedBy(12.dp)) {
+  Text("Central QRU",style=MaterialTheme.typography.headlineMedium,color=MaterialTheme.colorScheme.primary)
+  Text("Biblioteca especializada • conteúdo em expansão",style=MaterialTheme.typography.bodySmall)
+  topics.chunked(2).forEach { pair ->
+   Row(horizontalArrangement=Arrangement.spacedBy(10.dp),modifier=Modifier.fillMaxWidth()) {
+    pair.forEach { (title,description) ->
+     Card(modifier=Modifier.weight(1f).heightIn(min=106.dp),shape=RoundedCornerShape(16.dp)) {
+      Column(Modifier.padding(12.dp),verticalArrangement=Arrangement.spacedBy(5.dp)) {
+       Icon(Icons.Default.MenuBook,null,tint=MaterialTheme.colorScheme.primary)
+       Text(title,style=MaterialTheme.typography.titleSmall,fontWeight=FontWeight.SemiBold)
+       Text(description,style=MaterialTheme.typography.bodySmall)
+       Text("Em preparação",style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.secondary)
+      }
+     }
+    }
+    if(pair.size==1) Spacer(Modifier.weight(1f))
+   }
+  }
+ }
 }
