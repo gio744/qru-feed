@@ -142,8 +142,18 @@ class ReaderAndNewsUiTest {
     ui.onAllNodesWithText("ABRIR FICHA").fetchSemanticsNodes().isNotEmpty()
    }
    androidx.test.espresso.Espresso.pressBack()
-   ui.onNodeWithContentDescription("Abrir menu").performClick()
-   ui.onNodeWithText("Busca").performClick()
+   // Use the drawer semantics action instead of injecting a touch into
+   // an icon potentially covered during the detail-to-home transition.
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithContentDescription("Abrir menu").fetchSemanticsNodes().isNotEmpty()
+   }
+   ui.onNodeWithContentDescription("Abrir menu")
+    .performSemanticsAction(SemanticsActions.OnClick) { assertTrue(it()) }
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithText("Busca").fetchSemanticsNodes().isNotEmpty()
+   }
+   ui.onNodeWithText("Busca")
+    .performSemanticsAction(SemanticsActions.OnClick) { assertTrue(it()) }
    ui.onNodeWithTag("search_results").performScrollToIndex(0)
    ui.onNodeWithTag("search_query").assertTextContains("licenciamento")
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("659-92",substring=true)
