@@ -73,6 +73,8 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
      QruWordmark(compact=true)
      Text("QUAL A SITUAÇÃO",style=MaterialTheme.typography.labelLarge)
     }
+    NavigationDrawerItem(label={Text("Busca")},selected=tab==QruTab.BUSCA,
+     icon={Icon(Icons.Default.Search,null)},onClick={tab=QruTab.BUSCA;scope.launch{drawer.close()}})
     NavigationDrawerItem(label={Text("Como usar")},selected=false,
      icon={Icon(Icons.Default.HelpOutline,null)},onClick={support="help";scope.launch{drawer.close()}})
     NavigationDrawerItem(label={Text("Fontes oficiais")},selected=false,
