@@ -82,7 +82,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    ModalDrawerSheet {
     Column(Modifier.padding(24.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
      Row(verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)) {
-      Image(painter=painterResource(R.drawable.qru_neo_q_mark),contentDescription="Símbolo experimental QRU NEO",modifier=Modifier.size(54.dp))
+      Image(painter=painterResource(R.drawable.qru_neo_q_mark),contentDescription="Símbolo Q azul-neon do QRU",modifier=Modifier.size(54.dp).testTag("qru_neo_drawer_mark"))
       Column {
        Text("QRU NEO",color=Color(0xFFBCE8FF),fontWeight=FontWeight.Bold,style=MaterialTheme.typography.titleLarge)
        Text("QUAL A SITUAÇÃO",color=Color(0xFF879AAF),style=MaterialTheme.typography.labelMedium)
