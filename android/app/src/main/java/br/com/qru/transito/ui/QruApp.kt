@@ -189,9 +189,9 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   Box(Modifier.fillMaxWidth().background(
    brush=Brush.linearGradient(listOf(Color(0xFF0B203A),Color(0xFF164F86),Color(0xFF102B49))),
    shape=RoundedCornerShape(24.dp)
-  ).border(1.dp,Color(0xFF368BD4),RoundedCornerShape(24.dp)).padding(vertical=18.dp,horizontal=10.dp)) {
+  ).border(1.dp,Color(0xFF368BD4),RoundedCornerShape(24.dp)).padding(vertical=12.dp,horizontal=10.dp)) {
   Column(Modifier.fillMaxWidth(),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(4.dp)) {
-  QruWordmark()
+  QruWordmark(compact=true)
   Text("QUAL A SITUAÇÃO",style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.secondary)
   }
    IconButton(onClick=onMenu,modifier=Modifier.align(Alignment.TopStart)){Icon(Icons.Default.Menu,"Abrir menu")}
