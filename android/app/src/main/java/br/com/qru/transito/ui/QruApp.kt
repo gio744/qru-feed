@@ -200,7 +200,15 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    leadingIcon={IconButton(onClick={keyboard?.hide();vm.run()},enabled=state.query.isNotBlank()){Icon(Icons.Default.Search,"Executar consulta")}},
    trailingIcon={IconButton({voice()}){Icon(Icons.Default.Mic,"Pesquisa por voz")}},singleLine=true,
    keyboardOptions=KeyboardOptions(imeAction=ImeAction.Search),
-   keyboardActions=KeyboardActions(onSearch={keyboard?.hide();vm.run()}))
+   keyboardActions=KeyboardActions(onSearch={keyboard?.hide();vm.run()}),
+   shape=RoundedCornerShape(18.dp),
+   colors=OutlinedTextFieldDefaults.colors(
+    focusedBorderColor=Color(0xFF62B9FF),
+    unfocusedBorderColor=Color(0xFF52718F),
+    focusedContainerColor=Color(0xFF101D30),
+    unfocusedContainerColor=Color(0xFF101D30),
+    cursorColor=Color(0xFF9BD7FF)
+   ))
   if(state.loading) LinearProgressIndicator(Modifier.fillMaxWidth())
   Text("CONSULTA OPERACIONAL  •  CATÁLOGO OFFLINE", style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.secondary)
    }
