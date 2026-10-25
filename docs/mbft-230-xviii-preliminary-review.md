@@ -29,3 +29,10 @@ As fichas oficiais consultadas indicam art. 230, XVIII; gravidade grave; multa; 
 - [ ] Somente depois gerar pacote de fichas aprovado, hash e testes.
 
 **Controle editorial:** não atribuir status APPROVED automaticamente. Este arquivo é um insumo de revisão, não orientação definitiva de autuação.
+
+## Conferência complementar — fonte oficial (2026-10-25)
+- A ficha 672-61 do MBFT explicita **constatação mediante abordagem**, infração grave, proprietário como infrator, retenção para regularização e competência estadual e rodoviária. Fonte: https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf
+- A ficha 672-63 igualmente explicita constatação mediante abordagem e registra, no texto da versão consultada, que a avaliação de emissão de poluentes e ruído ainda precisava de regulamentação pelo CONTRAN. Isso **não deve ser convertido em conclusão sobre vigência atual** sem checar atos posteriores. Fonte: https://www.gov.br/transportes/pt-br/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf/@@download/file/MBVT20222.pdf
+- A ficha 672-62 corresponde à reprovação na inspeção de segurança. Fonte: https://www.gov.br/infraestrutura/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf/@@download/file/MBVT20222.pdf
+- **Regra de produto proposta:** exibir um alerta destacado de competência estadual/rodoviária na consulta desses códigos; não generalizar a competência de fiscalização de emissões municipais do CTB art. 24, XX como autorização automática para lavrar o AIT 672-63.
+- **Status editorial:** pendente, sem ativação de conteúdo no APK.
