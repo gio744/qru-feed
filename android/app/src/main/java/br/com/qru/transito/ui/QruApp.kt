@@ -371,8 +371,10 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
   border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF315B83)),
   shape=RoundedCornerShape(18.dp)) {
   Column(Modifier.fillMaxWidth().padding(14.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
-   Icon(icon,contentDescription=null,tint=Color(0xFF78C5FF))
-   Text(label,style=MaterialTheme.typography.labelLarge,color=Color(0xFFEDF6FF))
+   Box(Modifier.size(36.dp).background(Color(0xFF173C5D),RoundedCornerShape(12.dp)),contentAlignment=Alignment.Center) {
+    Icon(icon,contentDescription=null,tint=Color(0xFF9BD7FF),modifier=Modifier.size(22.dp))
+   }
+   Text(label,style=MaterialTheme.typography.labelLarge,color=Color(0xFFEDF6FF),fontWeight=FontWeight.SemiBold)
   }
  }
 }
