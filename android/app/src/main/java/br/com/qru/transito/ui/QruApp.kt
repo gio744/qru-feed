@@ -216,7 +216,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   if(state.query.isBlank()) item(key="quick_access") {
    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(12.dp)) {
     Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically) {
-     Text("ACESSO RÁPIDO",Modifier.weight(1f),style=MaterialTheme.typography.labelLarge,
+     Text("SEU PAINEL OPERACIONAL",Modifier.weight(1f),style=MaterialTheme.typography.labelLarge,
       color=Color(0xFF9BD7FF),fontWeight=FontWeight.SemiBold)
      TextButton(onClick={editingQuick=!editingQuick}) {
       Icon(Icons.Default.Edit,null,Modifier.size(16.dp))
@@ -224,6 +224,8 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
       Text(if(editingQuick) "CONCLUIR" else "PERSONALIZAR")
      }
     }
+    Text("Consulte em segundos os artigos mais utilizados na fiscalização.",
+     style=MaterialTheme.typography.bodySmall,color=Color(0xFFB6C9DC))
     for(row in 0..1) {
      Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(10.dp)) {
       for(column in 0..1) {
