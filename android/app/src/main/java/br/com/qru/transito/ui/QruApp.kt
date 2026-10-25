@@ -99,7 +99,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
      label={Text(item.label)})}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
     tabStates.SaveableStateProvider(tab.name) {
-     if(tab==QruTab.BUSCA) SearchHome{scope.launch{drawer.open()}} else CatalogPage(tab)
+     if(tab==QruTab.BUSCA) SearchHome(onMenu={scope.launch{drawer.open()}},onNavigate={tab=it}) else CatalogPage(tab)
     }
    }}
   }
@@ -124,7 +124,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  }
 }
 
-@Composable private fun SearchHome(onMenu:()->Unit){
+@Composable private fun SearchHome(onMenu:()->Unit,onNavigate:(QruTab)->Unit){
  val context=LocalContext.current
  val app=context.applicationContext as QruApplication
  val vm:SearchViewModel=viewModel(factory=SearchViewModelFactory(app.searchLegalContent))
@@ -211,6 +211,18 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    ))
   if(state.loading) LinearProgressIndicator(Modifier.fillMaxWidth())
   Text("CONSULTA OPERACIONAL  •  CATÁLOGO OFFLINE", style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.secondary)
+   }
+  }
+  if(state.query.isBlank()) item(key="neo_navigation") {
+   Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(10.dp)) {
+    Text("EXPLORAR QRU",style=MaterialTheme.typography.labelLarge,
+     color=Color(0xFF9BD7FF),fontWeight=FontWeight.SemiBold)
+    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+     QruNeoNavigationTile("CTB",Icons.Default.MenuBook,Color(0xFF62B9FF),Modifier.weight(1f)){onNavigate(QruTab.CTB)}
+     QruNeoNavigationTile("Normas",Icons.Default.Gavel,Color(0xFFB49BFF),Modifier.weight(1f)){onNavigate(QruTab.NORMAS)}
+     QruNeoNavigationTile("Situações",Icons.Default.PlayCircle,Color(0xFF63D8BD),Modifier.weight(1f)){onNavigate(QruTab.SITUACOES)}
+     QruNeoNavigationTile("Novidades",Icons.Default.NewReleases,Color(0xFFFFCF70),Modifier.weight(1f)){onNavigate(QruTab.NOVIDADES)}
+    }
    }
   }
   if(state.query.isBlank()) item(key="quick_access") {
@@ -364,6 +376,20 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     try { context.startActivity(Intent(Intent.ACTION_VIEW,uri)) }
     catch(_:ActivityNotFoundException) { Toast.makeText(context,"Não foi possível abrir a fonte.",Toast.LENGTH_LONG).show() }
 }
+@Composable private fun QruNeoNavigationTile(label:String,icon:androidx.compose.ui.graphics.vector.ImageVector,
+ accent:Color,modifier:Modifier=Modifier,onClick:()->Unit) {
+ Card(onClick=onClick,modifier=modifier.heightIn(min=90.dp),
+  shape=RoundedCornerShape(16.dp),
+  colors=CardDefaults.cardColors(containerColor=Color(0xFF101D30)),
+  border=androidx.compose.foundation.BorderStroke(1.dp,accent.copy(alpha=0.55f))) {
+  Column(Modifier.fillMaxWidth().padding(vertical=12.dp,horizontal=4.dp),
+   horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(8.dp)) {
+   Icon(icon,contentDescription=null,tint=accent,modifier=Modifier.size(26.dp))
+   Text(label,style=MaterialTheme.typography.labelSmall,color=Color(0xFFF2F7FF),maxLines=1)
+  }
+ }
+}
+
 @Composable private fun QruQuickAction(label:String,icon:androidx.compose.ui.graphics.vector.ImageVector,
  modifier:Modifier=Modifier,onClick:()->Unit) {
  Card(onClick=onClick,modifier=modifier.heightIn(min=84.dp),
