@@ -96,7 +96,14 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    Scaffold(bottomBar={NavigationBar(containerColor=Color(0xFF0B1727)){
     QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},modifier=Modifier.testTag("tab_"+item.name),
      icon={Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
-     label={Text(item.label)})}
+     label={Text(item.label)},
+     colors=NavigationBarItemDefaults.colors(
+      selectedIconColor=Color(0xFFBCE8FF),
+      selectedTextColor=Color(0xFFBCE8FF),
+      indicatorColor=Color(0xFF173D65),
+      unselectedIconColor=Color(0xFF879AAF),
+      unselectedTextColor=Color(0xFF879AAF)
+     ))}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
     tabStates.SaveableStateProvider(tab.name) {
      if(tab==QruTab.BUSCA) SearchHome(onMenu={scope.launch{drawer.open()}},onNavigate={tab=it}) else CatalogPage(tab)
