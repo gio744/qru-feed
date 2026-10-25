@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- QRU NEO: scalable standalone Q study; not yet the approved 3D wordmark. -->
+    <path android:fillColor="#081321" android:pathData="M0,0h108v108h-108z"/>
+    <path android:fillColor="@android:color/transparent"
+        android:strokeColor="#173D68" android:strokeWidth="13"
+        android:strokeLineCap="round"
+        android:pathData="M77,76 A35,35 0,1 1,83 36"/>
+    <path android:fillColor="@android:color/transparent"
+        android:strokeColor="#397EC1" android:strokeWidth="9"
+        android:strokeLineCap="round"
+        android:pathData="M77,76 A35,35 0,1 1,83 36"/>
+    <path android:fillColor="@android:color/transparent"
+        android:strokeColor="#A8E8FF" android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:pathData="M77,76 A35,35 0,1 1,83 36"/>
+    <path android:fillColor="@android:color/transparent"
+        android:strokeColor="#2679BD" android:strokeWidth="12"
+        android:strokeLineCap="round"
+        android:pathData="M65,67 L86,88"/>
+    <path android:fillColor="@android:color/transparent"
+        android:strokeColor="#B5F0FF" android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:pathData="M65,67 L86,88"/>
+    <path android:fillColor="#D9F8FF"
+        android:pathData="M85,92 a4,4 0,1 0,8 0 a4,4 0,1 0,-8 0"/>
+</vector>
