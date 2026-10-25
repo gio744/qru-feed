@@ -439,11 +439,42 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
   Triple("Art. 230, V","Licenciamento do veículo","230 V"),
   Triple("Art. 167","Cinto de segurança","167"),
   Triple("Art. 162, I","Sem CNH, PPD ou ACC","162 I"),
-  Triple("Art. 252","Condutas vedadas ao dirigir","252")
+  Triple("Art. 252","Condutas vedadas ao dirigir","252"),
+  Triple("Art. 165-A","Recusa aos procedimentos","165-A"),
+  Triple("Art. 208","Avanço de sinal vermelho","208"),
+  Triple("Art. 181","Estacionamento irregular","181"),
+  Triple("Art. 230, XVIII","Condições dos pneus","230 XVIII")
  )
+ val context=LocalContext.current
+ val prefs=remember(context){context.getSharedPreferences("qru_dashboard",android.content.Context.MODE_PRIVATE)}
+ var selectedQueries by remember {
+  mutableStateOf(
+   (prefs.getString("shortcuts",null)?.split(",")?.filter { q -> shortcuts.any { it.third==q } }?.distinct()?.take(4))
+    ?.takeIf { it.size==4 } ?: shortcuts.take(4).map { it.third }
+  )
+ }
+ var editing by rememberSaveable { mutableStateOf(false) }
+ val displayed=selectedQueries.mapNotNull { q -> shortcuts.find { it.third==q } }
  Column(verticalArrangement=Arrangement.spacedBy(12.dp)) {
-  Text("MEU PAINEL OPERACIONAL",style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.Bold,color=MaterialTheme.colorScheme.secondary)
-  shortcuts.chunked(2).forEach { pair ->
+  Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically) {
+   Text("MEU PAINEL OPERACIONAL",style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.Bold,color=MaterialTheme.colorScheme.secondary,modifier=Modifier.weight(1f))
+   TextButton(onClick={editing=!editing}) { Text(if(editing) "CONCLUIR" else "PERSONALIZAR") }
+  }
+  if(editing) {
+   Text("Selecione quatro atalhos para o seu painel.",style=MaterialTheme.typography.bodySmall)
+   shortcuts.forEach { (title,_,query) ->
+    Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically) {
+     Checkbox(checked=query in selectedQueries,onCheckedChange={ checked ->
+      val next=if(checked && selectedQueries.size<4) selectedQueries+query
+       else if(!checked && selectedQueries.size>1) selectedQueries-query else selectedQueries
+      selectedQueries=next
+      if(next.size==4) prefs.edit().putString("shortcuts",next.joinToString(",")).apply()
+     })
+     Text(title)
+    }
+   }
+  }
+  displayed.chunked(2).forEach { pair ->
    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
     pair.forEach { (title,description,query) ->
      Card(onClick={onSearch(query)},modifier=Modifier.weight(1f).heightIn(min=96.dp),
