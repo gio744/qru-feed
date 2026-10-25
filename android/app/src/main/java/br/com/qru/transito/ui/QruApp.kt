@@ -153,6 +153,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    keyboardOptions=KeyboardOptions(imeAction=ImeAction.Search),
    keyboardActions=KeyboardActions(onSearch={keyboard?.hide();vm.run()}))
   if(state.loading) LinearProgressIndicator(Modifier.fillMaxWidth())
+  if(state.query.isBlank()) QruOperationalDashboard(onSearch={term->vm.query(term);vm.run()})
   Text("Catálogo em conferência • disponível offline", style=MaterialTheme.typography.bodySmall)
    }
   }
@@ -426,6 +427,43 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
      }
     }
     if(pair.size==1) Spacer(Modifier.weight(1f))
+   }
+  }
+ }
+}
+
+
+/** Atalhos da página inicial; descrições conservadoras, sem afirmar enquadramentos não revisados. */
+@Composable private fun QruOperationalDashboard(onSearch:(String)->Unit) {
+ val shortcuts=listOf(
+  Triple("Art. 230, V","Licenciamento do veículo","230 V"),
+  Triple("Art. 167","Cinto de segurança","167"),
+  Triple("Art. 162, I","Sem CNH, PPD ou ACC","162 I"),
+  Triple("Art. 252","Condutas vedadas ao dirigir","252")
+ )
+ Column(verticalArrangement=Arrangement.spacedBy(12.dp)) {
+  Text("MEU PAINEL OPERACIONAL",style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.Bold,color=MaterialTheme.colorScheme.secondary)
+  shortcuts.chunked(2).forEach { pair ->
+   Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+    pair.forEach { (title,description,query) ->
+     Card(onClick={onSearch(query)},modifier=Modifier.weight(1f).heightIn(min=96.dp),
+      colors=CardDefaults.cardColors(containerColor=MaterialTheme.colorScheme.surfaceVariant),
+      shape=RoundedCornerShape(14.dp)) {
+      Column(Modifier.padding(12.dp),verticalArrangement=Arrangement.spacedBy(5.dp)) {
+       Text(title,style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.Bold)
+       Text(description,style=MaterialTheme.typography.bodySmall)
+      }
+     }
+    }
+   }
+  }
+  Text("CONSULTAS FREQUENTES",style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.Bold,color=MaterialTheme.colorScheme.secondary)
+  Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(4.dp)) {
+   listOf("165-A","230 XVIII","181","167","252").forEach { term ->
+    OutlinedButton(onClick={onSearch(term)},modifier=Modifier.weight(1f),
+     contentPadding=PaddingValues(horizontal=2.dp,vertical=4.dp)) {
+     Text(term,style=MaterialTheme.typography.labelSmall,maxLines=1)
+    }
    }
   }
  }
