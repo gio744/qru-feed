@@ -93,7 +93,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
     TextButton(onClick={scope.launch{drawer.close()}},modifier=Modifier.padding(12.dp)){Text("FECHAR MENU")}
    }
   }){
-   Scaffold(bottomBar={NavigationBar(containerColor=Color(0xFF15101E)){
+   Scaffold(bottomBar={NavigationBar(containerColor=Color(0xFF0B1727)){
     QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},modifier=Modifier.testTag("tab_"+item.name),
      icon={Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
      label={Text(item.label)})}
@@ -187,9 +187,9 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   item(key="search_header") {
    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(10.dp)) {
   Box(Modifier.fillMaxWidth().background(
-   brush=Brush.linearGradient(listOf(Color(0xFF241047),Color(0xFF5620A0),Color(0xFF35114D))),
+   brush=Brush.linearGradient(listOf(Color(0xFF0B203A),Color(0xFF164F86),Color(0xFF102B49))),
    shape=RoundedCornerShape(24.dp)
-  ).border(1.dp,Color(0xFF6D3BA0),RoundedCornerShape(24.dp)).padding(vertical=18.dp,horizontal=10.dp)) {
+  ).border(1.dp,Color(0xFF368BD4),RoundedCornerShape(24.dp)).padding(vertical=18.dp,horizontal=10.dp)) {
   Column(Modifier.fillMaxWidth(),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(4.dp)) {
   QruWordmark()
   Text("QUAL A SITUAÇÃO",style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.secondary)
@@ -209,7 +209,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(12.dp)) {
     Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically) {
      Text("ACESSO RÁPIDO",Modifier.weight(1f),style=MaterialTheme.typography.labelLarge,
-      color=Color(0xFFD9B6FF),fontWeight=FontWeight.SemiBold)
+      color=Color(0xFF9BD7FF),fontWeight=FontWeight.SemiBold)
      TextButton(onClick={editingQuick=!editingQuick}) {
       Icon(Icons.Default.Edit,null,Modifier.size(16.dp))
       Spacer(Modifier.width(4.dp))
@@ -229,7 +229,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
       }
      }
     }
-    Text("CONSULTAS FREQUENTES",style=MaterialTheme.typography.labelSmall,color=Color(0xFFD9B6FF))
+    Text("CONSULTAS FREQUENTES",style=MaterialTheme.typography.labelSmall,color=Color(0xFF9BD7FF))
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
      listOf("165-A","230 XVIII","181").forEach { term ->
       SuggestionChip(onClick={vm.query(term);vm.run()},label={Text(term)})
@@ -255,7 +255,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
      }
     }
     Text("Atalhos de pesquisa. Confira sempre a fonte oficial e a regra aplicável ao fato.",
-     style=MaterialTheme.typography.bodySmall,color=Color(0xFFB9A9C9))
+     style=MaterialTheme.typography.bodySmall,color=Color(0xFFB6C9DC))
    }
   }
   // Full-article queries are grouped into collapsible legal subdivisions.
@@ -264,7 +264,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   if(articleNumber!=null && state.results.isNotEmpty()) {
    item(key="article_hierarchy_header") {
     Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(4.dp)) {
-     Text("ART. $articleNumber • DESDOBRAMENTOS",color=Color(0xFFD9B6FF),
+     Text("ART. $articleNumber • DESDOBRAMENTOS",color=Color(0xFF9BD7FF),
       style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.Bold)
      Text("Os incisos começam recolhidos. Toque para consultar os enquadramentos.",
       style=MaterialTheme.typography.bodySmall)
@@ -376,7 +376,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             Text(result.title,style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.SemiBold)
             Text("Art. ${result.article.orEmpty()}  •  ${result.code.orEmpty()}",
                 color=Color(0xFFD2A8FF),style=MaterialTheme.typography.bodyMedium)
-            Text("REFERÊNCIA EM CONFERÊNCIA",color=Color(0xFFB9A9C9),
+            Text("REFERÊNCIA EM CONFERÊNCIA",color=Color(0xFFB6C9DC),
                 style=MaterialTheme.typography.labelSmall)
         }
     }
