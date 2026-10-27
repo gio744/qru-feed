@@ -33,3 +33,12 @@ Não publicar APK nem mesclar branches experimentais sem compilação Android be
 - [ ] Fazer smoke test em aparelho Android: iniciar, pesquisar, abrir ficha, abrir norma, navegar, assistir vídeo e reiniciar.
 
 **Estado:** checklist criado; itens não devem ser considerados aprovados sem evidência dos testes.
+
+## Evidência automatizada — 27/10/2026
+- GitHub Actions execução #604: https://github.com/gio744/qru-feed/actions/runs/40506068905 — **success**.
+- Commit validado: `93a5ae0c58e8df16186f104d9ad3522f021de439`.
+- `Run unit tests independently of PDF downloads`: **success**; inclui regressões de `165`/`165-A`.
+- `Assemble APK with verified official PDFs`: **success**, com verificação SHA-256 obrigatória mantida.
+- Artefato de testes `qru-transito-debug-apk`, ID `12734718382` (não é versão de produção).
+- **Não inferir revisão jurídica ou teste em aparelho a partir do CI.** Permanecem pendentes a revisão editorial de vigência e o smoke test Android, inclusive funcionamento offline, navegação e vídeos.
+- Divergências de hashes observadas em execuções anteriores devem ser investigadas como possível variação do arquivo upstream/cache; o sucesso de um build não demonstra, por si só, equivalência jurídica entre versões publicadas.
