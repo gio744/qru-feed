@@ -42,3 +42,10 @@ Não publicar APK nem mesclar branches experimentais sem compilação Android be
 - Artefato de testes `qru-transito-debug-apk`, ID `12734718382` (não é versão de produção).
 - **Não inferir revisão jurídica ou teste em aparelho a partir do CI.** Permanecem pendentes a revisão editorial de vigência e o smoke test Android, inclusive funcionamento offline, navegação e vídeos.
 - Divergências de hashes observadas em execuções anteriores devem ser investigadas como possível variação do arquivo upstream/cache; o sucesso de um build não demonstra, por si só, equivalência jurídica entre versões publicadas.
+
+## QRU Studio — validação de integração incremental
+- Execução #609: https://github.com/gio744/qru-feed/actions/runs/40506895442 — **success**.
+- Testes unitários e montagem Android com PDFs verificados: **success**; upload do APK de teste: **success**.
+- Componentes incorporados da PR #72: `QruVideoCatalog`, `QruStudioIntegrity`, `studio/videos.json` e seus dois testes.
+- O catálogo inicial contém zero vídeos publicados; isso evita anunciar vídeos ainda não submetidos à revisão editorial.
+- **Pendente:** conectar catálogo à UI, downloads e reprodução; verificar permissões, FileProvider e testes em aparelho antes de liberar Studio ao público.
