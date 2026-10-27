@@ -51,11 +51,11 @@ object QruStudioDownload {
             }
             if (!QruStudioIntegrity.matches(temp, video.sha256)) return@withContext false
             if (target.exists() && !target.delete()) return@withContext false
-            temp.renameTo(target) && QruStudioIntegrity.matches(target, video.sha256)
+            return temp.renameTo(target) && QruStudioIntegrity.matches(target, video.sha256)
         } catch (cancelled: CancellationException) {
             throw cancelled
         } catch (_: Exception) {
-            false
+            return false
         } finally {
             connection?.disconnect()
             if (temp.exists()) temp.delete()
