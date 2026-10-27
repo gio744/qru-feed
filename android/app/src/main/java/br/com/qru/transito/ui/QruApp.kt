@@ -15,6 +15,9 @@ import br.com.qru.transito.domain.model.SearchResult
 import br.com.qru.transito.domain.model.OperationalReferencePublication
 import br.com.qru.transito.data.repository.OperationalFichePackage
 import br.com.qru.transito.data.repository.QruVideoCatalog
+import br.com.qru.transito.data.repository.QruVideo
+import br.com.qru.transito.data.repository.QruStudioOffline
+import br.com.qru.transito.data.repository.QruStudioDownload
 import br.com.qru.transito.domain.model.OperationalReference
 import android.content.pm.PackageManager
 import android.speech.RecognizerIntent
@@ -370,13 +373,47 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
       Text(video.title,style=MaterialTheme.typography.titleMedium)
       Text(video.description,style=MaterialTheme.typography.bodyMedium)
       Text("Referência: ${video.legalReference} • Revisado em ${video.reviewedAt}",style=MaterialTheme.typography.bodySmall)
-      TextButton(onClick={openOfficialSource(context,video.youtubeUrl ?: video.videoUrl)}) { Text("ASSISTIR ONLINE") }
+      StudioVideoActions(video)
      } }
     }
    }
   }
  }
  selected?.let { ReferenceDialog(it) { selected=null } }
+}
+
+
+@Composable private fun StudioVideoActions(video: QruVideo) {
+ val context=LocalContext.current
+ val scope=rememberCoroutineScope()
+ var downloading by remember(video.id) { mutableStateOf(false) }
+ var verified by remember(video.id) { mutableStateOf(QruStudioOffline.verifiedFile(context,video)!=null) }
+ var feedback by remember(video.id) { mutableStateOf<String?>(null) }
+ Row(horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+  TextButton(onClick={openOfficialSource(context,video.youtubeUrl ?: video.videoUrl)}) { Text("ASSISTIR ONLINE") }
+  if(verified) {
+   TextButton(onClick={
+    val file=QruStudioOffline.verifiedFile(context,video)
+    if(file==null) { verified=false; feedback="Arquivo offline inválido. Baixe novamente." }
+    else {
+     val uri=androidx.core.content.FileProvider.getUriForFile(context,context.packageName+".fileprovider",file)
+     val intent=Intent(Intent.ACTION_VIEW).apply { setDataAndType(uri,"video/mp4");addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION) }
+     try { context.startActivity(intent) } catch (_:ActivityNotFoundException) { feedback="Nenhum reprodutor de vídeo disponível." }
+    }
+   }) { Text("VER OFFLINE") }
+  } else {
+   TextButton(enabled=!downloading,onClick={
+    downloading=true
+    scope.launch {
+     val ok=QruStudioDownload.fetch(context,video)
+     verified=ok && QruStudioOffline.verifiedFile(context,video)!=null
+     feedback=if(verified) "Vídeo salvo e verificado." else "Download não concluído ou arquivo inválido."
+     downloading=false
+    }
+   }) { Text(if(downloading) "BAIXANDO..." else "BAIXAR") }
+  }
+ }
+ feedback?.let { Text(it,style=MaterialTheme.typography.bodySmall) }
 }
 
 @Composable private fun CtbSectionCard(title:String,description:String,onClick:()->Unit) {
