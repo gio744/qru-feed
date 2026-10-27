@@ -14,6 +14,7 @@ import android.net.Uri
 import br.com.qru.transito.domain.model.SearchResult
 import br.com.qru.transito.domain.model.OperationalReferencePublication
 import br.com.qru.transito.data.repository.OperationalFichePackage
+import br.com.qru.transito.data.repository.QruVideoCatalog
 import br.com.qru.transito.domain.model.OperationalReference
 import android.content.pm.PackageManager
 import android.speech.RecognizerIntent
@@ -338,6 +339,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
  val vm:SearchViewModel=viewModel(key="situations_search",factory=SearchViewModelFactory(app.searchLegalContent))
  val state by vm.state.collectAsState()
  var selected by remember { mutableStateOf<SearchResult?>(null) }
+ val studioVideos=remember(context) { runCatching { context.assets.open("studio/videos.json").bufferedReader().use { QruVideoCatalog.published(it.readText()) } }.getOrDefault(emptyList()) }
  LazyColumn(Modifier.fillMaxSize().testTag("situations_results"),
   contentPadding=PaddingValues(20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
   item(key="situations_header") {
@@ -361,7 +363,16 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
      Text(state.message,style=MaterialTheme.typography.bodySmall)
      TextButton(onClick={vm.run()}) { Text("TENTAR NOVAMENTE") }
     }
-    Text("Vídeos ainda não disponíveis.",style=MaterialTheme.typography.bodySmall)
+    Text("QRU Studio",style=MaterialTheme.typography.titleLarge)
+    if(studioVideos.isEmpty()) Text("Vídeos em preparação editorial. Nenhum vídeo aprovado para publicação nesta versão.",style=MaterialTheme.typography.bodySmall)
+    studioVideos.forEach { video ->
+     Card(modifier=Modifier.fillMaxWidth()) { Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
+      Text(video.title,style=MaterialTheme.typography.titleMedium)
+      Text(video.description,style=MaterialTheme.typography.bodyMedium)
+      Text("Referência: ${video.legalReference} • Revisado em ${video.reviewedAt}",style=MaterialTheme.typography.bodySmall)
+      TextButton(onClick={openOfficialSource(context,video.youtubeUrl ?: video.videoUrl)}) { Text("ASSISTIR ONLINE") }
+     } }
+    }
    }
   }
  }
