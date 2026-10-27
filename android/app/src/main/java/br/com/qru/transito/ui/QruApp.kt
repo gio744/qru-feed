@@ -459,7 +459,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
  var selectedQueries by remember {
   mutableStateOf(
    (prefs.getString("shortcuts",null)?.split(",")?.filter { q -> shortcuts.any { it.third==q } }?.distinct()?.take(4))
-    ?.takeIf { it.size==4 } ?: shortcuts.take(4).map { it.third }
+    ?.takeIf { it.isNotEmpty() } ?: shortcuts.take(4).map { it.third }
   )
  }
  var editing by rememberSaveable { mutableStateOf(false) }
@@ -470,14 +470,14 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
    TextButton(onClick={editing=!editing}) { Text(if(editing) "CONCLUIR" else "PERSONALIZAR") }
   }
   if(editing) {
-   Text("Selecione quatro atalhos para o seu painel.",style=MaterialTheme.typography.bodySmall)
+   Text("Selecione de um a quatro atalhos para o seu painel.",style=MaterialTheme.typography.bodySmall)
    shortcuts.forEach { (title,_,query) ->
     Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically) {
      Checkbox(checked=query in selectedQueries,onCheckedChange={ checked ->
       val next=if(checked && selectedQueries.size<4) selectedQueries+query
        else if(!checked && selectedQueries.size>1) selectedQueries-query else selectedQueries
       selectedQueries=next
-      if(next.size==4) prefs.edit().putString("shortcuts",next.joinToString(",")).apply()
+      prefs.edit().putString("shortcuts",next.joinToString(",")).apply()
      })
      Text(title)
     }
