@@ -35,6 +35,13 @@ class QruSearchRegressionMatrixTest {
         assertEquals(listOf("165-a"), CatalogSearch.search(catalog, "165-A").map { it.stableKey })
     }
 
+    @Test fun articlePrefixesAndCasePreserveLegalSuffix() {
+        for (query in listOf("165-A", "165-a", "art. 165-A", "artigo 165-A"))
+            assertEquals("Query: $query", listOf("165-a"), CatalogSearch.search(catalog, query).map { it.stableKey })
+        for (query in listOf("165", "art. 165", "artigo 165"))
+            assertEquals("Query: $query", listOf("165"), CatalogSearch.search(catalog, query).map { it.stableKey })
+    }
+
     @Test fun tyreAndWheelPreferDirectReference() {
         for (query in listOf("pneu", "roda"))
             assertEquals("230-xviii", CatalogSearch.search(catalog, query).first().stableKey)
