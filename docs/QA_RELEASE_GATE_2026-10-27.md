@@ -56,3 +56,9 @@ Não publicar APK nem mesclar branches experimentais sem compilação Android be
 - Testes unitários, APK com PDFs verificados e upload de artefato: **success**.
 - A tela Situações carrega `studio/videos.json` pelo `QruVideoCatalog.published`; mostra mensagem editorial quando vazio e cards para vídeos aprovados.
 - **Não aprovado ainda:** download offline, reprodução em aparelho, revisão de segurança de URLs e teste funcional da tela. O sucesso do build não comprova esses itens.
+
+## Studio offline — gate de compilação
+- Execução #40545009828: https://github.com/gio744/qru-feed/actions/runs/40545009828 — **success** no commit `b6127d618c100ec64e2791e73b6fbe630b445ea4`.
+- Testes unitários, APK com PDFs verificados e upload de artefato: **success**.
+- Fluxo implementado: download HTTPS sem redirecionamento automático, limite de 200 MB, arquivo temporário, hash SHA-256 antes de publicar arquivo privado, acesso por FileProvider limitado à pasta Studio, botões BAIXAR/VER OFFLINE.
+- **Ainda não aprovado para publicação:** teste real com vídeo revisado e assinado editorialmente; reprodução em aparelhos; comportamento com interrupção de rede, falta de espaço, múltiplos downloads e aplicativos sem reprodutor; inspeção de riscos de concorrência e limpeza de arquivos temporários.
