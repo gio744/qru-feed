@@ -70,9 +70,15 @@ jobs:
           gh run download "$run_id" --repo "${{ github.repository }}" --name contran-pdfs-1026-1029-staging --dir /tmp/qru-contran-stage
           python3 scripts/restore_verified_contran_pdfs.py /tmp/qru-contran-stage android/app/build/generated/normAssets/norms
 
-      - name: Compile and unit test
+      # Unit tests must remain observable even when an upstream official PDF changes.
+      # Only the test phase bypasses bundling; APK assembly retains strict SHA-256 checks.
+      - name: Run unit tests independently of PDF downloads
         working-directory: android
-        run: gradle -PqruParallelTest testDebugUnitTest assembleDebug --stacktrace --warning-mode all
+        run: gradle -PqruParallelTest testDebugUnitTest -x bundleNormPdf --stacktrace --warning-mode all
+
+      - name: Assemble APK with verified official PDFs
+        working-directory: android
+        run: gradle -PqruParallelTest assembleDebug --stacktrace --warning-mode all
 
       - name: Verify cached PDFs before saving
         if: always()
