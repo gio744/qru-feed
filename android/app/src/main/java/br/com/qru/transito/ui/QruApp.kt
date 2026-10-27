@@ -210,7 +210,8 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     Card(onClick=onClick,modifier=Modifier.fillMaxWidth().testTag("reference_card")) {
         Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
             Text(result.title,style=MaterialTheme.typography.titleMedium)
-            Text("Art. ${result.article.orEmpty()} • ${result.code.orEmpty()}",color=MaterialTheme.colorScheme.secondary)
+            val referenceDetails=listOfNotNull(result.article?.takeIf { it.isNotBlank() }?.let { "Art. $it" },result.code?.takeIf { it.isNotBlank() }?.let { "Código $it" })
+            if(referenceDetails.isNotEmpty()) Text(referenceDetails.joinToString(" • "),color=MaterialTheme.colorScheme.secondary)
             Text("Em conferência",style=MaterialTheme.typography.bodySmall)
         }
     }
