@@ -34,8 +34,8 @@ object QruStudioDownload {
                 instanceFollowRedirects = false
                 setRequestProperty("Accept", "video/mp4")
             }
-            if (connection.responseCode != HttpURLConnection.HTTP_OK) return@withContext false
-            if (connection.contentLengthLong > 200L * 1024 * 1024) return@withContext false
+            if (connection.responseCode != HttpURLConnection.HTTP_OK) return false
+            if (connection.contentLengthLong > 200L * 1024 * 1024) return false
             connection.inputStream.use { input ->
                 temp.outputStream().buffered().use { output ->
                     val buffer = ByteArray(65536)
@@ -49,8 +49,8 @@ object QruStudioDownload {
                     }
                 }
             }
-            if (!QruStudioIntegrity.matches(temp, video.sha256)) return@withContext false
-            if (target.exists() && !target.delete()) return@withContext false
+            if (!QruStudioIntegrity.matches(temp, video.sha256)) return false
+            if (target.exists() && !target.delete()) return false
             return temp.renameTo(target) && QruStudioIntegrity.matches(target, video.sha256)
         } catch (cancelled: CancellationException) {
             throw cancelled
