@@ -3,16 +3,27 @@ package br.com.qru.transito.data.repository
 import android.content.Context
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
+import java.util.concurrent.ConcurrentHashMap
 import java.io.File
 import java.net.HttpURLConnection
 import java.net.URL
 
 /** Verified private download; never publishes a partial or mismatched file. */
 object QruStudioDownload {
+    private val locks = ConcurrentHashMap<String, Mutex>()
+
     suspend fun fetch(context: Context, video: QruVideo): Boolean = withContext(Dispatchers.IO) {
-        if (!QruVideoCatalog.trustedMediaUrl(video.videoUrl)) return@withContext false
+        val lock = locks.getOrPut(video.id) { Mutex() }
+        lock.withLock { downloadVerified(context, video) }
+    }
+
+    private fun downloadVerified(context: Context, video: QruVideo): Boolean {
+        if (!QruVideoCatalog.trustedMediaUrl(video.videoUrl)) return false
         val target = QruStudioOffline.destination(context, video)
-        if (QruStudioIntegrity.matches(target, video.sha256)) return@withContext true
+        if (QruStudioIntegrity.matches(target, video.sha256)) return true
         val temp = File(target.parentFile, "${video.id}.partial")
         var connection: HttpURLConnection? = null
         try {
@@ -41,6 +52,8 @@ object QruStudioDownload {
             if (!QruStudioIntegrity.matches(temp, video.sha256)) return@withContext false
             if (target.exists() && !target.delete()) return@withContext false
             temp.renameTo(target) && QruStudioIntegrity.matches(target, video.sha256)
+        } catch (cancelled: CancellationException) {
+            throw cancelled
         } catch (_: Exception) {
             false
         } finally {
