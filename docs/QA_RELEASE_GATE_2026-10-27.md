@@ -49,3 +49,10 @@ Não publicar APK nem mesclar branches experimentais sem compilação Android be
 - Componentes incorporados da PR #72: `QruVideoCatalog`, `QruStudioIntegrity`, `studio/videos.json` e seus dois testes.
 - O catálogo inicial contém zero vídeos publicados; isso evita anunciar vídeos ainda não submetidos à revisão editorial.
 - **Pendente:** conectar catálogo à UI, downloads e reprodução; verificar permissões, FileProvider e testes em aparelho antes de liberar Studio ao público.
+
+## QRU Studio — interface Situações
+- Execução #610: https://github.com/gio744/qru-feed/actions/runs/40507484274 — **success**.
+- Commit validado: `73922198b668740cf346c50fec7146ca2a458502`.
+- Testes unitários, APK com PDFs verificados e upload de artefato: **success**.
+- A tela Situações carrega `studio/videos.json` pelo `QruVideoCatalog.published`; mostra mensagem editorial quando vazio e cards para vídeos aprovados.
+- **Não aprovado ainda:** download offline, reprodução em aparelho, revisão de segurança de URLs e teste funcional da tela. O sucesso do build não comprova esses itens.
