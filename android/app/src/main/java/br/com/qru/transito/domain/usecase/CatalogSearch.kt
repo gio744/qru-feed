@@ -48,7 +48,7 @@ object CatalogSearch {
             val title = normalize(result.title)
             val text = normalize("${result.title} ${result.article.orEmpty()} ${result.code.orEmpty()} ${entry.terms}")
             val matches = tokens.count { text.contains(it) }
-            val exactCode = code.isNotBlank() && code == compact
+            val exactCode = code.isNotBlank() && code == (if (numericQuery) numericKey else compact)
             val resultParts = normalize(result.article.orEmpty()).split(Regex("[^a-z0-9-]+")).filter { it.isNotBlank() }
             val exactInciso = incisoQuery && resultParts.joinToString(",") == exactIncisoKey
             val exactArticle = numericQuery && normalize(result.article.orEmpty()).substringBefore(',')
