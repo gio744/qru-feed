@@ -99,7 +99,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   }){
    Scaffold(bottomBar={NavigationBar{
     listOf(QruTab.CTB,QruTab.NORMAS,QruTab.MAIS,QruTab.SITUACOES,QruTab.NOVIDADES).forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item;homeVisible=false},modifier=Modifier.testTag("tab_"+item.name).semantics { contentDescription = if(item==QruTab.MAIS) "Abrir central QRU" else item.label },
-     icon={if(item==QruTab.MAIS) Text("Q",style=MaterialTheme.typography.headlineMedium,fontWeight=FontWeight.Bold,color=MaterialTheme.colorScheme.primary) else Icon(when(item){QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.MAIS->Icons.Default.GridView;QruTab.NOVIDADES->Icons.Default.Notifications;else->Icons.Default.Search},item.label)},
+     icon={if(item==QruTab.MAIS) Surface(shape=RoundedCornerShape(50),color=androidx.compose.ui.graphics.Color(0xFF0C3153),border=androidx.compose.foundation.BorderStroke(1.5.dp,androidx.compose.ui.graphics.Color(0xFF52BFFF)),modifier=Modifier.size(49.dp)) { Box(contentAlignment=Alignment.Center) { Text("Q",style=MaterialTheme.typography.headlineMedium,fontWeight=FontWeight.Black,color=androidx.compose.ui.graphics.Color(0xFFD7EEFF)) } } else Icon(when(item){QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.MAIS->Icons.Default.GridView;QruTab.NOVIDADES->Icons.Default.Notifications;else->Icons.Default.Search},item.label)},
      label={Text(if(item==QruTab.MAIS) "QRU" else item.label)})}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
     tabStates.SaveableStateProvider(tab.name) {
@@ -200,11 +200,11 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   items(favorites.chunked(2)) { pair ->
    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
     pair.forEach { code ->
-     OutlinedCard(onClick={onSearch(code)},modifier=Modifier.weight(1f).heightIn(min=100.dp).testTag("favorite_"+code.replace(" ","_")),shape=RoundedCornerShape(12.dp),border=androidx.compose.foundation.BorderStroke(1.dp,border),colors=CardDefaults.outlinedCardColors(containerColor=dark)) {
+     OutlinedCard(onClick={onSearch(code)},modifier=Modifier.weight(1f).heightIn(min=86.dp).testTag("favorite_"+code.replace(" ","_")),shape=RoundedCornerShape(12.dp),border=androidx.compose.foundation.BorderStroke(1.dp,border),colors=CardDefaults.outlinedCardColors(containerColor=dark)) {
       Row(Modifier.padding(10.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(8.dp)) {
-       Icon(Icons.Default.Gavel,null,tint=androidx.compose.ui.graphics.Color(0xFF9DCFFF),modifier=Modifier.size(30.dp))
+       Surface(shape=RoundedCornerShape(10.dp),color=androidx.compose.ui.graphics.Color(0xFF124573),modifier=Modifier.size(44.dp)) { Box(contentAlignment=Alignment.Center) { Icon(Icons.Default.Gavel,null,tint=androidx.compose.ui.graphics.Color(0xFFD5E9FF),modifier=Modifier.size(27.dp)) } }
        Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(4.dp)) {
-        Text("Art. $code",fontWeight=FontWeight.Bold,color=androidx.compose.ui.graphics.Color.White,style=MaterialTheme.typography.titleSmall)
+        Text("Art. ${code.replace(" ", ", ")}",fontWeight=FontWeight.Bold,color=androidx.compose.ui.graphics.Color.White,style=MaterialTheme.typography.titleSmall)
         Text(titles[code].orEmpty(),style=MaterialTheme.typography.labelSmall,color=androidx.compose.ui.graphics.Color(0xFFB9D0E8),maxLines=2)
        }
        Icon(Icons.Default.ChevronRight,null,tint=blue,modifier=Modifier.size(16.dp))
