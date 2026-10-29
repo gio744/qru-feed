@@ -2,9 +2,9 @@ name: QRU Android Build
 on:
   workflow_dispatch:
   push:
-    paths: ['android/**','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json','android/app/src/main/assets/norms/**','.github/workflows/android-build.yml']
+    paths: ['android/**','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json','android/app/src/main/assets/norms/**','scripts/test_register_apk.py','.github/workflows/android-build.yml']
   pull_request:
-    paths: ['android/**','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json']
+    paths: ['android/**','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json','scripts/test_register_apk.py','.github/workflows/android-build.yml']
 jobs:
   debug-apk:
     runs-on: ubuntu-latest
@@ -95,6 +95,7 @@ jobs:
 
       - name: Verify and register APK
         run: |
+          python -m unittest discover -s scripts -p 'test_register_apk.py' -v
           python scripts/register_apk.py android/app/build/outputs/apk/debug/app-debug.apk
 
       - name: Capture diagnostics on failure
