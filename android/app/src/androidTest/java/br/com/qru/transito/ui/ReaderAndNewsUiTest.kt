@@ -85,6 +85,18 @@ class ReaderAndNewsUiTest {
   }
  }
 
+ @Test fun frequentConsultationsManageOpensCustomization() {
+  val context=InstrumentationRegistry.getInstrumentation().targetContext
+  context.getSharedPreferences("qru_news",0).edit()
+   .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
+  ActivityScenario.launch(MainActivity::class.java).use {
+   ui.onNodeWithText("GERENCIAR").performClick()
+   ui.onNodeWithText("CONCLUIR").assertIsDisplayed()
+   ui.onNodeWithText("CONCLUIR").performClick()
+   ui.onNodeWithText("PERSONALIZAR").assertIsDisplayed()
+  }
+ }
+
  @Test fun operationalShortcutNeverOpensUnrelatedFicha() {
   val context=InstrumentationRegistry.getInstrumentation().targetContext
   context.getSharedPreferences("qru_news",0).edit()
