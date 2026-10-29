@@ -242,7 +242,14 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  var shortcutHandled by remember(initialQuery,openReferenceDirectly) { mutableStateOf(false) }
  LaunchedEffect(state.loading,state.results,initialQuery,openReferenceDirectly) {
   if(openReferenceDirectly && !shortcutHandled && initialQuery.isNotBlank() && !state.loading && state.query==initialQuery) {
-   val matching=state.results.firstOrNull { it.article?.replace(" ","")?.equals(initialQuery.replace(" ",""),ignoreCase=true)==true } ?: state.results.firstOrNull()
+   // Never open an unrelated legal fiche when a shortcut has no exact match.
+   // For article-only shortcuts, require an exact article; for inciso shortcuts,
+   // require that the inciso is explicitly present in the indexed reference.
+   val normalizedQuery=initialQuery.uppercase(Locale.ROOT).replace(Regex("[^A-Z0-9]"),"")
+   val matching=state.results.firstOrNull { result ->
+    val article=result.article.orEmpty().uppercase(Locale.ROOT).replace(Regex("[^A-Z0-9]"),"")
+    article==normalizedQuery
+   }
    if(matching!=null) { selected=matching;shortcutHandled=true }
   }
  }
