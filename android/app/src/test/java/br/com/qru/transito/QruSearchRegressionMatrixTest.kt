@@ -47,6 +47,18 @@ class QruSearchRegressionMatrixTest {
             assertEquals("230-xviii", CatalogSearch.search(catalog, query).first().stableKey)
     }
 
+    @Test fun articleResultsFollowLegalIncisoOrderInsteadOfAlphabeticalTitle() {
+        val sameArticle = listOf(
+            ref("230-xviii", "230, XVIII", "pneu"),
+            ref("230-v", "230, V", "licenciamento"),
+            ref("230-i", "230, I", "identificacao")
+        )
+        assertEquals(
+            listOf("230-i", "230-v", "230-xviii"),
+            CatalogSearch.search(sameArticle, "230").map { it.stableKey }
+        )
+    }
+
     @Test fun emptyAndUnknownNeverInventResults() {
         assertTrue(CatalogSearch.search(catalog, "").isEmpty())
         assertTrue(CatalogSearch.search(catalog, "termo-inexistente-xyz").isEmpty())
