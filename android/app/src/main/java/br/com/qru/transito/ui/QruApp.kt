@@ -228,7 +228,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  var shortcutHandled by remember(initialQuery,openReferenceDirectly) { mutableStateOf(false) }
  LaunchedEffect(state.loading,state.results,initialQuery,openReferenceDirectly) {
   if(openReferenceDirectly && !shortcutHandled && initialQuery.isNotBlank() && !state.loading && state.query==initialQuery) {
-   val matching=state.results.firstOrNull { it.article?.replace(" ","")?.equals(initialQuery.replace(" ",""),ignoreCase=true)==true }
+   val matching=state.results.firstOrNull { it.article?.replace(" ","")?.equals(initialQuery.replace(" ",""),ignoreCase=true)==true } ?: state.results.firstOrNull()
    if(matching!=null) { selected=matching;shortcutHandled=true }
   }
  }
