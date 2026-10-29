@@ -309,7 +309,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     val context=LocalContext.current
     val app=context.applicationContext as QruApplication
     if(tab==QruTab.SITUACOES) { SituationsPage();return }
-    if(tab==QruTab.MAIS) { MoreLibraryPage(onOpenNorms={ /* Normas estão no rodapé */ });return }
+    if(tab==QruTab.MAIS) { MoreLibraryPage(onOpenSearch={},onOpenNorms={});return }
     Column(Modifier.fillMaxSize().verticalScroll(androidx.compose.foundation.rememberScrollState()).padding(20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
         Text(tab.label,style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.primary)
         when(tab) {
