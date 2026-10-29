@@ -240,6 +240,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  var occurrenceExpanded by rememberSaveable{mutableStateOf(false)}
  var selected by remember{mutableStateOf<SearchResult?>(null)}
  var shortcutHandled by remember(initialQuery,openReferenceDirectly) { mutableStateOf(false) }
+ var shortcutNoExactMatch by remember(initialQuery,openReferenceDirectly) { mutableStateOf(false) }
  LaunchedEffect(state.loading,state.results,initialQuery,openReferenceDirectly) {
   if(openReferenceDirectly && !shortcutHandled && initialQuery.isNotBlank() && !state.loading && state.query==initialQuery) {
    // Never open an unrelated legal fiche when a shortcut has no exact match.
@@ -250,7 +251,8 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
     val article=result.article.orEmpty().uppercase(Locale.ROOT).replace(Regex("[^A-Z0-9]"),"")
     article==normalizedQuery
    }
-   if(matching!=null) { selected=matching;shortcutHandled=true }
+   if(matching!=null) { selected=matching;shortcutHandled=true;shortcutNoExactMatch=false }
+   else { shortcutHandled=true;shortcutNoExactMatch=true }
   }
  }
  var guideReference by remember { mutableStateOf<String?>(null) }
@@ -282,6 +284,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    keyboardOptions=KeyboardOptions(imeAction=ImeAction.Search),
    keyboardActions=KeyboardActions(onSearch={keyboard?.hide();vm.run()}))
   if(state.loading) LinearProgressIndicator(Modifier.fillMaxWidth())
+  if(shortcutNoExactMatch && state.query==initialQuery) Text("Não foi localizada ficha com correspondência exata para Art. $initialQuery. Confira os resultados abaixo antes de abrir uma referência.",color=MaterialTheme.colorScheme.error,style=MaterialTheme.typography.bodySmall,modifier=Modifier.testTag("shortcut_exact_match_warning"))
   Text("Catálogo em conferência • disponível offline", style=MaterialTheme.typography.bodySmall)
    }
   }
