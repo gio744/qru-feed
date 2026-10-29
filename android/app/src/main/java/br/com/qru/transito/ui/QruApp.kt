@@ -111,7 +111,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
       }
       Box(Modifier.weight(1f)) {
        if(tab==QruTab.BUSCA && homeVisible) QruOperationalHome(onMenu={scope.launch{drawer.open()}},onSearch={openSearch(it)})
-       else if(tab==QruTab.BUSCA) SearchHome(initialQuery=quickQuery,onMenu={scope.launch{drawer.open()}})
+       else if(tab==QruTab.BUSCA) SearchHome(initialQuery=quickQuery,onMenu={scope.launch{drawer.open()}},openReferenceDirectly=quickQuery.isNotBlank())
        else if(tab==QruTab.MAIS) MoreLibraryPage(onOpenNorms={tab=QruTab.NORMAS})
        else CatalogPage(tab)
       }
@@ -215,7 +215,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  }
 }
 
-@Composable private fun SearchHome(initialQuery:String="",onMenu:()->Unit){
+@Composable private fun SearchHome(initialQuery:String="",onMenu:()->Unit,openReferenceDirectly:Boolean=false){
  val context=LocalContext.current
  val app=context.applicationContext as QruApplication
  val vm:SearchViewModel=viewModel(factory=SearchViewModelFactory(app.searchLegalContent))
@@ -225,6 +225,13 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  var occurrence by rememberSaveable{mutableStateOf("")}
  var occurrenceExpanded by rememberSaveable{mutableStateOf(false)}
  var selected by remember{mutableStateOf<SearchResult?>(null)}
+ var shortcutHandled by remember(initialQuery,openReferenceDirectly) { mutableStateOf(false) }
+ LaunchedEffect(state.loading,state.results,initialQuery,openReferenceDirectly) {
+  if(openReferenceDirectly && !shortcutHandled && initialQuery.isNotBlank() && !state.loading && state.query==initialQuery) {
+   val matching=state.results.firstOrNull { it.article?.replace(" ","")?.equals(initialQuery.replace(" ",""),ignoreCase=true)==true }
+   if(matching!=null) { selected=matching;shortcutHandled=true }
+  }
+ }
  var guideReference by remember { mutableStateOf<String?>(null) }
  var guideExpanded by rememberSaveable { mutableStateOf(false) }
  fun voiceMessage(text:String){Toast.makeText(context,text,Toast.LENGTH_LONG).show()}
