@@ -90,6 +90,7 @@ class ReaderAndNewsUiTest {
   context.getSharedPreferences("qru_news",0).edit()
    .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
   ActivityScenario.launch(MainActivity::class.java).use {
+   ui.onNodeWithTag("home_search").performClick()
    ui.onNodeWithTag("search_query").performTextReplacement("pneu")
    ui.waitUntil(10_000) {
     ui.onAllNodesWithText("672-61",substring=true).fetchSemanticsNodes().isNotEmpty()
@@ -124,6 +125,7 @@ class ReaderAndNewsUiTest {
   context.getSharedPreferences("qru_news",0).edit()
    .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
   ActivityScenario.launch(MainActivity::class.java).use {
+   ui.onNodeWithTag("home_search").performClick()
    ui.onNodeWithTag("search_query").performTextReplacement("licenciamento")
    ui.waitUntil(10_000) {
     ui.onAllNodesWithText("659-92",substring=true).fetchSemanticsNodes().isNotEmpty()
@@ -143,7 +145,8 @@ class ReaderAndNewsUiTest {
    }
    androidx.test.espresso.Espresso.pressBack()
    ui.onNodeWithTag("tab_MAIS").performClick()
-    ui.onNodeWithText("Busca",useUnmergedTree=true).performClick()
+    ui.onNodeWithTag("return_home").performClick()
+   ui.onNodeWithTag("home_search").performClick()
    ui.onNodeWithTag("search_results").performScrollToIndex(0)
    ui.onNodeWithTag("search_query").assertTextContains("licenciamento")
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("659-92",substring=true)
@@ -191,6 +194,7 @@ class ReaderAndNewsUiTest {
   context.getSharedPreferences("qru_news",0).edit()
    .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
   ActivityScenario.launch(MainActivity::class.java).use {
+   ui.onNodeWithTag("home_search").performClick()
    ui.onNodeWithTag("search_query").performTextReplacement("pneu")
    ui.waitUntil(10_000) {
     ui.onAllNodesWithText("672-61",substring=true).fetchSemanticsNodes().isNotEmpty()
