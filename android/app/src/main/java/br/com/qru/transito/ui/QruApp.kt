@@ -97,7 +97,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
      label={Text(if(item==QruTab.MAIS) "QRU" else item.label)})}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
     tabStates.SaveableStateProvider(tab.name) {
-     if(tab==QruTab.BUSCA) SearchHome{scope.launch{drawer.open()}} else CatalogPage(tab)
+     if(tab==QruTab.BUSCA) SearchHome{scope.launch{drawer.open()}} else if(tab==QruTab.MAIS) MoreLibraryPage(onOpenSearch={tab=QruTab.BUSCA},onOpenNorms={tab=QruTab.NORMAS}) else CatalogPage(tab)
     }
    }}
   }
@@ -443,7 +443,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
 
 
 /** Biblioteca especializada: entradas em preparação não simulam conteúdo publicado. */
-@Composable private fun MoreLibraryPage(onOpenNorms:()->Unit) {
+@Composable private fun MoreLibraryPage(onOpenSearch:()->Unit,onOpenNorms:()->Unit) {
  val topics=listOf(
   "MBFT" to "Manual Brasileiro de Fiscalização",
   "Sinalização" to "Placas e marcas viárias",
@@ -467,12 +467,12 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
   topics.chunked(2).forEach { pair ->
    Row(horizontalArrangement=Arrangement.spacedBy(10.dp),modifier=Modifier.fillMaxWidth()) {
     pair.forEach { (title,description) ->
-     Card(modifier=Modifier.weight(1f).heightIn(min=106.dp),shape=RoundedCornerShape(16.dp)) {
+     Card(onClick={if(title=="MBFT" || title=="Alcoolemia") onOpenSearch() else onOpenNorms()},enabled=(title=="MBFT" || title=="Alcoolemia" || title=="Sinalização"),modifier=Modifier.weight(1f).heightIn(min=106.dp),shape=RoundedCornerShape(16.dp)) {
       Column(Modifier.padding(12.dp),verticalArrangement=Arrangement.spacedBy(5.dp)) {
        Icon(Icons.Default.MenuBook,null,tint=MaterialTheme.colorScheme.primary)
        Text(title,style=MaterialTheme.typography.titleSmall,fontWeight=FontWeight.SemiBold)
        Text(description,style=MaterialTheme.typography.bodySmall)
-       Text("Em preparação",style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.secondary)
+       Text(when(title){"MBFT","Alcoolemia"->"Consultar fichas na busca";"Sinalização"->"Abrir Normas";else->"Em preparação"},style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.secondary)
       }
      }
     }
