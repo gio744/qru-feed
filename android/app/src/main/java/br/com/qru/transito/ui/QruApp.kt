@@ -214,7 +214,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
     if(pair.size==1) Spacer(Modifier.weight(1f))
    }
   }
-  item { Text("CONSULTAS FREQUENTES",style=MaterialTheme.typography.titleSmall,fontWeight=FontWeight.Bold,color=androidx.compose.ui.graphics.Color.White) }
+  item { Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically) { Text("CONSULTAS FREQUENTES",style=MaterialTheme.typography.titleSmall,fontWeight=FontWeight.Bold,color=androidx.compose.ui.graphics.Color.White); TextButton(onClick={customizing=true}) { Icon(Icons.Default.Settings,null,tint=blue,modifier=Modifier.size(16.dp)); Spacer(Modifier.width(4.dp)); Text("GERENCIAR",color=blue,style=MaterialTheme.typography.labelSmall) } } }
   item {
    // Keep frequent consultations in one horizontally scrollable row, leaving the
    // operational dashboard visible without forcing an extra vertical row.
