@@ -99,7 +99,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
     TextButton(onClick={scope.launch{drawer.close()}},modifier=Modifier.padding(12.dp)){Text("FECHAR MENU")}
    }
   }){
-   Scaffold(bottomBar={NavigationBar(containerColor=Color(0xFF061321),contentColor=Color(0xFFD6E8F8)){
+   Scaffold(bottomBar={NavigationBar(containerColor=androidx.compose.ui.graphics.Color(0xFF061321),contentColor=androidx.compose.ui.graphics.Color(0xFFD6E8F8)){
     listOf(QruTab.CTB,QruTab.NORMAS,QruTab.MAIS,QruTab.SITUACOES,QruTab.NOVIDADES).forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item;homeVisible=false},modifier=Modifier.testTag("tab_"+item.name).semantics { contentDescription = if(item==QruTab.MAIS) "Abrir central QRU" else item.label },
      icon={if(item==QruTab.MAIS) Surface(shape=RoundedCornerShape(50),color=androidx.compose.ui.graphics.Color(0xFF081D32),border=androidx.compose.foundation.BorderStroke(2.dp,androidx.compose.ui.graphics.Color(0xFF53BDF7)),modifier=Modifier.size(49.dp)) { Box(contentAlignment=Alignment.Center) { Text("Q",style=MaterialTheme.typography.headlineMedium.copy(fontWeight=FontWeight.Black,brush=androidx.compose.ui.graphics.Brush.verticalGradient(listOf(androidx.compose.ui.graphics.Color.White,androidx.compose.ui.graphics.Color(0xFFB7C9D9),androidx.compose.ui.graphics.Color(0xFF6B91AC),androidx.compose.ui.graphics.Color(0xFFE4F7FF))))) } } else Icon(when(item){QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.MAIS->Icons.Default.GridView;QruTab.NOVIDADES->Icons.Default.Notifications;else->Icons.Default.Search},item.label)},
      label={Text(if(item==QruTab.MAIS) "QRU" else item.label)})}
