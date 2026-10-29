@@ -224,6 +224,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
       Text(code,style=MaterialTheme.typography.labelSmall,color=androidx.compose.ui.graphics.Color(0xFFB8D9FF),maxLines=1)
      }
     }
+    OutlinedButton(onClick={customizing=true},modifier=Modifier.height(42.dp).testTag("frequent_more"),shape=RoundedCornerShape(10.dp),border=androidx.compose.foundation.BorderStroke(1.dp,border),contentPadding=PaddingValues(horizontal=14.dp),colors=ButtonDefaults.outlinedButtonColors(containerColor=dark)) { Icon(Icons.Default.MoreHoriz,"Gerenciar consultas frequentes",tint=blue) }
    }
   }
  }
