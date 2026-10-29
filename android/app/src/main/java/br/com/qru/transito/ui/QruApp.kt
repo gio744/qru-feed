@@ -61,6 +61,10 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
 @Composable fun QruApp(){
  QruTheme{
   var tab by rememberSaveable{mutableStateOf(QruTab.BUSCA)}
+  var homeVisible by rememberSaveable { mutableStateOf(true) }
+  var quickQuery by rememberSaveable { mutableStateOf("") }
+  fun openHome() { tab=QruTab.BUSCA;homeVisible=true;quickQuery="" }
+  fun openSearch(query:String="") { tab=QruTab.BUSCA;quickQuery=query;homeVisible=false }
   var support by rememberSaveable{mutableStateOf<String?>(null)}
   val newsContext=LocalContext.current
   val newsPreferences=remember(newsContext) { newsContext.getSharedPreferences("qru_news",android.content.Context.MODE_PRIVATE) }
@@ -79,7 +83,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
      QruWordmark(compact=true)
      Text("QUAL A SITUAÇÃO",style=MaterialTheme.typography.labelLarge)
     }
-    NavigationDrawerItem(label={Text("Busca")},selected=tab==QruTab.BUSCA,icon={Icon(Icons.Default.Search,null)},onClick={tab=QruTab.BUSCA;scope.launch{drawer.close()}})
+    NavigationDrawerItem(label={Text("Busca")},selected=tab==QruTab.BUSCA,icon={Icon(Icons.Default.Search,null)},onClick={openHome();scope.launch{drawer.close()}})
     NavigationDrawerItem(label={Text("Como usar")},selected=false,
      icon={Icon(Icons.Default.HelpOutline,null)},onClick={support="help";scope.launch{drawer.close()}})
     NavigationDrawerItem(label={Text("Fontes oficiais")},selected=false,
@@ -92,21 +96,22 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    }
   }){
    Scaffold(bottomBar={NavigationBar{
-    listOf(QruTab.CTB,QruTab.NORMAS,QruTab.MAIS,QruTab.SITUACOES,QruTab.NOVIDADES).forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},modifier=Modifier.testTag("tab_"+item.name).semantics { contentDescription = if(item==QruTab.MAIS) "Abrir central QRU" else item.label },
+    listOf(QruTab.CTB,QruTab.NORMAS,QruTab.MAIS,QruTab.SITUACOES,QruTab.NOVIDADES).forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item;homeVisible=false},modifier=Modifier.testTag("tab_"+item.name).semantics { contentDescription = if(item==QruTab.MAIS) "Abrir central QRU" else item.label },
      icon={if(item==QruTab.MAIS) Text("Q",style=MaterialTheme.typography.headlineMedium,fontWeight=FontWeight.Bold,color=MaterialTheme.colorScheme.primary) else Icon(when(item){QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.MAIS->Icons.Default.GridView;QruTab.NOVIDADES->Icons.Default.Notifications;else->Icons.Default.Search},item.label)},
      label={Text(if(item==QruTab.MAIS) "QRU" else item.label)})}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
     tabStates.SaveableStateProvider(tab.name) {
      Column(Modifier.fillMaxSize()) {
       if(tab!=QruTab.BUSCA) {
-       TextButton(onClick={tab=QruTab.BUSCA},modifier=Modifier.testTag("return_home")) {
+       TextButton(onClick={openHome()},modifier=Modifier.testTag("return_home")) {
         Icon(Icons.Default.Home,null)
         Spacer(Modifier.width(8.dp))
         Text("Página inicial")
        }
       }
       Box(Modifier.weight(1f)) {
-       if(tab==QruTab.BUSCA) SearchHome{scope.launch{drawer.open()}}
+       if(tab==QruTab.BUSCA && homeVisible) QruOperationalHome(onMenu={scope.launch{drawer.open()}},onSearch={openSearch(it)})
+       else if(tab==QruTab.BUSCA) SearchHome(initialQuery=quickQuery,onMenu={scope.launch{drawer.open()}})
        else if(tab==QruTab.MAIS) MoreLibraryPage(onOpenNorms={tab=QruTab.NORMAS})
        else CatalogPage(tab)
       }
@@ -135,11 +140,87 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  }
 }
 
-@Composable private fun SearchHome(onMenu:()->Unit){
+@Composable private fun QruOperationalHome(onMenu:()->Unit,onSearch:(String)->Unit) {
+ val context=LocalContext.current
+ val prefs=remember(context) { context.getSharedPreferences("qru_home",android.content.Context.MODE_PRIVATE) }
+ val options=listOf("230 V","167","162 I","165-A","230 XVIII","208","252","181")
+ var favorites by remember { mutableStateOf(prefs.getString("favorites","230 V|167|162 I|165-A")!!.split("|").filter { it in options }.take(4)) }
+ var customizing by rememberSaveable { mutableStateOf(false) }
+ val titles=mapOf("230 V" to "Licenciamento","167" to "Cinto de segurança","162 I" to "Sem habilitação","165-A" to "Recusa ao teste","230 XVIII" to "Pneus","208" to "Sinal vermelho","252" to "Conduta do motorista","181" to "Estacionamento")
+ LazyColumn(Modifier.fillMaxSize().testTag("operational_home"),contentPadding=PaddingValues(16.dp),verticalArrangement=Arrangement.spacedBy(18.dp)) {
+  item {
+   Column(horizontalAlignment=Alignment.CenterHorizontally,modifier=Modifier.fillMaxWidth()) {
+    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
+     IconButton(onClick=onMenu) { Icon(Icons.Default.Menu,"Abrir menu") }
+     Icon(Icons.Default.Notifications,"Novidades")
+    }
+    QruWordmark()
+    Text("QUAL A SITUAÇÃO?",color=MaterialTheme.colorScheme.primary,fontWeight=FontWeight.Bold)
+   }
+  }
+  item {
+   OutlinedButton(onClick={onSearch("")},modifier=Modifier.fillMaxWidth().heightIn(min=62.dp).testTag("home_search")) {
+    Icon(Icons.Default.Search,null)
+    Spacer(Modifier.width(10.dp))
+    Text("Buscar artigo, infração, código ou situação",modifier=Modifier.weight(1f))
+    Icon(Icons.Default.Mic,null)
+   }
+  }
+  item {
+   Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.SpaceBetween) {
+    Text("MEU PAINEL OPERACIONAL",style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.Bold)
+    TextButton(onClick={customizing=!customizing}) { Text(if(customizing) "CONCLUIR" else "PERSONALIZAR") }
+   }
+  }
+  if(customizing) item {
+   Column {
+    Text("Escolha até quatro atalhos. A seleção fica salva neste aparelho.",style=MaterialTheme.typography.bodySmall)
+    options.forEach { code ->
+     Row(verticalAlignment=Alignment.CenterVertically) {
+      Checkbox(checked=code in favorites,onCheckedChange={checked ->
+       favorites=if(checked) (favorites+code).distinct().take(4) else favorites.filterNot { it==code }
+       prefs.edit().putString("favorites",favorites.joinToString("|")).apply()
+      },enabled=code in favorites || favorites.size<4)
+      Text("Art. $code — ${titles[code].orEmpty()}")
+     }
+    }
+   }
+  }
+  items(favorites.chunked(2)) { pair ->
+   Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+    pair.forEach { code ->
+     OutlinedCard(onClick={onSearch(code)},modifier=Modifier.weight(1f).heightIn(min=94.dp).testTag("favorite_"+code.replace(" ","_"))) {
+      Column(Modifier.padding(12.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
+       Text("Art. $code",fontWeight=FontWeight.Bold)
+       Text(titles[code].orEmpty(),style=MaterialTheme.typography.bodySmall)
+       Text("Consultar",color=MaterialTheme.colorScheme.primary,style=MaterialTheme.typography.labelSmall)
+      }
+     }
+    }
+    if(pair.size==1) Spacer(Modifier.weight(1f))
+   }
+  }
+  item { Text("CONSULTAS FREQUENTES",style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.Bold) }
+  item {
+   Column(verticalArrangement=Arrangement.spacedBy(8.dp)) {
+    options.chunked(4).forEach { pair ->
+     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(6.dp)) {
+      pair.forEach { code ->
+       OutlinedButton(onClick={onSearch(code)},modifier=Modifier.weight(1f),contentPadding=PaddingValues(horizontal=3.dp)) { Text(code,style=MaterialTheme.typography.labelSmall) }
+      }
+     }
+    }
+   }
+  }
+ }
+}
+
+@Composable private fun SearchHome(initialQuery:String="",onMenu:()->Unit){
  val context=LocalContext.current
  val app=context.applicationContext as QruApplication
  val vm:SearchViewModel=viewModel(factory=SearchViewModelFactory(app.searchLegalContent))
  val state by vm.state.collectAsState()
+ LaunchedEffect(initialQuery) { if(initialQuery.isNotBlank()) { vm.query(initialQuery);vm.run() } }
  val keyboard=LocalSoftwareKeyboardController.current
  var occurrence by rememberSaveable{mutableStateOf("")}
  var occurrenceExpanded by rememberSaveable{mutableStateOf(false)}
