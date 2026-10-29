@@ -144,32 +144,41 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  val context=LocalContext.current
  val prefs=remember(context) { context.getSharedPreferences("qru_home",android.content.Context.MODE_PRIVATE) }
  val options=listOf("230 V","167","162 I","165-A","230 XVIII","208","252","181")
+ val titles=mapOf("230 V" to "Licenciamento vencido","167" to "Cinto de segurança","162 I" to "Sem habilitação","165-A" to "Recusa ao teste","230 XVIII" to "Pneus e rodas","208" to "Avanço de sinal vermelho","252" to "Condutas do condutor","181" to "Estacionamento irregular")
  var favorites by remember { mutableStateOf(prefs.getString("favorites","230 V|167|162 I|165-A")!!.split("|").filter { it in options }.take(4)) }
  var customizing by rememberSaveable { mutableStateOf(false) }
- val titles=mapOf("230 V" to "Licenciamento","167" to "Cinto de segurança","162 I" to "Sem habilitação","165-A" to "Recusa ao teste","230 XVIII" to "Pneus","208" to "Sinal vermelho","252" to "Conduta do motorista","181" to "Estacionamento")
- LazyColumn(Modifier.fillMaxSize().testTag("operational_home"),contentPadding=PaddingValues(16.dp),verticalArrangement=Arrangement.spacedBy(18.dp)) {
+ val blue=androidx.compose.ui.graphics.Color(0xFF32B8FF)
+ val dark=androidx.compose.ui.graphics.Color(0xFF061B2E)
+ val border=androidx.compose.ui.graphics.Color(0xFF277BB1)
+ LazyColumn(Modifier.fillMaxSize().testTag("operational_home"),contentPadding=PaddingValues(horizontal=14.dp,vertical=10.dp),verticalArrangement=Arrangement.spacedBy(16.dp)) {
   item {
    Column(horizontalAlignment=Alignment.CenterHorizontally,modifier=Modifier.fillMaxWidth()) {
-    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
-     IconButton(onClick=onMenu) { Icon(Icons.Default.Menu,"Abrir menu") }
-     Icon(Icons.Default.Notifications,"Novidades")
+    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically) {
+     IconButton(onClick=onMenu) { Icon(Icons.Default.Menu,"Abrir menu",tint=androidx.compose.ui.graphics.Color.White) }
+     Icon(Icons.Default.Notifications,"Novidades",tint=blue,modifier=Modifier.padding(end=12.dp))
     }
-    QruWordmark()
-    Text("QUAL A SITUAÇÃO?",color=MaterialTheme.colorScheme.primary,fontWeight=FontWeight.Bold)
+    Image(painter=painterResource(R.drawable.qru_wordmark),contentDescription="QRU Trânsito",contentScale=ContentScale.Fit,modifier=Modifier.fillMaxWidth(0.8f).height(98.dp))
+    Text("T R Â N S I T O",color=androidx.compose.ui.graphics.Color.White,fontWeight=FontWeight.Bold,style=MaterialTheme.typography.labelLarge)
+    Spacer(Modifier.height(8.dp))
+    Text("Q U A L   A   S I T U A Ç Ã O ?",color=blue,fontWeight=FontWeight.Bold,style=MaterialTheme.typography.labelMedium)
    }
   }
   item {
-   OutlinedButton(onClick={onSearch("")},modifier=Modifier.fillMaxWidth().heightIn(min=62.dp).testTag("home_search")) {
-    Icon(Icons.Default.Search,null)
+   OutlinedButton(onClick={onSearch("")},modifier=Modifier.fillMaxWidth().heightIn(min=62.dp).testTag("home_search"),shape=RoundedCornerShape(18.dp),border=androidx.compose.foundation.BorderStroke(1.5.dp,blue),colors=ButtonDefaults.outlinedButtonColors(containerColor=dark)) {
+    Icon(Icons.Default.Search,null,tint=androidx.compose.ui.graphics.Color.White)
     Spacer(Modifier.width(10.dp))
-    Text("Buscar artigo, infração, código ou situação",modifier=Modifier.weight(1f))
-    Icon(Icons.Default.Mic,null)
+    Text("Buscar artigo, infração, código ou situação...",modifier=Modifier.weight(1f),color=androidx.compose.ui.graphics.Color(0xFFB3D5F6),style=MaterialTheme.typography.bodySmall)
+    Icon(Icons.Default.Mic,null,tint=blue)
    }
   }
   item {
    Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.SpaceBetween) {
-    Text("MEU PAINEL OPERACIONAL",style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.Bold)
-    TextButton(onClick={customizing=!customizing}) { Text(if(customizing) "CONCLUIR" else "PERSONALIZAR") }
+    Text("MEU PAINEL OPERACIONAL",style=MaterialTheme.typography.titleSmall,fontWeight=FontWeight.Bold,color=androidx.compose.ui.graphics.Color.White)
+    TextButton(onClick={customizing=!customizing}) {
+     Icon(Icons.Default.Edit,null,tint=blue,modifier=Modifier.size(16.dp))
+     Spacer(Modifier.width(4.dp))
+     Text(if(customizing) "CONCLUIR" else "PERSONALIZAR",color=blue,style=MaterialTheme.typography.labelSmall)
+    }
    }
   }
   if(customizing) item {
@@ -189,24 +198,29 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   items(favorites.chunked(2)) { pair ->
    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
     pair.forEach { code ->
-     OutlinedCard(onClick={onSearch(code)},modifier=Modifier.weight(1f).heightIn(min=94.dp).testTag("favorite_"+code.replace(" ","_"))) {
-      Column(Modifier.padding(12.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
-       Text("Art. $code",fontWeight=FontWeight.Bold)
-       Text(titles[code].orEmpty(),style=MaterialTheme.typography.bodySmall)
-       Text("Consultar",color=MaterialTheme.colorScheme.primary,style=MaterialTheme.typography.labelSmall)
+     OutlinedCard(onClick={onSearch(code)},modifier=Modifier.weight(1f).heightIn(min=100.dp).testTag("favorite_"+code.replace(" ","_")),shape=RoundedCornerShape(12.dp),border=androidx.compose.foundation.BorderStroke(1.dp,border),colors=CardDefaults.outlinedCardColors(containerColor=dark)) {
+      Row(Modifier.padding(10.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+       Icon(Icons.Default.Gavel,null,tint=androidx.compose.ui.graphics.Color(0xFF9DCFFF),modifier=Modifier.size(30.dp))
+       Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(4.dp)) {
+        Text("Art. $code",fontWeight=FontWeight.Bold,color=androidx.compose.ui.graphics.Color.White,style=MaterialTheme.typography.titleSmall)
+        Text(titles[code].orEmpty(),style=MaterialTheme.typography.labelSmall,color=androidx.compose.ui.graphics.Color(0xFFB9D0E8),maxLines=2)
+       }
+       Icon(Icons.Default.ChevronRight,null,tint=blue,modifier=Modifier.size(16.dp))
       }
      }
     }
     if(pair.size==1) Spacer(Modifier.weight(1f))
    }
   }
-  item { Text("CONSULTAS FREQUENTES",style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.Bold) }
+  item { Text("CONSULTAS FREQUENTES",style=MaterialTheme.typography.titleSmall,fontWeight=FontWeight.Bold,color=androidx.compose.ui.graphics.Color.White) }
   item {
    Column(verticalArrangement=Arrangement.spacedBy(8.dp)) {
     options.chunked(4).forEach { pair ->
      Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(6.dp)) {
       pair.forEach { code ->
-       OutlinedButton(onClick={onSearch(code)},modifier=Modifier.weight(1f),contentPadding=PaddingValues(horizontal=3.dp)) { Text(code,style=MaterialTheme.typography.labelSmall) }
+       OutlinedButton(onClick={onSearch(code)},modifier=Modifier.weight(1f).height(42.dp),shape=RoundedCornerShape(10.dp),border=androidx.compose.foundation.BorderStroke(1.dp,border),contentPadding=PaddingValues(horizontal=2.dp),colors=ButtonDefaults.outlinedButtonColors(containerColor=dark)) {
+        Text(code,style=MaterialTheme.typography.labelSmall,color=androidx.compose.ui.graphics.Color(0xFFB8D9FF),maxLines=1)
+       }
       }
      }
     }
