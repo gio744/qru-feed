@@ -314,7 +314,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   GuideReferenceLookup(code,search={app.searchLegalContent(it)},
    onSelected={selected=it;guideReference=null},onDismiss={guideReference=null})
  }
- selected?.let { ReferenceDialog(it) { selected=null } }
+ selected?.let { ReferenceDialog(it,autoOpenOffline=openReferenceDirectly) { selected=null } }
 }
 
 private fun openOfficialSource(context: android.content.Context, url: String) {
@@ -334,7 +334,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
         }
     }
 }
-@Composable private fun ReferenceDialog(result:SearchResult,onDismiss:()->Unit) {
+@Composable private fun ReferenceDialog(result:SearchResult,autoOpenOffline:Boolean=false,onDismiss:()->Unit) {
     val context=LocalContext.current
     var documents by remember { mutableStateOf<List<OfflinePdfDocument>>(emptyList()) }
     var ranges by remember { mutableStateOf<List<ReferencePageRange>>(emptyList()) }
@@ -357,6 +357,11 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
         documents=loaded.first;ranges=loaded.second;referenceLoading=false
     }
     val offline=result.source?.let { resolveOfflineReference(documents,ranges,it,result.code) }
+    // Shortcut navigation opens only the verified, locally indexed PDF range.
+    // Never redirect to a website or open a different article as a fallback.
+    LaunchedEffect(autoOpenOffline,referenceLoading,offline,result.stableKey) {
+        if(autoOpenOffline && !referenceLoading && offline!=null) offlineOpened=true
+    }
     // Editorial package starts empty. Never infer approval from a bundled PDF or search result.
     var approvedOperationalFiche by remember(result.stableKey) { mutableStateOf<OperationalReference?>(null) }
     LaunchedEffect(result.stableKey) {
