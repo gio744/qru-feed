@@ -29,6 +29,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -214,14 +215,12 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   }
   item { Text("CONSULTAS FREQUENTES",style=MaterialTheme.typography.titleSmall,fontWeight=FontWeight.Bold,color=androidx.compose.ui.graphics.Color.White) }
   item {
-   Column(verticalArrangement=Arrangement.spacedBy(8.dp)) {
-    options.chunked(4).forEach { pair ->
-     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(6.dp)) {
-      pair.forEach { code ->
-       OutlinedButton(onClick={onSearch(code)},modifier=Modifier.weight(1f).height(42.dp),shape=RoundedCornerShape(10.dp),border=androidx.compose.foundation.BorderStroke(1.dp,border),contentPadding=PaddingValues(horizontal=2.dp),colors=ButtonDefaults.outlinedButtonColors(containerColor=dark)) {
-        Text(code,style=MaterialTheme.typography.labelSmall,color=androidx.compose.ui.graphics.Color(0xFFB8D9FF),maxLines=1)
-       }
-      }
+   // Keep frequent consultations in one horizontally scrollable row, leaving the
+   // operational dashboard visible without forcing an extra vertical row.
+   Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).testTag("frequent_consultations"),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+    options.forEach { code ->
+     OutlinedButton(onClick={onSearch(code)},modifier=Modifier.height(42.dp).testTag("frequent_"+code.replace(" ","_")),shape=RoundedCornerShape(10.dp),border=androidx.compose.foundation.BorderStroke(1.dp,border),contentPadding=PaddingValues(horizontal=14.dp),colors=ButtonDefaults.outlinedButtonColors(containerColor=dark)) {
+      Text(code,style=MaterialTheme.typography.labelSmall,color=androidx.compose.ui.graphics.Color(0xFFB8D9FF),maxLines=1)
      }
     }
    }
