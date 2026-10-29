@@ -8,6 +8,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: android-ui-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
@@ -29,6 +30,25 @@ jobs:
           gradle-version: '8.9'
       - name: Install compilation SDK
         run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      # Reuse the same SHA-256-pinned PDFs as the successful APK build.
+      # The Gradle task still verifies every cached file before using it.
+      - name: Restore verified official PDF cache
+        uses: actions/cache/restore@v4
+        with:
+          path: android/app/build/generated/normAssets/norms
+          key: qru-norms-sha256-${{ hashFiles('android/app/src/main/assets/norms/pdf-catalog.json') }}
+          restore-keys: |
+            qru-norms-sha256-
+      - name: Restore verified CONTRAN staging PDFs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          run_id=$(gh run list --repo "${{ github.repository }}" --workflow contran-pdf-staging.yml --status success --limit 20 --json databaseId --jq '.[0].databaseId')
+          test -n "$run_id"
+          mkdir -p /tmp/qru-contran-stage
+          gh run download "$run_id" --repo "${{ github.repository }}" --name contran-pdfs-1026-1029-staging --dir /tmp/qru-contran-stage
+          python3 scripts/restore_verified_contran_pdfs.py /tmp/qru-contran-stage android/app/build/generated/normAssets/norms
       - name: Enable emulator acceleration
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
