@@ -152,7 +152,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  val blue=androidx.compose.ui.graphics.Color(0xFF32B8FF)
  val dark=androidx.compose.ui.graphics.Color(0xFF061B2E)
  val border=androidx.compose.ui.graphics.Color(0xFF277BB1)
- LazyColumn(Modifier.fillMaxSize().testTag("operational_home"),contentPadding=PaddingValues(horizontal=14.dp,vertical=10.dp),verticalArrangement=Arrangement.spacedBy(16.dp)) {
+ LazyColumn(Modifier.fillMaxSize().background(androidx.compose.ui.graphics.Brush.verticalGradient(listOf(androidx.compose.ui.graphics.Color(0xFF071729),androidx.compose.ui.graphics.Color(0xFF020C16),androidx.compose.ui.graphics.Color(0xFF020B13)))).testTag("operational_home"),contentPadding=PaddingValues(horizontal=14.dp,vertical=10.dp),verticalArrangement=Arrangement.spacedBy(16.dp)) {
   item {
    Column(horizontalAlignment=Alignment.CenterHorizontally,modifier=Modifier.fillMaxWidth()) {
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically) {
