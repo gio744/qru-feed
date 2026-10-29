@@ -161,7 +161,11 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
      IconButton(onClick=onMenu) { Icon(Icons.Default.Menu,"Abrir menu",tint=androidx.compose.ui.graphics.Color.White) }
      Icon(Icons.Default.Notifications,"Novidades",tint=blue,modifier=Modifier.padding(end=12.dp))
     }
-    Text("QRU",modifier=Modifier.testTag("home_metallic_wordmark"),style=MaterialTheme.typography.displayLarge.copy(fontWeight=FontWeight.Black,brush=androidx.compose.ui.graphics.Brush.verticalGradient(listOf(androidx.compose.ui.graphics.Color(0xFFFFFFFF),androidx.compose.ui.graphics.Color(0xFFB8C9D8),androidx.compose.ui.graphics.Color(0xFF6886A0),androidx.compose.ui.graphics.Color(0xFFE2F4FF)))),maxLines=1)
+    Box(modifier=Modifier.testTag("home_metallic_wordmark"),contentAlignment=Alignment.Center) {
+     Text("QRU",style=MaterialTheme.typography.displayLarge.copy(fontWeight=FontWeight.Black,brush=androidx.compose.ui.graphics.Brush.verticalGradient(listOf(androidx.compose.ui.graphics.Color.White,androidx.compose.ui.graphics.Color(0xFFB8C9D8),androidx.compose.ui.graphics.Color(0xFF6886A0),androidx.compose.ui.graphics.Color(0xFFE2F4FF)))),maxLines=1)
+     // A blue accent is integrated into the Q without replacing its readable glyph.
+     Box(Modifier.align(Alignment.BottomStart).offset(x=32.dp,y=(-5).dp).size(5.dp).background(androidx.compose.ui.graphics.Color(0xFF32B8FF),androidx.compose.foundation.shape.CircleShape))
+    }
     Text("T R Â N S I T O",color=androidx.compose.ui.graphics.Color.White,fontWeight=FontWeight.Bold,style=MaterialTheme.typography.labelLarge)
     Spacer(Modifier.height(8.dp))
     Text("Q U A L   A   S I T U A Ç Ã O ?",color=blue,fontWeight=FontWeight.Bold,style=MaterialTheme.typography.labelMedium)
