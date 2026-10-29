@@ -59,8 +59,11 @@ jobs:
           run_id=$(gh run list --repo "${{ github.repository }}" --workflow contran-pdf-staging.yml --status success --limit 20 --json databaseId --jq '.[0].databaseId')
           test -n "$run_id"
           mkdir -p /tmp/qru-contran-stage
-          gh run download "$run_id" --repo "${{ github.repository }}" --name contran-pdfs-1026-1029-staging --dir /tmp/qru-contran-stage
-          python3 scripts/restore_verified_contran_pdfs.py /tmp/qru-contran-stage android/app/build/generated/normAssets/norms
+          if gh run download "$run_id" --repo "${{ github.repository }}" --name contran-pdfs-1026-1029-staging --dir /tmp/qru-contran-stage; then
+            python3 scripts/restore_verified_contran_pdfs.py /tmp/qru-contran-stage android/app/build/generated/normAssets/norms
+          else
+            echo "::warning::Staging artifact unavailable; Gradle will still enforce pinned PDF hashes."
+          fi
       - name: Enable emulator acceleration
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
