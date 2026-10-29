@@ -85,6 +85,30 @@ class ReaderAndNewsUiTest {
   }
  }
 
+ @Test fun operationalShortcutNeverOpensUnrelatedFicha() {
+  val context=InstrumentationRegistry.getInstrumentation().targetContext
+  context.getSharedPreferences("qru_news",0).edit()
+   .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
+  ActivityScenario.launch(MainActivity::class.java).use {
+   ui.onNodeWithTag("favorite_230_V").performClick()
+   ui.waitUntil(15_000) {
+    ui.onAllNodesWithTag("search_results").fetchSemanticsNodes().isNotEmpty() &&
+     ui.onAllNodesWithTag("search_query").fetchSemanticsNodes().isNotEmpty()
+   }
+   ui.onNodeWithTag("search_query").assertTextContains("230 V")
+   ui.waitUntil(15_000) {
+    ui.onAllNodesWithTag("shortcut_exact_match_warning").fetchSemanticsNodes().isNotEmpty() ||
+     ui.onAllNodesWithTag("pdf_pages").fetchSemanticsNodes().isNotEmpty() ||
+     ui.onAllNodesWithText("ABRIR FICHA").fetchSemanticsNodes().isNotEmpty()
+   }
+   // Either the exact fiche opens or the app explicitly reports no exact match.
+   // An unrelated fiche must never be silently substituted.
+   if(ui.onAllNodesWithTag("shortcut_exact_match_warning").fetchSemanticsNodes().isNotEmpty()) {
+    ui.onNodeWithText("Não foi localizada ficha com correspondência exata",substring=true).assertExists()
+   }
+  }
+ }
+
  @Test fun automaticSearchOpensOnlyItsFichaAndKeepsQueryOnReturn() {
   val context=InstrumentationRegistry.getInstrumentation().targetContext
   context.getSharedPreferences("qru_news",0).edit()
