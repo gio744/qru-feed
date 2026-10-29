@@ -102,7 +102,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
     tabStates.SaveableStateProvider(tab.name) {
      Column(Modifier.fillMaxSize()) {
-      if(tab!=QruTab.BUSCA) {
+      if(tab!=QruTab.BUSCA || !homeVisible) {
        TextButton(onClick={openHome()},modifier=Modifier.testTag("return_home")) {
         Icon(Icons.Default.Home,null)
         Spacer(Modifier.width(8.dp))
