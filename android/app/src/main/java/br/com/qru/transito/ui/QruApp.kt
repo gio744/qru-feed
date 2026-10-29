@@ -97,7 +97,20 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
      label={Text(if(item==QruTab.MAIS) "QRU" else item.label)})}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
     tabStates.SaveableStateProvider(tab.name) {
-     if(tab==QruTab.BUSCA) SearchHome{scope.launch{drawer.open()}} else if(tab==QruTab.MAIS) MoreLibraryPage(onOpenSearch={tab=QruTab.BUSCA},onOpenNorms={tab=QruTab.NORMAS}) else CatalogPage(tab)
+     Column(Modifier.fillMaxSize()) {
+      if(tab!=QruTab.BUSCA) {
+       TextButton(onClick={tab=QruTab.BUSCA},modifier=Modifier.testTag("return_home")) {
+        Icon(Icons.Default.Home,null)
+        Spacer(Modifier.width(8.dp))
+        Text("Página inicial")
+       }
+      }
+      Box(Modifier.weight(1f)) {
+       if(tab==QruTab.BUSCA) SearchHome{scope.launch{drawer.open()}}
+       else if(tab==QruTab.MAIS) MoreLibraryPage(onOpenNorms={tab=QruTab.NORMAS})
+       else CatalogPage(tab)
+      }
+     }
     }
    }}
   }
@@ -309,7 +322,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     val context=LocalContext.current
     val app=context.applicationContext as QruApplication
     if(tab==QruTab.SITUACOES) { SituationsPage();return }
-    if(tab==QruTab.MAIS) { MoreLibraryPage(onOpenSearch={},onOpenNorms={});return }
+    if(tab==QruTab.MAIS) return
     Column(Modifier.fillMaxSize().verticalScroll(androidx.compose.foundation.rememberScrollState()).padding(20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
         Text(tab.label,style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.primary)
         when(tab) {
@@ -443,7 +456,9 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
 
 
 /** Biblioteca especializada: entradas em preparação não simulam conteúdo publicado. */
-@Composable private fun MoreLibraryPage(onOpenSearch:()->Unit,onOpenNorms:()->Unit) {
+@Composable private fun MoreLibraryPage(onOpenNorms:()->Unit) {
+ val context=LocalContext.current
+ var showAlcoolemia by rememberSaveable { mutableStateOf(false) }
  val topics=listOf(
   "MBFT" to "Manual Brasileiro de Fiscalização",
   "Sinalização" to "Placas e marcas viárias",
@@ -467,17 +482,35 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
   topics.chunked(2).forEach { pair ->
    Row(horizontalArrangement=Arrangement.spacedBy(10.dp),modifier=Modifier.fillMaxWidth()) {
     pair.forEach { (title,description) ->
-     Card(onClick={if(title=="MBFT" || title=="Alcoolemia") onOpenSearch() else onOpenNorms()},enabled=(title=="MBFT" || title=="Alcoolemia" || title=="Sinalização"),modifier=Modifier.weight(1f).heightIn(min=106.dp),shape=RoundedCornerShape(16.dp)) {
+     Card(onClick={
+       when(title) {
+        "MBFT" -> openOfficialSource(context,"https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao9852022.pdf")
+        "Alcoolemia" -> showAlcoolemia=true
+        "Sinalização" -> onOpenNorms()
+       }
+      },enabled=(title=="MBFT" || title=="Alcoolemia" || title=="Sinalização"),modifier=Modifier.weight(1f).heightIn(min=106.dp),shape=RoundedCornerShape(16.dp)) {
       Column(Modifier.padding(12.dp),verticalArrangement=Arrangement.spacedBy(5.dp)) {
        Icon(Icons.Default.MenuBook,null,tint=MaterialTheme.colorScheme.primary)
        Text(title,style=MaterialTheme.typography.titleSmall,fontWeight=FontWeight.SemiBold)
        Text(description,style=MaterialTheme.typography.bodySmall)
-       Text(when(title){"MBFT","Alcoolemia"->"Consultar fichas na busca";"Sinalização"->"Abrir Normas";else->"Em preparação"},style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.secondary)
+       Text(when(title){"MBFT"->"Abrir MBFT oficial";"Alcoolemia"->"Consultar módulo";"Sinalização"->"Abrir Normas";else->"Em preparação"},style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.secondary)
       }
      }
     }
     if(pair.size==1) Spacer(Modifier.weight(1f))
    }
   }
+  if(showAlcoolemia) AlertDialog(
+   onDismissRequest={showAlcoolemia=false},
+   title={Text("Alcoolemia")},
+   text={Column(verticalArrangement=Arrangement.spacedBy(8.dp)) {
+    Text("Referências de fiscalização: arts. 165, 165-A e 306 do CTB.")
+    Text("Procedimentos e critérios técnicos: Resolução CONTRAN nº 1.030/2025. Confira o texto oficial vigente antes de aplicar.")
+    Text("As fichas operacionais específicas ainda estão em conferência jurídica.")
+   }},
+   confirmButton={TextButton(onClick={showAlcoolemia=false;onOpenNorms()}){Text("CONSULTAR NORMAS")}},
+   dismissButton={TextButton(onClick={showAlcoolemia=false}){Text("FECHAR")}}
+  )
+
  }
 }
