@@ -39,6 +39,18 @@ jobs:
           key: qru-norms-sha256-${{ hashFiles('android/app/src/main/assets/norms/pdf-catalog.json') }}
           restore-keys: |
             qru-norms-sha256-
+      - name: Restore PDFs from last successful APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          run_id=$(gh run list --repo "${{ github.repository }}" --workflow android-build.yml --status success --limit 15 --json databaseId --jq '.[0].databaseId')
+          if [ -n "$run_id" ]; then
+            mkdir -p /tmp/qru-previous-apk android/app/build/generated/normAssets/norms
+            if gh run download "$run_id" --repo "${{ github.repository }}" --name qru-transito-debug-apk --dir /tmp/qru-previous-apk; then
+              python3 scripts/restore_verified_pdfs_from_apk.py /tmp/qru-previous-apk/app-debug.apk android/app/build/generated/normAssets/norms
+            fi
+          fi
       - name: Restore verified CONTRAN staging PDFs
         env:
           GH_TOKEN: ${{ github.token }}
