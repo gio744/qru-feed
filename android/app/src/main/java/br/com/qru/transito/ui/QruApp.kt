@@ -114,7 +114,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
        }
       }
       Box(Modifier.weight(1f)) {
-       if(tab==QruTab.BUSCA && homeVisible) QruOperationalHome(onMenu={scope.launch{drawer.open()}},onSearch={openSearch(it)})
+       if(tab==QruTab.BUSCA && homeVisible) QruOperationalHome(onMenu={scope.launch{drawer.open()}},onSearch={openSearch(it)},onNews={tab=QruTab.NOVIDADES;homeVisible=false})
        else if(tab==QruTab.BUSCA) SearchHome(initialQuery=quickQuery,onMenu={scope.launch{drawer.open()}},openReferenceDirectly=quickQuery.isNotBlank())
        else if(tab==QruTab.MAIS) MoreLibraryPage(onOpenNorms={tab=QruTab.NORMAS})
        else CatalogPage(tab)
@@ -144,7 +144,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  }
 }
 
-@Composable private fun QruOperationalHome(onMenu:()->Unit,onSearch:(String)->Unit) {
+@Composable private fun QruOperationalHome(onMenu:()->Unit,onSearch:(String)->Unit,onNews:()->Unit) {
  val context=LocalContext.current
  val prefs=remember(context) { context.getSharedPreferences("qru_home",android.content.Context.MODE_PRIVATE) }
  val options=listOf("230 V","167","162 I","165-A","230 XVIII","208","252","181")
@@ -159,7 +159,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    Column(horizontalAlignment=Alignment.CenterHorizontally,modifier=Modifier.fillMaxWidth()) {
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically) {
      IconButton(onClick=onMenu) { Icon(Icons.Default.Menu,"Abrir menu",tint=androidx.compose.ui.graphics.Color.White) }
-     Icon(Icons.Default.Notifications,"Novidades",tint=blue,modifier=Modifier.padding(end=12.dp))
+     IconButton(onClick=onNews,modifier=Modifier.testTag("home_news_button")) { Icon(Icons.Default.Notifications,"Abrir novidades",tint=blue) }
     }
     Box(modifier=Modifier.testTag("home_metallic_wordmark"),contentAlignment=Alignment.Center) {
      Text("QRU",style=MaterialTheme.typography.displayLarge.copy(fontWeight=FontWeight.Black,brush=androidx.compose.ui.graphics.Brush.verticalGradient(listOf(androidx.compose.ui.graphics.Color.White,androidx.compose.ui.graphics.Color(0xFFB8C9D8),androidx.compose.ui.graphics.Color(0xFF6886A0),androidx.compose.ui.graphics.Color(0xFFE2F4FF)))),maxLines=1)
