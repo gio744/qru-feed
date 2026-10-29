@@ -147,7 +147,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  val prefs=remember(context) { context.getSharedPreferences("qru_home",android.content.Context.MODE_PRIVATE) }
  val options=listOf("230 V","167","162 I","165-A","230 XVIII","208","252","181")
  val titles=mapOf("230 V" to "Licenciamento vencido","167" to "Cinto de segurança","162 I" to "Sem habilitação","165-A" to "Recusa ao teste","230 XVIII" to "Pneus e rodas","208" to "Avanço de sinal vermelho","252" to "Condutas do condutor","181" to "Estacionamento irregular")
- var favorites by remember { mutableStateOf(prefs.getString("favorites","230 V|167|162 I|165-A")!!.split("|").filter { it in options }.take(4)) }
+ var favorites by remember { mutableStateOf(prefs.getString("favorites","230 V|167|162 I|165-A").orEmpty().split("|").filter { it in options }.distinct().take(4).ifEmpty { listOf("230 V","167","162 I","165-A") }) }
  var customizing by rememberSaveable { mutableStateOf(false) }
  val blue=androidx.compose.ui.graphics.Color(0xFF32B8FF)
  val dark=androidx.compose.ui.graphics.Color(0xFF061B2E)
