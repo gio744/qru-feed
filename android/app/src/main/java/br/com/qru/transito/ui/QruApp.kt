@@ -210,7 +210,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
       Row(Modifier.padding(10.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(8.dp)) {
        Surface(shape=RoundedCornerShape(10.dp),color=androidx.compose.ui.graphics.Color(0xFF124573),modifier=Modifier.size(44.dp)) { Box(contentAlignment=Alignment.Center) { Icon(Icons.Default.Gavel,null,tint=androidx.compose.ui.graphics.Color(0xFFD5E9FF),modifier=Modifier.size(27.dp)) } }
        Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(4.dp)) {
-        Text("Art. ${code.replace(" ", ", ")}",fontWeight=FontWeight.Bold,color=androidx.compose.ui.graphics.Color.White,style=MaterialTheme.typography.titleSmall)
+        Text(if(code=="165-A") "Art. 165-A" else "Art. ${code.replace(" ", ", ")}",fontWeight=FontWeight.Bold,color=androidx.compose.ui.graphics.Color.White,style=MaterialTheme.typography.titleSmall)
         Text(titles[code].orEmpty(),style=MaterialTheme.typography.labelSmall,color=androidx.compose.ui.graphics.Color(0xFFB9D0E8),maxLines=2)
        }
        Icon(Icons.Default.ChevronRight,null,tint=blue,modifier=Modifier.size(16.dp))
