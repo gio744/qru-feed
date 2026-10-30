@@ -44,13 +44,15 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          run_id=$(gh run list --repo "${{ github.repository }}" --workflow android-build.yml --status success --limit 15 --json databaseId --jq '.[0].databaseId')
-          if [ -n "$run_id" ]; then
-            mkdir -p /tmp/qru-previous-apk android/app/build/generated/normAssets/norms
-            if gh run download "$run_id" --repo "${{ github.repository }}" --name qru-transito-debug-apk --dir /tmp/qru-previous-apk; then
-              python3 scripts/restore_verified_pdfs_from_apk.py /tmp/qru-previous-apk/app-debug.apk android/app/build/generated/normAssets/norms
+          mkdir -p android/app/build/generated/normAssets/norms
+          gh run list --repo "${{ github.repository }}" --workflow android-build.yml --status success --limit 12 --json databaseId --jq '.[].databaseId' | while read -r run_id; do
+            [ -n "$run_id" ] || continue
+            mkdir -p "/tmp/qru-apk-$run_id"
+            if gh run download "$run_id" --repo "${{ github.repository }}" --name qru-transito-debug-apk --dir "/tmp/qru-apk-$run_id"; then
+              python3 scripts/restore_verified_pdfs_from_apk.py "/tmp/qru-apk-$run_id/app-debug.apk" android/app/build/generated/normAssets/norms
             fi
-          fi
+          done
+          python3 scripts/verify_cached_norm_pdfs.py
       - name: Restore verified CONTRAN staging PDFs
         env:
           GH_TOKEN: ${{ github.token }}
