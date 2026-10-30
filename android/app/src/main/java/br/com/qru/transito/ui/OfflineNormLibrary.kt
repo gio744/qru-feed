@@ -1,8 +1,6 @@
 package br.com.qru.transito.ui
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.foundation.lazy.LazyColumn
@@ -37,9 +35,13 @@ internal fun offlineNormOrderKey(title:String):Pair<Int,Int> {
 /** Bundled documentary text; does not mark any operational ficha as validated. */
 @Composable fun OfflineNormLibrary(openSource:(String)->Unit) {
  var category by rememberSaveable { mutableStateOf("Resoluções") }
- Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
-  listOf("Resoluções","Portarias","Deliberações","Manuais").forEach { name ->
-   FilterChip(selected=category==name,onClick={category=name},label={Text(name)})
+ Column(verticalArrangement=Arrangement.spacedBy(0.dp)) {
+  listOf(listOf("Resoluções","Portarias"),listOf("Deliberações","Manuais")).forEach { names ->
+   Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+    names.forEach { name ->
+     FilterChip(selected=category==name,onClick={category=name},label={Text(name)},modifier=Modifier.weight(1f))
+    }
+   }
   }
  }
  if(category!="Resoluções" && category!="Manuais") {
