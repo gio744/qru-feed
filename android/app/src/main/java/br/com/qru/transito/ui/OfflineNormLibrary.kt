@@ -5,7 +5,6 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
-import androidx.compose.material.icons.filled.OpenInNew
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.text.selection.SelectionContainer
@@ -87,7 +86,7 @@ internal fun offlineNormOrderKey(title:String):Pair<Int,Int> {
  }
  val document=norm
  if(error && category=="Resoluções") Text("A pesquisa no texto da Resolução 1.031 está indisponível. Você pode abrir o PDF completo.")
- AdditionalOfflineNorms(catalogQuery,category,catalog,document!=null,{opened=true},openSource)
+ AdditionalOfflineNorms(catalogQuery,category,catalog,document!=null,{opened=true})
  if(pdfOpened && document!=null) OfflinePdfReader(document.pdfSha256) { pdfOpened=false }
  if(opened && document!=null) {
   val needle=normSearch(query.trim())
@@ -125,7 +124,7 @@ internal fun offlineNormOrderKey(title:String):Pair<Int,Int> {
  }
 }
 
-@Composable private fun AdditionalOfflineNorms(query:String,category:String,documents:List<OfflinePdfDocument>?,textAvailable:Boolean,onSearchText:()->Unit,openSource:(String)->Unit) {
+@Composable private fun AdditionalOfflineNorms(query:String,category:String,documents:List<OfflinePdfDocument>?,textAvailable:Boolean,onSearchText:()->Unit) {
  var selectedFile by rememberSaveable { mutableStateOf<String?>(null) }
  val visible=remember(documents,query,category) { documents.orEmpty().filter { it.category==category && matchesNorm(it.title,it.subtitle,query) }.sortedWith(compareByDescending<OfflinePdfDocument> { offlineNormOrderKey(it.title).first }.thenByDescending { offlineNormOrderKey(it.title).second }.thenBy { it.title }) }
  if(documents!=null && query.isNotBlank() && visible.isEmpty()) Text("Nenhuma norma encontrada. Tente outro número ou assunto.")
@@ -139,7 +138,6 @@ internal fun offlineNormOrderKey(title:String):Pair<Int,Int> {
     Text(doc.subtitle,style=MaterialTheme.typography.bodyMedium)
     if(doc.file=="resolucao10312026.pdf" && textAvailable) TextButton(onClick=onSearchText) { Text("PESQUISAR TEXTO") }
     Text("PDF original completo offline • ${doc.pageCount} páginas",style=MaterialTheme.typography.bodySmall)
-    TextButton(onClick={openSource(doc.source)},contentPadding=PaddingValues(0.dp)) { Icon(Icons.Default.OpenInNew,null,modifier=Modifier.size(16.dp));Spacer(Modifier.width(6.dp));Text("Fonte oficial",style=MaterialTheme.typography.labelSmall) }
    }
   }
  }
