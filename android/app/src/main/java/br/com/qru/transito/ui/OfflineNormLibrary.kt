@@ -5,7 +5,6 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
-import androidx.compose.material.icons.filled.OpenInNew
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.text.selection.SelectionContainer
@@ -132,7 +131,6 @@ private fun normSearch(text:String):String =
     Text(doc.subtitle,style=MaterialTheme.typography.bodyMedium)
     if(doc.file=="resolucao10312026.pdf" && textAvailable) TextButton(onClick=onSearchText) { Text("PESQUISAR TEXTO") }
     Text("PDF original completo offline • ${doc.pageCount} páginas",style=MaterialTheme.typography.bodySmall)
-    TextButton(onClick={openSource(doc.source)},contentPadding=PaddingValues(0.dp)) { Icon(Icons.Default.OpenInNew,null,modifier=Modifier.size(16.dp));Spacer(Modifier.width(6.dp));Text("Fonte oficial",style=MaterialTheme.typography.labelSmall) }
    }
   }
  }
