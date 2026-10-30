@@ -72,6 +72,42 @@
     "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10252026c.pdf/@@display-file/file"
   },
   {
+    "file": "resolucao10262026.pdf",
+    "title": "Resolução 1.026/2026",
+    "subtitle": "RENAVE; conferir retificação",
+    "sha256": "60b60e60e50afff0d108d3a8f68171c1cd1782c7f2deebb6df84daed6b5b8fa3",
+    "pageCount": 1,
+    "annexPage": null,
+    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10262026R.pdf/@@display-file/file"
+  },
+  {
+    "file": "resolucao10272026.pdf",
+    "title": "Resolução 1.027/2026",
+    "subtitle": "Registro, licenciamento e transferência",
+    "sha256": "ff396591cb2c185ba6e918241799cf84e2b78269094a7a5228222282b27efc75",
+    "pageCount": 29,
+    "annexPage": null,
+    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10272026.pdf/@@display-file/file"
+  },
+  {
+    "file": "resolucao10282026.pdf",
+    "title": "Resolução 1.028/2026",
+    "subtitle": "Transição free flow",
+    "sha256": "cd3ca7475c7a2bfbbe7307e3838fadddf3068df48335a7dc93c16d72b252f10f",
+    "pageCount": 2,
+    "annexPage": null,
+    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10282026.pdf/@@display-file/file"
+  },
+  {
+    "file": "resolucao10292026.pdf",
+    "title": "Resolução 1.029/2026",
+    "subtitle": "Prorrogação de CNH e ACC; conferir vigência",
+    "sha256": "bd55657e2beeb92e7a1e47e27213df7fb06fa5d0471bb5d479da47f2ba662b11",
+    "pageCount": 2,
+    "annexPage": null,
+    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10292026.pdf/@@display-file/file"
+  },
+  {
     "file": "resolucao10312026.pdf",
     "title": "Resolução 1.031/2026",
     "subtitle": "Álcool e outras substâncias psicoativas",
