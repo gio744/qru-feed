@@ -101,7 +101,10 @@ private fun pdfHash(file:File):String {
  Dialog(onDismissRequest=onDismiss,properties=DialogProperties(usePlatformDefaultWidth=false)) {
   Surface(Modifier.fillMaxSize()) {
    Column(Modifier.fillMaxSize().padding(12.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
-    Text(title,style=MaterialTheme.typography.titleLarge)
+    Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+     TextButton(onClick=onDismiss) { Text("‹ VOLTAR") }
+     Text(title,style=MaterialTheme.typography.titleLarge,modifier=Modifier.weight(1f))
+    }
     Text(if(pageRange==null) "Deslize para percorrer as páginas • PDF offline" else "Ficha individual • em conferência",style=MaterialTheme.typography.bodySmall)
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
      TextButton(onClick={go(page-1)},enabled=page>0 && file!=null){Text("ANTERIOR")}

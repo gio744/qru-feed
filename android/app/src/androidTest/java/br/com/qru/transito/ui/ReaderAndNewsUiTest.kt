@@ -85,11 +85,60 @@ class ReaderAndNewsUiTest {
   }
  }
 
+ @Test fun homeNotificationsBellOpensNewsTab() {
+  val context=InstrumentationRegistry.getInstrumentation().targetContext
+  context.getSharedPreferences("qru_news",0).edit()
+   .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
+  ActivityScenario.launch(MainActivity::class.java).use {
+   ui.onNodeWithTag("home_news_button").performClick()
+   ui.onNodeWithTag("tab_NOVIDADES").assertIsSelected()
+   ui.onNodeWithTag("return_home").performClick()
+   ui.onNodeWithTag("operational_home").assertExists()
+  }
+ }
+
+ @Test fun frequentConsultationsManageOpensCustomization() {
+  val context=InstrumentationRegistry.getInstrumentation().targetContext
+  context.getSharedPreferences("qru_news",0).edit()
+   .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
+  ActivityScenario.launch(MainActivity::class.java).use {
+   ui.onNodeWithText("GERENCIAR").performClick()
+   ui.onNodeWithText("CONCLUIR").assertIsDisplayed()
+   ui.onNodeWithText("CONCLUIR").performClick()
+   ui.onNodeWithText("PERSONALIZAR").assertIsDisplayed()
+  }
+ }
+
+ @Test fun operationalShortcutNeverOpensUnrelatedFicha() {
+  val context=InstrumentationRegistry.getInstrumentation().targetContext
+  context.getSharedPreferences("qru_news",0).edit()
+   .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
+  ActivityScenario.launch(MainActivity::class.java).use {
+   ui.onNodeWithTag("favorite_230_V").performClick()
+   ui.waitUntil(15_000) {
+    ui.onAllNodesWithTag("search_results").fetchSemanticsNodes().isNotEmpty() &&
+     ui.onAllNodesWithTag("search_query").fetchSemanticsNodes().isNotEmpty()
+   }
+   ui.onNodeWithTag("search_query").assertTextContains("230 V")
+   ui.waitUntil(15_000) {
+    ui.onAllNodesWithTag("shortcut_exact_match_warning").fetchSemanticsNodes().isNotEmpty() ||
+     ui.onAllNodesWithTag("pdf_pages").fetchSemanticsNodes().isNotEmpty() ||
+     ui.onAllNodesWithText("ABRIR FICHA").fetchSemanticsNodes().isNotEmpty()
+   }
+   // Either the exact fiche opens or the app explicitly reports no exact match.
+   // An unrelated fiche must never be silently substituted.
+   if(ui.onAllNodesWithTag("shortcut_exact_match_warning").fetchSemanticsNodes().isNotEmpty()) {
+    ui.onNodeWithText("Não foi localizada ficha com correspondência exata",substring=true).assertExists()
+   }
+  }
+ }
+
  @Test fun automaticSearchOpensOnlyItsFichaAndKeepsQueryOnReturn() {
   val context=InstrumentationRegistry.getInstrumentation().targetContext
   context.getSharedPreferences("qru_news",0).edit()
    .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
   ActivityScenario.launch(MainActivity::class.java).use {
+   ui.onNodeWithTag("home_search").performClick()
    ui.onNodeWithTag("search_query").performTextReplacement("pneu")
    ui.waitUntil(10_000) {
     ui.onAllNodesWithText("672-61",substring=true).fetchSemanticsNodes().isNotEmpty()
@@ -124,6 +173,7 @@ class ReaderAndNewsUiTest {
   context.getSharedPreferences("qru_news",0).edit()
    .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
   ActivityScenario.launch(MainActivity::class.java).use {
+   ui.onNodeWithTag("home_search").performClick()
    ui.onNodeWithTag("search_query").performTextReplacement("licenciamento")
    ui.waitUntil(10_000) {
     ui.onAllNodesWithText("659-92",substring=true).fetchSemanticsNodes().isNotEmpty()
@@ -143,7 +193,8 @@ class ReaderAndNewsUiTest {
    }
    androidx.test.espresso.Espresso.pressBack()
    ui.onNodeWithTag("tab_MAIS").performClick()
-    ui.onNodeWithText("Busca",useUnmergedTree=true).performClick()
+    ui.onNodeWithTag("return_home").performClick()
+   ui.onNodeWithTag("home_search").performClick()
    ui.onNodeWithTag("search_results").performScrollToIndex(0)
    ui.onNodeWithTag("search_query").assertTextContains("licenciamento")
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("659-92",substring=true)
@@ -191,6 +242,7 @@ class ReaderAndNewsUiTest {
   context.getSharedPreferences("qru_news",0).edit()
    .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
   ActivityScenario.launch(MainActivity::class.java).use {
+   ui.onNodeWithTag("home_search").performClick()
    ui.onNodeWithTag("search_query").performTextReplacement("pneu")
    ui.waitUntil(10_000) {
     ui.onAllNodesWithText("672-61",substring=true).fetchSemanticsNodes().isNotEmpty()

@@ -1,4 +1,6 @@
 package br.com.qru.transito.ui
+
+import androidx.compose.foundation.background
 import android.content.ActivityNotFoundException
 import android.widget.Toast
 import androidx.compose.foundation.lazy.LazyColumn
@@ -29,6 +31,8 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -61,6 +65,10 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
 @Composable fun QruApp(){
  QruTheme{
   var tab by rememberSaveable{mutableStateOf(QruTab.BUSCA)}
+  var homeVisible by rememberSaveable { mutableStateOf(true) }
+  var quickQuery by rememberSaveable { mutableStateOf("") }
+  fun openHome() { tab=QruTab.BUSCA;homeVisible=true;quickQuery="" }
+  fun openSearch(query:String="") { tab=QruTab.BUSCA;quickQuery=query;homeVisible=false }
   var support by rememberSaveable{mutableStateOf<String?>(null)}
   val newsContext=LocalContext.current
   val newsPreferences=remember(newsContext) { newsContext.getSharedPreferences("qru_news",android.content.Context.MODE_PRIVATE) }
@@ -79,7 +87,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
      QruWordmark(compact=true)
      Text("QUAL A SITUAÇÃO",style=MaterialTheme.typography.labelLarge)
     }
-    NavigationDrawerItem(label={Text("Busca")},selected=tab==QruTab.BUSCA,icon={Icon(Icons.Default.Search,null)},onClick={tab=QruTab.BUSCA;scope.launch{drawer.close()}})
+    NavigationDrawerItem(label={Text("Busca")},selected=tab==QruTab.BUSCA,icon={Icon(Icons.Default.Search,null)},onClick={openHome();scope.launch{drawer.close()}})
     NavigationDrawerItem(label={Text("Como usar")},selected=false,
      icon={Icon(Icons.Default.HelpOutline,null)},onClick={support="help";scope.launch{drawer.close()}})
     NavigationDrawerItem(label={Text("Fontes oficiais")},selected=false,
@@ -91,13 +99,27 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
     TextButton(onClick={scope.launch{drawer.close()}},modifier=Modifier.padding(12.dp)){Text("FECHAR MENU")}
    }
   }){
-   Scaffold(bottomBar={NavigationBar{
-    listOf(QruTab.CTB,QruTab.NORMAS,QruTab.MAIS,QruTab.SITUACOES,QruTab.NOVIDADES).forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},modifier=Modifier.testTag("tab_"+item.name).semantics { contentDescription = if(item==QruTab.MAIS) "Abrir central QRU" else item.label },
-     icon={if(item==QruTab.MAIS) Text("Q",style=MaterialTheme.typography.headlineMedium,fontWeight=FontWeight.Bold,color=MaterialTheme.colorScheme.primary) else Icon(when(item){QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.MAIS->Icons.Default.GridView;QruTab.NOVIDADES->Icons.Default.Notifications;else->Icons.Default.Search},item.label)},
-     label={Text(item.label)})}
+   Scaffold(bottomBar={NavigationBar(containerColor=androidx.compose.ui.graphics.Color(0xFF061321),contentColor=androidx.compose.ui.graphics.Color(0xFFD6E8F8)){
+    listOf(QruTab.CTB,QruTab.NORMAS,QruTab.MAIS,QruTab.SITUACOES,QruTab.NOVIDADES).forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item;homeVisible=false},modifier=Modifier.testTag("tab_"+item.name).semantics { contentDescription = if(item==QruTab.MAIS) "Abrir central QRU" else item.label },
+     icon={if(item==QruTab.MAIS) Surface(shape=RoundedCornerShape(50),color=androidx.compose.ui.graphics.Color(0xFF081D32),border=androidx.compose.foundation.BorderStroke(2.dp,androidx.compose.ui.graphics.Color(0xFF53BDF7)),modifier=Modifier.size(49.dp)) { Box(contentAlignment=Alignment.Center) { Text("Q",style=MaterialTheme.typography.headlineMedium.copy(fontWeight=FontWeight.Black,brush=androidx.compose.ui.graphics.Brush.verticalGradient(listOf(androidx.compose.ui.graphics.Color.White,androidx.compose.ui.graphics.Color(0xFFB7C9D9),androidx.compose.ui.graphics.Color(0xFF6B91AC),androidx.compose.ui.graphics.Color(0xFFE4F7FF))))) } } else Icon(when(item){QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.MAIS->Icons.Default.GridView;QruTab.NOVIDADES->Icons.Default.Notifications;else->Icons.Default.Search},item.label)},
+     label={Text(if(item==QruTab.MAIS) "QRU" else item.label)})}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
     tabStates.SaveableStateProvider(tab.name) {
-     if(tab==QruTab.BUSCA) SearchHome{scope.launch{drawer.open()}} else CatalogPage(tab)
+     Column(Modifier.fillMaxSize()) {
+      if(tab!=QruTab.BUSCA || !homeVisible) {
+       TextButton(onClick={openHome()},modifier=Modifier.testTag("return_home")) {
+        Icon(Icons.Default.Home,null)
+        Spacer(Modifier.width(8.dp))
+        Text("Página inicial")
+       }
+      }
+      Box(Modifier.weight(1f)) {
+       if(tab==QruTab.BUSCA && homeVisible) QruOperationalHome(onMenu={scope.launch{drawer.open()}},onSearch={openSearch(it)},onNews={tab=QruTab.NOVIDADES;homeVisible=false})
+       else if(tab==QruTab.BUSCA) SearchHome(initialQuery=quickQuery,onMenu={scope.launch{drawer.open()}},openReferenceDirectly=quickQuery.isNotBlank())
+       else if(tab==QruTab.MAIS) MoreLibraryPage(onOpenNorms={tab=QruTab.NORMAS})
+       else CatalogPage(tab)
+      }
+     }
     }
    }}
   }
@@ -122,15 +144,124 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
  }
 }
 
-@Composable private fun SearchHome(onMenu:()->Unit){
+@Composable private fun QruOperationalHome(onMenu:()->Unit,onSearch:(String)->Unit,onNews:()->Unit) {
+ val context=LocalContext.current
+ val prefs=remember(context) { context.getSharedPreferences("qru_home",android.content.Context.MODE_PRIVATE) }
+ val options=listOf("230 V","167","162 I","165-A","230 XVIII","208","252","181")
+ val titles=mapOf("230 V" to "Licenciamento vencido","167" to "Cinto de segurança","162 I" to "Sem habilitação","165-A" to "Recusa ao teste","230 XVIII" to "Pneus e rodas","208" to "Avanço de sinal vermelho","252" to "Condutas do condutor","181" to "Estacionamento irregular")
+ var favorites by remember { mutableStateOf(prefs.getString("favorites","230 V|167|162 I|165-A").orEmpty().split("|").filter { it in options }.distinct().take(4).ifEmpty { listOf("230 V","167","162 I","165-A") }) }
+ var customizing by rememberSaveable { mutableStateOf(false) }
+ val blue=androidx.compose.ui.graphics.Color(0xFF32B8FF)
+ val dark=androidx.compose.ui.graphics.Color(0xFF061B2E)
+ val border=androidx.compose.ui.graphics.Color(0xFF277BB1)
+ LazyColumn(Modifier.fillMaxSize().background(androidx.compose.ui.graphics.Brush.verticalGradient(listOf(androidx.compose.ui.graphics.Color(0xFF071729),androidx.compose.ui.graphics.Color(0xFF020C16),androidx.compose.ui.graphics.Color(0xFF020B13)))).testTag("operational_home"),contentPadding=PaddingValues(horizontal=14.dp,vertical=10.dp),verticalArrangement=Arrangement.spacedBy(16.dp)) {
+  item {
+   Column(horizontalAlignment=Alignment.CenterHorizontally,modifier=Modifier.fillMaxWidth()) {
+    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically) {
+     IconButton(onClick=onMenu) { Icon(Icons.Default.Menu,"Abrir menu",tint=androidx.compose.ui.graphics.Color.White) }
+     IconButton(onClick=onNews,modifier=Modifier.testTag("home_news_button")) { Icon(Icons.Default.Notifications,"Abrir novidades",tint=blue) }
+    }
+    Box(modifier=Modifier.testTag("home_metallic_wordmark"),contentAlignment=Alignment.Center) {
+     Text("QRU",style=MaterialTheme.typography.displayLarge.copy(fontWeight=FontWeight.Black,brush=androidx.compose.ui.graphics.Brush.verticalGradient(listOf(androidx.compose.ui.graphics.Color.White,androidx.compose.ui.graphics.Color(0xFFB8C9D8),androidx.compose.ui.graphics.Color(0xFF6886A0),androidx.compose.ui.graphics.Color(0xFFE2F4FF)))),maxLines=1)
+     // A blue accent is integrated into the Q without replacing its readable glyph.
+     Box(Modifier.align(Alignment.BottomStart).offset(x=32.dp,y=(-5).dp).size(5.dp).background(androidx.compose.ui.graphics.Color(0xFF32B8FF),androidx.compose.foundation.shape.CircleShape))
+    }
+    Text("T R Â N S I T O",color=androidx.compose.ui.graphics.Color.White,fontWeight=FontWeight.Bold,style=MaterialTheme.typography.labelLarge)
+    Spacer(Modifier.height(8.dp))
+    Text("Q U A L   A   S I T U A Ç Ã O ?",color=blue,fontWeight=FontWeight.Bold,style=MaterialTheme.typography.labelMedium)
+   }
+  }
+  item {
+   OutlinedButton(onClick={onSearch("")},modifier=Modifier.fillMaxWidth().heightIn(min=62.dp).testTag("home_search"),shape=RoundedCornerShape(18.dp),border=androidx.compose.foundation.BorderStroke(1.5.dp,blue),colors=ButtonDefaults.outlinedButtonColors(containerColor=dark)) {
+    Icon(Icons.Default.Search,null,tint=androidx.compose.ui.graphics.Color.White)
+    Spacer(Modifier.width(10.dp))
+    Text("Buscar artigo, infração, código ou situação...",modifier=Modifier.weight(1f),color=androidx.compose.ui.graphics.Color(0xFFB3D5F6),style=MaterialTheme.typography.bodySmall)
+    Icon(Icons.Default.Mic,null,tint=blue)
+   }
+  }
+  item {
+   Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.SpaceBetween) {
+    Text("MEU PAINEL OPERACIONAL",style=MaterialTheme.typography.titleSmall,fontWeight=FontWeight.Bold,color=androidx.compose.ui.graphics.Color.White)
+    TextButton(onClick={customizing=!customizing}) {
+     Icon(Icons.Default.Edit,null,tint=blue,modifier=Modifier.size(16.dp))
+     Spacer(Modifier.width(4.dp))
+     Text(if(customizing) "CONCLUIR" else "PERSONALIZAR",color=blue,style=MaterialTheme.typography.labelSmall)
+    }
+   }
+  }
+  if(customizing) item {
+   Column {
+    Text("Escolha até quatro atalhos. A seleção fica salva neste aparelho.",style=MaterialTheme.typography.bodySmall)
+    options.forEach { code ->
+     Row(verticalAlignment=Alignment.CenterVertically) {
+      Checkbox(checked=code in favorites,onCheckedChange={checked ->
+       favorites=if(checked) (favorites+code).distinct().take(4) else favorites.filterNot { it==code }
+       prefs.edit().putString("favorites",favorites.joinToString("|")).apply()
+      },enabled=code in favorites || favorites.size<4)
+      Text("Art. $code — ${titles[code].orEmpty()}")
+     }
+    }
+   }
+  }
+  items(favorites.chunked(2)) { pair ->
+   Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+    pair.forEach { code ->
+     OutlinedCard(onClick={onSearch(code)},modifier=Modifier.weight(1f).heightIn(min=86.dp).testTag("favorite_"+code.replace(" ","_")),shape=RoundedCornerShape(12.dp),border=androidx.compose.foundation.BorderStroke(1.dp,border),colors=CardDefaults.outlinedCardColors(containerColor=dark)) {
+      Row(Modifier.padding(10.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+       Surface(shape=RoundedCornerShape(10.dp),color=androidx.compose.ui.graphics.Color(0xFF124573),modifier=Modifier.size(44.dp)) { Box(contentAlignment=Alignment.Center) { Icon(Icons.Default.Gavel,null,tint=androidx.compose.ui.graphics.Color(0xFFD5E9FF),modifier=Modifier.size(27.dp)) } }
+       Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(4.dp)) {
+        Text(if(code=="165-A") "Art. 165-A" else "Art. ${code.replace(" ", ", ")}",fontWeight=FontWeight.Bold,color=androidx.compose.ui.graphics.Color.White,style=MaterialTheme.typography.titleSmall)
+        Text(titles[code].orEmpty(),style=MaterialTheme.typography.labelSmall,color=androidx.compose.ui.graphics.Color(0xFFB9D0E8),maxLines=2)
+       }
+       Icon(Icons.Default.ChevronRight,null,tint=blue,modifier=Modifier.size(16.dp))
+      }
+     }
+    }
+    if(pair.size==1) Spacer(Modifier.weight(1f))
+   }
+  }
+  item { Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically) { Column { Text("CONSULTAS FREQUENTES",style=MaterialTheme.typography.titleSmall,fontWeight=FontWeight.Bold,color=androidx.compose.ui.graphics.Color.White); Text("DESLIZE PARA VER MAIS  →",style=MaterialTheme.typography.labelSmall,color=androidx.compose.ui.graphics.Color(0xFF91B8D6)) }; TextButton(onClick={customizing=true}) { Icon(Icons.Default.Settings,null,tint=blue,modifier=Modifier.size(16.dp)); Spacer(Modifier.width(4.dp)); Text("GERENCIAR",color=blue,style=MaterialTheme.typography.labelSmall) } } }
+  item {
+   // Keep frequent consultations in one horizontally scrollable row, leaving the
+   // operational dashboard visible without forcing an extra vertical row.
+   Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).testTag("frequent_consultations"),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+    options.forEach { code ->
+     OutlinedButton(onClick={onSearch(code)},modifier=Modifier.height(42.dp).testTag("frequent_"+code.replace(" ","_")),shape=RoundedCornerShape(10.dp),border=androidx.compose.foundation.BorderStroke(1.dp,border),contentPadding=PaddingValues(horizontal=14.dp),colors=ButtonDefaults.outlinedButtonColors(containerColor=dark)) {
+      Text(code,style=MaterialTheme.typography.labelSmall,color=androidx.compose.ui.graphics.Color(0xFFB8D9FF),maxLines=1)
+     }
+    }
+    OutlinedButton(onClick={customizing=true},modifier=Modifier.height(42.dp).testTag("frequent_more"),shape=RoundedCornerShape(10.dp),border=androidx.compose.foundation.BorderStroke(1.dp,border),contentPadding=PaddingValues(horizontal=14.dp),colors=ButtonDefaults.outlinedButtonColors(containerColor=dark)) { Icon(Icons.Default.MoreHoriz,"Gerenciar consultas frequentes",tint=blue) }
+   }
+  }
+ }
+}
+
+@Composable private fun SearchHome(initialQuery:String="",onMenu:()->Unit,openReferenceDirectly:Boolean=false){
  val context=LocalContext.current
  val app=context.applicationContext as QruApplication
  val vm:SearchViewModel=viewModel(factory=SearchViewModelFactory(app.searchLegalContent))
  val state by vm.state.collectAsState()
+ LaunchedEffect(initialQuery) { if(initialQuery.isNotBlank()) { vm.query(initialQuery);vm.run() } }
  val keyboard=LocalSoftwareKeyboardController.current
  var occurrence by rememberSaveable{mutableStateOf("")}
  var occurrenceExpanded by rememberSaveable{mutableStateOf(false)}
  var selected by remember{mutableStateOf<SearchResult?>(null)}
+ var shortcutHandled by remember(initialQuery,openReferenceDirectly) { mutableStateOf(false) }
+ var shortcutNoExactMatch by remember(initialQuery,openReferenceDirectly) { mutableStateOf(false) }
+ LaunchedEffect(state.loading,state.results,initialQuery,openReferenceDirectly) {
+  if(openReferenceDirectly && !shortcutHandled && initialQuery.isNotBlank() && !state.loading && state.query==initialQuery) {
+   // Never open an unrelated legal fiche when a shortcut has no exact match.
+   // For article-only shortcuts, require an exact article; for inciso shortcuts,
+   // require that the inciso is explicitly present in the indexed reference.
+   val normalizedQuery=initialQuery.uppercase(Locale.ROOT).replace(Regex("[^A-Z0-9]"),"")
+   val matching=state.results.firstOrNull { result ->
+    val article=result.article.orEmpty().uppercase(Locale.ROOT).replace(Regex("[^A-Z0-9]"),"")
+    article==normalizedQuery
+   }
+   if(matching!=null) { selected=matching;shortcutHandled=true;shortcutNoExactMatch=false }
+   else { shortcutHandled=true;shortcutNoExactMatch=true }
+  }
+ }
  var guideReference by remember { mutableStateOf<String?>(null) }
  var guideExpanded by rememberSaveable { mutableStateOf(false) }
  fun voiceMessage(text:String){Toast.makeText(context,text,Toast.LENGTH_LONG).show()}
@@ -160,6 +291,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    keyboardOptions=KeyboardOptions(imeAction=ImeAction.Search),
    keyboardActions=KeyboardActions(onSearch={keyboard?.hide();vm.run()}))
   if(state.loading) LinearProgressIndicator(Modifier.fillMaxWidth())
+  if(shortcutNoExactMatch && state.query==initialQuery) Text("Não foi localizada ficha com correspondência exata para Art. $initialQuery. Confira os resultados abaixo antes de abrir uma referência.",color=MaterialTheme.colorScheme.error,style=MaterialTheme.typography.bodySmall,modifier=Modifier.testTag("shortcut_exact_match_warning"))
   Text("Catálogo em conferência • disponível offline", style=MaterialTheme.typography.bodySmall)
    }
   }
@@ -192,7 +324,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   GuideReferenceLookup(code,search={app.searchLegalContent(it)},
    onSelected={selected=it;guideReference=null},onDismiss={guideReference=null})
  }
- selected?.let { ReferenceDialog(it) { selected=null } }
+ selected?.let { ReferenceDialog(it,autoOpenOffline=openReferenceDirectly) { selected=null } }
 }
 
 private fun openOfficialSource(context: android.content.Context, url: String) {
@@ -212,7 +344,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
         }
     }
 }
-@Composable private fun ReferenceDialog(result:SearchResult,onDismiss:()->Unit) {
+@Composable private fun ReferenceDialog(result:SearchResult,autoOpenOffline:Boolean=false,onDismiss:()->Unit) {
     val context=LocalContext.current
     var documents by remember { mutableStateOf<List<OfflinePdfDocument>>(emptyList()) }
     var ranges by remember { mutableStateOf<List<ReferencePageRange>>(emptyList()) }
@@ -235,6 +367,11 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
         documents=loaded.first;ranges=loaded.second;referenceLoading=false
     }
     val offline=result.source?.let { resolveOfflineReference(documents,ranges,it,result.code) }
+    // Shortcut navigation opens only the verified, locally indexed PDF range.
+    // Never redirect to a website or open a different article as a fallback.
+    LaunchedEffect(autoOpenOffline,referenceLoading,offline,result.stableKey) {
+        if(autoOpenOffline && !referenceLoading && offline!=null) offlineOpened=true
+    }
     // Editorial package starts empty. Never infer approval from a bundled PDF or search result.
     var approvedOperationalFiche by remember(result.stableKey) { mutableStateOf<OperationalReference?>(null) }
     LaunchedEffect(result.stableKey) {
@@ -309,7 +446,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     val context=LocalContext.current
     val app=context.applicationContext as QruApplication
     if(tab==QruTab.SITUACOES) { SituationsPage();return }
-    if(tab==QruTab.MAIS) { MoreLibraryPage(onOpenNorms={ /* Normas estão no rodapé */ });return }
+    if(tab==QruTab.MAIS) return
     Column(Modifier.fillMaxSize().verticalScroll(androidx.compose.foundation.rememberScrollState()).padding(20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
         Text(tab.label,style=MaterialTheme.typography.headlineLarge,color=MaterialTheme.colorScheme.primary)
         when(tab) {
@@ -444,6 +581,8 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
 
 /** Biblioteca especializada: entradas em preparação não simulam conteúdo publicado. */
 @Composable private fun MoreLibraryPage(onOpenNorms:()->Unit) {
+ val context=LocalContext.current
+ var showAlcoolemia by rememberSaveable { mutableStateOf(false) }
  val topics=listOf(
   "MBFT" to "Manual Brasileiro de Fiscalização",
   "Sinalização" to "Placas e marcas viárias",
@@ -467,17 +606,35 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
   topics.chunked(2).forEach { pair ->
    Row(horizontalArrangement=Arrangement.spacedBy(10.dp),modifier=Modifier.fillMaxWidth()) {
     pair.forEach { (title,description) ->
-     Card(modifier=Modifier.weight(1f).heightIn(min=106.dp),shape=RoundedCornerShape(16.dp)) {
+     Card(onClick={
+       when(title) {
+        "MBFT" -> openOfficialSource(context,"https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao9852022.pdf")
+        "Alcoolemia" -> showAlcoolemia=true
+        "Sinalização" -> onOpenNorms()
+       }
+      },enabled=(title=="MBFT" || title=="Alcoolemia" || title=="Sinalização"),modifier=Modifier.weight(1f).heightIn(min=106.dp),shape=RoundedCornerShape(16.dp)) {
       Column(Modifier.padding(12.dp),verticalArrangement=Arrangement.spacedBy(5.dp)) {
        Icon(Icons.Default.MenuBook,null,tint=MaterialTheme.colorScheme.primary)
        Text(title,style=MaterialTheme.typography.titleSmall,fontWeight=FontWeight.SemiBold)
        Text(description,style=MaterialTheme.typography.bodySmall)
-       Text("Em preparação",style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.secondary)
+       Text(when(title){"MBFT"->"Abrir MBFT oficial";"Alcoolemia"->"Consultar módulo";"Sinalização"->"Abrir Normas";else->"Em preparação"},style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.secondary)
       }
      }
     }
     if(pair.size==1) Spacer(Modifier.weight(1f))
    }
   }
+  if(showAlcoolemia) AlertDialog(
+   onDismissRequest={showAlcoolemia=false},
+   title={Text("Alcoolemia")},
+   text={Column(verticalArrangement=Arrangement.spacedBy(8.dp)) {
+    Text("Referências de fiscalização: arts. 165, 165-A e 306 do CTB.")
+    Text("Procedimentos e critérios técnicos: Resolução CONTRAN nº 1.030/2025. Confira o texto oficial vigente antes de aplicar.")
+    Text("As fichas operacionais específicas ainda estão em conferência jurídica.")
+   }},
+   confirmButton={TextButton(onClick={showAlcoolemia=false;onOpenNorms()}){Text("CONSULTAR NORMAS")}},
+   dismissButton={TextButton(onClick={showAlcoolemia=false}){Text("FECHAR")}}
+  )
+
  }
 }

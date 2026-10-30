@@ -1,11 +1,8 @@
 package br.com.qru.transito.ui
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
-import androidx.compose.material.icons.filled.OpenInNew
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.text.selection.SelectionContainer
@@ -28,12 +25,23 @@ private fun normSearch(text:String):String =
  Normalizer.normalize(text.replace("ﬁ","fi").replace("ﬂ","fl"),Normalizer.Form.NFD)
  .replace(Regex("\\p{M}+"),"").lowercase(java.util.Locale.ROOT)
 
+internal fun offlineNormOrderKey(title:String):Pair<Int,Int> {
+ val number=Regex("""(?:Resolução|Resolucao)\s+([\d.]+)""",RegexOption.IGNORE_CASE)
+  .find(title)?.groupValues?.get(1)?.replace(".","")?.toIntOrNull() ?: -1
+ val year=Regex("""/(\d{4})""").find(title)?.groupValues?.get(1)?.toIntOrNull() ?: 0
+ return number to year
+}
+
 /** Bundled documentary text; does not mark any operational ficha as validated. */
 @Composable fun OfflineNormLibrary(openSource:(String)->Unit) {
  var category by rememberSaveable { mutableStateOf("Resoluções") }
- Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
-  listOf("Resoluções","Portarias","Deliberações","Manuais").forEach { name ->
-   FilterChip(selected=category==name,onClick={category=name},label={Text(name)})
+ Column(verticalArrangement=Arrangement.spacedBy(0.dp)) {
+  listOf(listOf("Resoluções","Portarias"),listOf("Deliberações","Manuais")).forEach { names ->
+   Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+    names.forEach { name ->
+     FilterChip(selected=category==name,onClick={category=name},label={Text(name)},modifier=Modifier.weight(1f))
+    }
+   }
   }
  }
  if(category!="Resoluções" && category!="Manuais") {
@@ -80,7 +88,7 @@ private fun normSearch(text:String):String =
  }
  val document=norm
  if(error && category=="Resoluções") Text("A pesquisa no texto da Resolução 1.031 está indisponível. Você pode abrir o PDF completo.")
- AdditionalOfflineNorms(catalogQuery,category,catalog,document!=null,{opened=true},openSource)
+ AdditionalOfflineNorms(catalogQuery,category,catalog,document!=null,{opened=true})
  if(pdfOpened && document!=null) OfflinePdfReader(document.pdfSha256) { pdfOpened=false }
  if(opened && document!=null) {
   val needle=normSearch(query.trim())
@@ -118,21 +126,20 @@ private fun normSearch(text:String):String =
  }
 }
 
-@Composable private fun AdditionalOfflineNorms(query:String,category:String,documents:List<OfflinePdfDocument>?,textAvailable:Boolean,onSearchText:()->Unit,openSource:(String)->Unit) {
+@Composable private fun AdditionalOfflineNorms(query:String,category:String,documents:List<OfflinePdfDocument>?,textAvailable:Boolean,onSearchText:()->Unit) {
  var selectedFile by rememberSaveable { mutableStateOf<String?>(null) }
- val visible=remember(documents,query,category) { documents.orEmpty().filter { it.category==category && matchesNorm(it.title,it.subtitle,query) } }
+ val visible=remember(documents,query,category) { documents.orEmpty().filter { it.category==category && matchesNorm(it.title,it.subtitle,query) }.sortedWith(compareByDescending<OfflinePdfDocument> { offlineNormOrderKey(it.title).first }.thenByDescending { offlineNormOrderKey(it.title).second }.thenBy { it.title }) }
  if(documents!=null && query.isNotBlank() && visible.isEmpty()) Text("Nenhuma norma encontrada. Tente outro número ou assunto.")
  visible.forEach { doc ->
   Card(onClick={selectedFile=doc.file},modifier=Modifier.fillMaxWidth()) {
-   Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
+   Column(Modifier.padding(horizontal=14.dp,vertical=10.dp),verticalArrangement=Arrangement.spacedBy(4.dp)) {
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
      Text(doc.title,style=MaterialTheme.typography.titleMedium,color=MaterialTheme.colorScheme.secondary,modifier=Modifier.weight(1f))
      Icon(Icons.Default.ChevronRight,"Abrir PDF")
     }
     Text(doc.subtitle,style=MaterialTheme.typography.bodyMedium)
     if(doc.file=="resolucao10312026.pdf" && textAvailable) TextButton(onClick=onSearchText) { Text("PESQUISAR TEXTO") }
-    Text("PDF original completo offline • ${doc.pageCount} páginas",style=MaterialTheme.typography.bodySmall)
-    TextButton(onClick={openSource(doc.source)},contentPadding=PaddingValues(0.dp)) { Icon(Icons.Default.OpenInNew,null,modifier=Modifier.size(16.dp));Spacer(Modifier.width(6.dp));Text("Fonte oficial",style=MaterialTheme.typography.labelSmall) }
+    Text("PDF offline • ${doc.pageCount} páginas",style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.onSurfaceVariant)
    }
   }
  }
