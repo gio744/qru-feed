@@ -28,7 +28,7 @@ private fun normSearch(text:String):String =
  .replace(Regex("\\p{M}+"),"").lowercase(java.util.Locale.ROOT)
 
 /** Bundled documentary text; does not mark any operational ficha as validated. */
-@Composable fun OfflineNormLibrary(openSource:(String)->Unit) {
+@Composable fun OfflineNormLibrary() {
  var category by rememberSaveable { mutableStateOf("Resoluções") }
  Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
   listOf("Resoluções","Portarias","Deliberações","Manuais").forEach { name ->
@@ -79,7 +79,7 @@ private fun normSearch(text:String):String =
  }
  val document=norm
  if(error && category=="Resoluções") Text("A pesquisa no texto da Resolução 1.031 está indisponível. Você pode abrir o PDF completo.")
- AdditionalOfflineNorms(catalogQuery,category,catalog,document!=null,{opened=true},openSource)
+ AdditionalOfflineNorms(catalogQuery,category,catalog,document!=null,{opened=true})
  if(pdfOpened && document!=null) OfflinePdfReader(document.pdfSha256) { pdfOpened=false }
  if(opened && document!=null) {
   val needle=normSearch(query.trim())
@@ -117,7 +117,7 @@ private fun normSearch(text:String):String =
  }
 }
 
-@Composable private fun AdditionalOfflineNorms(query:String,category:String,documents:List<OfflinePdfDocument>?,textAvailable:Boolean,onSearchText:()->Unit,openSource:(String)->Unit) {
+@Composable private fun AdditionalOfflineNorms(query:String,category:String,documents:List<OfflinePdfDocument>?,textAvailable:Boolean,onSearchText:()->Unit) {
  var selectedFile by rememberSaveable { mutableStateOf<String?>(null) }
  val visible=remember(documents,query,category) { documents.orEmpty().filter { it.category==category && matchesNorm(it.title,it.subtitle,query) }.sortedWith(compareByDescending<OfflinePdfDocument> { normYear(it.title) }.thenByDescending { normNumber(it.title) }.thenBy { it.title }) }
  if(documents!=null && query.isNotBlank() && visible.isEmpty()) Text("Nenhuma norma encontrada. Tente outro número ou assunto.")
