@@ -120,7 +120,7 @@ private fun normSearch(text:String):String =
 
 @Composable private fun AdditionalOfflineNorms(query:String,category:String,documents:List<OfflinePdfDocument>?,textAvailable:Boolean,onSearchText:()->Unit,openSource:(String)->Unit) {
  var selectedFile by rememberSaveable { mutableStateOf<String?>(null) }
- val visible=remember(documents,query,category) { documents.orEmpty().filter { it.category==category && matchesNorm(it.title,it.subtitle,query) } }
+ val visible=remember(documents,query,category) { documents.orEmpty().filter { it.category==category && matchesNorm(it.title,it.subtitle,query) }.sortedWith(compareByDescending<OfflinePdfDocument> { Regex("""(?:Resolução|Resolucao)\s+([\d.]+)""", RegexOption.IGNORE_CASE).find(it.title)?.groupValues?.get(1)?.replace(".", "")?.toIntOrNull() ?: -1 }.thenByDescending { Regex("""/(\d{4})""").find(it.title)?.groupValues?.get(1)?.toIntOrNull() ?: 0 }.thenBy { it.title }) }
  if(documents!=null && query.isNotBlank() && visible.isEmpty()) Text("Nenhuma norma encontrada. Tente outro número ou assunto.")
  visible.forEach { doc ->
   Card(onClick={selectedFile=doc.file},modifier=Modifier.fillMaxWidth()) {
