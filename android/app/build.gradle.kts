@@ -82,6 +82,11 @@ val bundleNormPdf = tasks.register("bundleNormPdf") {
     doLast {
         @Suppress("UNCHECKED_CAST")
         val documents=groovy.json.JsonSlurper().parse(catalog) as List<Map<String,Any>>
+        require(documents.isNotEmpty()) { "Offline PDF catalog is empty" }
+        val filenames = documents.map { it["file"] as String }
+        require(filenames.size == filenames.toSet().size) {
+            "Duplicate PDF filenames in offline catalog"
+        }
         documents.forEach { doc ->
             val name=doc["file"] as String
             require(name.matches(Regex("[A-Za-z0-9]+\\.pdf")))
