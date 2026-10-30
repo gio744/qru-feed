@@ -599,10 +599,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             QruTab.NORMAS -> {
                 Text("Biblioteca de normas",style=MaterialTheme.typography.titleLarge)
                 OfflineNormLibrary { url -> openOfficialSource(context,url) }
-                Text("A biblioteca offline está em expansão. Confira atualizações e documentos adicionais nas fontes oficiais.",style=MaterialTheme.typography.bodySmall)
-                Button(onClick={openOfficialSource(context,"https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran")},modifier=Modifier.fillMaxWidth()){Text("RESOLUÇÕES CONTRAN")}
-                Button(onClick={openOfficialSource(context,"https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao9852022.pdf")},modifier=Modifier.fillMaxWidth()){Text("MBFT — RESOLUÇÃO 985/2022")}
-                Text("Nas fichas, o botão de fonte abre o documento registrado para aquela referência.")
+                Text("Acervo offline em expansão. Os documentos disponíveis nesta versão são abertos pela Biblioteca. Publicações originais: confira alterações e vigência antes de aplicar a norma.",style=MaterialTheme.typography.bodySmall)
             }
             QruTab.NOVIDADES -> {
                 QruLatestNewsCard()
