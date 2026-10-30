@@ -28,6 +28,13 @@ private fun normSearch(text:String):String =
  Normalizer.normalize(text.replace("ﬁ","fi").replace("ﬂ","fl"),Normalizer.Form.NFD)
  .replace(Regex("\\p{M}+"),"").lowercase(java.util.Locale.ROOT)
 
+internal fun offlineNormOrderKey(title:String):Pair<Int,Int> {
+ val number=Regex("""(?:Resolução|Resolucao)\s+([\d.]+)""",RegexOption.IGNORE_CASE)
+  .find(title)?.groupValues?.get(1)?.replace(".","")?.toIntOrNull() ?: -1
+ val year=Regex("""/(\d{4})""").find(title)?.groupValues?.get(1)?.toIntOrNull() ?: 0
+ return number to year
+}
+
 /** Bundled documentary text; does not mark any operational ficha as validated. */
 @Composable fun OfflineNormLibrary(openSource:(String)->Unit) {
  var category by rememberSaveable { mutableStateOf("Resoluções") }
@@ -120,7 +127,7 @@ private fun normSearch(text:String):String =
 
 @Composable private fun AdditionalOfflineNorms(query:String,category:String,documents:List<OfflinePdfDocument>?,textAvailable:Boolean,onSearchText:()->Unit,openSource:(String)->Unit) {
  var selectedFile by rememberSaveable { mutableStateOf<String?>(null) }
- val visible=remember(documents,query,category) { documents.orEmpty().filter { it.category==category && matchesNorm(it.title,it.subtitle,query) }.sortedWith(compareByDescending<OfflinePdfDocument> { Regex("""(?:Resolução|Resolucao)\s+([\d.]+)""", RegexOption.IGNORE_CASE).find(it.title)?.groupValues?.get(1)?.replace(".", "")?.toIntOrNull() ?: -1 }.thenByDescending { Regex("""/(\d{4})""").find(it.title)?.groupValues?.get(1)?.toIntOrNull() ?: 0 }.thenBy { it.title }) }
+ val visible=remember(documents,query,category) { documents.orEmpty().filter { it.category==category && matchesNorm(it.title,it.subtitle,query) }.sortedWith(compareByDescending<OfflinePdfDocument> { offlineNormOrderKey(it.title).first }.thenByDescending { offlineNormOrderKey(it.title).second }.thenBy { it.title }) }
  if(documents!=null && query.isNotBlank() && visible.isEmpty()) Text("Nenhuma norma encontrada. Tente outro número ou assunto.")
  visible.forEach { doc ->
   Card(onClick={selectedFile=doc.file},modifier=Modifier.fillMaxWidth()) {
