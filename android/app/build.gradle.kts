@@ -110,6 +110,11 @@ val bundleNormPdf = tasks.register("bundleNormPdf") {
                         }
                     }
                     if(lastFailure!=null) throw lastFailure
+                    val isPdf=temporary.inputStream().use { stream ->
+                        val header=ByteArray(5)
+                        stream.read(header)==5 && header.contentEquals(byteArrayOf(37,80,68,70,45))
+                    }
+                    check(isPdf) { "Document endpoint returned non-PDF content for $name. Keep pinned hash unchanged." }
                     val actual=fingerprint(temporary)
                     check(actual==expected) {
                         "Official PDF integrity mismatch: $name; expected SHA-256=$expected; " +
