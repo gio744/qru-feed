@@ -1,14 +1,5 @@
 [
   {
-    "file": "resolucao10312026.pdf",
-    "title": "Resolução 1.031/2026",
-    "subtitle": "Álcool e outras substâncias psicoativas",
-    "sha256": "9f6d8d8c6e7b7996fce21326a229c9b262d45178907fff7bd9dd159ca5ba9b5a",
-    "pageCount": 20,
-    "annexPage": 12,
-    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf/@@display-file/file"
-  },
-  {
     "file": "Resolucao9132022.pdf",
     "title": "Resolução 913/2022",
     "subtitle": "Pneus • publicação original; conferir retificações e alterações",
@@ -16,33 +7,6 @@
     "pageCount": 4,
     "annexPage": null,
     "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao9132022.pdf/@@display-file/file"
-  },
-  {
-    "file": "resolucao10252026c.pdf",
-    "title": "Resolução 1.025/2026",
-    "subtitle": "Remoção, guarda, liberação e leilão • publicação original",
-    "sha256": "fa6ffc0346400e0ac5760bc663e0d6efc5e466dfc5819701f772db1754c09f9c",
-    "pageCount": 14,
-    "annexPage": null,
-    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10252026c.pdf/@@display-file/file"
-  },
-  {
-    "file": "resolucao10222026c.pdf",
-    "title": "Resolução 1.022/2026",
-    "subtitle": "Quadriciclos: segurança e circulação",
-    "sha256": "2547703494199728cee582c9f5717d83599c8ed610494f5c3942cea23779a7d2",
-    "pageCount": 9,
-    "annexPage": null,
-    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10222026c.pdf/@@display-file/file"
-  },
-  {
-    "file": "resolucao10232026c.pdf",
-    "title": "Resolução 1.023/2026",
-    "subtitle": "Veículos de uso fora de estrada",
-    "sha256": "24f8d7ad7cd934041db4b1f1d7a2c9c97880f1a525378cf150285831c6c3f89d",
-    "pageCount": 19,
-    "annexPage": null,
-    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10232026c.pdf/@@display-file/file"
   },
   {
     "file": "Resolucao10032023.pdf",
@@ -79,6 +43,42 @@
     "pageCount": 9,
     "annexPage": null,
     "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10132024.pdf/@@display-file/file"
+  },
+  {
+    "file": "resolucao10222026c.pdf",
+    "title": "Resolução 1.022/2026",
+    "subtitle": "Quadriciclos: segurança e circulação",
+    "sha256": "2547703494199728cee582c9f5717d83599c8ed610494f5c3942cea23779a7d2",
+    "pageCount": 9,
+    "annexPage": null,
+    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10222026c.pdf/@@display-file/file"
+  },
+  {
+    "file": "resolucao10232026c.pdf",
+    "title": "Resolução 1.023/2026",
+    "subtitle": "Veículos de uso fora de estrada",
+    "sha256": "24f8d7ad7cd934041db4b1f1d7a2c9c97880f1a525378cf150285831c6c3f89d",
+    "pageCount": 19,
+    "annexPage": null,
+    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10232026c.pdf/@@display-file/file"
+  },
+  {
+    "file": "resolucao10252026c.pdf",
+    "title": "Resolução 1.025/2026",
+    "subtitle": "Remoção, guarda, liberação e leilão • publicação original",
+    "sha256": "fa6ffc0346400e0ac5760bc663e0d6efc5e466dfc5819701f772db1754c09f9c",
+    "pageCount": 14,
+    "annexPage": null,
+    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10252026c.pdf/@@display-file/file"
+  },
+  {
+    "file": "resolucao10312026.pdf",
+    "title": "Resolução 1.031/2026",
+    "subtitle": "Álcool e outras substâncias psicoativas",
+    "sha256": "9f6d8d8c6e7b7996fce21326a229c9b262d45178907fff7bd9dd159ca5ba9b5a",
+    "pageCount": 20,
+    "annexPage": 12,
+    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf/@@display-file/file"
   },
   {
     "file": "mbvt20222.pdf",
