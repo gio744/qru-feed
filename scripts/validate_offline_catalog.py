@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 CATALOG = Path(__file__).resolve().parents[1] / "android/app/src/main/assets/norms/pdf-catalog.json"
 
 
-def validate(entries):
+def validate(entries, pending_items=None):
     errors = []
     seen_files = set()
     seen_titles = set()
@@ -38,10 +38,8 @@ def validate(entries):
         seen_titles.add(title)
     if not entries:
         errors.append("catalogue is empty")
-    pending_path = CATALOG.parent / "pending-official-2026.json"
-    if pending_path.exists():
-        pending = json.loads(pending_path.read_text(encoding="utf-8"))
-        for item in pending.get("items", []):
+    if pending_items is not None:
+        for item in pending_items:
             number, year = item["number"], item["year"]
             if not any(re.search(rf"(?<!\\d){number}\\s*/\\s*{year}(?!\\d)", entry.get("title", "")) for entry in entries):
                 errors.append(f"pending resolution {number}/{year} missing from offline catalogue")
@@ -50,7 +48,9 @@ def validate(entries):
 
 def main():
     entries = json.loads(CATALOG.read_text(encoding="utf-8"))
-    errors = validate(entries)
+    pending_path = CATALOG.parent / "pending-official-2026.json"
+    pending_items = json.loads(pending_path.read_text(encoding="utf-8")).get("items", []) if pending_path.exists() else []
+    errors = validate(entries, pending_items=pending_items)
     print(json.dumps({"documents": len(entries), "errors": errors}, ensure_ascii=False, indent=2))
     return int(bool(errors))
 
