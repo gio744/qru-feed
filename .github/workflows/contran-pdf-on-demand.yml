@@ -1,5 +1,9 @@
 name: QRU — Validar PDF CONTRAN sob demanda
 on:
+  push:
+    paths:
+      - 'scripts/stage_official_pdf.py'
+      - '.github/workflows/contran-pdf-on-demand.yml'
   workflow_dispatch:
     inputs:
       number:
@@ -25,8 +29,8 @@ jobs:
         run: python3 -m pip install --quiet pypdf
       - name: Validar parâmetros e PDF oficial
         env:
-          PDF_NUMBER: ${{ inputs.number }}
-          PDF_YEAR: ${{ inputs.year }}
+          PDF_NUMBER: ${{ inputs.number || '969' }}
+          PDF_YEAR: ${{ inputs.year || '2022' }}
         run: |
           python3 - <<'PY'
           import os
