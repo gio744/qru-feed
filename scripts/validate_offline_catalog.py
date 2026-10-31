@@ -41,7 +41,7 @@ def validate(entries, pending_items=None):
     if pending_items is not None:
         for item in pending_items:
             number, year = item["number"], item["year"]
-            if not any(re.search(rf"(?<!\\d){number}\\s*/\\s*{year}(?!\\d)", entry.get("title", "")) for entry in entries):
+            if not any(re.search(rf"(?<!\\d){number}\\s*/\\s*{year}(?!\\d)", entry.get("title", "").replace(".", "")) for entry in entries):
                 errors.append(f"pending resolution {number}/{year} missing from offline catalogue")
     return errors
 
