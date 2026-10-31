@@ -1,0 +1,45 @@
+name: QRU — Validar PDF CONTRAN sob demanda
+on:
+  workflow_dispatch:
+    inputs:
+      number:
+        description: 'Número da resolução (ex.: 887)'
+        required: true
+        type: string
+      year:
+        description: 'Ano da resolução (ex.: 2021)'
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  validate-pdf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar leitor de PDF
+        run: python3 -m pip install --quiet pypdf
+      - name: Validar parâmetros e PDF oficial
+        env:
+          PDF_NUMBER: ${{ inputs.number }}
+          PDF_YEAR: ${{ inputs.year }}
+        run: |
+          python3 - <<'PY'
+          import os
+          from scripts.stage_official_pdf import stage
+          from pypdf import PdfReader
+          file = stage(int(os.environ["PDF_NUMBER"]), int(os.environ["PDF_YEAR"]))
+          pages = len(PdfReader(str(file)).pages)
+          assert pages > 0
+          print(f"PDF_PAGES={pages}")
+          PY
+      - name: Arquivar PDF para auditoria
+        uses: actions/upload-artifact@v4
+        with:
+          name: contran-verified-pdf
+          path: build/contran-pdfs-staging/*.pdf
+          retention-days: 7
