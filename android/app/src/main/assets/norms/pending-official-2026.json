@@ -1,7 +1,7 @@
 {
-  "status": "1026_a_1029_catalogadas_1030_pendente",
+  "status": "1026_a_1030_catalogadas_validacao_no_aparelho_pendente",
   "updated": "2026-10-31",
-  "note": "Resoluções 1026 a 1029 catalogadas. Resolução 1030: PDF oficial de 1 página identificado no Ministério dos Transportes; integração binária, SHA256 e teste offline ainda pendentes. Catálogo não equivale a validação no aparelho.",
+  "note": "Resoluções 1026 a 1030 catalogadas com SHA256. Build e testes automatizados Android aprovados; leitura offline no aparelho e vigência ainda pendentes.",
   "items": [
     {
       "number": 1026,
@@ -40,7 +40,7 @@
       "year": 2026,
       "subject": "Equipamentos geradores de imagens",
       "official_index": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
-      "validation": "PDF_oficial_localizado_1_pagina; integracao_binaria_SHA256_e_teste_offline_pendentes",
+      "validation": "catalogada_SHA256_build_aprovado; teste_offline_no_aparelho_pendente",
       "official_page": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10302026.pdf",
       "official_pdf_url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10302026.pdf/@@display-file/file",
       "page_count_official": 1
