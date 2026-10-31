@@ -61,7 +61,8 @@ private fun normSearch(text:String):String =
   style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.secondary)
  Text("Publicações originais. Conferência de alterações e vigência pendente.",style=MaterialTheme.typography.bodySmall)
  var catalogQuery by rememberSaveable { mutableStateOf("") }
- OutlinedTextField(catalogQuery,{catalogQuery=it},Modifier.fillMaxWidth(),label={Text("Número ou assunto da norma")},singleLine=true)
+ OutlinedTextField(catalogQuery,{catalogQuery=it},Modifier.fillMaxWidth(),label={Text("Número ou assunto da norma")},singleLine=true,
+  trailingIcon={if(catalogQuery.isNotEmpty()) TextButton(onClick={catalogQuery=""}) { Text("LIMPAR") }})
  var norm by remember { mutableStateOf<OfflineNorm?>(null) }
  var error by remember { mutableStateOf(false) }
  var pdfOpened by rememberSaveable { mutableStateOf(false) }
