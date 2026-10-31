@@ -1,0 +1,35 @@
+name: QRU — Validar PDF CONTRAN 969
+on:
+  push:
+    paths:
+      - 'scripts/stage_contran_969.py'
+      - '.github/workflows/contran-969-staging.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate-pdf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Baixar PDF oficial e registrar SHA-256
+        run: python3 scripts/stage_contran_969.py
+      - name: Conferir paginas do PDF
+        run: |
+          python3 -m pip install --quiet pypdf
+          python3 - <<'PY'
+          from pypdf import PdfReader
+          file = "build/contran-pdfs-staging/resolucao9692022.pdf"
+          reader = PdfReader(file)
+          print(f"PDF_PAGES={len(reader.pages)}")
+          assert len(reader.pages) > 0
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: contran-969-verified-pdf
+          path: build/contran-pdfs-staging/resolucao9692022.pdf
+          retention-days: 7
