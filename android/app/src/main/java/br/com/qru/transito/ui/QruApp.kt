@@ -288,31 +288,9 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("Mais"),SI
     ReferenceCard(result) { selected=result }
    }
   }
-  if(state.query.isNotBlank()) item(key="search_tools") {
-   Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(10.dp)) {
-  TextButton(onClick={occurrenceExpanded=!occurrenceExpanded},modifier=Modifier.fillMaxWidth().heightIn(min=48.dp)){
-   Icon(Icons.Default.Description,null,modifier=Modifier.size(20.dp))
-   Spacer(Modifier.width(8.dp))
-   Text(if(occurrenceExpanded) "Recolher ocorrência" else "Descrever ocorrência")
+  if(state.query.isNotBlank() && state.message.isNotBlank() && state.message!="Faça uma consulta à base disponível.") {
+   item(key="search_message") { Text(state.message,style=MaterialTheme.typography.bodySmall) }
   }
-  if(occurrenceExpanded){
-   Card(colors=CardDefaults.cardColors(containerColor=MaterialTheme.colorScheme.surfaceVariant),shape=RoundedCornerShape(18.dp),modifier=Modifier.fillMaxWidth()){
-    Column(Modifier.padding(16.dp),verticalArrangement=Arrangement.spacedBy(8.dp)){
-     OutlinedTextField(occurrence,{occurrence=it},Modifier.fillMaxWidth(),label={Text("Descreva os fatos observados")},minLines=3)
-     Button(onClick={keyboard?.hide();vm.query(occurrence);vm.run()},enabled=occurrence.isNotBlank()){Text("BUSCAR REFERÊNCIAS")}
-     Text("A descrição pesquisa termos do catálogo. Confira os requisitos na fonte oficial.",style=MaterialTheme.typography.bodySmall)
-    }
-   }
-  }
-  HabilitationGuideCard { guideExpanded=true }
-  if(state.message.isNotBlank() && state.message!="Faça uma consulta à base disponível.") Text(state.message,style=MaterialTheme.typography.bodySmall)
-   }
-  }
- }
- HabilitationGuideDialog(guideExpanded,onDismiss={guideExpanded=false}) { code -> guideReference=code }
- guideReference?.let { code ->
-  GuideReferenceLookup(code,search={app.searchLegalContent(it)},
-   onSelected={selected=it;guideReference=null},onDismiss={guideReference=null})
  }
  selected?.let { current ->
   val index=state.results.indexOfFirst { it.stableKey==current.stableKey }
