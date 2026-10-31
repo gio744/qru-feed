@@ -1,14 +1,14 @@
 {
-  "status": "downloads_diretos_1026_a_1029_identificados_1030_pendente",
-  "updated": "2026-10-22",
-  "note": "As URLs /@@display-file/file apontam para o binário PDF no portal gov.br; confirmado para 1027 via resposta application/pdf. Demais itens aguardam auditoria automatizada.",
+  "status": "1026_a_1029_catalogadas_1030_pendente",
+  "updated": "2026-10-31",
+  "note": "Conciliação com pdf-catalog.json: resoluções 1026 a 1029 constam no catálogo com SHA256 e número de páginas. Presença no catálogo não substitui validação do arquivo binário, vigência e abertura no dispositivo. Resolução 1030 ainda pendente.",
   "items": [
     {
       "number": 1026,
       "year": 2026,
       "subject": "RENAVE; consultar retificação",
       "official_page": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10262026R.pdf",
-      "validation": "download_direto_identificado; aguarda_auditoria_SHA256_e_integracao_offline",
+      "validation": "catalogada_com_sha256_e_paginas; validar_binario_vigencia_e_leitura_no_aparelho",
       "official_pdf_url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10262026R.pdf/@@display-file/file"
     },
     {
@@ -16,7 +16,7 @@
       "year": 2026,
       "subject": "Registro, licenciamento e transferência",
       "official_page": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10272026.pdf",
-      "validation": "download_direto_identificado; aguarda_auditoria_SHA256_e_integracao_offline",
+      "validation": "catalogada_com_sha256_e_paginas; validar_binario_vigencia_e_leitura_no_aparelho",
       "official_pdf_url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10272026.pdf/@@display-file/file"
     },
     {
@@ -24,7 +24,7 @@
       "year": 2026,
       "subject": "Transição free flow",
       "official_page": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10282026.pdf",
-      "validation": "download_direto_identificado; aguarda_auditoria_SHA256_e_integracao_offline",
+      "validation": "catalogada_com_sha256_e_paginas; validar_binario_vigencia_e_leitura_no_aparelho",
       "official_pdf_url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10282026.pdf/@@display-file/file"
     },
     {
@@ -32,7 +32,7 @@
       "year": 2026,
       "subject": "Prorrogação CNH e ACC; conferir Deliberação 279/2026",
       "official_page": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10292026.pdf",
-      "validation": "download_direto_identificado; aguarda_auditoria_SHA256_e_integracao_offline",
+      "validation": "catalogada_com_sha256_e_paginas; validar_binario_vigencia_e_leitura_no_aparelho",
       "official_pdf_url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10292026.pdf/@@display-file/file"
     },
     {
