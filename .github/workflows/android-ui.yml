@@ -1,5 +1,12 @@
 name: QRU Android UI
 on:
+  push:
+    branches:
+      - feature/operational-accordion-distinctive
+    paths:
+      - 'android/**'
+      - '.github/workflows/android-ui.yml'
+      - 'scripts/run_android_ui_tests.sh'
   pull_request:
     paths:
       - 'android/**'
