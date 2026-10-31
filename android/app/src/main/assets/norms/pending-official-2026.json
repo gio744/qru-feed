@@ -1,14 +1,14 @@
 {
-  "status": "1026_a_1030_catalogadas_validacao_no_aparelho_pendente",
+  "status": "1026_a_1030_catalogadas_e_validadas_no_emulador",
   "updated": "2026-10-31",
-  "note": "Resoluções 1026 a 1030 catalogadas com SHA256. Build e testes automatizados Android aprovados; leitura offline no aparelho e vigência ainda pendentes.",
+  "note": "Resoluções 1026 a 1030 catalogadas com SHA256. PDFs verificados por PdfRenderer no emulador Android sem rede; leitura em aparelho físico e conferência de vigência permanecem pendentes.",
   "items": [
     {
       "number": 1026,
       "year": 2026,
       "subject": "RENAVE; consultar retificação",
       "official_page": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10262026R.pdf",
-      "validation": "catalogada_com_sha256_e_paginas; validar_binario_vigencia_e_leitura_no_aparelho",
+      "validation": "catalogada_com_sha256_e_paginas; leitura_offline_aprovada_no_emulador; conferir_vigencia_e_aparelho_fisico",
       "official_pdf_url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10262026R.pdf/@@display-file/file"
     },
     {
@@ -16,7 +16,7 @@
       "year": 2026,
       "subject": "Registro, licenciamento e transferência",
       "official_page": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10272026.pdf",
-      "validation": "catalogada_com_sha256_e_paginas; validar_binario_vigencia_e_leitura_no_aparelho",
+      "validation": "catalogada_com_sha256_e_paginas; leitura_offline_aprovada_no_emulador; conferir_vigencia_e_aparelho_fisico",
       "official_pdf_url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10272026.pdf/@@display-file/file"
     },
     {
@@ -24,7 +24,7 @@
       "year": 2026,
       "subject": "Transição free flow",
       "official_page": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10282026.pdf",
-      "validation": "catalogada_com_sha256_e_paginas; validar_binario_vigencia_e_leitura_no_aparelho",
+      "validation": "catalogada_com_sha256_e_paginas; leitura_offline_aprovada_no_emulador; conferir_vigencia_e_aparelho_fisico",
       "official_pdf_url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10282026.pdf/@@display-file/file"
     },
     {
@@ -32,7 +32,7 @@
       "year": 2026,
       "subject": "Prorrogação CNH e ACC; conferir Deliberação 279/2026",
       "official_page": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10292026.pdf",
-      "validation": "catalogada_com_sha256_e_paginas; validar_binario_vigencia_e_leitura_no_aparelho",
+      "validation": "catalogada_com_sha256_e_paginas; leitura_offline_aprovada_no_emulador; conferir_vigencia_e_aparelho_fisico",
       "official_pdf_url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10292026.pdf/@@display-file/file"
     },
     {
@@ -40,7 +40,7 @@
       "year": 2026,
       "subject": "Equipamentos geradores de imagens",
       "official_index": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran",
-      "validation": "catalogada_SHA256_build_aprovado; teste_offline_no_aparelho_pendente",
+      "validation": "catalogada_com_sha256_e_paginas; leitura_offline_aprovada_no_emulador; conferir_vigencia_e_aparelho_fisico",
       "official_page": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10302026.pdf",
       "official_pdf_url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10302026.pdf/@@display-file/file",
       "page_count_official": 1
