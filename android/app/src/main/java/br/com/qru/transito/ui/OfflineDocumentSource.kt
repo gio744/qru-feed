@@ -18,13 +18,15 @@ internal fun resolveOfflineDocument(documents:List<OfflinePdfDocument>,source:St
   val number=Regex("page=([0-9]+)").matchEntire(uri.rawFragment)?.groupValues?.get(1) ?: return null
   number.toIntOrNull() ?: return null
  }
- val document=documents.firstOrNull { doc ->
+ val matches=documents.filter { doc ->
   val original=runCatching { URI(doc.source) }.getOrNull()
   original!=null && original.scheme.equals("https",ignoreCase=true) && original.userInfo==null &&
    original.port in listOf(-1,443) && original.rawQuery==null && original.rawFragment==null &&
    uri.host.equals(original.host,ignoreCase=true) && uri.rawPath==original.rawPath &&
    doc.file.matches(Regex("[A-Za-z0-9]+\\.pdf")) && doc.sha256.matches(Regex("[a-f0-9]{64}")) &&
    page in 1..doc.pageCount
- } ?: return null
- return OfflineDocumentTarget(document,page)
+ }
+ // An ambiguous manifest must never select an arbitrary PDF for an official URL.
+ if(matches.size!=1) return null
+ return OfflineDocumentTarget(matches.single(),page)
 }
