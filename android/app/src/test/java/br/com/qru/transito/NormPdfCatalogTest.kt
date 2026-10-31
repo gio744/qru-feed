@@ -37,4 +37,19 @@ class NormPdfCatalogTest {
   }
  }
 
+ @Test fun resolutionsAreUniqueAndListedChronologically() {
+  val catalog=JsonParser.parseString(File("src/main/assets/norms/pdf-catalog.json").readText()).asJsonArray
+  val resolutions=catalog.map { it.asJsonObject["title"].asString }
+   .filter { it.startsWith("Resolução ") }
+  val keys=resolutions.map { title ->
+   val match=Regex("""Resolução ([0-9.]+)/([0-9]{4})""").matchEntire(title)
+    ?: error("Invalid resolution title: $title")
+   val number=match.groupValues[1].replace(".","").toInt()
+   val year=match.groupValues[2].toInt()
+   year to number
+  }
+  assertEquals("Duplicate resolution numbers",keys.size,keys.toSet().size)
+  assertEquals("Resolutions must be chronological",keys.sortedWith(compareBy<Pair<Int,Int>> { it.first }.thenBy { it.second }),keys)
+ }
+
 }
