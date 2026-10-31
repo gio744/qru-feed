@@ -1,5 +1,7 @@
 package br.com.qru.transito
 import br.com.qru.transito.ui.matchesNorm
+import br.com.qru.transito.ui.normYear
+import br.com.qru.transito.ui.normNumber
 import org.junit.Assert.*
 import org.junit.Test
 class NormSearchTest {
@@ -13,5 +15,10 @@ class NormSearchTest {
   assertFalse(matchesNorm("Resolução 1.012/2024","Estacionamentos específicos e sinalização","estacionamentos álcool"))
   assertTrue(matchesNorm("Resolução 1.013/2024","Sistemas de livre passagem (free flow)","free flow"))
   assertTrue(matchesNorm("Resolução 1.023/2026","Veículos de uso fora de estrada",""))
+ }
+ @Test fun numericOrderHandlesThousandSeparatorsAndDifferentYears() {
+  val titles=listOf("Resolução 913/2022","Resolução 1.029/2026","Resolução 1.003/2023","Resolução 1.031/2026","Resolução 1.022/2026")
+  val sorted=titles.sortedWith(compareByDescending<String> { normYear(it) }.thenByDescending { normNumber(it) })
+  assertEquals(listOf("Resolução 1.031/2026","Resolução 1.029/2026","Resolução 1.022/2026","Resolução 1.003/2023","Resolução 913/2022"),sorted)
  }
 }
