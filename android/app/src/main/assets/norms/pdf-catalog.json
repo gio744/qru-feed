@@ -134,5 +134,14 @@
     "annexPage": null,
     "category": "Manuais",
     "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf/@@display-file/file"
+  },
+  {
+    "file": "resolucao9692022.pdf",
+    "title": "Resolução 969/2022",
+    "subtitle": "Placas de identificação veicular • publicação original; conferir alterações",
+    "sha256": "c0e48ed8cef1cf155df26cfde04a91c9670dd2b773d986b7efcaee387d48d8a8",
+    "pageCount": 13,
+    "annexPage": null,
+    "source": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao9692022.pdf/@@display-file/file"
   }
 ]
