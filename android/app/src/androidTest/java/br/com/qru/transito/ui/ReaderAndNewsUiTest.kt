@@ -196,7 +196,13 @@ class ReaderAndNewsUiTest {
    }
    androidx.test.espresso.Espresso.closeSoftKeyboard()
    android.util.Log.i("QRU_UI_TEST","guide: reveal collapsed form")
-   ui.onNodeWithTag("search_results").performScrollToNode(hasText("Análise guiada · habilitação"))
+   repeat(12) { step ->
+    if (ui.onAllNodesWithText("Análise guiada · habilitação").fetchSemanticsNodes().isNotEmpty()) return@repeat
+    android.util.Log.i("QRU_UI_TEST", "guide: searching lazy result, scroll step $step")
+    ui.onNodeWithTag("search_results").performTouchInput { swipeUp(durationMillis = 350) }
+    ui.waitForIdle()
+   }
+   ui.onNodeWithText("Análise guiada · habilitação").assertExists()
    ui.onNodeWithText("Análise guiada · habilitação").assertHasClickAction()
     .performSemanticsAction(SemanticsActions.OnClick) { assertTrue(it()) }
    ui.waitUntil(5_000) {
