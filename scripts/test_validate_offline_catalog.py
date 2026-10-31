@@ -31,6 +31,16 @@ class OfflineCatalogValidationTests(unittest.TestCase):
         entry["source"] = "https://www.gov.br.evil.example/pdf"
         self.assertTrue(any("official" in error for error in validate([entry])))
 
+    def test_annex_page_outside_document(self):
+        entry = sample()
+        entry["annexPage"] = 5
+        self.assertTrue(any("annex page" in error for error in validate([entry])))
+
+    def test_valid_annex_page(self):
+        entry = sample()
+        entry["annexPage"] = 4
+        self.assertEqual(validate([entry]), [])
+
     def test_invalid_page_count(self):
         entry = sample()
         entry["pageCount"] = 0
