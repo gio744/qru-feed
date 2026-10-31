@@ -121,7 +121,13 @@ private fun normSearch(text:String):String =
  var selectedFile by rememberSaveable { mutableStateOf<String?>(null) }
  val visible=remember(documents,query,category) { documents.orEmpty().filter { it.category==category && matchesNorm(it.title,it.subtitle,query) }.sortedWith(compareByDescending<OfflinePdfDocument> { normYear(it.title) }.thenByDescending { normNumber(it.title) }.thenBy { it.title }) }
  if(documents!=null && query.isNotBlank() && visible.isEmpty()) Text("Nenhuma norma encontrada. Tente outro número ou assunto.")
+ var previousYear = -1
  visible.forEach { doc ->
+  val year = normYear(doc.title)
+  if(category=="Resoluções" && year!=previousYear) {
+   Text(year.toString(),style=MaterialTheme.typography.titleSmall,color=MaterialTheme.colorScheme.secondary)
+   previousYear=year
+  }
   Card(onClick={selectedFile=doc.file},modifier=Modifier.fillMaxWidth()) {
    Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
