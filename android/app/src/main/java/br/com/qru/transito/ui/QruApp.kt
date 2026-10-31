@@ -291,6 +291,11 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("Mais"),SI
    item(key="search_message") { Text(state.message,style=MaterialTheme.typography.bodySmall) }
   }
  }
+ HabilitationGuideDialog(expanded=guideExpanded,onDismiss={guideExpanded=false},onReference={guideReference=it})
+ guideReference?.let { code ->
+  GuideReferenceLookup(code=code,search={ lookup -> app.searchLegalContent(lookup) },
+   onSelected={ result -> guideReference=null; selected=result },onDismiss={guideReference=null})
+ }
  selected?.let { current ->
   val index=state.results.indexOfFirst { it.stableKey==current.stableKey }
   ReferenceDialog(
