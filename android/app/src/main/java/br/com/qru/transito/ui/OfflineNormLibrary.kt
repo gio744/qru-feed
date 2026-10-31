@@ -124,6 +124,8 @@ private fun normSearch(text:String):String =
  if(documents!=null && query.isNotBlank()) {
   Text("${visible.size} ${if(visible.size==1) "resultado encontrado" else "resultados encontrados"}",style=MaterialTheme.typography.labelMedium)
   if(visible.isEmpty()) Text("Nenhuma norma encontrada. Tente outro número ou assunto.")
+ } else if(documents!=null && visible.isEmpty()) {
+  Text("Nenhum documento offline disponível nesta categoria.",style=MaterialTheme.typography.bodyMedium)
  }
  var previousYear = -1
  visible.forEach { doc ->
