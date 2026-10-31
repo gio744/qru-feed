@@ -196,7 +196,7 @@ class ReaderAndNewsUiTest {
    }
    androidx.test.espresso.Espresso.closeSoftKeyboard()
    android.util.Log.i("QRU_UI_TEST","guide: reveal collapsed form")
-   ui.onNodeWithText("Análise guiada · habilitação").performScrollTo()
+   ui.onNodeWithTag("search_results").performScrollToNode(hasText("Análise guiada · habilitação"))
    ui.onNodeWithText("Análise guiada · habilitação").assertHasClickAction()
     .performSemanticsAction(SemanticsActions.OnClick) { assertTrue(it()) }
    ui.waitUntil(5_000) {
