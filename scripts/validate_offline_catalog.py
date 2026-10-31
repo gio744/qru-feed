@@ -38,6 +38,13 @@ def validate(entries):
         seen_titles.add(title)
     if not entries:
         errors.append("catalogue is empty")
+    pending_path = CATALOG.parent / "pending-official-2026.json"
+    if pending_path.exists():
+        pending = json.loads(pending_path.read_text(encoding="utf-8"))
+        for item in pending.get("items", []):
+            number, year = item["number"], item["year"]
+            if not any(re.search(rf"(?<!\\d){number}\\s*/\\s*{year}(?!\\d)", entry.get("title", "")) for entry in entries):
+                errors.append(f"pending resolution {number}/{year} missing from offline catalogue")
     return errors
 
 
