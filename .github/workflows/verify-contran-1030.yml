@@ -1,0 +1,21 @@
+name: Verify official CONTRAN 1030 PDF
+on:
+  workflow_dispatch:
+jobs:
+  inspect-official-pdf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: read
+    steps:
+      - name: Download and fingerprint official publication
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10302026.pdf/@@display-file/file'
+          curl --fail --location --retry 3 --retry-all-errors --connect-timeout 20 --max-time 100 --output official-1030.pdf "$url"
+          test "$(head -c 5 official-1030.pdf)" = '%PDF-'
+          echo "PDF bytes: $(wc -c < official-1030.pdf)"
+          sha256sum official-1030.pdf
+          pdfinfo official-1030.pdf | grep -E '^Pages:|^PDF version:' || true
+          echo 'This workflow inspects only. It does not modify the catalog or publish an APK.'
