@@ -16,6 +16,8 @@ class NormPdfCatalogTest {
    assertTrue(doc["pageCount"].asInt>0)
    val pdf=File("build/generated/normAssets/norms/$name")
    assertTrue("Missing $name",pdf.isFile)
+   assertTrue("PDF too small: $name",pdf.length()>100L)
+   assertEquals("Invalid PDF header: $name","%PDF-",pdf.inputStream().use { String(it.readNBytes(5), Charsets.US_ASCII) })
    val digest=MessageDigest.getInstance("SHA-256").digest(pdf.readBytes()).joinToString("") { "%02x".format(it) }
    assertEquals(name,doc["sha256"].asString,digest)
   }
