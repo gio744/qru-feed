@@ -36,6 +36,21 @@ def validate(entries, pending_items=None):
             errors.append(f"{label}: annex page outside document")
         seen_files.add(filename.lower())
         seen_titles.add(title)
+    # Keep the catalogue ordered exactly as the Android unit test expects.
+    resolution_keys = []
+    for index, entry in enumerate(entries):
+        title = entry.get("title", "")
+        if not title.startswith("Resolução "):
+            continue
+        match = re.fullmatch(r"Resolução ([0-9.]+)/([0-9]{4})", title)
+        if not match:
+            errors.append(f"entry {index + 1}: invalid resolution title")
+            continue
+        resolution_keys.append((int(match.group(2)), int(match.group(1).replace(".", ""))))
+    if len(resolution_keys) != len(set(resolution_keys)):
+        errors.append("duplicate resolution numbers")
+    if resolution_keys != sorted(resolution_keys):
+        errors.append("resolutions must be chronological")
     if not entries:
         errors.append("catalogue is empty")
     if pending_items is not None:
