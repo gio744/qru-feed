@@ -130,8 +130,6 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("Mais"),SI
  val vm:SearchViewModel=viewModel(factory=SearchViewModelFactory(app.searchLegalContent))
  val state by vm.state.collectAsState()
  val keyboard=LocalSoftwareKeyboardController.current
- var occurrence by rememberSaveable{mutableStateOf("")}
- var occurrenceExpanded by rememberSaveable{mutableStateOf(false)}
  var selected by remember{mutableStateOf<SearchResult?>(null)}
  var guideReference by remember { mutableStateOf<String?>(null) }
  var guideExpanded by rememberSaveable { mutableStateOf(false) }
