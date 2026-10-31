@@ -16,6 +16,18 @@ class OfflineCatalogValidationTests(unittest.TestCase):
     def test_valid(self):
         self.assertEqual(validate([sample()]), [])
 
+    def test_out_of_order_resolutions(self):
+        newer = sample()
+        newer["title"] = "Resolução 969/2022"
+        newer["file"] = "resolucao9692022.pdf"
+        self.assertTrue(any("chronological" in error for error in validate([newer, sample()])))
+
+    def test_duplicate_resolution_number_with_distinct_title(self):
+        other = sample()
+        other["file"] = "another.pdf"
+        other["title"] = "Resolução 913/2022"
+        self.assertTrue(any("duplicate resolution numbers" in error for error in validate([sample(), other])))
+
     def test_duplicate_file(self):
         other = sample()
         other["title"] = "Resolução 914/2022"
