@@ -52,4 +52,10 @@ class OfflineDocumentSourceTest {
  @Test fun consultationDraftStaysExternal() {
   assertNull(resolve("https://www.gov.br/participamaisbrasil/blob/baixar/6392"))
  }
+ @Test fun rejectsAmbiguousManifestMappings() {
+  val conflicting=doc.copy(file="another.pdf",title="Duplicate source")
+  assertNull(resolveOfflineDocument(listOf(doc,conflicting),source))
+  assertNotNull(resolveOfflineDocument(listOf(doc),source))
+ }
+
 }
