@@ -41,6 +41,16 @@ class OfflineCatalogValidationTests(unittest.TestCase):
         entry["annexPage"] = 4
         self.assertEqual(validate([entry]), [])
 
+    def test_pending_resolution_matches_dotted_title(self):
+        entry = sample()
+        entry["title"] = "Resolução 1.026/2026"
+        pending = [{"number": 1026, "year": 2026}]
+        self.assertEqual(validate([entry], pending_items=pending), [])
+
+    def test_pending_resolution_missing(self):
+        pending = [{"number": 1026, "year": 2026}]
+        self.assertTrue(any("1026/2026" in error for error in validate([sample()], pending_items=pending)))
+
     def test_invalid_page_count(self):
         entry = sample()
         entry["pageCount"] = 0
