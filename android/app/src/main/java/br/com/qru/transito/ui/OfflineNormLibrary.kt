@@ -59,7 +59,7 @@ private fun normSearch(text:String):String =
  val count=catalog?.count { it.category==category }
  Text(if(count==null) "$category • catálogo offline" else "$category • $count "+(if(count==1) "documento offline" else "documentos offline"),
   style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.secondary)
- Text("Publicações originais. Conferência de alterações e vigência pendente.",style=MaterialTheme.typography.bodySmall)
+ Text("PDFs oficiais armazenados no aparelho para consulta sem internet. A inclusão no catálogo não confirma vigência: confira alterações e revogações antes de aplicar a norma.",style=MaterialTheme.typography.bodySmall)
  var catalogQuery by rememberSaveable { mutableStateOf("") }
  OutlinedTextField(catalogQuery,{catalogQuery=it},Modifier.fillMaxWidth(),label={Text("Número ou assunto da norma")},singleLine=true,
   trailingIcon={if(catalogQuery.isNotEmpty()) TextButton(onClick={catalogQuery=""}) { Text("LIMPAR") }})
