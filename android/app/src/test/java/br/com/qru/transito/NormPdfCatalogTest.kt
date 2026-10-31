@@ -20,4 +20,21 @@ class NormPdfCatalogTest {
    assertEquals(name,doc["sha256"].asString,digest)
   }
  }
+ @Test fun pendingOfficialResolutionsStayConsistentWithOfflineCatalog() {
+  val catalog=JsonParser.parseString(File("src/main/assets/norms/pdf-catalog.json").readText()).asJsonArray
+  val pending=JsonParser.parseString(File("src/main/assets/norms/pending-official-2026.json").readText()).asJsonObject
+  val titles=catalog.map { it.asJsonObject["title"].asString }.toSet()
+  val items=pending["items"].asJsonArray
+  for (item in items) {
+   val entry=item.asJsonObject
+   val title="Resolução " + "%,d".format(java.util.Locale.US,entry["number"].asInt).replace(',', '.') + "/" + entry["year"].asInt
+   val validation=entry["validation"].asString
+   if (validation.startsWith("catalogada_")) {
+    assertTrue("Marked catalogued but absent: $title",title in titles)
+   } else if (validation.contains("integracao_offline_pendentes")) {
+    assertFalse("Marked pending but already catalogued: $title",title in titles)
+   }
+  }
+ }
+
 }
