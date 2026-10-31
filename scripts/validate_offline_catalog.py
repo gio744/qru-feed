@@ -32,6 +32,8 @@ def validate(entries):
         parsed = urlparse(url)
         if parsed.scheme != "https" or parsed.hostname != "www.gov.br":
             errors.append(f"{label}: source must be official gov.br HTTPS")
+        if entry.get("annexPage") is not None and (type(entry["annexPage"]) is not int or type(pages) is not int or not 1 <= entry["annexPage"] <= pages):
+            errors.append(f"{label}: annex page outside document")
         seen_files.add(filename.lower())
         seen_titles.add(title)
     if not entries:
