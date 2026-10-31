@@ -60,7 +60,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.google.gson.Gson
 
-enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),SITUACOES("Situações"),NOVIDADES("Novidades")}
+enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("Mais"),SITUACOES("Situações"),NOVIDADES("Novidades")}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable fun QruApp(){
@@ -95,7 +95,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
   }){
    Scaffold(bottomBar={NavigationBar(containerColor=Color(0xFF0D1726)){
     QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},modifier=Modifier.testTag("tab_"+item.name),
-     icon={Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
+     icon={if(item==QruTab.BUSCA) Text("Q",style=MaterialTheme.typography.headlineMedium,fontWeight=FontWeight.Black) else Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
      label={Text(item.label)})}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
     tabStates.SaveableStateProvider(tab.name) {
@@ -222,7 +222,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
        val slot=row*2+column
        val label=quickKeys[slot]
        val query=quickOptions.firstOrNull { it.first==label }?.second ?: label
-       QruQuickAction(label,if(editingQuick) Icons.Default.Edit else Icons.Default.Gavel,
+       QruQuickAction(label,Icons.Default.Gavel,
         Modifier.weight(1f)) {
         if(editingQuick) editingSlot=slot else { vm.query(query);vm.run() }
        }
@@ -233,25 +233,6 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
      listOf("165-A","230 XVIII","181").forEach { term ->
       SuggestionChip(onClick={vm.query(term);vm.run()},label={Text(term)})
-     }
-    }
-    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
-     TextButton(onClick={occurrenceExpanded=!occurrenceExpanded}) {
-      Icon(Icons.Default.Description,null,Modifier.size(18.dp))
-      Spacer(Modifier.width(4.dp))
-      Text("Ocorrência")
-     }
-     TextButton(onClick={guideExpanded=true}) {
-      Icon(Icons.Default.FactCheck,null,Modifier.size(18.dp))
-      Spacer(Modifier.width(4.dp))
-      Text("Análise guiada")
-     }
-    }
-    if(occurrenceExpanded) {
-     OutlinedTextField(occurrence,{occurrence=it},Modifier.fillMaxWidth(),
-      label={Text("Descreva os fatos observados")},minLines=3)
-     Button(onClick={keyboard?.hide();vm.query(occurrence);vm.run()},enabled=occurrence.isNotBlank()) {
-      Text("BUSCAR REFERÊNCIAS")
      }
     }
     Text("Atalhos de pesquisa. Confira sempre a fonte oficial e a regra aplicável ao fato.",
