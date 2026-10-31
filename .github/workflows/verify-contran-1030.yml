@@ -1,6 +1,9 @@
 name: Verify official CONTRAN 1030 PDF
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/verify-contran-1030.yml'
 jobs:
   inspect-official-pdf:
     runs-on: ubuntu-latest
