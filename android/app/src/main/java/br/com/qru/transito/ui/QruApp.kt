@@ -203,6 +203,7 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("Mais"),SI
   Text("CONSULTA OPERACIONAL  •  CATÁLOGO OFFLINE", style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.secondary)
    }
   }
+  item(key="guided_habilitation") { HabilitationGuideCard(onOpen={guideExpanded=true}) }
   if(state.query.isBlank()) item(key="quick_access") {
    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(12.dp)) {
     Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically) {
