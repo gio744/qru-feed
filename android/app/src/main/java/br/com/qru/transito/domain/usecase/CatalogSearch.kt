@@ -53,7 +53,7 @@ object CatalogSearch {
             val exactInciso = incisoQuery && resultParts.joinToString(",") == exactIncisoKey
             val exactArticle = numericQuery && normalize(result.article.orEmpty()).substringBefore(',')
                 .replace(Regex("[^a-z0-9]"), "") == numericKey
-            if (incisoQuery && !exactInciso) null
+            if (incisoQuery && !exactInciso && !exactCode) null
             else if (numericQuery && !exactCode && !exactArticle) null
             else if (!exactCode && matches < (tokens.size + 1) / 2) null
             else (if (exactCode) 1000 else if (exactInciso) 800 else if (exactArticle) 300 else 0) +
