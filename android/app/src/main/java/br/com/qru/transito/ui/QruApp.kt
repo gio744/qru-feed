@@ -660,7 +660,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
        mutableStateOf(downloadPreferences.getLong(video.id,-1L).takeIf { it>0L })
       }
       var videoRefresh by remember(video.id) { mutableIntStateOf(0) }
-      var downloadActive by remember(video.id) { mutableStateOf(false) }
+      var downloadActive by remember(video.id) { mutableStateOf(downloadId != null) }
       LaunchedEffect(video.id,downloadId,videoRefresh) {
        downloadActive=withContext(Dispatchers.IO) {
         val id=downloadId ?: return@withContext false
@@ -674,8 +674,8 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             status==android.app.DownloadManager.STATUS_RUNNING ||
             status==android.app.DownloadManager.STATUS_PAUSED
           }
-         } ?: false
-        }.getOrDefault(false)
+         } ?: true // Unknown query result: do not enqueue a duplicate.
+        }.getOrDefault(true) // Fail closed until the status can be checked.
        }
        downloadRequested=downloadActive
       }
