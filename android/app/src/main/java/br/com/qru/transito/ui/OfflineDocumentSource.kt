@@ -5,7 +5,7 @@ import java.net.URI
 internal data class OfflinePdfDocument(
  val file:String="",val title:String="",val subtitle:String="",
  val source:String="",val sha256:String="",val pageCount:Int=0,val annexPage:Int?=null,
- val category:String="Resoluções"
+ val category:String="Resoluções",val textIndex:String?=null
 )
 internal data class OfflineDocumentTarget(val document:OfflinePdfDocument,val page:Int)
 
