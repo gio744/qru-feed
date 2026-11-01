@@ -77,27 +77,31 @@ private fun normExcerpt(text:String,query:String):String {
  var catalogQuery by rememberSaveable { mutableStateOf("") }
  OutlinedTextField(catalogQuery,{catalogQuery=it},Modifier.fillMaxWidth(),label={Text("Número ou assunto da norma")},singleLine=true,
   trailingIcon={if(catalogQuery.isNotEmpty()) TextButton(onClick={catalogQuery=""}) { Text("LIMPAR") }})
- Text("A busca acima pesquisa número, título e assunto no catálogo. Para pesquisar o conteúdo da Resolução 1.031/2026, use PESQUISAR TEXTO no respectivo documento; os demais PDFs ainda não possuem índice textual.",style=MaterialTheme.typography.bodySmall)
+ Text("A busca acima pesquisa número, título e assunto no catálogo. Para pesquisar o conteúdo de documentos com índice textual, use PESQUISAR TEXTO no respectivo documento.",style=MaterialTheme.typography.bodySmall)
  var norm by remember { mutableStateOf<OfflineNorm?>(null) }
+ var indexedPdf by remember { mutableStateOf<OfflinePdfDocument?>(null) }
  var error by remember { mutableStateOf(false) }
  var pdfOpened by rememberSaveable { mutableStateOf(false) }
  var selectedPdfPage by rememberSaveable { mutableStateOf<Int?>(null) }
  var opened by rememberSaveable { mutableStateOf(false) }
  var query by rememberSaveable { mutableStateOf("") }
- LaunchedEffect(Unit) {
+ LaunchedEffect(catalog) {
+  val selected=catalog?.firstOrNull { it.textIndex!=null }
+  if(selected==null) { norm=null;indexedPdf=null;error=false;return@LaunchedEffect }
   val result=withContext(Dispatchers.IO) {
    runCatching {
-    context.assets.open("norms/resolucao10312026.json").bufferedReader().use {
+    context.assets.open("norms/${selected.textIndex}").bufferedReader().use {
      Gson().fromJson(it,OfflineNorm::class.java)
-    }.also { require(it.pages.isNotEmpty() && it.pages.first().isNotBlank()) }
+    }.also { require(it.pdfSha256==selected.sha256 && it.pages.size==selected.pageCount && it.pages.any(String::isNotBlank)) }
    }
   }
-  norm=result.getOrNull();error=result.isFailure
+  norm=result.getOrNull();indexedPdf=if(result.isSuccess) selected else null;error=result.isFailure
  }
  val document=norm
- if(error && category=="Resoluções") Text("A pesquisa no texto da Resolução 1.031 está indisponível. Você pode abrir o PDF completo.")
- AdditionalOfflineNorms(catalogQuery,category,catalog,document!=null,{opened=true})
- if(pdfOpened && document!=null) OfflinePdfReader(document.pdfSha256,initialPage=selectedPdfPage) { pdfOpened=false;selectedPdfPage=null;opened=true }
+ val selectedDocument=indexedPdf
+ if(error && category=="Resoluções") Text("A pesquisa no texto do documento está indisponível. Você pode abrir o PDF completo.")
+ AdditionalOfflineNorms(catalogQuery,category,catalog,selectedDocument?.file,{opened=true})
+ if(pdfOpened && document!=null && selectedDocument!=null) OfflinePdfReader(document.pdfSha256,selectedDocument.file,selectedDocument.title,selectedDocument.pageCount,selectedDocument.annexPage,initialPage=selectedPdfPage) { pdfOpened=false;selectedPdfPage=null;opened=true }
  if(opened && document!=null) {
   val needle=normSearch(query.trim())
   val pages=remember(document,needle) {
@@ -135,7 +139,7 @@ private fun normExcerpt(text:String,query:String):String {
  }
 }
 
-@Composable private fun AdditionalOfflineNorms(query:String,category:String,documents:List<OfflinePdfDocument>?,textAvailable:Boolean,onSearchText:()->Unit) {
+@Composable private fun AdditionalOfflineNorms(query:String,category:String,documents:List<OfflinePdfDocument>?,indexedFile:String?,onSearchText:()->Unit) {
  var selectedFile by rememberSaveable { mutableStateOf<String?>(null) }
  val visible=remember(documents,query,category) { documents.orEmpty().filter { it.category==category && matchesNorm(it.title,it.subtitle,query) }.sortedWith(compareByDescending<OfflinePdfDocument> { normYear(it.title) }.thenByDescending { normNumber(it.title) }.thenBy { it.title }) }
  if(documents!=null && query.isNotBlank()) {
@@ -158,7 +162,7 @@ private fun normExcerpt(text:String,query:String):String {
      Icon(Icons.Default.ChevronRight,"Abrir PDF")
     }
     Text(doc.subtitle,style=MaterialTheme.typography.bodyMedium)
-    if(doc.file=="resolucao10312026.pdf" && textAvailable) TextButton(onClick=onSearchText) { Text("PESQUISAR TEXTO") }
+    if(doc.file==indexedFile) TextButton(onClick=onSearchText) { Text("PESQUISAR TEXTO") }
     Text("PDF original completo offline • ${doc.pageCount} páginas",style=MaterialTheme.typography.bodySmall)
    }
   }
