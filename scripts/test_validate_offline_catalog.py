@@ -65,7 +65,7 @@ class OfflineCatalogValidationTests(unittest.TestCase):
 
     def test_missing_text_index_is_rejected(self):
         entry = sample()
-        entry["textIndex"] = "missing_index_9132022.json"
+        entry["textIndex"] = "missingindex9132022.json"
         self.assertTrue(any("missing or invalid text index" in error for error in validate([entry])))
 
     def test_unsafe_text_index_path_is_rejected(self):
