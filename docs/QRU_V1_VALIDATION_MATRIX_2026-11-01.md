@@ -65,3 +65,8 @@ Documento de acompanhamento na branch de desenvolvimento. Não altera código, n
 - [Android Build #41306874498](https://github.com/gio744/qru-feed/actions/runs/41306874498): **success**.
 - [Android UI #41306874753](https://github.com/gio744/qru-feed/actions/runs/41306874753): **success** (concluído em 01/11/2026 às 12:36:09 UTC).
 - **Conclusão restrita:** o refinamento do Q passou nas três rotinas automatizadas no mesmo SHA. Não há evidência de inspeção visual em aparelho, instalação/atualização física, verificação jurídica ou homologação da branch consolidada. Permanecem os gates manuais e a PR #80 em draft.
+
+## Conciliação de Studio — inspeção de código (01/11/2026)
+- Comparados `QruVideoCatalog.kt` e `QruStudioIntegrity.kt` entre `feature/operational-accordion-distinctive` e `integration/qru-v1-final-reconciliation-20261029`: **conteúdo idêntico** nos dois arquivos na consulta realizada.
+- **Decisão:** manter os arquivos da branch ativa, sem transplantar equivalentes da candidata. O catálogo restringe a mídia a HTTPS próprio, exige revisão editorial e checksum SHA-256; a integridade de mídia local é verificada antes de reprodução offline.
+- Esta inspeção não confirma publicação de vídeos nem substitui os testes manuais VID-01/VID-02. O catálogo de mídia continua sem vídeos publicados conforme evidência anterior.
