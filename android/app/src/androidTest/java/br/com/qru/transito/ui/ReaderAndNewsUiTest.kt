@@ -119,6 +119,19 @@ class ReaderAndNewsUiTest {
   }
  }
 
+ @Test fun centralNavigationIdentifiesQruInsteadOfGenericMoreMenu() {
+  val context=InstrumentationRegistry.getInstrumentation().targetContext
+  context.getSharedPreferences("qru_news",0).edit()
+   .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
+  ActivityScenario.launch(MainActivity::class.java).use {
+   ui.onNodeWithTag("tab_BUSCA").assertContentDescriptionEquals("Abrir central QRU")
+   ui.onNodeWithText("QRU").assertExists()
+   ui.onNodeWithTag("tab_CTB").performClick()
+   ui.onNodeWithTag("tab_BUSCA").performClick()
+   ui.onNodeWithTag("search_query").assertExists()
+  }
+ }
+
  @Test fun situationShortcutKeepsMainSearchIndependent() {
   val context=InstrumentationRegistry.getInstrumentation().targetContext
   context.getSharedPreferences("qru_news",0).edit()
