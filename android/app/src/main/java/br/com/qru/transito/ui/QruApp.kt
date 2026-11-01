@@ -11,6 +11,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.layout.ContentScale
@@ -833,6 +835,8 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
 @Composable private fun QruWordmark(compact:Boolean=false) {
  Image(
   painter=painterResource(R.drawable.qru_wordmark),
+  // Preserve the existing metallic highlights while removing the legacy purple hue.
+  colorFilter=ColorFilter.colorMatrix(ColorMatrix().apply { setToSaturation(0f) }),
   contentDescription="QRU?",
   contentScale=ContentScale.Fit,
   modifier=Modifier.width(if(compact) 144.dp else 180.dp).height(if(compact) 48.dp else 64.dp)
