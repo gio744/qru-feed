@@ -97,7 +97,7 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
   }){
    Scaffold(bottomBar={NavigationBar(containerColor=Color(0xFF0D1726)){
     QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},modifier=Modifier.testTag("tab_"+item.name).semantics { contentDescription = if(item==QruTab.BUSCA) "Abrir central QRU" else item.label },
-     icon={if(item==QruTab.BUSCA) Text("Q",style=MaterialTheme.typography.headlineMedium,fontWeight=FontWeight.Black,color=MaterialTheme.colorScheme.secondary) else Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
+     icon={if(item==QruTab.BUSCA) Surface(shape=RoundedCornerShape(50),color=Color(0xFF081D32),border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF6F8DA9)),modifier=Modifier.size(44.dp)) { Box(contentAlignment=Alignment.Center) { Text("Q",style=MaterialTheme.typography.headlineMedium.copy(fontWeight=FontWeight.Black,brush=Brush.verticalGradient(listOf(Color.White,Color(0xFFB7C9D9),Color(0xFF6B91AC),Color(0xFFE4F7FF))))) } } else Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
      label={Text(item.label)})}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
     tabStates.SaveableStateProvider(tab.name) {
