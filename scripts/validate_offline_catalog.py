@@ -34,6 +34,22 @@ def validate(entries, pending_items=None):
             errors.append(f"{label}: source must be official gov.br HTTPS")
         if entry.get("annexPage") is not None and (type(entry["annexPage"]) is not int or type(pages) is not int or not 1 <= entry["annexPage"] <= pages):
             errors.append(f"{label}: annex page outside document")
+        # Per-page text indexes must correspond exactly to the pinned official PDF.
+        index_file = entry.get("textIndex")
+        if index_file is not None:
+            if not isinstance(index_file, str) or not re.fullmatch(r"[A-Za-z0-9]+\\.json", index_file):
+                errors.append(f"{label}: invalid text index filename")
+            else:
+                index_path = CATALOG.parent / index_file
+                try:
+                    index = json.loads(index_path.read_text(encoding="utf-8"))
+                    if index.get("pdfSha256") != digest:
+                        errors.append(f"{label}: text index PDF hash mismatch")
+                    indexed_pages = index.get("pages")
+                    if not isinstance(indexed_pages, list) or len(indexed_pages) != pages or not all(isinstance(page, str) for page in indexed_pages):
+                        errors.append(f"{label}: text index must retain one string per PDF page")
+                except (OSError, ValueError, TypeError, AttributeError):
+                    errors.append(f"{label}: missing or invalid text index")
         seen_files.add(filename.lower())
         seen_titles.add(title)
     # Keep the catalogue ordered exactly as the Android unit test expects.
