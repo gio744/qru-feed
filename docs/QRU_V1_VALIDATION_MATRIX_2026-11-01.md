@@ -58,3 +58,10 @@ Documento de acompanhamento na branch de desenvolvimento. Não altera código, n
 - A home ativa já utiliza cabeçalho azul em gradiente e marca QRU. A candidata possui Q central com tratamento metálico mais elaborado; avaliar **somente** eventual transferência de acabamento visual em mudança isolada, acompanhada de testes, sem alterar rotas ou comportamento.
 - O menu de ajuda foi atualizado no commit `89f55f93`. O conjunto Android Build, Android UI e Release Smoke para esse commit terminou em **success** (runs 41306340360, 41306340568, 41306340425).
 - UI-01 e UI-02 permanecem **pendentes de inspeção em aparelho**; a inspeção de código e CI não substituem homologação visual.
+
+## Evidência do refinamento metálico do Q — 01/11/2026
+- Commit de implementação visual: [`ff1340ae21740e4b161943a610d35d3d641acbe1`](https://github.com/gio744/qru-feed/commit/ff1340ae21740e4b161943a610d35d3d641acbe1), branch `feature/operational-accordion-distinctive`.
+- [Release Smoke #41306874560](https://github.com/gio744/qru-feed/actions/runs/41306874560): **success**.
+- [Android Build #41306874498](https://github.com/gio744/qru-feed/actions/runs/41306874498): **success**.
+- [Android UI #41306874753](https://github.com/gio744/qru-feed/actions/runs/41306874753): **success** (concluído em 01/11/2026 às 12:36:09 UTC).
+- **Conclusão restrita:** o refinamento do Q passou nas três rotinas automatizadas no mesmo SHA. Não há evidência de inspeção visual em aparelho, instalação/atualização física, verificação jurídica ou homologação da branch consolidada. Permanecem os gates manuais e a PR #80 em draft.
