@@ -76,3 +76,9 @@ Documento de acompanhamento na branch de desenvolvimento. Não altera código, n
 - `OperationalReference.kt`: a branch ativa inclui a evidência da base legal de `deadline` entre os enunciados submetidos à checagem editorial; a candidata omite esse elemento da lista de enunciados. **Manter a ativa.**
 - `OperationalFichePackage.kt`: a branch ativa exige também origem oficial confiável para a base legal do prazo administrativo; a candidata verifica somente regras e condições. **Manter a ativa, por validação mais completa.**
 - Estas são decisões de conciliação estática; não constituem aprovação jurídica das fichas nem homologação de buscas em aparelho. A PR #80 permanece draft.
+
+## Conciliação visual e biblioteca — inspeção complementar (01/11/2026)
+- `ui/theme/Theme.kt`: paletas diferentes. A branch ativa usa azul/prata contidos, fundo grafite/navy e tokens `surfaceContainer`, `surfaceContainerHigh`, `onSurfaceVariant`; a candidata usa azul neon mais saturado e não define esses tokens explicitamente. **Preservar tema ativo até inspeção visual em aparelho**; não importar cores em lote.
+- `ui/OfflineDocumentSource.kt`: a ativa exige correspondência única para PDF oficial, impedindo resolução arbitrária de URLs duplicadas; preservar ativa.
+- `ui/OfflineNormLibrary.kt`: a ativa usa abas horizontais roláveis, ordenação por ano/número decrescente, cabeçalhos por ano, contador, aviso de vigência e pesquisa com botão limpar. A candidata usa duas linhas de categorias, ordenação por número antes do ano e callback externo. **Preservar a ativa**; a experiência da biblioteca continua interna ao aplicativo.
+- A inspeção é estática. **UI-03, PDF-01 e PDF-02 permanecem pendentes de verificação no aparelho**, inclusive legibilidade, integridade e abertura sem rede.
