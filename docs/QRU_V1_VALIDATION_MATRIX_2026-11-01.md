@@ -82,3 +82,9 @@ Documento de acompanhamento na branch de desenvolvimento. Não altera código, n
 - `ui/OfflineDocumentSource.kt`: a ativa exige correspondência única para PDF oficial, impedindo resolução arbitrária de URLs duplicadas; preservar ativa.
 - `ui/OfflineNormLibrary.kt`: a ativa usa abas horizontais roláveis, ordenação por ano/número decrescente, cabeçalhos por ano, contador, aviso de vigência e pesquisa com botão limpar. A candidata usa duas linhas de categorias, ordenação por número antes do ano e callback externo. **Preservar a ativa**; a experiência da biblioteca continua interna ao aplicativo.
 - A inspeção é estática. **UI-03, PDF-01 e PDF-02 permanecem pendentes de verificação no aparelho**, inclusive legibilidade, integridade e abertura sem rede.
+
+## Auditoria de downloads do Studio — risco identificado (01/11/2026)
+- Inspeção de `QruApp.kt` no bloco `SituationsPage`: há identificação individual por `video.id`, persistência de ID do `DownloadManager`, verificação SHA-256 do arquivo local, exclusão de inválidos e reprodução offline somente após integridade confirmada.
+- **Risco pendente VID-02:** o botão `BAIXAR` permanece acionável mesmo após `downloadRequested=true` ou com `downloadId` persistido. Solicitações repetidas podem enfileirar downloads concorrentes para o mesmo destino. A variável `downloadRequested` não é restaurada do estado persistido ao reiniciar a tela.
+- **Critério de correção:** consultar status real da requisição persistida, bloquear nova solicitação enquanto houver download ativo, permitir nova tentativa após falha/cancelamento, revalidar SHA-256 ao concluir e cobrir cenário de rotação/reabertura do app. Não declarar esse fluxo homologado apenas por CI genérico.
+- O catálogo `studio/videos.json` está vazio conforme inspeção anterior; risco é pré-publicação, sem vídeo publicado atualmente.
