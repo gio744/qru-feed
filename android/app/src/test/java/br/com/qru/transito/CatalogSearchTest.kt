@@ -44,6 +44,23 @@ class CatalogSearchTest {
                 .mapNotNull { it.code }.toSet())
         }
     }
+    @Test fun fullArticle230KeepsLegalIncisoOrderAndExcludesOtherArticles() {
+        val results = CatalogSearch.search(bundledEntries(), "art. 230")
+        assertTrue("O artigo 230 deve ter desdobramentos", results.size > 20)
+        assertTrue("A busca por artigo não deve misturar outros artigos",
+            results.all { it.article?.substringBefore(',')?.trim() == "230" })
+        val romanOrder = mapOf(
+            "I" to 1, "II" to 2, "III" to 3, "IV" to 4, "V" to 5,
+            "VI" to 6, "VII" to 7, "VIII" to 8, "IX" to 9, "X" to 10,
+            "XI" to 11, "XII" to 12, "XIII" to 13, "XIV" to 14,
+            "XV" to 15, "XVI" to 16, "XVII" to 17, "XVIII" to 18,
+            "XIX" to 19, "XX" to 20, "XXI" to 21, "XXII" to 22,
+            "XXIII" to 23
+        )
+        val order = results.map { romanOrder[it.article?.substringAfter(',')?.trim()] ?: Int.MAX_VALUE }
+        assertEquals("Incisos devem aparecer em ordem jurídica, não alfabética",
+            order.sorted(), order)
+    }
     @Test fun articleDoesNotConfuse165With165A(){assertEquals(listOf("alcool"),CatalogSearch.search(entries,"artigo 165").map{it.stableKey})}
     @Test fun hyphenatedArticleKeepsLetter(){assertEquals(listOf("recusa"),CatalogSearch.search(entries,"165-A").map{it.stableKey})}
     @Test fun exactCodeStillMatchesWhenItsDigitsResembleArticleAndInciso() {
