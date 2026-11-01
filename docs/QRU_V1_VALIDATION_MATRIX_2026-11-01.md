@@ -33,3 +33,15 @@ Documento de acompanhamento na branch de desenvolvimento. Não altera código, n
 5. Só então avaliar merge e liberação.
 
 **Bloqueio de publicação:** qualquer item crítico pendente impede declarar a V1 homologada.
+
+## Evidências automatizadas confirmadas em 01/11/2026
+- Commit testado: `bfa66a1dfab4a9f23e705cf9810ebb2e3a95aedc` (branch `feature/operational-accordion-distinctive`).
+- [Android Build #41305707261](https://github.com/gio744/qru-feed/actions/runs/41305707261): **success**.
+- [Android UI #41305707313](https://github.com/gio744/qru-feed/actions/runs/41305707313): **success**.
+- [Release Smoke #41305707256](https://github.com/gio744/qru-feed/actions/runs/41305707256): **success**.
+- A suíte inclui regressão para pesquisa integral do art. 230, isolamento do artigo e ordenação jurídica dos incisos. A execução verde não equivale à inspeção visual em dispositivo físico.
+- Comparação com a branch candidata `integration/qru-v1-final-reconciliation-20261029`: histórico **divergente** (180 commits à frente / 102 atrás, no momento da consulta); PR #80 continua **draft**. Não integrar por merge automático sem conciliação por arquivo.
+- A branch de desenvolvimento possui 16 PDFs no catálogo, enquanto a candidata possui 14; preservar as referências 969/2022 e 1.030/2026 na consolidação.
+- O catálogo Studio contém `items: []`; nenhum vídeo deve ser apresentado como publicado antes de existir mídia válida.
+
+**Interpretação da matriz:** APK-02 possui evidência automatizada **na branch de desenvolvimento**, mas continua pendente **na branch consolidada**; BUS-01 possui cobertura automatizada, mas não foi homologado manualmente; todos os demais estados permanecem pendentes até evidência específica. Não confundir CI verde com liberação para publicação.
