@@ -774,7 +774,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
           .onFailure { Toast.makeText(context,"Não foi possível abrir o YouTube.",Toast.LENGTH_SHORT).show() }
         }) { Text("YOUTUBE") }
        }
-       TextButton(enabled=!downloadActive && !downloadRequested && !checkingOffline,onClick={
+       TextButton(enabled=!offlineAvailable && !downloadActive && !downloadRequested && !checkingOffline,onClick={
         val request=android.app.DownloadManager.Request(Uri.parse(video.videoUrl))
          .setTitle(video.title)
          .setDescription("Vídeo QRU Studio para consulta offline")
