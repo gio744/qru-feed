@@ -68,6 +68,7 @@ private fun normSearch(text:String):String =
  var norm by remember { mutableStateOf<OfflineNorm?>(null) }
  var error by remember { mutableStateOf(false) }
  var pdfOpened by rememberSaveable { mutableStateOf(false) }
+ var selectedPdfPage by rememberSaveable { mutableStateOf<Int?>(null) }
  var opened by rememberSaveable { mutableStateOf(false) }
  var query by rememberSaveable { mutableStateOf("") }
  LaunchedEffect(Unit) {
@@ -83,7 +84,7 @@ private fun normSearch(text:String):String =
  val document=norm
  if(error && category=="Resoluções") Text("A pesquisa no texto da Resolução 1.031 está indisponível. Você pode abrir o PDF completo.")
  AdditionalOfflineNorms(catalogQuery,category,catalog,document!=null,{opened=true})
- if(pdfOpened && document!=null) OfflinePdfReader(document.pdfSha256) { pdfOpened=false }
+ if(pdfOpened && document!=null) OfflinePdfReader(document.pdfSha256,initialPage=selectedPdfPage) { pdfOpened=false;selectedPdfPage=null }
  if(opened && document!=null) {
   val needle=normSearch(query.trim())
   val pages=remember(document,needle) {
@@ -106,12 +107,13 @@ private fun normSearch(text:String):String =
         Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
          Text("Página ${page.first+1}",style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.primary)
          SelectionContainer { Text(if(page.second.isBlank()) "Página em imagem. Abra o PDF completo offline." else page.second,style=MaterialTheme.typography.bodyMedium) }
+         TextButton(onClick={selectedPdfPage=page.first+1;opened=false;pdfOpened=true}) { Text("ABRIR ESTA PÁGINA NO PDF") }
         }
        }
       }
      }
      Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
-      TextButton(onClick={opened=false;pdfOpened=true}) { Text("PDF OFFLINE") }
+      TextButton(onClick={selectedPdfPage=null;opened=false;pdfOpened=true}) { Text("PDF OFFLINE") }
       TextButton(onClick={opened=false}) { Text("VOLTAR") }
      }
     }
