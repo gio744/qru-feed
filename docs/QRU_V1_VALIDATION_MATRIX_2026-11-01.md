@@ -1,0 +1,35 @@
+# QRU V1 — Matriz de homologação (01/11/2026)
+
+Documento de acompanhamento na branch de desenvolvimento. Não altera código, não aprova merge e não substitui `docs/QA_RELEASE_GATE_2026-10-27.md`.
+
+## Evidências conhecidas
+- PR #80 informa Android Build run 40814262456 com conclusão `success` e artefato `qru-transito-debug-apk`. Conferir SHA do commit e disponibilidade do artefato antes de utilizar.
+- A compilação bem-sucedida não comprova funcionamento no aparelho.
+- PRs #72, #75, #77, #78 e #80 exigem revisão de integração.
+- Estado inicial de todos os testes manuais abaixo: **NÃO EXECUTADO / SEM EVIDÊNCIA**.
+
+## Matriz obrigatória
+| ID | Verificação | Critério de aceite | Estado |
+| --- | --- | --- | --- |
+| UI-01 | Rodapé CTB / Normas / Q / Situações / Novidades | Navegação correta, retorno à home, sem duplicações | Pendente |
+| UI-02 | Campo superior de busca e Q central | Busca acessível, Q identificado, sem banner não aprovado | Pendente |
+| UI-03 | Contraste e dimensões do ícone | Legível no Android físico | Pendente |
+| BUS-01 | 230 V e XVIII | Busca exata, incisos sem mistura e ordenação jurídica | Pendente |
+| BUS-02 | 165, 165-A, 252 III, 244 X, 231 VIII | Resultados relevantes e fichas corretas | Pendente |
+| JUR-01 | Fichas operacionais | Fontes oficiais, vigência e revisão jurídica confirmadas | Pendente |
+| PDF-01 | Catálogo e ordem | Ordenação consistente e indicação de disponibilidade | Pendente |
+| PDF-02 | 1.026–1.029 e demais PDFs embarcados | SHA-256 válido e abertura sem rede | Pendente |
+| VID-01 | Catálogo de vídeos | Sem entradas fictícias, inválidas ou mídia não confiável | Pendente |
+| VID-02 | Downloads | Identificação individual, concorrência e reprodução testadas | Pendente |
+| APK-01 | Instalação e atualização | Abre, atualiza sem perda indevida de dados e reinicia | Pendente |
+| APK-02 | Testes instrumentados | Execução verde na branch consolidada | Pendente |
+| SEC-01 | Segredos e assinatura | Sem credenciais no código; artefato de teste identificado | Pendente |
+
+## Ordem de execução
+1. Conferir diffs e conflitos entre PRs #72, #75, #77 e #80, inclusive `QruApp.kt` e recursos do ícone.
+2. Executar testes automatizados na branch consolidada, registrar URL do workflow, SHA e resultado.
+3. Instalar APK em aparelho Android e preencher cada linha com evidência reproduzível.
+4. Revisar conteúdo jurídico e documentos oficiais.
+5. Só então avaliar merge e liberação.
+
+**Bloqueio de publicação:** qualquer item crítico pendente impede declarar a V1 homologada.
