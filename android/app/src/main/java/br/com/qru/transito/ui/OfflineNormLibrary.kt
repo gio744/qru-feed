@@ -97,7 +97,7 @@ private fun normExcerpt(text:String,query:String):String {
  val document=norm
  if(error && category=="Resoluções") Text("A pesquisa no texto da Resolução 1.031 está indisponível. Você pode abrir o PDF completo.")
  AdditionalOfflineNorms(catalogQuery,category,catalog,document!=null,{opened=true})
- if(pdfOpened && document!=null) OfflinePdfReader(document.pdfSha256,initialPage=selectedPdfPage) { pdfOpened=false;selectedPdfPage=null }
+ if(pdfOpened && document!=null) OfflinePdfReader(document.pdfSha256,initialPage=selectedPdfPage) { pdfOpened=false;selectedPdfPage=null;opened=true }
  if(opened && document!=null) {
   val needle=normSearch(query.trim())
   val pages=remember(document,needle) {
