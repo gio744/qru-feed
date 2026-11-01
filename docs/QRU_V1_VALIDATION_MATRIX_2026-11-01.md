@@ -70,3 +70,9 @@ Documento de acompanhamento na branch de desenvolvimento. Não altera código, n
 - Comparados `QruVideoCatalog.kt` e `QruStudioIntegrity.kt` entre `feature/operational-accordion-distinctive` e `integration/qru-v1-final-reconciliation-20261029`: **conteúdo idêntico** nos dois arquivos na consulta realizada.
 - **Decisão:** manter os arquivos da branch ativa, sem transplantar equivalentes da candidata. O catálogo restringe a mídia a HTTPS próprio, exige revisão editorial e checksum SHA-256; a integridade de mídia local é verificada antes de reprodução offline.
 - Esta inspeção não confirma publicação de vídeos nem substitui os testes manuais VID-01/VID-02. O catálogo de mídia continua sem vídeos publicados conforme evidência anterior.
+
+## Conciliação de busca e fichas operacionais — inspeção de código (01/11/2026)
+- `CatalogSearch.kt`: a branch ativa usa ordenação por artigo/inciso para consultas numéricas, preservando a sequência jurídica (inclusive art. 230); a candidata ordena exclusivamente por pontuação. A priorização de `pneu` também difere (código específico na ativa versus artigo/inciso na candidata). **Manter a ativa e seus testes; não importar a candidata sem testes comparativos específicos.**
+- `OperationalReference.kt`: a branch ativa inclui a evidência da base legal de `deadline` entre os enunciados submetidos à checagem editorial; a candidata omite esse elemento da lista de enunciados. **Manter a ativa.**
+- `OperationalFichePackage.kt`: a branch ativa exige também origem oficial confiável para a base legal do prazo administrativo; a candidata verifica somente regras e condições. **Manter a ativa, por validação mais completa.**
+- Estas são decisões de conciliação estática; não constituem aprovação jurídica das fichas nem homologação de buscas em aparelho. A PR #80 permanece draft.
