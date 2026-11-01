@@ -81,16 +81,20 @@ private fun normExcerpt(text:String,query:String):String {
  var norm by remember { mutableStateOf<OfflineNorm?>(null) }
  var indexedPdf by remember { mutableStateOf<OfflinePdfDocument?>(null) }
  var error by remember { mutableStateOf(false) }
+ var selectedIndexFile by rememberSaveable { mutableStateOf<String?>(null) }
  var pdfOpened by rememberSaveable { mutableStateOf(false) }
  var selectedPdfPage by rememberSaveable { mutableStateOf<Int?>(null) }
  var opened by rememberSaveable { mutableStateOf(false) }
  var query by rememberSaveable { mutableStateOf("") }
- LaunchedEffect(catalog) {
-  val selected=catalog?.firstOrNull { it.textIndex!=null }
-  if(selected==null) { norm=null;indexedPdf=null;error=false;return@LaunchedEffect }
+ LaunchedEffect(catalog,selectedIndexFile) {
+  norm=null;indexedPdf=null;error=false
+  val selected=catalog?.singleOrNull { it.file==selectedIndexFile && it.textIndex!=null }
+   ?: return@LaunchedEffect
+  val indexName=selected.textIndex ?: return@LaunchedEffect
   val result=withContext(Dispatchers.IO) {
    runCatching {
-    context.assets.open("norms/${selected.textIndex}").bufferedReader().use {
+    require(indexName.matches(Regex("[A-Za-z0-9]+[.]json")))
+    context.assets.open("norms/$indexName").bufferedReader().use {
      Gson().fromJson(it,OfflineNorm::class.java)
     }.also { require(it.pdfSha256==selected.sha256 && it.pages.size==selected.pageCount && it.pages.any(String::isNotBlank)) }
    }
@@ -100,7 +104,10 @@ private fun normExcerpt(text:String,query:String):String {
  val document=norm
  val selectedDocument=indexedPdf
  if(error && category=="Resoluções") Text("A pesquisa no texto do documento está indisponível. Você pode abrir o PDF completo.")
- AdditionalOfflineNorms(catalogQuery,category,catalog,selectedDocument?.file,{opened=true})
+ AdditionalOfflineNorms(catalogQuery,category,catalog,{ doc ->
+  selectedIndexFile=doc.file;query="";selectedPdfPage=null;opened=true
+ })
+ if(opened && selectedIndexFile!=null && document==null && !error) LinearProgressIndicator(Modifier.fillMaxWidth())
  if(pdfOpened && document!=null && selectedDocument!=null) OfflinePdfReader(document.pdfSha256,selectedDocument.file,selectedDocument.title,selectedDocument.pageCount,selectedDocument.annexPage,initialPage=selectedPdfPage) { pdfOpened=false;selectedPdfPage=null;opened=true }
  if(opened && document!=null) {
   val needle=normSearch(query.trim())
@@ -139,7 +146,7 @@ private fun normExcerpt(text:String,query:String):String {
  }
 }
 
-@Composable private fun AdditionalOfflineNorms(query:String,category:String,documents:List<OfflinePdfDocument>?,indexedFile:String?,onSearchText:()->Unit) {
+@Composable private fun AdditionalOfflineNorms(query:String,category:String,documents:List<OfflinePdfDocument>?,onSearchText:(OfflinePdfDocument)->Unit) {
  var selectedFile by rememberSaveable { mutableStateOf<String?>(null) }
  val visible=remember(documents,query,category) { documents.orEmpty().filter { it.category==category && matchesNorm(it.title,it.subtitle,query) }.sortedWith(compareByDescending<OfflinePdfDocument> { normYear(it.title) }.thenByDescending { normNumber(it.title) }.thenBy { it.title }) }
  if(documents!=null && query.isNotBlank()) {
@@ -162,7 +169,7 @@ private fun normExcerpt(text:String,query:String):String {
      Icon(Icons.Default.ChevronRight,"Abrir PDF")
     }
     Text(doc.subtitle,style=MaterialTheme.typography.bodyMedium)
-    if(doc.file==indexedFile) TextButton(onClick=onSearchText) { Text("PESQUISAR TEXTO") }
+    if(doc.textIndex!=null) TextButton(onClick={onSearchText(doc)}) { Text("PESQUISAR TEXTO") }
     Text("PDF original completo offline • ${doc.pageCount} páginas",style=MaterialTheme.typography.bodySmall)
    }
   }
