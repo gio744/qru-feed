@@ -39,6 +39,22 @@ class NormPdfCatalogTest {
   }
  }
 
+ @Test fun indexedDocumentsMatchTheirPinnedPdfAndPageCount() {
+  val catalog=JsonParser.parseString(File("src/main/assets/norms/pdf-catalog.json").readText()).asJsonArray
+  val indexed=catalog.map { it.asJsonObject }.filter { it.has("textIndex") }
+  assertTrue("At least one verified text index is expected",indexed.isNotEmpty())
+  for (doc in indexed) {
+   val indexName=doc["textIndex"].asString
+   assertTrue("Unsafe text index name: $indexName",Regex("[A-Za-z0-9]+[.]json").matches(indexName))
+   val indexFile=File("src/main/assets/norms/$indexName")
+   assertTrue("Missing index: $indexName",indexFile.isFile)
+   val index=JsonParser.parseString(indexFile.readText()).asJsonObject
+   assertEquals("Wrong PDF for $indexName",doc["sha256"].asString,index["pdfSha256"].asString)
+   assertEquals("Wrong page count for $indexName",doc["pageCount"].asInt,index["pages"].asJsonArray.size())
+   assertTrue("No searchable text in $indexName",index["pages"].asJsonArray.any { it.asString.isNotBlank() })
+  }
+ }
+
  @Test fun resolutionsAreUniqueAndListedChronologically() {
   val catalog=JsonParser.parseString(File("src/main/assets/norms/pdf-catalog.json").readText()).asJsonArray
   val resolutions=catalog.map { it.asJsonObject["title"].asString }
