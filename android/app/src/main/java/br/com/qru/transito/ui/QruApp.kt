@@ -114,8 +114,8 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
     text={Column(verticalArrangement=Arrangement.spacedBy(12.dp)){
      if(kind=="help"){
       Text("Pesquise uma palavra, artigo ou código. Toque no resultado para conferir a referência e abrir sua fonte.")
-      Text("Use os quatro atalhos personalizáveis para consultar rapidamente infrações frequentes. Confira o enquadramento e as condições de autuação em cada referência.")
-      Text("As fontes incluídas nesta versão podem ser lidas dentro do QRU sem internet. As demais publicações abrem no navegador e exigem conexão.")
+      Text("Use os atalhos de consultas frequentes para pesquisar infrações. Confira o enquadramento e as condições de autuação na fonte vigente.")
+      Text("Na aba Normas, consulte os PDFs disponíveis na biblioteca offline. O acervo é parcial: a ausência de uma norma não indica revogação. Confira alterações e vigência antes de aplicar.")
      }else{
       Text("QRU? — QUAL A SITUAÇÃO. Consulta de referências de trânsito.")
       Text("Versão em desenvolvimento. As fichas e a análise guiada permanecem em conferência jurídica.")
