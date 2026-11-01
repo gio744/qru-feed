@@ -27,6 +27,19 @@ private fun normSearch(text:String):String =
  Normalizer.normalize(text.replace("ﬁ","fi").replace("ﬂ","fl"),Normalizer.Form.NFD)
  .replace(Regex("\\p{M}+"),"").lowercase(java.util.Locale.ROOT)
 
+/** Keep full extracted pages accessible while showing a compact result preview. */
+private fun normExcerpt(text:String,query:String):String {
+ if(query.isBlank() || text.length<=520) return text
+ val folded=normSearch(text)
+ val needle=normSearch(query)
+ val hit=folded.indexOf(needle)
+ if(hit<0) return text.take(520)+"…"
+ val start=(hit-160).coerceAtLeast(0)
+ val end=(hit+needle.length+260).coerceAtMost(text.length)
+ return (if(start>0) "…" else "")+text.substring(start,end)+(if(end<text.length) "…" else "")
+}
+
+
 /** Bundled documentary text; does not mark any operational ficha as validated. */
 @Composable fun OfflineNormLibrary() {
  var category by rememberSaveable { mutableStateOf("Resoluções") }
@@ -106,7 +119,7 @@ private fun normSearch(text:String):String =
        Card(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
          Text("Página ${page.first+1}",style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.primary)
-         SelectionContainer { Text(if(page.second.isBlank()) "Página em imagem. Abra o PDF completo offline." else page.second,style=MaterialTheme.typography.bodyMedium) }
+         SelectionContainer { Text(if(page.second.isBlank()) "Página em imagem. Abra o PDF completo offline." else normExcerpt(page.second,query.trim()),style=MaterialTheme.typography.bodyMedium) }
          TextButton(onClick={selectedPdfPage=page.first+1;opened=false;pdfOpened=true}) { Text("ABRIR ESTA PÁGINA NO PDF") }
         }
        }
