@@ -660,6 +660,25 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
        mutableStateOf(downloadPreferences.getLong(video.id,-1L).takeIf { it>0L })
       }
       var videoRefresh by remember(video.id) { mutableIntStateOf(0) }
+      var downloadActive by remember(video.id) { mutableStateOf(false) }
+      LaunchedEffect(video.id,downloadId,videoRefresh) {
+       downloadActive=withContext(Dispatchers.IO) {
+        val id=downloadId ?: return@withContext false
+        runCatching {
+         val manager=context.getSystemService(Context.DOWNLOAD_SERVICE) as android.app.DownloadManager
+         manager.query(android.app.DownloadManager.Query().setFilterById(id))?.use { cursor ->
+          if(!cursor.moveToFirst()) false else {
+           val index=cursor.getColumnIndex(android.app.DownloadManager.COLUMN_STATUS)
+           val status=if(index>=0) cursor.getInt(index) else -1
+           status==android.app.DownloadManager.STATUS_PENDING ||
+            status==android.app.DownloadManager.STATUS_RUNNING ||
+            status==android.app.DownloadManager.STATUS_PAUSED
+          }
+         } ?: false
+        }.getOrDefault(false)
+       }
+       downloadRequested=downloadActive
+      }
       DisposableEffect(context,video.id) {
        val receiver=object : android.content.BroadcastReceiver() {
         override fun onReceive(receiverContext: Context?, intent: Intent?) {
@@ -753,7 +772,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
           .onFailure { Toast.makeText(context,"Não foi possível abrir o YouTube.",Toast.LENGTH_SHORT).show() }
         }) { Text("YOUTUBE") }
        }
-       TextButton(onClick={
+       TextButton(enabled=!downloadActive && !downloadRequested && !checkingOffline,onClick={
         val request=android.app.DownloadManager.Request(Uri.parse(video.videoUrl))
          .setTitle(video.title)
          .setDescription("Vídeo QRU Studio para consulta offline")
@@ -769,6 +788,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
          downloadId=queuedId
          downloadPreferences.edit().putLong(video.id,queuedId).apply()
          downloadRequested=true
+         downloadActive=true
          Toast.makeText(context,"Download iniciado. Acompanhe nas notificações.",
           Toast.LENGTH_LONG).show()
         }.onFailure {
