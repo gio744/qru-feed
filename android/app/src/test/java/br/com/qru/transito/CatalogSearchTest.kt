@@ -46,6 +46,13 @@ class CatalogSearchTest {
     }
     @Test fun articleDoesNotConfuse165With165A(){assertEquals(listOf("alcool"),CatalogSearch.search(entries,"artigo 165").map{it.stableKey})}
     @Test fun hyphenatedArticleKeepsLetter(){assertEquals(listOf("recusa"),CatalogSearch.search(entries,"165-A").map{it.stableKey})}
+    @Test fun exactCodeStillMatchesWhenItsDigitsResembleArticleAndInciso() {
+        val references = listOf(
+            IndexedReference(SearchResult("coded", "Código operacional", "230, XVIII", "230-V", "BR", "draft"), "referencia"),
+            IndexedReference(SearchResult("article", "Artigo e inciso", "230, V", "659-92", "BR", "draft"), "referencia")
+        )
+        assertEquals(listOf("coded", "article"), CatalogSearch.search(references, "230 V").map { it.stableKey })
+    }
     @Test fun codeWithOrWithoutSeparatorFindsSameEntry(){for(q in listOf("504-50","50450"))assertEquals("cnh",CatalogSearch.search(entries,q).first().stableKey)}
     @Test fun accentsDoNotBlockPracticalTerms(){assertEquals(CatalogSearch.search(entries,"bafometro"),CatalogSearch.search(entries,"bafômetro"))}
     @Test fun narrativeFindsReference(){assertEquals("cnh",CatalogSearch.search(entries,"condutor dirigindo com cnh vencida").first().stableKey)}
