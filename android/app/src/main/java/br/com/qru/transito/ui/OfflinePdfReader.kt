@@ -105,7 +105,7 @@ private fun pdfHash(file:File):String {
     Text(if(pageRange==null) "Deslize para percorrer as páginas • PDF offline" else "Ficha individual • em conferência",style=MaterialTheme.typography.bodySmall)
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
      TextButton(onClick={go(page-1)},enabled=page>0 && file!=null){Text("ANTERIOR")}
-     TextButton(onClick={jumpText=(page+1).toString();jumpOpen=true},enabled=file!=null) { Text("${page+1} / ${window.count} ▾") }
+     TextButton(onClick={jumpText=(page+1).toString();jumpOpen=true},enabled=file!=null) { Text(if(pageRange==null) "${page+1} / ${window.count} ▾" else "PDF p. ${window.documentIndex(page)+1} • ${page+1}/${window.count} ▾") }
      TextButton(onClick={go(page+1)},enabled=page<window.count-1 && file!=null){Text("PRÓXIMA")}
     }
     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
