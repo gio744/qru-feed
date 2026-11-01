@@ -37,7 +37,7 @@ def validate(entries, pending_items=None):
         # Per-page text indexes must correspond exactly to the pinned official PDF.
         index_file = entry.get("textIndex")
         if index_file is not None:
-            if not isinstance(index_file, str) or not re.fullmatch(r"[A-Za-z0-9]+\\.json", index_file):
+            if not isinstance(index_file, str) or not re.fullmatch(r"[A-Za-z0-9]+\.json", index_file):
                 errors.append(f"{label}: invalid text index filename")
             else:
                 index_path = CATALOG.parent / index_file
