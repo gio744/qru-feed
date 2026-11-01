@@ -64,6 +64,7 @@ private fun normSearch(text:String):String =
  var catalogQuery by rememberSaveable { mutableStateOf("") }
  OutlinedTextField(catalogQuery,{catalogQuery=it},Modifier.fillMaxWidth(),label={Text("Número ou assunto da norma")},singleLine=true,
   trailingIcon={if(catalogQuery.isNotEmpty()) TextButton(onClick={catalogQuery=""}) { Text("LIMPAR") }})
+ Text("A busca acima pesquisa número, título e assunto no catálogo. A pesquisa dentro do texto está disponível apenas para a Resolução 1.031/2026 nesta versão.",style=MaterialTheme.typography.bodySmall)
  var norm by remember { mutableStateOf<OfflineNorm?>(null) }
  var error by remember { mutableStateOf(false) }
  var pdfOpened by rememberSaveable { mutableStateOf(false) }
