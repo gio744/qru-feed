@@ -45,3 +45,9 @@ Documento de acompanhamento na branch de desenvolvimento. Não altera código, n
 - O catálogo Studio contém `items: []`; nenhum vídeo deve ser apresentado como publicado antes de existir mídia válida.
 
 **Interpretação da matriz:** APK-02 possui evidência automatizada **na branch de desenvolvimento**, mas continua pendente **na branch consolidada**; BUS-01 possui cobertura automatizada, mas não foi homologado manualmente; todos os demais estados permanecem pendentes até evidência específica. Não confundir CI verde com liberação para publicação.
+
+## Conciliação documental — biblioteca e links (01/11/2026)
+- `OfflineDocumentSource.kt` na branch de desenvolvimento exige correspondência **única** de URL oficial com PDF embarcado; a candidata usa `firstOrNull`, que pode selecionar arbitrariamente um documento em catálogo duplicado. **Preservar a proteção de unicidade**.
+- `OfflineNormLibrary.kt` na branch de desenvolvimento é autocontida, sem callback `openSource`; a candidata ainda aceita esse callback. **Preservar a navegação interna** solicitada para a biblioteca.
+- A listagem da branch de desenvolvimento organiza por ano e número em ordem decrescente, exibe contagem, agrupamento anual e alerta de vigência. **Não substituir** pelo componente simplificado da candidata.
+- Esta decisão é de integração por arquivo, não comprovação de publicação nem homologação jurídica.
