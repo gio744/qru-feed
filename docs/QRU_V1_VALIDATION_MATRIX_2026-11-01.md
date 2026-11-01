@@ -51,3 +51,10 @@ Documento de acompanhamento na branch de desenvolvimento. Não altera código, n
 - `OfflineNormLibrary.kt` na branch de desenvolvimento é autocontida, sem callback `openSource`; a candidata ainda aceita esse callback. **Preservar a navegação interna** solicitada para a biblioteca.
 - A listagem da branch de desenvolvimento organiza por ano e número em ordem decrescente, exibe contagem, agrupamento anual e alerta de vigência. **Não substituir** pelo componente simplificado da candidata.
 - Esta decisão é de integração por arquivo, não comprovação de publicação nem homologação jurídica.
+
+## Conciliação da home e navegação — inspeção de código (01/11/2026)
+- A branch ativa usa **cinco abas** `CTB / Normas / QRU / Situações / Novidades`, com `BUSCA` no centro, sem `MAIS` duplicado. A candidata de integração ainda declara seis valores de `QruTab` e utiliza `MAIS` como centro. **Não transplantar a enumeração ou a barra inferior da candidata**.
+- A home ativa (`SearchHome`) inclui pesquisa por texto/voz, análise guiada de habilitação e quatro atalhos personalizáveis; a candidata possui `QruOperationalHome` separado, com transição `homeVisible` e busca. A conciliação exige comparação funcional e visual antes de importar qualquer parte da home candidata.
+- A home ativa já utiliza cabeçalho azul em gradiente e marca QRU. A candidata possui Q central com tratamento metálico mais elaborado; avaliar **somente** eventual transferência de acabamento visual em mudança isolada, acompanhada de testes, sem alterar rotas ou comportamento.
+- O menu de ajuda foi atualizado no commit `89f55f93`. O conjunto Android Build, Android UI e Release Smoke para esse commit terminou em **success** (runs 41306340360, 41306340568, 41306340425).
+- UI-01 e UI-02 permanecem **pendentes de inspeção em aparelho**; a inspeção de código e CI não substituem homologação visual.
