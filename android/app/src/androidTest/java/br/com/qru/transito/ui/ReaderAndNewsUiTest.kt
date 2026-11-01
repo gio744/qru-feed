@@ -59,12 +59,12 @@ class ReaderAndNewsUiTest {
     ui.onNodeWithTag("pdf_pages").performTouchInput { swipeUp() }
     ui.waitForIdle()
    }
-   ui.onNodeWithText("3 / 3 ▾").assertIsDisplayed()
+   ui.onNodeWithText("PDF p. 601 • 3/3 ▾").assertIsDisplayed()
    ui.onNodeWithContentDescription("Página 602 do PDF original").assertDoesNotExist()
    ui.onNodeWithText("PRÓXIMA").assertIsNotEnabled()
    ui.onNodeWithText("PRIMEIRA").performClick()
    waitForPage(599)
-   ui.onNodeWithText("1 / 3 ▾").assertIsDisplayed()
+   ui.onNodeWithText("PDF p. 599 • 1/3 ▾").assertIsDisplayed()
   }
  }
  @Test fun dismissedNewsStaysDismissedAfterActivityRecreation() {
@@ -103,7 +103,7 @@ class ReaderAndNewsUiTest {
    }
    ui.onNodeWithText("ABRIR FICHA").performClick()
    waitForPage(599)
-   ui.onNodeWithText("1 / 3 ▾").assertIsDisplayed()
+   ui.onNodeWithText("PDF p. 599 • 1/3 ▾").assertIsDisplayed()
    ui.onNodeWithContentDescription("Página 1 do PDF original").assertDoesNotExist()
    androidx.test.espresso.Espresso.pressBack()
    ui.onNodeWithText("ABRIR FICHA").assertExists()
