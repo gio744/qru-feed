@@ -60,7 +60,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.google.gson.Gson
 
-enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("Mais"),SITUACOES("Situações"),NOVIDADES("Novidades")}
+enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SITUACOES("Situações"),NOVIDADES("Novidades")}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable fun QruApp(){
@@ -94,7 +94,7 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("Mais"),SI
    }
   }){
    Scaffold(bottomBar={NavigationBar(containerColor=Color(0xFF0D1726)){
-    QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},modifier=Modifier.testTag("tab_"+item.name),
+    QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},modifier=Modifier.testTag("tab_"+item.name).semantics { contentDescription = if(item==QruTab.BUSCA) "Abrir central QRU" else item.label },
      icon={if(item==QruTab.BUSCA) Text("Q",style=MaterialTheme.typography.headlineMedium,fontWeight=FontWeight.Black,color=MaterialTheme.colorScheme.secondary) else Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
      label={Text(item.label)})}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
