@@ -63,6 +63,16 @@ class OfflineCatalogValidationTests(unittest.TestCase):
         pending = [{"number": 1026, "year": 2026}]
         self.assertTrue(any("1026/2026" in error for error in validate([sample()], pending_items=pending)))
 
+    def test_missing_text_index_is_rejected(self):
+        entry = sample()
+        entry["textIndex"] = "missing_index_9132022.json"
+        self.assertTrue(any("missing or invalid text index" in error for error in validate([entry])))
+
+    def test_unsafe_text_index_path_is_rejected(self):
+        entry = sample()
+        entry["textIndex"] = "../untrusted.json"
+        self.assertTrue(any("invalid text index filename" in error for error in validate([entry])))
+
     def test_invalid_page_count(self):
         entry = sample()
         entry["pageCount"] = 0
