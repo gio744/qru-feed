@@ -56,6 +56,10 @@ Leitura visual das fichas 757-91 (páginas 17–18) e 757-92 (páginas 19–20),
 
 Fonte: https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf/@@display-file/file
 
+
+## Divergência interna a validar — art. 12 e ficha 757-91
+A leitura do documento oficial identificou que o art. 12 afasta o recolhimento do documento de habilitação pelo agente, enquanto o quadro de medidas administrativas da ficha 757-91 ainda menciona recolhimento. A divergência exige conferência de atos posteriores e validação jurídica antes de publicação. Não confundir recolhimento de documento com retenção do veículo, disciplinada separadamente pelo art. 11.
+
 ## Pendências para publicação operacional
 - [ ] Ler integralmente as fichas atuais 516-91, 516-92, 757-91 e 757-92 nos PDFs oficiais.
 - [ ] Conferir situação atual da ficha histórica 757-90 e eventual remapeamento de código.
