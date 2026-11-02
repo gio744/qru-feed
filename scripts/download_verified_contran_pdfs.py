@@ -18,6 +18,7 @@ def main():
     items = json.loads(MANIFEST.read_text(encoding="utf-8"))["items"]
     report = []
     failed = False
+    verified_count = 0
     OUT.mkdir(parents=True, exist_ok=True)
     for entry in items:
         number = entry["number"]
@@ -35,12 +36,16 @@ def main():
             digest = hashlib.sha256(data).hexdigest()
             filename = f"resolucao-contran-{number}-2026.pdf"
             (OUT / filename).write_bytes(data)
+            verified_count += 1
             report.append({"number": number, "status": "staged_verified", "file": filename, "bytes": len(data), "sha256": digest, "source": final_url})
         except Exception as exc:
             failed = True
             report.append({"number": number, "status": "download_failed", "error": str(exc)})
     (OUT / "manifest-sha256.json").write_text(json.dumps({"documents": report}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"documents": report}, ensure_ascii=False, indent=2))
+    if verified_count == 0:
+        print("No verified CONTRAN PDF was staged; refusing a manifest-only success.")
+        failed = True
     return int(failed)
 
 if __name__ == "__main__":
