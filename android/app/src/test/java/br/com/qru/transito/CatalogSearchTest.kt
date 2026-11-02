@@ -189,4 +189,18 @@ class CatalogSearchTest {
             refusalArticle.all { it.article=="165-A" })
     }
 
+    @Test fun exactInfractionCodeDoesNotReturnSiblingCodesWithSharedPrefix() {
+        val references=listOf(
+            IndexedReference(SearchResult("old","Recusa anterior","165-A","757-90","BR","test"),"recusa bafometro"),
+            IndexedReference(SearchResult("alcohol","Recusa álcool","165-A","757-91","BR","test"),"recusa bafometro"),
+            IndexedReference(SearchResult("substance","Recusa substância","165-A","757-92","BR","test"),"recusa substancia")
+        )
+        for(code in listOf("757-90","757-91","757-92")) {
+            assertEquals(listOf(code),CatalogSearch.search(references,code).mapNotNull { it.code })
+            assertEquals(listOf(code),CatalogSearch.search(references,code.replace("-"," - ")).mapNotNull { it.code })
+        }
+        assertEquals(setOf("757-90","757-91","757-92"),
+            CatalogSearch.search(references,"recusa").mapNotNull { it.code }.toSet())
+    }
+
 }
