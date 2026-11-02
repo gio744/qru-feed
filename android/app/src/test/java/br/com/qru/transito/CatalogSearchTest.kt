@@ -154,4 +154,23 @@ class CatalogSearchTest {
         assertEquals(setOf("745-50","746-30","747-10","657-20"),
             CatalogSearch.search(bundledEntries(),"radar").mapNotNull { it.code }.toSet())
     }
+    @Test fun refusalTransitionMetadataKeepsHistoricalAndNewFichesDistinct() {
+        val root=JsonParser.parseString(File("src/main/assets/initial-index.json").readText()).asJsonObject
+        val items=root.getAsJsonArray("items").map { it.asJsonObject }
+        val byCode=items.filter { it.get("code").asString in setOf("757-90","757-91","757-92") }
+            .associateBy { it.get("code").asString }
+        assertEquals(setOf("757-90","757-91","757-92"),byCode.keys)
+        val previous=byCode.getValue("757-90")
+        assertEquals("2026-10-16",previous.get("applies_until").asString)
+        assertTrue(previous.get("title").asString.contains("anterior",ignoreCase=true))
+        for(code in listOf("757-91","757-92")) {
+            val current=byCode.getValue(code)
+            assertEquals("2026-10-17",current.get("applies_from").asString)
+            assertEquals("",current.get("applies_until").asString)
+            assertFalse(current.get("search_text").asString.contains("vigência futura",ignoreCase=true))
+            assertFalse(current.get("ready").asBoolean)
+        }
+        assertFalse(previous.get("ready").asBoolean)
+    }
+
 }
