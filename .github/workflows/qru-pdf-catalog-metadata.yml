@@ -1,0 +1,28 @@
+name: QRU PDF Catalog Metadata Check
+on:
+  pull_request:
+    paths:
+      - 'android/app/src/main/assets/norms/pdf-catalog.json'
+      - 'scripts/check_qru_pdf_catalog_metadata.py'
+      - '.github/workflows/qru-pdf-catalog-metadata.yml'
+  push:
+    branches:
+      - 'integration/qru-v1-safe-reconcile-20261102'
+    paths:
+      - 'android/app/src/main/assets/norms/pdf-catalog.json'
+      - 'scripts/check_qru_pdf_catalog_metadata.py'
+      - '.github/workflows/qru-pdf-catalog-metadata.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate-catalog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate PDF catalog metadata
+        run: python3 scripts/check_qru_pdf_catalog_metadata.py
