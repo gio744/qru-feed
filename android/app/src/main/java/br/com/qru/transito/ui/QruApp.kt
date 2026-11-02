@@ -539,7 +539,6 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             Text("Confira a fonte oficial e a regra aplicável à data do fato.")
             if(offline!=null) {
                 Text("Ficha individual da publicação original • ${offline.range.last-offline.range.first+1} páginas. Confira também alterações posteriores.",style=MaterialTheme.typography.bodySmall)
-                result.source?.let { source -> TextButton(onClick={openOfficialSource(context,source)}) { Text("VER PUBLICAÇÃO ONLINE") } }
             } else if(!referenceLoading) Text("Ficha individual ainda indisponível nesta versão. A opção abaixo abre a fonte completa.",style=MaterialTheme.typography.bodySmall)
         }
     },confirmButton={
