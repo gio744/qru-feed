@@ -173,4 +173,20 @@ class CatalogSearchTest {
         assertFalse(previous.get("ready").asBoolean)
     }
 
+    @Test fun refusalTransitionDirectCodeSearchNeverSubstitutesAnotherFiche() {
+        val catalog=bundledEntries()
+        for(code in listOf("757-90","757-91","757-92")) {
+            val results=CatalogSearch.search(catalog,code)
+            assertEquals("Consulta direta deve preservar o código $code",
+                listOf(code),results.mapNotNull { it.code })
+            assertEquals("165-A",results.single().article)
+        }
+        val refusalArticle=CatalogSearch.search(catalog,"artigo 165-A")
+        assertTrue(refusalArticle.any { it.code=="757-90" })
+        assertTrue(refusalArticle.any { it.code=="757-91" })
+        assertTrue(refusalArticle.any { it.code=="757-92" })
+        assertTrue("Art. 165-A não deve misturar art. 165",
+            refusalArticle.all { it.article=="165-A" })
+    }
+
 }
