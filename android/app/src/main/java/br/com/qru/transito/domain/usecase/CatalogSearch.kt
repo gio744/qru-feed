@@ -45,6 +45,8 @@ object CatalogSearch {
         val numericQuery = articleQuery.matches(Regex("[0-9]+(?:\\s*-\\s*[a-z])?"))
         val infractionCodeQuery = articleQuery.matches(Regex("""[0-9]{3}\s*[- ]\s*[0-9]{2}""")) ||
             articleQuery.matches(Regex("""[0-9]{5}"""))
+        // An exact code is an identifier, not a fuzzy keyword search.
+        // Do not fall back to similar references when the requested code is absent.
         val numericKey = articleQuery.replace(Regex("[^a-z0-9]"), "")
         return entries.mapNotNull { entry ->
             val result = entry.result
