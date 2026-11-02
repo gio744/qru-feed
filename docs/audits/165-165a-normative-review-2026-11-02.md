@@ -80,6 +80,16 @@ Arquivos examinados diretamente na branch `feature/operational-accordion-distinc
 
 **Proposta de implementação sujeita à validação:** introduzir uma classificação editorial explícita para referências históricas, sem inferi-la do ano do PDF, e aplicá-la na apresentação dos resultados. Manter consulta documental ao MBFT original, mas impedir que a interface atribua automaticamente status de ficha vigente. Investigar também a origem dos `SearchResult` para garantir que catálogo embarcado e pacote ativo assinado exibam a mesma classificação. Não alterar ranking, código 757-90 ou interface antes de confirmar essa propagação e criar testes de regressão.
 
+
+## Inspeção do fluxo real de apresentação — QruApp.kt
+A implementação em `android/app/src/main/java/br/com/qru/transito/ui/QruApp.kt` foi examinada diretamente:
+- `ReferenceCard` (linhas 337–349) apresenta o rótulo **REFERÊNCIA EM CONFERÊNCIA** em todos os resultados.
+- `ReferenceDialog` (linhas 371–425) carrega catálogo e intervalos, exige pacote operacional com SHA-256 esperado e consulta `legalRepository.isActiveReference(result)` antes de exibir orientação aprovada. Sem aprovação, explicita validação jurídica pendente e ausência de orientação operacional.
+- `ReferenceDialog` (linhas 537–552) mostra datas de aplicabilidade quando disponíveis, alerta sobre vigência e identifica o PDF como ficha da **publicação original**.
+- `SearchResult.kt` dispõe de `reviewStatus`, `appliesFrom` e `appliesUntil`, mas a inspeção ainda não demonstra se esses campos são preenchidos corretamente para 757-90 no catálogo ativo.
+
+**Decisão:** não modificar indiscriminadamente ranking, rótulos globais ou o leitor de PDF. As proteções existentes já separam referência documental de orientação aprovada. Antes de adicionar etiqueta histórica ao código 757-90, validar a situação normativa e a origem dos metadados de aplicabilidade; criar teste de regressão específico para a classificação após essa decisão.
+
 ## Pendências para publicação operacional
 - [ ] Ler integralmente as fichas atuais 516-91, 516-92, 757-91 e 757-92 nos PDFs oficiais.
 - [ ] Conferir situação atual da ficha histórica 757-90 e eventual remapeamento de código.
