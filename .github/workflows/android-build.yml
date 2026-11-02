@@ -2,9 +2,9 @@ name: QRU Android Build
 on:
   workflow_dispatch:
   push:
-    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py','.github/workflows/android-build.yml']
+    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py','.github/workflows/android-build.yml','scripts/check_qru_pdf_catalog_metadata.py','scripts/test_qru_pdf_catalog_metadata.py']
   pull_request:
-    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py']
+    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py','.github/workflows/android-build.yml','scripts/check_qru_pdf_catalog_metadata.py','scripts/test_qru_pdf_catalog_metadata.py']
 jobs:
   debug-apk:
     runs-on: ubuntu-latest
