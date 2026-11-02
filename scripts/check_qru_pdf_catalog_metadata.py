@@ -51,7 +51,7 @@ def validate(items):
         source = item.get("source", "")
         if isinstance(source, str):
             parsed = urlparse(source)
-            if parsed.scheme != "https" or parsed.hostname != "www.gov.br":
+            if parsed.scheme != "https" or parsed.hostname not in {"www.gov.br", "gov.br"}:
                 errors.append(f"{prefix}: source must use official gov.br HTTPS")
             if source in seen_sources:
                 errors.append(f"{prefix}: duplicate source URL")
