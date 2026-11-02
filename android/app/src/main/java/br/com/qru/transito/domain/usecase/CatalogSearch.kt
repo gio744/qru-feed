@@ -30,7 +30,9 @@ object CatalogSearch {
         return number to inciso
     }
     fun search(entries: List<IndexedReference>, query: String): List<SearchResult> {
-        val normalized = normalize(query)
+        // Accept compact article/inciso queries such as 230XVIII or art.230XVIII.
+        // Keep numeric infraction codes (e.g. 672-61) unchanged.
+        val normalized = normalize(query).replace(Regex("""(?<=\d)(?=[ivxlcdm]+$)"""), " ")
         val tokens = normalized.split(Regex("[^a-z0-9]+"))
             .filter { it.isNotBlank() && it !in stopWords }.distinct()
         if (tokens.isEmpty()) return emptyList()
