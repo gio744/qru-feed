@@ -1,0 +1,35 @@
+# QRU TRÂNSITO — Critérios de liberação Android
+
+Data: 2026-10-27
+
+## Regra de liberação
+Não publicar APK nem mesclar branches experimentais sem compilação Android bem-sucedida, testes automatizados relevantes e inspeção manual em aparelho.
+
+## Interface
+- [ ] Confirmar navegação CTB | Normas | Q (Mais) | Situações | Novidades, conforme PR #75.
+- [ ] Garantir busca no campo superior e ausência de banner normativo não aprovado na tela inicial.
+- [ ] Verificar contraste, tamanho e alinhamento do ícone Q em Android real.
+- [ ] Não incorporar tema experimental PR #73 sem aprovação visual.
+
+## Pesquisa e fichas
+- [ ] Pesquisar 230 V e 230 XVIII por artigo, inciso e termos livres, sem misturar desdobramentos.
+- [ ] Pesquisar 165, 165-A, 252 III, 244 X e 231 VIII, conferindo ordenação e vínculos com fichas.
+- [ ] Conferir campos 'quando autuar' e 'quando não autuar', fontes e data de revisão.
+- [ ] Validar referências legais e vigência antes de disponibilizar conteúdo operacional.
+
+## Normas offline
+- [ ] Confirmar integridade SHA-256 dos PDFs incluídos no pacote, especialmente 1.026–1.029.
+- [ ] Testar abertura sem internet, fallback e indicação explícita de documento não disponível.
+- [ ] Distinguir normas vigentes, revogadas e parcialmente revogadas, sem inferir vigência apenas do número.
+
+## Studio e vídeos
+- [ ] Testar downloads simultâneos e atualização individual por identificador.
+- [ ] Testar reprodução e abertura de links externos, além de funcionamento offline quando houver download.
+
+## Segurança e entrega
+- [ ] Não registrar senhas, tokens ou chaves no repositório.
+- [ ] Revisar PR #72 e PR #75 quanto a conflitos, checks e escopo antes de mesclar.
+- [ ] Produzir APK de teste assinado adequadamente e registrar versão/commit e resultados.
+- [ ] Fazer smoke test em aparelho Android: iniciar, pesquisar, abrir ficha, abrir norma, navegar, assistir vídeo e reiniciar.
+
+**Estado:** checklist criado; itens não devem ser considerados aprovados sem evidência dos testes.
