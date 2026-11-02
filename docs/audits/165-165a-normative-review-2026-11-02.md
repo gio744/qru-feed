@@ -60,6 +60,17 @@ Fonte: https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/r
 ## Divergência interna a validar — art. 12 e ficha 757-91
 A leitura do documento oficial identificou que o art. 12 afasta o recolhimento do documento de habilitação pelo agente, enquanto o quadro de medidas administrativas da ficha 757-91 ainda menciona recolhimento. A divergência exige conferência de atos posteriores e validação jurídica antes de publicação. Não confundir recolhimento de documento com retenção do veículo, disciplinada separadamente pelo art. 11.
 
+
+## Confronto com o índice efetivamente distribuído no app
+Consulta direta ao arquivo `android/app/src/main/assets/norms/reference-page-ranges.json` na branch de desenvolvimento:
+- 516-92: resolucao10312026.pdf, páginas 15–16.
+- 516-91: resolucao10312026.pdf, páginas 12–14.
+- 757-91: resolucao10312026.pdf, páginas 17–18.
+- 757-92: resolucao10312026.pdf, páginas 19–20.
+- 757-90: mbvt20222.pdf, páginas 110–111.
+
+O índice mantém simultaneamente a ficha histórica 757-90 e as fichas 757-91/757-92. Isso é confirmado como fato de implementação, **não** como decisão sobre vigência. Até resolver a remissão cruzada e validar o conteúdo, não suprimir arquivos nem rotular automaticamente 757-90 como vigente.
+
 ## Pendências para publicação operacional
 - [ ] Ler integralmente as fichas atuais 516-91, 516-92, 757-91 e 757-92 nos PDFs oficiais.
 - [ ] Conferir situação atual da ficha histórica 757-90 e eventual remapeamento de código.
