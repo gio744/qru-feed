@@ -2,7 +2,7 @@ name: QRU Android Build
 on:
   workflow_dispatch:
   push:
-    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py','scripts/verify_apk_norms.py','scripts/test_verify_apk_norms.py','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json','.github/workflows/android-build.yml']
+    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py','scripts/verify_apk_norms.py','scripts/test_verify_apk_norms.py','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','scripts/download_verified_contran_pdfs.py','scripts/test_download_verified_contran_pdfs.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json','.github/workflows/android-build.yml']
   pull_request:
     paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py','scripts/verify_apk_norms.py','scripts/test_verify_apk_norms.py','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json']
 jobs:
@@ -44,6 +44,9 @@ jobs:
           test -f android/settings.gradle.kts
           test -f android/app/build.gradle.kts
           test -f android/app/src/main/AndroidManifest.xml
+
+      - name: Test CONTRAN staging fail-closed behavior (offline)
+        run: python3 -m unittest discover -s scripts -p 'test_download_verified_contran_pdfs.py' -v
 
       - name: Audit offline PDF reference ranges
         run: python scripts/audit_reference_ranges.py
