@@ -43,7 +43,7 @@ object CatalogSearch {
         val incisoQuery = articleParts.size == 2 && articleParts[0].matches(Regex("[0-9]+(?:-[a-z])?")) && articleParts[1].matches(Regex("[ivxlcdm]+"))
         val exactIncisoKey = articleParts.joinToString(",")
         val numericQuery = articleQuery.matches(Regex("[0-9]+(?:\\s*-\\s*[a-z])?"))
-        val infractionCodeQuery = articleQuery.matches(Regex("""[0-9]{3}\\s*-\\s*[0-9]{2}"""))
+        val infractionCodeQuery = articleQuery.matches(Regex("""[0-9]{3}\s*-\s*[0-9]{2}"""))
         val numericKey = articleQuery.replace(Regex("[^a-z0-9]"), "")
         return entries.mapNotNull { entry ->
             val result = entry.result
