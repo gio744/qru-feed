@@ -4,6 +4,7 @@ on:
     paths:
       - 'android/app/src/main/assets/norms/pdf-catalog.json'
       - 'scripts/check_qru_pdf_catalog_metadata.py'
+      - 'scripts/test_qru_pdf_catalog_metadata.py'
       - '.github/workflows/qru-pdf-catalog-metadata.yml'
   push:
     branches:
@@ -11,6 +12,7 @@ on:
     paths:
       - 'android/app/src/main/assets/norms/pdf-catalog.json'
       - 'scripts/check_qru_pdf_catalog_metadata.py'
+      - 'scripts/test_qru_pdf_catalog_metadata.py'
       - '.github/workflows/qru-pdf-catalog-metadata.yml'
   workflow_dispatch:
 permissions:
@@ -25,4 +27,6 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validate PDF catalog metadata
-        run: python3 scripts/check_qru_pdf_catalog_metadata.py
+        run: |
+          python3 scripts/check_qru_pdf_catalog_metadata.py
+          python3 -m unittest discover -s scripts -p 'test_qru_pdf_catalog_metadata.py' -v
