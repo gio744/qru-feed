@@ -36,6 +36,13 @@ As páginas do PDF oficial foram inspecionadas visualmente, pois o texto extraí
 
 Fonte primária: https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf/@@display-file/file
 
+## Checagem do índice normativo SENATRAN (02/11/2026)
+O índice oficial de Resoluções CONTRAN, atualizado em 06/10/2026, registra a Resolução 1.031/2026 como alteradora do Anexo da Resolução 985/2022 e revogadora da Resolução 432/2013. Registra também a entrada em vigor diferida de 60 dias para as alterações do MBFT, com os demais artigos vigentes desde a publicação.
+
+O índice consultado não aponta uma retificação específica da Resolução 1.031/2026, mas **a ausência de indicação nesse índice não é prova de inexistência de errata ou ato posterior**. É necessário confirmar a publicação oficial completa e eventuais atos supervenientes antes de resolver a referência cruzada 757-90.
+
+Fonte: https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran
+
 ## Pendências para publicação operacional
 - [ ] Ler integralmente as fichas atuais 516-91, 516-92, 757-91 e 757-92 nos PDFs oficiais.
 - [ ] Conferir situação atual da ficha histórica 757-90 e eventual remapeamento de código.
