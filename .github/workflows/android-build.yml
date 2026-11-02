@@ -2,15 +2,16 @@ name: QRU Android Build
 on:
   workflow_dispatch:
   push:
-    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py','scripts/verify_apk_norms.py','scripts/test_verify_apk_norms.py','.github/workflows/android-build.yml']
+    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py','scripts/verify_apk_norms.py','scripts/test_verify_apk_norms.py','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json','.github/workflows/android-build.yml']
   pull_request:
-    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py','scripts/verify_apk_norms.py','scripts/test_verify_apk_norms.py']
+    paths: ['android/**','docs/drafts/**','scripts/validate_operational_drafts.py','scripts/test_validate_operational_drafts.py','scripts/verify_apk_norms.py','scripts/test_verify_apk_norms.py','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json']
 jobs:
   debug-apk:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     permissions:
       contents: read
+      actions: read
     env:
       ANDROID_COMPILE_SDK: "35"
     steps:
@@ -44,6 +45,12 @@ jobs:
           test -f android/app/build.gradle.kts
           test -f android/app/src/main/AndroidManifest.xml
 
+      - name: Audit offline PDF reference ranges
+        run: python scripts/audit_reference_ranges.py
+
+      - name: Validate operational card editorial metadata
+        run: python scripts/validate_operational_cards.py
+
       # Preserve only checksum-verified official PDFs between workflow runs.
       # A new official publication still requires an exact SHA-256 match in Gradle.
       - name: Restore verified official PDF cache
@@ -53,6 +60,17 @@ jobs:
           key: qru-official-pdfs-${{ runner.os }}-${{ hashFiles('android/app/src/main/assets/norms/pdf-catalog.json') }}
           restore-keys: |
             qru-official-pdfs-${{ runner.os }}-
+
+      - name: Restore SHA-pinned CONTRAN staging PDFs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          run_id=$(gh run list --repo "${{ github.repository }}" --workflow contran-pdf-staging.yml --status success --limit 20 --json databaseId --jq '.[0].databaseId')
+          test -n "$run_id"
+          mkdir -p /tmp/qru-contran-stage
+          gh run download "$run_id" --repo "${{ github.repository }}" --name contran-pdfs-1026-1029-staging --dir /tmp/qru-contran-stage
+          python3 scripts/restore_verified_contran_pdfs.py /tmp/qru-contran-stage android/app/build/generated/normAssets/norms
 
       - name: Verify unpublished editorial drafts remain blocked
         run: |
