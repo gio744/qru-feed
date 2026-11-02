@@ -71,6 +71,15 @@ Consulta direta ao arquivo `android/app/src/main/assets/norms/reference-page-ran
 
 O índice mantém simultaneamente a ficha histórica 757-90 e as fichas 757-91/757-92. Isso é confirmado como fato de implementação, **não** como decisão sobre vigência. Até resolver a remissão cruzada e validar o conteúdo, não suprimir arquivos nem rotular automaticamente 757-90 como vigente.
 
+
+## Inspeção da arquitetura de busca e publicação (02/11/2026)
+Arquivos examinados diretamente na branch `feature/operational-accordion-distinctive`:
+- `android/app/src/main/java/br/com/qru/transito/domain/usecase/CatalogSearch.kt`: ranqueia por correspondência exata de código, artigo/inciso e termos; não possui classificação de vigência na pontuação.
+- `android/app/src/main/java/br/com/qru/transito/domain/model/OperationalReference.kt`: `OperationalReview` tem estado `PENDING` ou `APPROVED`; `editorialIssues()` impede que conteúdo sem aprovação, revisão e evidências completas seja tratado como pronto.
+- `android/app/src/main/java/br/com/qru/transito/ui/OfflineNormLibrary.kt`: oferece acesso aos PDFs originais e já alerta que inclusão no catálogo não comprova vigência.
+
+**Proposta de implementação sujeita à validação:** introduzir uma classificação editorial explícita para referências históricas, sem inferi-la do ano do PDF, e aplicá-la na apresentação dos resultados. Manter consulta documental ao MBFT original, mas impedir que a interface atribua automaticamente status de ficha vigente. Investigar também a origem dos `SearchResult` para garantir que catálogo embarcado e pacote ativo assinado exibam a mesma classificação. Não alterar ranking, código 757-90 ou interface antes de confirmar essa propagação e criar testes de regressão.
+
 ## Pendências para publicação operacional
 - [ ] Ler integralmente as fichas atuais 516-91, 516-92, 757-91 e 757-92 nos PDFs oficiais.
 - [ ] Conferir situação atual da ficha histórica 757-90 e eventual remapeamento de código.
