@@ -43,6 +43,19 @@ O índice consultado não aponta uma retificação específica da Resolução 1.
 
 Fonte: https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran
 
+## Leitura complementar — páginas 17–20 do PDF oficial (02/11/2026)
+Leitura visual das fichas 757-91 (páginas 17–18) e 757-92 (páginas 19–20), no PDF oficial da Resolução 1.031/2026:
+
+- Ambas indicam art. 165-A e constatação mediante abordagem; para recusa com pelo menos dois sinais, remetem ao art. 165 (516-91 para álcool; 516-92 para outras substâncias).
+- Ambas vedam lavratura simultânea dos arts. 165 e 165-A na mesma abordagem.
+- Ambas esclarecem que não se preenche termo específico quando não houver sinais ou houver somente um sinal.
+- Em atendimento a sinistro, admitem autuação pela recusa se o teste era possível e a recusa foi deliberada; registrar no campo observações o horário do sinistro, distinguindo-o do horário efetivo da recusa.
+- A ficha 757-91 considera recusa a simulação do sopro durante teste com etilômetro e indica que a menção à marca, modelo e número de série do aparelho ofertado é necessária, sem obrigatoriedade de emitir registro de recusa.
+- O quadro impresso de medidas administrativas das fichas menciona recolhimento do documento de habilitação e retenção do veículo, com remissão ao art. 270, §4º. **A redação do art. 12 da própria Resolução 1.031/2026 estabelece que o agente não promoverá recolhimento do documento de habilitação em decorrência dessas infrações.** Essa aparente divergência entre o quadro da ficha e o dispositivo normativo exige anotação explícita e validação editorial antes de apresentar orientação ao agente.
+- O art. 11 da Resolução disciplina retenção, apresentação de condutor habilitado e recolhimento do veículo ao depósito quando cabível.
+
+Fonte: https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf/@@display-file/file
+
 ## Pendências para publicação operacional
 - [ ] Ler integralmente as fichas atuais 516-91, 516-92, 757-91 e 757-92 nos PDFs oficiais.
 - [ ] Conferir situação atual da ficha histórica 757-90 e eventual remapeamento de código.
