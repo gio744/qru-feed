@@ -198,6 +198,7 @@ class CatalogSearchTest {
         for(code in listOf("757-90","757-91","757-92")) {
             assertEquals(listOf(code),CatalogSearch.search(references,code).mapNotNull { it.code })
             assertEquals(listOf(code),CatalogSearch.search(references,code.replace("-","")).mapNotNull { it.code })
+            assertEquals(listOf(code),CatalogSearch.search(references,code.replace("-"," ")).mapNotNull { it.code })
             assertEquals(listOf(code),CatalogSearch.search(references,code.replace("-"," - ")).mapNotNull { it.code })
         }
         assertEquals(setOf("757-90","757-91","757-92"),
