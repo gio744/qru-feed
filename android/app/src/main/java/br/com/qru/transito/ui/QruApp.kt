@@ -244,7 +244,7 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
   }
   // Full-article queries are grouped into collapsible legal subdivisions.
   val articleNumber=state.query.trim().replace(Regex("^(?i)art(?:igo)?\\.?\\s*"),"")
-      .takeIf { it.matches(Regex("\\d+")) }
+      .takeIf { candidate -> candidate.matches(Regex("\\d+")) && state.results.any { it.article?.trim() == candidate } }
   if(articleNumber!=null && state.results.isNotEmpty()) {
    item(key="article_hierarchy_header") {
     Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(4.dp)) {
