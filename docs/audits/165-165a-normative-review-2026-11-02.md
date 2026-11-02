@@ -23,6 +23,19 @@ A Resolução 1.031/2026, art. 7º, §1º, exige ao menos dois sinais considerad
 
 O PDF original do MBFT de 2022 contém ficha 757-90 para o art. 165-A. A presença dessa ficha histórica **não prova** que ela deve ser excluída ou substituída no catálogo: a correspondência entre códigos atuais 757-91/757-92 e a vigência das fichas deve ser conferida integralmente nos anexos da Resolução 1.031/2026 e nos atos supervenientes.
 
+## Conferência visual do Anexo III — publicação oficial (02/11/2026)
+As páginas do PDF oficial foram inspecionadas visualmente, pois o texto extraído não reproduz o conteúdo das fichas escaneadas.
+
+- Página física 12 (índice PDF 11): ficha **516-91**, art. 165, álcool. Na coluna «Quando NÃO autuar», o documento **menciona expressamente 757-90** para recusa sem pelo menos dois sinais. Esta remissão é um dado do documento e não comprova, isoladamente, a manutenção da ficha histórica como vigente.
+- Página física 17 (índice PDF 16): ficha **757-91**, art. 165-A, recusa ao etilômetro sem pelo menos dois sinais. Para recusa com dois ou mais sinais, remete a **516-91**.
+- Página física 19 (índice PDF 18): ficha **757-92**, art. 165-A, recusa ao teste para outras substâncias psicoativas sem pelo menos dois sinais. Para recusa com dois ou mais sinais, remete a **516-92**.
+- A identificação de **516-92** e a leitura integral das páginas de continuação, inclusive das medidas administrativas, ainda precisam de conferência visual dedicada.
+- O art. 16 da Resolução estabelece vigência das alterações do MBFT em 60 dias da publicação de 18/08/2026.
+
+**Risco identificado:** a referência cruzada «757-90» dentro da ficha nova 516-91 deve ser esclarecida por análise da íntegra do Anexo III e eventuais erratas/atos posteriores. Não eliminar nem tratar 757-90 como enquadramento atual apenas com base nessa menção.
+
+Fonte primária: https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf/@@display-file/file
+
 ## Pendências para publicação operacional
 - [ ] Ler integralmente as fichas atuais 516-91, 516-92, 757-91 e 757-92 nos PDFs oficiais.
 - [ ] Conferir situação atual da ficha histórica 757-90 e eventual remapeamento de código.
