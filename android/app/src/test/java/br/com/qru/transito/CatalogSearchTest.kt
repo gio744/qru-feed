@@ -215,4 +215,12 @@ class CatalogSearchTest {
         }
     }
 
+    @Test fun unknownExactInfractionCodeDoesNotFallBackToRelatedReferences() {
+        val catalog=bundledEntries()
+        for(query in listOf("99999","999-99","999 99","999 - 99")) {
+            assertTrue("Código inexistente não deve sugerir ficha semelhante: $query",
+                CatalogSearch.search(catalog,query).isEmpty())
+        }
+    }
+
 }
