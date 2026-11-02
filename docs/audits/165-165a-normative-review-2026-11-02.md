@@ -1,8 +1,8 @@
 # Auditoria jurídica — fichas 165 e 165-A (02/11/2026)
 
 ## Escopo e fontes
-- Resolução CONTRAN 1.031/2026: https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=detalharAto&numeroAto=00001031&orgao=CONTRAN%2FMT&tipo=RES&valorAno=2026
-- MBFT de 2022, versão original: https://www.gov.br/transportes/pt-br/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf
+- Resolução CONTRAN 1.031/2026: https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf/@@display-file/file
+- MBFT de 2022, versão original: https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/mbvt20222.pdf/@@display-file/file
 - Catálogo local: `android/app/src/main/assets/norms/pdf-catalog.json`
 - Índice local: `android/app/src/main/assets/norms/reference-page-ranges.json`
 
@@ -14,6 +14,9 @@
 | 757-91 | resolucao10312026.pdf | 17–18 |
 | 757-92 | resolucao10312026.pdf | 19–20 |
 | 757-90 | mbvt20222.pdf | 110–111 |
+
+## Limite desta auditoria
+Os intervalos abaixo foram extraídos do índice do aplicativo. Ainda não foi feita a leitura integral das páginas correspondentes nem verificada a vigência em atos posteriores. As fontes listadas são as URLs cadastradas no catálogo, não uma certificação editorial do conteúdo.
 
 ## Norma e risco editorial
 A Resolução 1.031/2026, art. 7º, §1º, exige ao menos dois sinais considerados em conjunto para constatação por sinais. O art. 8º, §§1º–3º, diferencia recusa sem dois sinais (165-A) de constatação com dois sinais (165), inclusive quando há recusa. O art. 10 exige informações específicas no AIT.
