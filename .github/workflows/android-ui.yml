@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - feature/operational-accordion-distinctive
+      - integration/pr66-safe-reconciliation-20261102
     paths:
       - 'android/**'
       - '.github/workflows/android-ui.yml'
