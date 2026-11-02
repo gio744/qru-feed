@@ -43,6 +43,7 @@ object CatalogSearch {
         val incisoQuery = articleParts.size == 2 && articleParts[0].matches(Regex("[0-9]+(?:-[a-z])?")) && articleParts[1].matches(Regex("[ivxlcdm]+"))
         val exactIncisoKey = articleParts.joinToString(",")
         val numericQuery = articleQuery.matches(Regex("[0-9]+(?:\\s*-\\s*[a-z])?"))
+        val infractionCodeQuery = articleQuery.matches(Regex("""[0-9]{3}\\s*-\\s*[0-9]{2}"""))
         val numericKey = articleQuery.replace(Regex("[^a-z0-9]"), "")
         return entries.mapNotNull { entry ->
             val result = entry.result
@@ -55,7 +56,8 @@ object CatalogSearch {
             val exactInciso = incisoQuery && resultParts.joinToString(",") == exactIncisoKey
             val exactArticle = numericQuery && normalize(result.article.orEmpty()).substringBefore(',')
                 .replace(Regex("[^a-z0-9]"), "") == numericKey
-            if (incisoQuery && !exactInciso && !exactCode) null
+            if (infractionCodeQuery && !exactCode) null
+            else if (incisoQuery && !exactInciso && !exactCode) null
             else if (numericQuery && !exactCode && !exactArticle) null
             else if (!exactCode && matches < (tokens.size + 1) / 2) null
             else (if (exactCode) 1000 else if (exactInciso) 800 else if (exactArticle) 300 else 0) +
