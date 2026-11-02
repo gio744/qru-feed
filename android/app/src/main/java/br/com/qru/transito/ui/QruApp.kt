@@ -424,10 +424,11 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             } else {
                 Text("ORIENTAÇÃO OPERACIONAL APROVADA • confira a vigência e as fontes",color=Color(0xFFBCE7D0),style=MaterialTheme.typography.labelSmall)
             }
-            result.source?.let { source ->
-                OutlinedButton(onClick={openOfficialSource(context,source)},modifier=Modifier.fillMaxWidth()) {
-                    Spacer(Modifier.width(8.dp))
-                    Text("CONSULTAR FONTE OFICIAL")
+            if (!referenceLoading && offline == null) {
+                result.source?.let { source ->
+                    OutlinedButton(onClick={openOfficialSource(context,source)},modifier=Modifier.fillMaxWidth()) {
+                        Text("CONSULTAR FONTE OFICIAL")
+                    }
                 }
             }
             QruExpandableSection("QUANDO AUTUAR",referenceKey=result.stableKey,initiallyOpen=true) {
