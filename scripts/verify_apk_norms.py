@@ -18,6 +18,17 @@ def verify(apk_path, catalog_path, ranges_path):
         raise ValueError("Duplicate PDF filenames")
     if len({entry["code"] for entry in ranges}) != len(ranges):
         raise ValueError("Duplicate reference codes")
+    by_file = {doc["file"]: doc for doc in documents}
+    for entry in ranges:
+        code = entry["code"]
+        doc = by_file.get(entry["file"])
+        if doc is None:
+            raise ValueError("Reference points to uncatalogued PDF: " + code)
+        if entry["sha256"].lower() != doc["sha256"].lower():
+            raise ValueError("Reference PDF digest mismatch: " + code)
+        first, last = entry["firstPage"], entry["lastPage"]
+        if not isinstance(first, int) or not isinstance(last, int) or not (1 <= first <= last <= doc["pageCount"]):
+            raise ValueError("Reference page interval outside PDF: " + code)
     with zipfile.ZipFile(apk_path) as apk:
         names = set(apk.namelist())
         for doc in documents:
