@@ -23,4 +23,4 @@ jobs:
         with:
           name: contran-pdfs-1026-1029-staging
           path: build/contran-pdfs-staging/
-          if-no-files-found: warn
+          if-no-files-found: error
