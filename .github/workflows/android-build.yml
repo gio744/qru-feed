@@ -63,6 +63,10 @@ jobs:
         working-directory: android
         run: gradle -PqruParallelTest testDebugUnitTest assembleDebug --stacktrace --warning-mode all
 
+      - name: Verify offline documents inside compiled APK
+        run: |
+          python scripts/verify_apk_norms.py android/app/build/outputs/apk/debug/app-debug.apk android/app/src/main/assets/norms/pdf-catalog.json android/app/src/main/assets/norms/reference-page-ranges.json
+
       - name: Verify and register APK
         run: |
           python scripts/register_apk.py android/app/build/outputs/apk/debug/app-debug.apk
