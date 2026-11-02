@@ -7,7 +7,7 @@ Aplicativo Android de consulta de referências de trânsito, com catálogo e doc
 - Busca automática durante a digitação, por voz, artigo, código e termos práticos. A coordenação de requisições impede que uma consulta antiga substitua a mais recente.
 - 418 referências pesquisáveis no catálogo embarcado. A busca de “pneu” prioriza 672-61; consultas por artigo e inciso priorizam a correspondência exata.
 - Fichas individuais com páginas delimitadas para 417 referências. A 551-71 permanece sem intervalo individual confirmado; sua investigação está na [issue 36](https://github.com/gio744/qru-feed/issues/36).
-- Biblioteca offline com dez PDFs: o manual original e nove resoluções. A biblioteca permite abrir o documento completo; a ficha pesquisada usa somente o intervalo associado à referência.
+- Catálogo offline com 16 PDFs previstos no manifesto: o manual-base e 15 resoluções. A presença no catálogo não comprova, por si só, a inclusão bem-sucedida no APK; o build precisa baixar e conferir cada PDF por SHA-256. A biblioteca permite abrir o documento completo; a ficha pesquisada usa somente o intervalo associado à referência.
 - PDFs com rolagem contínua, pinça, controles de zoom, salto para página, primeira/última e retomada da leitura do documento completo. A ficha não substitui a posição salva do manual.
 - CTB com parte geral e crimes em leitura interna. O catálogo de infrações permanece na busca.
 - Descrição de ocorrência e análise guiada de habilitação, ambas em conferência.
