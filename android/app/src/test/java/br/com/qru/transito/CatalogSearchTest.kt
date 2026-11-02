@@ -204,4 +204,14 @@ class CatalogSearchTest {
             CatalogSearch.search(references,"recusa").mapNotNull { it.code }.toSet())
     }
 
+    @Test fun bundledCompactRefusalCodesResolveToTheirOwnFiche() {
+        val catalog=bundledEntries()
+        for(code in listOf("757-90","757-91","757-92")) {
+            val compact=code.replace("-","")
+            val matches=CatalogSearch.search(catalog,compact)
+            assertEquals("Busca sem hífen deve ser inequívoca: $compact",
+                listOf(code),matches.mapNotNull { it.code })
+        }
+    }
+
 }
