@@ -57,5 +57,36 @@ class VerifyApkNormsTests(unittest.TestCase):
             self.check()
 
 
+    def test_duplicate_reference_code_is_rejected(self):
+        self.refs.append(dict(self.refs[0]))
+        with self.assertRaisesRegex(ValueError, "Duplicate reference codes"):
+            self.check()
+
+    def test_missing_pdf_inside_apk_is_rejected(self):
+        self.check()
+        with zipfile.ZipFile(self.apk, "w") as archive:
+            archive.writestr("assets/norms/pdf-catalog.json", json.dumps(self.docs))
+            archive.writestr("assets/norms/reference-page-ranges.json", json.dumps(self.refs))
+        with self.assertRaisesRegex(ValueError, "Missing PDF in APK"):
+            verify(self.apk, self.catalog, self.ranges)
+
+    def test_corrupted_pdf_inside_apk_is_rejected(self):
+        self.check()
+        with zipfile.ZipFile(self.apk, "w") as archive:
+            archive.writestr("assets/norms/manual.pdf", b"altered")
+            archive.writestr("assets/norms/pdf-catalog.json", json.dumps(self.docs))
+            archive.writestr("assets/norms/reference-page-ranges.json", json.dumps(self.refs))
+        with self.assertRaisesRegex(ValueError, "PDF digest mismatch"):
+            verify(self.apk, self.catalog, self.ranges)
+
+    def test_bundled_metadata_mismatch_is_rejected(self):
+        self.check()
+        with zipfile.ZipFile(self.apk, "w") as archive:
+            archive.writestr("assets/norms/manual.pdf", self.pdf)
+            archive.writestr("assets/norms/pdf-catalog.json", json.dumps(self.docs))
+            archive.writestr("assets/norms/reference-page-ranges.json", "[]")
+        with self.assertRaisesRegex(ValueError, "Bundled metadata differs"):
+            verify(self.apk, self.catalog, self.ranges)
+
 if __name__ == "__main__":
     unittest.main()
