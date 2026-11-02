@@ -90,7 +90,7 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
     }
     NavigationDrawerItem(label={Text("Como usar")},selected=false,
      icon={Icon(Icons.Default.HelpOutline,null)},onClick={support="help";scope.launch{drawer.close()}})
-    NavigationDrawerItem(label={Text("Fontes oficiais")},selected=false,
+    NavigationDrawerItem(label={Text("Biblioteca")},selected=false,
      icon={Icon(Icons.Default.MenuBook,null)},onClick={tab=QruTab.NORMAS;scope.launch{drawer.close()}})
     NavigationDrawerItem(label={Text("Sobre o QRU")},selected=false,
      icon={Icon(Icons.Default.Info,null)},onClick={support="about";scope.launch{drawer.close()}})
