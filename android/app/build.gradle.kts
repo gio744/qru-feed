@@ -122,7 +122,7 @@ val bundleNormPdf = tasks.register("bundleNormPdf") {
                         } catch (failure: java.io.IOException) {
                             lastFailure=failure
                             temporary.delete()
-                            if(attempt<3) Thread.sleep(1500L * attempt)
+                            if(attempt<3) Thread.sleep(15000L * attempt) // Respect official server rate limits (HTTP 429)
                         }
                     }
                     if(lastFailure!=null) throw lastFailure
