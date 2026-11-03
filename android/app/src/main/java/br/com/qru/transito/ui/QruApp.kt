@@ -70,6 +70,7 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
 @Composable fun QruApp(){
  QruTheme{
   var tab by rememberSaveable{mutableStateOf(QruTab.BUSCA)}
+  var qCentralOpen by rememberSaveable { mutableStateOf(false) }
   var support by rememberSaveable{mutableStateOf<String?>(null)}
   val newsContext=LocalContext.current
   val newsPreferences=remember(newsContext) { newsContext.getSharedPreferences("qru_news",android.content.Context.MODE_PRIVATE) }
@@ -99,11 +100,11 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
   }){
    Scaffold(
     topBar={
-     if(tab!=QruTab.BUSCA) {
+     if(tab!=QruTab.BUSCA || qCentralOpen) {
       TopAppBar(
-       title={Text(tab.label)},
+       title={Text(if(qCentralOpen) "Central QRU" else tab.label)},
        navigationIcon={
-        IconButton(onClick={tab=QruTab.BUSCA},modifier=Modifier.testTag("return_home")) {
+        IconButton(onClick={tab=QruTab.BUSCA;qCentralOpen=false},modifier=Modifier.testTag("return_home")) {
          Icon(Icons.Default.Home,contentDescription="Voltar à página inicial")
         }
        },
@@ -112,12 +113,12 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
      }
     },
     bottomBar={NavigationBar(containerColor=Color(0xFF0D1726)){
-    QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},modifier=Modifier.testTag("tab_"+item.name).semantics { contentDescription = if(item==QruTab.BUSCA) "Abrir central QRU" else item.label },
+    QruTab.entries.forEach{item->NavigationBarItem(selected=if(item==QruTab.BUSCA) qCentralOpen else tab==item && !qCentralOpen,onClick={if(item==QruTab.BUSCA){tab=QruTab.BUSCA;qCentralOpen=true}else{tab=item;qCentralOpen=false}},modifier=Modifier.testTag("tab_"+item.name).semantics { contentDescription = if(item==QruTab.BUSCA) "Abrir central QRU" else item.label },
      icon={if(item==QruTab.BUSCA) Surface(shape=RoundedCornerShape(50),color=Color(0xFF081D32),border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF6F8DA9)),modifier=Modifier.size(44.dp)) { Box(contentAlignment=Alignment.Center) { Text("Q",style=MaterialTheme.typography.headlineMedium.copy(fontWeight=FontWeight.Black,brush=Brush.verticalGradient(listOf(Color.White,Color(0xFFB7C9D9),Color(0xFF6B91AC),Color(0xFFE4F7FF))))) } } else Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
      label={Text(item.label)})}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
     tabStates.SaveableStateProvider(tab.name) {
-     if(tab==QruTab.BUSCA) SearchHome{scope.launch{drawer.open()}} else CatalogPage(tab)
+     if(qCentralOpen) QruCentralPage(onNavigate={ destination -> tab=destination;qCentralOpen=false },onHelp={support="help"},onAbout={support="about"}) else if(tab==QruTab.BUSCA) SearchHome{scope.launch{drawer.open()}} else CatalogPage(tab)
     }
    }}
   }
@@ -139,6 +140,18 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
      }
     }},confirmButton={TextButton(onClick={support=null}){Text("ENTENDI")}})
   }
+ }
+}
+
+@Composable private fun QruCentralPage(onNavigate:(QruTab)->Unit,onHelp:()->Unit,onAbout:()->Unit) {
+ Column(Modifier.fillMaxSize().verticalScroll(androidx.compose.foundation.rememberScrollState()).padding(20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
+  Text("CENTRAL QRU",style=MaterialTheme.typography.headlineMedium,fontWeight=FontWeight.Bold,color=Color(0xFFC5D9EB))
+  Text("Acesso às ferramentas e informações do QRU Trânsito.",style=MaterialTheme.typography.bodyMedium)
+  OutlinedButton(onClick={onHelp},modifier=Modifier.fillMaxWidth()) { Icon(Icons.Default.HelpOutline,null);Spacer(Modifier.width(10.dp));Text("Como usar o QRU") }
+  OutlinedButton(onClick={onAbout},modifier=Modifier.fillMaxWidth()) { Icon(Icons.Default.Info,null);Spacer(Modifier.width(10.dp));Text("Sobre o QRU") }
+  OutlinedButton(onClick={onNavigate(QruTab.NORMAS)},modifier=Modifier.fillMaxWidth()) { Icon(Icons.Default.MenuBook,null);Spacer(Modifier.width(10.dp));Text("Biblioteca de normas offline") }
+  OutlinedButton(onClick={onNavigate(QruTab.NOVIDADES)},modifier=Modifier.fillMaxWidth()) { Icon(Icons.Default.NewReleases,null);Spacer(Modifier.width(10.dp));Text("Novidades") }
+  Text("Mais ferramentas serão disponibilizadas após validação técnica e jurídica.",style=MaterialTheme.typography.bodySmall,color=Color(0xFFAABFD1))
  }
 }
 
