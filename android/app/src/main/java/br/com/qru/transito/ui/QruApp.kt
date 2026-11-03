@@ -70,6 +70,8 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
 @Composable fun QruApp(){
  QruTheme{
   var tab by rememberSaveable{mutableStateOf(QruTab.BUSCA)}
+  var centralOpen by rememberSaveable { mutableStateOf(false) }
+  fun goHome() { tab=QruTab.BUSCA; centralOpen=false }
   var support by rememberSaveable{mutableStateOf<String?>(null)}
   val newsContext=LocalContext.current
   val newsPreferences=remember(newsContext) { newsContext.getSharedPreferences("qru_news",android.content.Context.MODE_PRIVATE) }
@@ -91,19 +93,19 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
     NavigationDrawerItem(label={Text("Como usar")},selected=false,
      icon={Icon(Icons.Default.HelpOutline,null)},onClick={support="help";scope.launch{drawer.close()}})
     NavigationDrawerItem(label={Text("Biblioteca")},selected=false,
-     icon={Icon(Icons.Default.MenuBook,null)},onClick={tab=QruTab.NORMAS;scope.launch{drawer.close()}})
+     icon={Icon(Icons.Default.MenuBook,null)},onClick={tab=QruTab.NORMAS;centralOpen=false;scope.launch{drawer.close()}})
     NavigationDrawerItem(label={Text("Sobre o QRU")},selected=false,
      icon={Icon(Icons.Default.Info,null)},onClick={support="about";scope.launch{drawer.close()}})
     TextButton(onClick={scope.launch{drawer.close()}},modifier=Modifier.padding(12.dp)){Text("FECHAR MENU")}
    }
   }){
    Scaffold(bottomBar={NavigationBar(containerColor=Color(0xFF0D1726)){
-    QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},modifier=Modifier.testTag("tab_"+item.name).semantics { contentDescription = if(item==QruTab.BUSCA) "Abrir central QRU" else item.label },
+    QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={if(item==QruTab.BUSCA) { tab=QruTab.BUSCA;centralOpen=true } else {tab=item;centralOpen=false}},modifier=Modifier.testTag("tab_"+item.name).semantics { contentDescription = if(item==QruTab.BUSCA) "Abrir central QRU" else item.label },
      icon={if(item==QruTab.BUSCA) Surface(shape=RoundedCornerShape(50),color=Color(0xFF081D32),border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF6F8DA9)),modifier=Modifier.size(44.dp)) { Box(contentAlignment=Alignment.Center) { Text("Q",style=MaterialTheme.typography.headlineMedium.copy(fontWeight=FontWeight.Black,brush=Brush.verticalGradient(listOf(Color.White,Color(0xFFB7C9D9),Color(0xFF6B91AC),Color(0xFFE4F7FF))))) } } else Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
      label={Text(item.label)})}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
     tabStates.SaveableStateProvider(tab.name) {
-     if(tab==QruTab.BUSCA) SearchHome{scope.launch{drawer.open()}} else CatalogPage(tab)
+     if(centralOpen) QruCentral(onOpenTab={tab=it;centralOpen=false},onHome={goHome()}) else if(tab==QruTab.BUSCA) SearchHome{scope.launch{drawer.open()}} else CatalogPage(tab)
     }
    }}
   }
@@ -125,6 +127,27 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
      }
     }},confirmButton={TextButton(onClick={support=null}){Text("ENTENDI")}})
   }
+ }
+}
+
+@Composable private fun QruCentral(onOpenTab:(QruTab)->Unit,onHome:()->Unit) {
+ Column(Modifier.fillMaxSize().background(Color(0xFF081D32)).verticalScroll(rememberScrollState()).padding(start=20.dp,end=20.dp,top=58.dp,bottom=20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
+  Text("CENTRAL QRU",style=MaterialTheme.typography.headlineMedium,color=Color(0xFFE1E9F1),fontWeight=FontWeight.Bold)
+  Text("Acesso rápido aos conteúdos disponíveis",color=Color(0xFFB7C9D9))
+  listOf(
+   Triple("CTB",QruTab.CTB,Icons.Default.MenuBook),
+   Triple("Resoluções e normas",QruTab.NORMAS,Icons.Default.Gavel),
+   Triple("Situações",QruTab.SITUACOES,Icons.Default.PlayCircle),
+   Triple("Novidades",QruTab.NOVIDADES,Icons.Default.NewReleases)
+  ).forEach { (title,destination,icon) ->
+   Surface(onClick={onOpenTab(destination)},shape=RoundedCornerShape(14.dp),color=Color(0xFF142D49),border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF526D87)),modifier=Modifier.fillMaxWidth().testTag("central_"+destination.name)) {
+    Row(Modifier.padding(18.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(14.dp)) {
+     Icon(icon,contentDescription=null,tint=Color(0xFFD5E0E9))
+     Text(title,color=Color.White,fontWeight=FontWeight.SemiBold)
+    }
+   }
+  }
+  Text("Outros temas operacionais serão adicionados em atualizações posteriores.",color=Color(0xFFB7C9D9),style=MaterialTheme.typography.bodySmall)
  }
 }
 
