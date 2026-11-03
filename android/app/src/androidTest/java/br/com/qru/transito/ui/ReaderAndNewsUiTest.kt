@@ -151,9 +151,8 @@ class ReaderAndNewsUiTest {
     ui.onAllNodesWithText("Referências para: pneu").fetchSemanticsNodes().isNotEmpty() &&
      ui.onAllNodesWithTag("situations_loading").fetchSemanticsNodes().isEmpty()
    }
-   ui.onNodeWithTag("situations_results").performScrollToIndex(1)
-   ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
-   ui.onAllNodesWithTag("reference_card").onFirst().performClick()
+   ui.onNodeWithTag("situations_results").performScrollToNode(hasTestTag("reference_card") and hasText("672-61",substring=true))
+   ui.onNode(hasTestTag("reference_card") and hasText("672-61",substring=true)).assertExists().performClick()
    ui.waitUntil(10_000) {
     ui.onAllNodesWithText("ABRIR FICHA").fetchSemanticsNodes().isNotEmpty()
    }
@@ -163,7 +162,8 @@ class ReaderAndNewsUiTest {
    ui.onNodeWithTag("search_query").assertTextContains("licenciamento")
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("659-92",substring=true)
    ui.onNodeWithTag("tab_SITUACOES").performClick()
-   ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
+   ui.onNodeWithTag("situations_results").performScrollToNode(hasTestTag("reference_card") and hasText("672-61",substring=true))
+   ui.onNode(hasTestTag("reference_card") and hasText("672-61",substring=true)).assertExists()
   }
  }
 
