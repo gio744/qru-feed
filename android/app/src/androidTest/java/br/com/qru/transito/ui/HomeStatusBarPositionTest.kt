@@ -1,7 +1,5 @@
 package br.com.qru.transito.ui
 
-import androidx.activity.compose.setContent
-import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.layout.boundsInWindow
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -28,18 +26,21 @@ class HomeStatusBarPositionTest {
   context.getSharedPreferences("qru_news", 0).edit()
    .putStringSet("seen_publications", setOf(CurrentQruNews.id)).commit()
   ActivityScenario.launch(MainActivity::class.java).use {
-   ui.onNodeWithTag("tab_CTB").performClick()
-   val home = ui.onNodeWithTag("home_top_left")
-   val bounds = home.fetchSemanticsNode().layoutInfo.coordinates.boundsInWindow()
    val resources = context.resources
    val id = resources.getIdentifier("status_bar_height", "dimen", "android")
    val statusBarHeight = if (id > 0) resources.getDimensionPixelSize(id) else 0
-   assertTrue(
-    "HOME overlaps status bar: top=${bounds.top}, statusBarHeight=$statusBarHeight",
-    bounds.top >= statusBarHeight - 1f
-   )
-   home.performClick()
-   ui.onNodeWithTag("search_query").assertExists()
+   // Exercise each secondary tab and the Q central, not just CTB.
+   listOf("tab_CTB", "tab_NORMAS", "tab_SITUACOES", "tab_NOVIDADES", "tab_BUSCA").forEach { tab ->
+    ui.onNodeWithTag(tab).performClick()
+    val home = ui.onNodeWithTag("home_top_left")
+    val bounds = home.fetchSemanticsNode().layoutInfo.coordinates.boundsInWindow()
+    assertTrue(
+     "HOME overlaps status bar in $tab: top=${bounds.top}, statusBarHeight=$statusBarHeight",
+     bounds.top >= statusBarHeight - 1f
+    )
+    home.performClick()
+    ui.onNodeWithTag("search_query").assertExists()
+   }
   }
  }
 }
