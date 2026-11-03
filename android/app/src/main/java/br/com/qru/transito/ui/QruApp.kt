@@ -72,7 +72,8 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
  QruTheme{
   var tab by rememberSaveable{mutableStateOf(QruTab.BUSCA)}
   var centralOpen by rememberSaveable { mutableStateOf(false) }
-  fun goHome() { tab=QruTab.BUSCA; centralOpen=false }
+  var centralQuery by rememberSaveable { mutableStateOf<String?>(null) }
+  fun goHome() { tab=QruTab.BUSCA; centralOpen=false;centralQuery=null }
   var support by rememberSaveable{mutableStateOf<String?>(null)}
   val newsContext=LocalContext.current
   val newsPreferences=remember(newsContext) { newsContext.getSharedPreferences("qru_news",android.content.Context.MODE_PRIVATE) }
@@ -100,13 +101,13 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
     TextButton(onClick={scope.launch{drawer.close()}},modifier=Modifier.padding(12.dp)){Text("FECHAR MENU")}
    }
   }){
-   Scaffold(bottomBar={NavigationBar(containerColor=Color(0xFF0D1726)){
+   Scaffold(topBar={if(tab!=QruTab.BUSCA || centralOpen) { Surface(color=Color(0xFF081D32)) { Row(Modifier.fillMaxWidth().height(52.dp),verticalAlignment=Alignment.CenterVertically) { IconButton(onClick={goHome()},modifier=Modifier.testTag("home_top_left")) { Icon(Icons.Default.Home,contentDescription="Voltar à página inicial",tint=Color(0xFFD5E0E9)) }; Text("INÍCIO",color=Color(0xFFD5E0E9),style=MaterialTheme.typography.labelMedium) } } }},bottomBar={NavigationBar(containerColor=Color(0xFF0D1726)){
     QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={if(item==QruTab.BUSCA) { tab=QruTab.BUSCA;centralOpen=true } else {tab=item;centralOpen=false}},modifier=Modifier.testTag("tab_"+item.name).semantics { contentDescription = if(item==QruTab.BUSCA) "Abrir central QRU" else item.label },
      icon={if(item==QruTab.BUSCA) Surface(shape=RoundedCornerShape(50),color=Color(0xFF081D32),border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF6F8DA9)),modifier=Modifier.size(44.dp)) { Box(contentAlignment=Alignment.Center) { Text("Q",style=MaterialTheme.typography.headlineMedium.copy(fontWeight=FontWeight.Black,brush=Brush.verticalGradient(listOf(Color.White,Color(0xFFB7C9D9),Color(0xFF6B91AC),Color(0xFFE4F7FF))))) } } else Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
      label={Text(item.label)})}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
     tabStates.SaveableStateProvider(tab.name) {
-     if(centralOpen) QruCentral(onOpenTab={tab=it;centralOpen=false},onHome={goHome()}) else if(tab==QruTab.BUSCA) SearchHome{scope.launch{drawer.open()}} else CatalogPage(tab)
+     if(centralOpen) QruCentral(onSearch={centralQuery=it;tab=QruTab.BUSCA;centralOpen=false}) else if(tab==QruTab.BUSCA) SearchHome(initialQuery=centralQuery,onMenu={scope.launch{drawer.open()}}) else CatalogPage(tab)
     }
    }}
   }
@@ -131,32 +132,37 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
  }
 }
 
-@Composable private fun QruCentral(onOpenTab:(QruTab)->Unit,onHome:()->Unit) {
- Column(Modifier.fillMaxSize().background(Color(0xFF081D32)).verticalScroll(rememberScrollState()).padding(start=20.dp,end=20.dp,top=58.dp,bottom=20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
+@Composable private fun QruCentral(onSearch:(String)->Unit) {
+ Column(Modifier.fillMaxSize().background(Color(0xFF081D32)).verticalScroll(rememberScrollState()).padding(20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
   Text("CENTRAL QRU",style=MaterialTheme.typography.headlineMedium,color=Color(0xFFE1E9F1),fontWeight=FontWeight.Bold)
-  Text("Acesso rápido aos conteúdos disponíveis",color=Color(0xFFB7C9D9))
+  Text("CONSULTAS TÉCNICAS",color=Color(0xFFB7C9D9))
   listOf(
-   Triple("CTB",QruTab.CTB,Icons.Default.MenuBook),
-   Triple("Resoluções e normas",QruTab.NORMAS,Icons.Default.Gavel),
-   Triple("Situações",QruTab.SITUACOES,Icons.Default.PlayCircle),
-   Triple("Novidades",QruTab.NOVIDADES,Icons.Default.NewReleases)
-  ).forEach { (title,destination,icon) ->
-   Surface(onClick={onOpenTab(destination)},shape=RoundedCornerShape(14.dp),color=Color(0xFF142D49),border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF526D87)),modifier=Modifier.fillMaxWidth().testTag("central_"+destination.name)) {
+   "Infrações e enquadramentos" to "infração",
+   "Alcoolemia e recusa" to "165-A",
+   "Habilitação e condutores" to "162",
+   "Equipamentos obrigatórios" to "230",
+   "Sinalização e circulação" to "208",
+   "Motocicletas e ciclomotores" to "244",
+   "Remoção e medidas administrativas" to "271",
+   "Placas e identificação veicular" to "placa"
+  ).forEach { (title,query) ->
+   Surface(onClick={onSearch(query)},shape=RoundedCornerShape(14.dp),color=Color(0xFF142D49),border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF526D87)),modifier=Modifier.fillMaxWidth()) {
     Row(Modifier.padding(18.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(14.dp)) {
-     Icon(icon,contentDescription=null,tint=Color(0xFFD5E0E9))
+     Icon(Icons.Default.ChevronRight,contentDescription=null,tint=Color(0xFFD5E0E9))
      Text(title,color=Color.White,fontWeight=FontWeight.SemiBold)
     }
    }
   }
-  Text("Outros temas operacionais serão adicionados em atualizações posteriores.",color=Color(0xFFB7C9D9),style=MaterialTheme.typography.bodySmall)
+  Text("Cada categoria abre uma pesquisa na base disponível; confira a norma vigente antes de aplicar.",color=Color(0xFFB7C9D9),style=MaterialTheme.typography.bodySmall)
  }
 }
 
-@Composable private fun SearchHome(onMenu:()->Unit){
+@Composable private fun SearchHome(initialQuery:String?=null,onMenu:()->Unit){
  val context=LocalContext.current
  val app=context.applicationContext as QruApplication
  val vm:SearchViewModel=viewModel(factory=SearchViewModelFactory(app.searchLegalContent))
  val state by vm.state.collectAsState()
+ LaunchedEffect(initialQuery) { if(!initialQuery.isNullOrBlank()) { vm.query(initialQuery);vm.run() } }
  val keyboard=LocalSoftwareKeyboardController.current
  var selected by remember{mutableStateOf<SearchResult?>(null)}
  var guideReference by remember { mutableStateOf<String?>(null) }
