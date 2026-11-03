@@ -128,6 +128,9 @@ class ReaderAndNewsUiTest {
    ui.onNodeWithText("QRU").assertExists()
    ui.onNodeWithTag("tab_CTB").performClick()
    ui.onNodeWithTag("tab_BUSCA").performClick()
+   ui.onNodeWithText("CENTRAL QRU").assertIsDisplayed()
+   ui.onNodeWithText("Alcoolemia e recusa").assertExists()
+   ui.onNodeWithTag("home_top_left").performClick()
    ui.onNodeWithTag("search_query").assertExists()
   }
  }
@@ -155,7 +158,7 @@ class ReaderAndNewsUiTest {
     ui.onAllNodesWithText("ABRIR FICHA").fetchSemanticsNodes().isNotEmpty()
    }
    androidx.test.espresso.Espresso.pressBack()
-   ui.onNodeWithTag("tab_BUSCA").performClick()
+   ui.onNodeWithTag("home_top_left").performClick()
    ui.onNodeWithTag("search_results").performScrollToIndex(0)
    ui.onNodeWithTag("search_query").assertTextContains("licenciamento")
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("659-92",substring=true)
