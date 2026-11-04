@@ -301,4 +301,23 @@ class ReaderAndNewsUiTest {
   initialResponse={throw IllegalStateException("simulated lookup failure")},
   expectedMessage="Não foi possível consultar"
  )
+ @Test fun centralQAndHomeNavigationRemainDistinct() {
+  val context=InstrumentationRegistry.getInstrumentation().targetContext
+  context.getSharedPreferences("qru_news",0).edit()
+   .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
+  ActivityScenario.launch(MainActivity::class.java).use {
+   ui.onNodeWithTag("search_query").assertExists()
+   ui.onNodeWithTag("tab_BUSCA").performClick()
+   ui.onNodeWithText("Central QRU").assertIsDisplayed()
+   ui.onNodeWithTag("return_home").assertIsDisplayed()
+   ui.onNodeWithTag("return_home").performClick()
+   ui.onNodeWithTag("search_query").assertExists()
+   ui.onNodeWithTag("return_home").assertDoesNotExist()
+   ui.onNodeWithTag("tab_NORMAS").performClick()
+   ui.onNodeWithTag("return_home").assertIsDisplayed()
+   ui.onNodeWithTag("return_home").performClick()
+   ui.onNodeWithTag("search_query").assertExists()
+  }
+ }
+
 }
