@@ -2,9 +2,9 @@ name: QRU Android Build
 on:
   workflow_dispatch:
   push:
-    paths: ['android/**','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json','android/app/src/main/assets/norms/**','.github/workflows/android-build.yml']
+    paths: ['android/**','scripts/**','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json','.github/workflows/android-build.yml']
   pull_request:
-    paths: ['android/**','scripts/audit_reference_ranges.py','scripts/validate_operational_cards.py','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json']
+    paths: ['android/**','scripts/**','content/operational-cards/**','docs/OPERACIONAL-FICHA-SCHEMA-v1.json','.github/workflows/android-build.yml']
 jobs:
   debug-apk:
     runs-on: ubuntu-latest
@@ -51,6 +51,11 @@ jobs:
       - name: Validate operational card editorial metadata
         run: python scripts/validate_operational_cards.py
 
+      - name: Test APK integrity and offline-document validators
+        run: |
+          python -m unittest discover -s scripts -p 'test_verify_apk_norms.py' -v
+          python -m unittest discover -s scripts -p 'test_register_apk.py' -v
+
       - name: Restore previously verified PDF cache
         uses: actions/cache/restore@v4
         with:
@@ -86,6 +91,9 @@ jobs:
         with:
           path: android/app/build/generated/normAssets/norms
           key: qru-norms-sha256-${{ hashFiles('android/app/src/main/assets/norms/pdf-catalog.json') }}
+
+      - name: Verify official PDFs inside compiled APK
+        run: python scripts/verify_apk_norms.py android/app/build/outputs/apk/debug/app-debug.apk android/app/src/main/assets/norms/pdf-catalog.json android/app/src/main/assets/norms/reference-page-ranges.json
 
       - name: Verify and register APK
         run: |
