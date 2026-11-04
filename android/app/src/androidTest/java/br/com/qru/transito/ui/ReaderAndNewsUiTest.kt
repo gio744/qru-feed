@@ -151,7 +151,8 @@ class ReaderAndNewsUiTest {
     ui.onAllNodesWithText("Referências para: pneu").fetchSemanticsNodes().isNotEmpty() &&
      ui.onAllNodesWithTag("situations_loading").fetchSemanticsNodes().isEmpty()
    }
-   ui.onNodeWithTag("situations_results").performScrollToIndex(1)
+   // The first result is already exposed by the lazy list; index 1 may be a video heading.
+   // Avoid scrolling to a position unrelated to the reference under test.
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
    ui.onAllNodesWithTag("reference_card").onFirst().performClick()
    ui.waitUntil(10_000) {
