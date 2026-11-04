@@ -1,4 +1,5 @@
 package br.com.qru.transito.ui
+import br.com.qru.transito.domain.usecase.CatalogSearch
 import android.content.ActivityNotFoundException
 import android.widget.Toast
 import androidx.compose.foundation.lazy.LazyColumn
@@ -319,6 +320,21 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
    items(state.results,key={result -> "reference:"+result.stableKey},
     contentType={"reference"}) { result ->
     ReferenceCard(result) { selected=result }
+   }
+  }
+  // Generic category names are not legal facts; guide users to specific references instead of inventing matches.
+  if(!state.loading && state.results.isEmpty() &&
+      CatalogSearch.normalize(state.query.trim()) in setOf("infracao","infracoes","multa","multas")) {
+   item(key="generic_query_help") {
+    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+     Text("CONSULTA POR INFRAÇÃO",fontWeight=FontWeight.SemiBold,color=Color(0xFFC5D9EB))
+     Text("Informe um artigo, código ou fato constatado. O termo genérico não identifica um enquadramento.")
+     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+      listOf("165-A","230, V","Art. 181").forEach { term ->
+       SuggestionChip(onClick={vm.query(term);vm.run()},label={Text(term)})
+      }
+     }
+    }
    }
   }
   if(state.query.isNotBlank() && state.message.isNotBlank() && state.message!="Faça uma consulta à base disponível.") {
