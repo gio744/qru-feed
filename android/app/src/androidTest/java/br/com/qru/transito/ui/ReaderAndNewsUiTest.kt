@@ -129,8 +129,11 @@ class ReaderAndNewsUiTest {
     ui.onAllNodesWithText("672-61",substring=true).fetchSemanticsNodes().isNotEmpty()
    }
    androidx.test.espresso.Espresso.closeSoftKeyboard()
-   ui.onNodeWithTag("search_results").performScrollToIndex(1)
+   ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
    ui.onAllNodesWithTag("reference_card").onFirst().performClick()
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithText("CONSULTA RÁPIDA").fetchSemanticsNodes().isNotEmpty()
+   }
    ui.onNodeWithText("CONSULTA RÁPIDA").assertExists()
    ui.onNodeWithText("QUANDO AUTUAR").assertExists()
    ui.onNodeWithText("Orientação operacional ainda não aprovada. Consulte a ficha oficial antes de decidir.").assertDoesNotExist()
