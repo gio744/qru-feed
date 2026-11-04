@@ -465,7 +465,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             // Detailed legal and operational sections remain expandable below.
             Text("CONSULTA RÁPIDA",fontWeight=FontWeight.SemiBold,color=Color(0xFFC1D4E6),style=MaterialTheme.typography.labelLarge)
             Text(result.title,style=MaterialTheme.typography.bodyMedium)
-            Text(if (approvedOperationalFiche == null) "Descrição de referência para localização. Orientação de autuação pendente de validação jurídica; consulte a ficha oficial." else "Resumo para identificação. Confira os requisitos e abra os tópicos para condições, exceções e fundamentos.",style=MaterialTheme.typography.bodySmall)
+            Text(if (approvedOperationalFiche == null) "Consulte a ficha oficial para verificar os requisitos desta infração." else "Abra os tópicos para conferir requisitos, exceções, medidas e fundamentos.",style=MaterialTheme.typography.bodySmall)
             QruExpandableSection("QUANDO AUTUAR",referenceKey=result.stableKey,initiallyOpen=false) {
             if (approvedOperationalFiche == null) Text("Orientação operacional ainda não aprovada. Consulte a ficha oficial antes de decidir.")
             else approvedOperationalFiche?.whenApplicable?.forEach { item ->
