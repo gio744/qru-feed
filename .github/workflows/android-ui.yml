@@ -16,6 +16,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: android-ui-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
@@ -44,6 +45,16 @@ jobs:
           key: qru-official-pdfs-${{ runner.os }}-${{ hashFiles('android/app/src/main/assets/norms/pdf-catalog.json') }}
           restore-keys: |
             qru-official-pdfs-${{ runner.os }}-
+      - name: Restore SHA-pinned CONTRAN staging PDFs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          run_id=$(gh run list --repo "${{ github.repository }}" --workflow contran-pdf-staging.yml --status success --limit 20 --json databaseId --jq '.[0].databaseId')
+          test -n "$run_id"
+          mkdir -p /tmp/qru-contran-stage
+          gh run download "$run_id" --repo "${{ github.repository }}" --name contran-pdfs-1026-1029-staging --dir /tmp/qru-contran-stage
+          python3 scripts/restore_verified_contran_pdfs.py /tmp/qru-contran-stage android/app/build/generated/normAssets/norms
       - name: Install compilation SDK
         run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
       - name: Enable emulator acceleration
