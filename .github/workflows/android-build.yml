@@ -87,6 +87,14 @@ jobs:
           path: android/app/build/generated/normAssets/norms
           key: qru-norms-sha256-${{ hashFiles('android/app/src/main/assets/norms/pdf-catalog.json') }}
 
+      - name: Test APK integrity and offline-document validators
+        run: |
+          python -m unittest discover -s scripts -p 'test_verify_apk_norms.py' -v
+          python -m unittest discover -s scripts -p 'test_register_apk.py' -v
+
+      - name: Verify official PDFs inside compiled APK
+        run: python scripts/verify_apk_norms.py android/app/build/outputs/apk/debug/app-debug.apk android/app/src/main/assets/norms/pdf-catalog.json android/app/src/main/assets/norms/reference-page-ranges.json
+
       - name: Verify and register APK
         run: |
           python scripts/register_apk.py android/app/build/outputs/apk/debug/app-debug.apk
