@@ -307,6 +307,9 @@ class ReaderAndNewsUiTest {
    .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
   ActivityScenario.launch(MainActivity::class.java).use {
    ui.onNodeWithTag("search_query").assertExists()
+   listOf("CTB", "NORMAS", "BUSCA", "SITUACOES", "NOVIDADES").forEach { name ->
+    ui.onAllNodesWithTag("tab_$name").assertCountEquals(1)
+   }
    ui.onNodeWithTag("tab_BUSCA").performClick()
    ui.onNodeWithText("Central QRU").assertIsDisplayed()
    ui.onNodeWithTag("return_home").assertIsDisplayed()
