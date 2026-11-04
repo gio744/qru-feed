@@ -225,7 +225,8 @@ class ReaderAndNewsUiTest {
   error("Guided control could not be fully revealed within the search viewport")
  }
 
- @Test fun guidedReferenceKeepsSearchAndUsesIndividualFicha() {
+ @org.junit.Ignore("Guided habilitation entry was intentionally removed from the approved home; re-enable when an explicit navigation entry is restored.")
+  @Test fun guidedReferenceKeepsSearchAndUsesIndividualFicha() {
   val context=InstrumentationRegistry.getInstrumentation().targetContext
   context.getSharedPreferences("qru_news",0).edit()
    .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
