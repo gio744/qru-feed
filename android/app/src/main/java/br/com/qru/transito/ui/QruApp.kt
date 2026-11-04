@@ -464,8 +464,8 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             // One fiche for all experience levels: a short, always-visible orientation first.
             // Detailed legal and operational sections remain expandable below.
             Text("CONSULTA RÁPIDA",fontWeight=FontWeight.SemiBold,color=Color(0xFFC1D4E6),style=MaterialTheme.typography.labelLarge)
-            Text("Art. ${result.article.orEmpty()} • código ${result.code.orEmpty()}",style=MaterialTheme.typography.bodyMedium)
-            Text("Confira os requisitos antes de autuar. Expanda os tópicos para ver condições, exceções, procedimentos e fundamentos.",style=MaterialTheme.typography.bodySmall)
+            Text(result.title,style=MaterialTheme.typography.bodyMedium)
+            Text(if (approvedOperationalFiche == null) "Descrição de referência para localização. Orientação de autuação pendente de validação jurídica; consulte a ficha oficial." else "Resumo para identificação. Confira os requisitos e abra os tópicos para condições, exceções e fundamentos.",style=MaterialTheme.typography.bodySmall)
             QruExpandableSection("QUANDO AUTUAR",referenceKey=result.stableKey,initiallyOpen=false) {
             if (approvedOperationalFiche == null) Text("Orientação operacional ainda não aprovada. Consulte a ficha oficial antes de decidir.")
             else approvedOperationalFiche?.whenApplicable?.forEach { item ->
