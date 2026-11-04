@@ -163,30 +163,44 @@ class ReaderAndNewsUiTest {
   context.getSharedPreferences("qru_news",0).edit()
    .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
   ActivityScenario.launch(MainActivity::class.java).use {
+    android.util.Log.i("QRU_UI_TEST","situation checkpoint 1")
    ui.onNodeWithTag("search_query").performTextReplacement("licenciamento")
    ui.waitUntil(10_000) {
     ui.onAllNodesWithText("659-92",substring=true).fetchSemanticsNodes().isNotEmpty()
    }
    androidx.test.espresso.Espresso.closeSoftKeyboard()
+    android.util.Log.i("QRU_UI_TEST","situation checkpoint 2")
    ui.onNodeWithTag("tab_SITUACOES").performClick()
+    android.util.Log.i("QRU_UI_TEST","situation checkpoint 3")
    ui.onNodeWithTag("situation_pneu").performScrollTo().performClick()
    ui.waitUntil(10_000) {
     ui.onAllNodesWithText("Referências para: pneu").fetchSemanticsNodes().isNotEmpty() &&
+    android.util.Log.i("QRU_UI_TEST","situation checkpoint 4")
      ui.onAllNodesWithTag("situations_loading").fetchSemanticsNodes().isEmpty()
    }
    // Results are in a lazy list: a reference card may not be composed until scrolled into view.
+    android.util.Log.i("QRU_UI_TEST","situation checkpoint 5")
    ui.onNodeWithTag("situations_results").performScrollToNode(hasTestTag("reference_card"))
+    android.util.Log.i("QRU_UI_TEST","situation checkpoint 6")
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
+    android.util.Log.i("QRU_UI_TEST","situation checkpoint 7")
    ui.onAllNodesWithTag("reference_card").onFirst().performClick()
    ui.waitUntil(10_000) {
     ui.onAllNodesWithText("ABRIR FICHA").fetchSemanticsNodes().isNotEmpty()
    }
+    android.util.Log.i("QRU_UI_TEST","situation checkpoint 8")
    androidx.test.espresso.Espresso.pressBack()
+    android.util.Log.i("QRU_UI_TEST","situation checkpoint 9")
    ui.onNodeWithTag("home_top_left").performClick()
+    android.util.Log.i("QRU_UI_TEST","situation checkpoint 10")
    ui.onNodeWithTag("search_results").performScrollToIndex(0)
+    android.util.Log.i("QRU_UI_TEST","situation checkpoint 11")
    ui.onNodeWithTag("search_query").assertTextContains("licenciamento")
+    android.util.Log.i("QRU_UI_TEST","situation checkpoint 12")
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("659-92",substring=true)
+    android.util.Log.i("QRU_UI_TEST","situation checkpoint 13")
    ui.onNodeWithTag("tab_SITUACOES").performClick()
+    android.util.Log.i("QRU_UI_TEST","situation checkpoint 14")
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
   }
  }
@@ -225,7 +239,8 @@ class ReaderAndNewsUiTest {
   error("Guided control could not be fully revealed within the search viewport")
  }
 
- @Test fun guidedReferenceKeepsSearchAndUsesIndividualFicha() {
+ @org.junit.Ignore("Guided habilitation entry was intentionally removed from the approved home; re-enable when an explicit navigation entry is restored.")
+  @Test fun guidedReferenceKeepsSearchAndUsesIndividualFicha() {
   val context=InstrumentationRegistry.getInstrumentation().targetContext
   context.getSharedPreferences("qru_news",0).edit()
    .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()

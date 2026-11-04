@@ -45,7 +45,9 @@ private fun normExcerpt(text:String,query:String):String {
  var category by rememberSaveable { mutableStateOf("Resoluções") }
  Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
   listOf("Resoluções","Portarias","Deliberações","Manuais").forEach { name ->
-   FilterChip(selected=category==name,onClick={category=name},label={Text(name)})
+   FilterChip(selected=category==name,onClick={category=name},label={Text(name)},
+    colors=FilterChipDefaults.filterChipColors(selectedContainerColor=MaterialTheme.colorScheme.surfaceContainerHigh,selectedLabelColor=MaterialTheme.colorScheme.secondary),
+    border=FilterChipDefaults.filterChipBorder(enabled=true,selected=category==name,selectedBorderColor=MaterialTheme.colorScheme.primary))
   }
  }
  if(category!="Resoluções" && category!="Manuais") {
