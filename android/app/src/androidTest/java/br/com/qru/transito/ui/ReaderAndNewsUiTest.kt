@@ -119,6 +119,26 @@ class ReaderAndNewsUiTest {
   }
  }
 
+ @Test fun quickReferenceStartsSimpleAndExpandsOnDemand() {
+  val context=InstrumentationRegistry.getInstrumentation().targetContext
+  context.getSharedPreferences("qru_news",0).edit()
+   .putStringSet("seen_publications",setOf(CurrentQruNews.id)).commit()
+  ActivityScenario.launch(MainActivity::class.java).use {
+   ui.onNodeWithTag("search_query").performTextReplacement("pneu")
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithText("672-61",substring=true).fetchSemanticsNodes().isNotEmpty()
+   }
+   androidx.test.espresso.Espresso.closeSoftKeyboard()
+   ui.onNodeWithTag("search_results").performScrollToIndex(1)
+   ui.onAllNodesWithTag("reference_card").onFirst().performClick()
+   ui.onNodeWithText("CONSULTA RÁPIDA").assertExists()
+   ui.onNodeWithText("QUANDO AUTUAR").assertExists()
+   ui.onNodeWithText("Orientação operacional ainda não aprovada. Consulte a ficha oficial antes de decidir.").assertDoesNotExist()
+   ui.onNodeWithText("QUANDO AUTUAR").performClick()
+   ui.onNodeWithText("Orientação operacional ainda não aprovada. Consulte a ficha oficial antes de decidir.").assertExists()
+  }
+ }
+
  @Test fun centralNavigationIdentifiesQruInsteadOfGenericMoreMenu() {
   val context=InstrumentationRegistry.getInstrumentation().targetContext
   context.getSharedPreferences("qru_news",0).edit()
