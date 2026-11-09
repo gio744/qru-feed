@@ -54,7 +54,10 @@ object OperationalFichePackage {
             require(references.all { reference ->
                 reference.editorialIssues().isEmpty() &&
                     (reference.whenApplicable + reference.exceptions + reference.observations +
-                        reference.measures.flatMap { listOf(it.rule) + it.conditions })
+                        reference.measures.flatMap { measure ->
+                            listOf(measure.rule) + measure.conditions +
+                                listOfNotNull(measure.deadline?.legalBasis)
+                        })
                         .flatMap { it.evidence }
                         .all { evidence -> isTrustedOfficialSource(evidence.url) }
             }) { "Unapproved editorial content or unsupported source host" }

@@ -84,4 +84,65 @@ class OperationalFichePackageTest {
             setOf("672-61")
         ).isEmpty())
     }
+    private fun samplePackage(status: String = "APPROVED", text: String = "Condição operacional revisada."): String {
+        val item = mapOf(
+            "code" to "672-61",
+            "whenApplicable" to listOf(mapOf("text" to text, "evidence" to listOf(
+                mapOf("url" to "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm", "locator" to "Art. 270")
+            ))),
+            "exceptions" to listOf(mapOf("text" to "Exceção revisada.", "evidence" to listOf(
+                mapOf("url" to "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm", "locator" to "Art. 270")
+            ))),
+            "review" to mapOf("status" to status, "reviewer" to "Revisor de teste",
+                "reviewedAt" to "2026-10-17", "unresolvedIssues" to emptyList<String>())
+        )
+        return com.google.gson.Gson().toJson(mapOf("schemaVersion" to 1, "items" to listOf(item)))
+    }
+
+    private fun sha256(json: String): String =
+        java.security.MessageDigest.getInstance("SHA-256")
+            .digest(json.toByteArray(Charsets.UTF_8))
+            .joinToString("") { "%02x".format(it) }
+
+    @Test fun packageNeverActivatesWithInactiveCodeOrWrongDigest() {
+        val json = samplePackage()
+        assertTrue(OperationalFichePackage.approvedByCodeWithDigest(json, setOf("672-62"), sha256(json))
+            .isEmpty())
+        assertTrue(OperationalFichePackage.approvedByCodeWithDigest(json, setOf("672-61"), "0".repeat(64))
+            .isEmpty())
+    }
+
+    @Test fun pendingAndPlaceholderContentNeverActivateEvenWithValidDigest() {
+        listOf(samplePackage(status = "PENDING"), samplePackage(text = "RASCUNHO para revisão."))
+            .forEach { json ->
+                assertTrue(OperationalFichePackage.approvedByCodeWithDigest(json, setOf("672-61"), sha256(json))
+                    .isEmpty())
+            }
+    }
+
+    @Test fun deadlineLegalBasisMustUseTrustedOfficialHost() {
+        val evidence = mapOf("url" to "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+            "locator" to "Art. 270")
+        val fakeEvidence = mapOf("url" to "https://example.com/lei",
+            "locator" to "Art. 270")
+        val statement = mapOf("text" to "Regra revisada.", "evidence" to listOf(evidence))
+        val item = mapOf(
+            "code" to "672-61",
+            "whenApplicable" to listOf(statement),
+            "exceptions" to listOf(statement),
+            "measures" to listOf(mapOf(
+                "kind" to "RETENTION",
+                "rule" to statement,
+                "conditions" to listOf(statement),
+                "deadline" to mapOf("maximumDays" to 1,
+                    "legalBasis" to mapOf("text" to "Prazo fundamentado.", "evidence" to listOf(fakeEvidence)))
+            )),
+            "review" to mapOf("status" to "APPROVED", "reviewer" to "Revisor de teste",
+                "reviewedAt" to "2026-10-17", "unresolvedIssues" to emptyList<String>())
+        )
+        val json = com.google.gson.Gson().toJson(mapOf("schemaVersion" to 1, "items" to listOf(item)))
+        assertTrue(OperationalFichePackage.approvedByCodeWithDigest(json, setOf("672-61"), sha256(json))
+            .isEmpty())
+    }
+
 }
