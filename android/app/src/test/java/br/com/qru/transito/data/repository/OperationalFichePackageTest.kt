@@ -122,4 +122,29 @@ class OperationalFichePackageTest {
             }
     }
 
+    @Test fun deadlineLegalBasisMustUseTrustedOfficialHost() {
+        val evidence = mapOf("url" to "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+            "locator" to "Art. 270")
+        val fakeEvidence = mapOf("url" to "https://example.com/lei",
+            "locator" to "Art. 270")
+        val statement = mapOf("text" to "Regra revisada.", "evidence" to listOf(evidence))
+        val item = mapOf(
+            "code" to "672-61",
+            "whenApplicable" to listOf(statement),
+            "exceptions" to listOf(statement),
+            "measures" to listOf(mapOf(
+                "kind" to "RETENTION",
+                "rule" to statement,
+                "conditions" to listOf(statement),
+                "deadline" to mapOf("maximumDays" to 1,
+                    "legalBasis" to mapOf("text" to "Prazo fundamentado.", "evidence" to listOf(fakeEvidence)))
+            )),
+            "review" to mapOf("status" to "APPROVED", "reviewer" to "Revisor de teste",
+                "reviewedAt" to "2026-10-17", "unresolvedIssues" to emptyList<String>())
+        )
+        val json = com.google.gson.Gson().toJson(mapOf("schemaVersion" to 1, "items" to listOf(item)))
+        assertTrue(OperationalFichePackage.approvedByCodeWithDigest(json, setOf("672-61"), sha256(json))
+            .isEmpty())
+    }
+
 }
