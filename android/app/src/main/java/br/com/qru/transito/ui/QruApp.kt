@@ -73,6 +73,8 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
      QruWordmark(compact=true)
      Text("QUAL A SITUAÇÃO",style=MaterialTheme.typography.labelLarge)
     }
+    NavigationDrawerItem(label={Text("Busca")},selected=tab==QruTab.BUSCA,
+     icon={Icon(Icons.Default.Search,null)},onClick={tab=QruTab.BUSCA;scope.launch{drawer.close()}})
     NavigationDrawerItem(label={Text("Como usar")},selected=false,
      icon={Icon(Icons.Default.HelpOutline,null)},onClick={support="help";scope.launch{drawer.close()}})
     NavigationDrawerItem(label={Text("Fontes oficiais")},selected=false,
@@ -85,12 +87,19 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    }
   }){
    Scaffold(bottomBar={NavigationBar{
-    listOf(QruTab.CTB,QruTab.NORMAS,QruTab.BUSCA,QruTab.SITUACOES,QruTab.MAIS).forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},modifier=Modifier.testTag("tab_"+item.name),
-     icon={if(item==QruTab.BUSCA) Text("Q?",style=MaterialTheme.typography.headlineMedium,fontWeight=FontWeight.Bold,color=MaterialTheme.colorScheme.primary) else Icon(when(item){QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.MAIS->Icons.Default.GridView;else->Icons.Default.Search},item.label)},
+    listOf(QruTab.CTB,QruTab.NORMAS,QruTab.MAIS,QruTab.SITUACOES,QruTab.NOVIDADES).forEach{item->NavigationBarItem(selected=tab==item,onClick={tab=item},modifier=Modifier.testTag("tab_"+item.name),
+     icon={if(item==QruTab.MAIS) Text("Q?",style=MaterialTheme.typography.headlineMedium,fontWeight=FontWeight.Bold,color=MaterialTheme.colorScheme.primary) else Icon(when(item){QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.Campaign;else->Icons.Default.Search},item.label)},
      label={Text(item.label)})}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
     tabStates.SaveableStateProvider(tab.name) {
-     if(tab==QruTab.BUSCA) SearchHome{scope.launch{drawer.open()}} else CatalogPage(tab)
+     if(tab==QruTab.BUSCA) SearchHome{scope.launch{drawer.open()}} else {
+      CatalogPage(tab)
+      // Keep the navigation drawer accessible from every section.
+      IconButton(
+       onClick={scope.launch{drawer.open()}},
+       modifier=Modifier.align(Alignment.TopEnd)
+      ){ Icon(Icons.Default.Menu,"Abrir menu") }
+     }
     }
    }}
   }
@@ -153,6 +162,7 @@ enum class QruTab(val label:String){BUSCA("Busca"),CTB("CTB"),NORMAS("Normas"),S
    keyboardOptions=KeyboardOptions(imeAction=ImeAction.Search),
    keyboardActions=KeyboardActions(onSearch={keyboard?.hide();vm.run()}))
   if(state.loading) LinearProgressIndicator(Modifier.fillMaxWidth())
+  if(state.query.isBlank()) QruOperationalDashboard(onSearch={term->vm.query(term);vm.run()})
   Text("Catálogo em conferência • disponível offline", style=MaterialTheme.typography.bodySmall)
    }
   }
@@ -200,7 +210,8 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
     Card(onClick=onClick,modifier=Modifier.fillMaxWidth().testTag("reference_card")) {
         Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
             Text(result.title,style=MaterialTheme.typography.titleMedium)
-            Text("Art. ${result.article.orEmpty()} • ${result.code.orEmpty()}",color=MaterialTheme.colorScheme.secondary)
+            val referenceDetails=listOfNotNull(result.article?.takeIf { it.isNotBlank() }?.let { "Art. $it" },result.code?.takeIf { it.isNotBlank() }?.let { "Código $it" })
+            if(referenceDetails.isNotEmpty()) Text(referenceDetails.joinToString(" • "),color=MaterialTheme.colorScheme.secondary)
             Text("Em conferência",style=MaterialTheme.typography.bodySmall)
         }
     }
@@ -426,6 +437,74 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
      }
     }
     if(pair.size==1) Spacer(Modifier.weight(1f))
+   }
+  }
+ }
+}
+
+
+/** Atalhos da página inicial; descrições conservadoras, sem afirmar enquadramentos não revisados. */
+@Composable private fun QruOperationalDashboard(onSearch:(String)->Unit) {
+ val shortcuts=listOf(
+  Triple("Art. 230, V","Licenciamento do veículo","230 V"),
+  Triple("Art. 167","Cinto de segurança","167"),
+  Triple("Art. 162, I","Sem CNH, PPD ou ACC","162 I"),
+  Triple("Art. 252","Condutas vedadas ao dirigir","252"),
+  Triple("Art. 165-A","Recusa aos procedimentos","165-A"),
+  Triple("Art. 208","Avanço de sinal vermelho","208"),
+  Triple("Art. 181","Estacionamento irregular","181"),
+  Triple("Art. 230, XVIII","Condições dos pneus","230 XVIII")
+ )
+ val context=LocalContext.current
+ val prefs=remember(context){context.getSharedPreferences("qru_dashboard",android.content.Context.MODE_PRIVATE)}
+ var selectedQueries by remember {
+  mutableStateOf(
+   (prefs.getString("shortcuts",null)?.split(",")?.filter { q -> shortcuts.any { it.third==q } }?.distinct()?.take(4))
+    ?.takeIf { it.isNotEmpty() } ?: shortcuts.take(4).map { it.third }
+  )
+ }
+ var editing by rememberSaveable { mutableStateOf(false) }
+ val displayed=selectedQueries.mapNotNull { q -> shortcuts.find { it.third==q } }
+ Column(verticalArrangement=Arrangement.spacedBy(12.dp)) {
+  Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically) {
+   Text("MEU PAINEL OPERACIONAL",style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.Bold,color=MaterialTheme.colorScheme.secondary,modifier=Modifier.weight(1f))
+   TextButton(onClick={editing=!editing}) { Text(if(editing) "CONCLUIR" else "PERSONALIZAR") }
+  }
+  if(editing) {
+   Text("Selecione de um a quatro atalhos para o seu painel.",style=MaterialTheme.typography.bodySmall)
+   shortcuts.forEach { (title,_,query) ->
+    Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically) {
+     Checkbox(checked=query in selectedQueries,onCheckedChange={ checked ->
+      val next=if(checked && selectedQueries.size<4) selectedQueries+query
+       else if(!checked && selectedQueries.size>1) selectedQueries-query else selectedQueries
+      selectedQueries=next
+      prefs.edit().putString("shortcuts",next.joinToString(",")).apply()
+     })
+     Text(title)
+    }
+   }
+  }
+  displayed.chunked(2).forEach { pair ->
+   Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+    pair.forEach { (title,description,query) ->
+     Card(onClick={onSearch(query)},modifier=Modifier.weight(1f).heightIn(min=96.dp),
+      colors=CardDefaults.cardColors(containerColor=MaterialTheme.colorScheme.surfaceVariant),
+      shape=RoundedCornerShape(14.dp)) {
+      Column(Modifier.padding(12.dp),verticalArrangement=Arrangement.spacedBy(5.dp)) {
+       Text(title,style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.Bold)
+       Text(description,style=MaterialTheme.typography.bodySmall)
+      }
+     }
+    }
+   }
+  }
+  Text("CONSULTAS FREQUENTES",style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.Bold,color=MaterialTheme.colorScheme.secondary)
+  Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(4.dp)) {
+   listOf("165-A","230 XVIII","181","167","252").forEach { term ->
+    OutlinedButton(onClick={onSearch(term)},modifier=Modifier.weight(1f),
+     contentPadding=PaddingValues(horizontal=2.dp,vertical=4.dp)) {
+     Text(term,style=MaterialTheme.typography.labelSmall,maxLines=1)
+    }
    }
   }
  }

@@ -36,7 +36,7 @@ object CatalogSearch {
             if (numericQuery && !exactCode && !exactArticle) null
             else if (!exactCode && matches < (tokens.size + 1) / 2) null
             else (if (exactCode) 1000 else if (exactInciso) 800 else if (exactArticle) 300 else 0) +
-                (if (genericTyreQuery && code == "67261") 150 else 0) +
+                (if (genericTyreQuery && resultParts.joinToString(",") == "230,xviii") 150 else 0) +
                 matches * 20 + tokens.count { title.contains(it) } * 5 to result
         }.sortedWith(compareByDescending<Pair<Int, SearchResult>> { it.first }.thenBy { it.second.title })
             .take(50).map { it.second }

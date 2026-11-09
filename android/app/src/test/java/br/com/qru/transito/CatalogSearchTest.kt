@@ -37,6 +37,15 @@ class CatalogSearchTest {
         }
     }
 
+    @Test fun genericTyreQueryPrioritizesArticle230XVIIIRegardlessOfCode() {
+        val candidates = listOf(
+            IndexedReference(SearchResult("generic","Pneu de veículo","230, X","111-11","BR","test"),"pneu"),
+            IndexedReference(SearchResult("article230xviii","Condições de conservação","230, XVIII","999-99","BR","test"),"pneu")
+        )
+        assertEquals("article230xviii",CatalogSearch.search(candidates,"pneu").first().stableKey)
+        assertEquals("article230xviii",CatalogSearch.search(candidates,"230 XVIII").first().stableKey)
+    }
+
     @Test fun bundledTyreSearchDoesNotReturnUnrelatedEquipment() {
         val catalog=bundledEntries()
         assertEquals("672-61",CatalogSearch.search(catalog,"pneu").first().code)
