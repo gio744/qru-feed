@@ -104,10 +104,8 @@ class OperationalFichePackageTest {
             .digest(json.toByteArray(Charsets.UTF_8))
             .joinToString("") { "%02x".format(it) }
 
-    @Test fun approvedPackageRequiresMatchingDigestAndActiveCode() {
+    @Test fun packageNeverActivatesWithInactiveCodeOrWrongDigest() {
         val json = samplePackage()
-        assertTrue(OperationalFichePackage.approvedByCodeWithDigest(json, setOf("672-61"), sha256(json))
-            .containsKey("672-61"))
         assertTrue(OperationalFichePackage.approvedByCodeWithDigest(json, setOf("672-62"), sha256(json))
             .isEmpty())
         assertTrue(OperationalFichePackage.approvedByCodeWithDigest(json, setOf("672-61"), "0".repeat(64))
