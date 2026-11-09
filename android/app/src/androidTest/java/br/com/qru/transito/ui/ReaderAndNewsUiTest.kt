@@ -201,6 +201,11 @@ class ReaderAndNewsUiTest {
     android.util.Log.i("QRU_UI_TEST","situation checkpoint 13")
    ui.onNodeWithTag("tab_SITUACOES").performClick()
     android.util.Log.i("QRU_UI_TEST","situation checkpoint 14")
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithTag("situations_loading").fetchSemanticsNodes().isEmpty()
+   }
+   // The first reference is inside a LazyColumn and may be offscreen after tab restoration.
+   ui.onNodeWithTag("situations_results").performScrollToNode(hasTestTag("reference_card"))
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
   }
  }
