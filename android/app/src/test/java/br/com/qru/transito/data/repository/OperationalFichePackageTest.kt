@@ -84,4 +84,42 @@ class OperationalFichePackageTest {
             setOf("672-61")
         ).isEmpty())
     }
+    private fun samplePackage(status: String = "APPROVED", text: String = "Condição operacional revisada."): String {
+        val item = mapOf(
+            "code" to "672-61",
+            "whenApplicable" to listOf(mapOf("text" to text, "evidence" to listOf(
+                mapOf("url" to "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm", "locator" to "Art. 270")
+            ))),
+            "exceptions" to listOf(mapOf("text" to "Exceção revisada.", "evidence" to listOf(
+                mapOf("url" to "https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm", "locator" to "Art. 270")
+            ))),
+            "review" to mapOf("status" to status, "reviewer" to "Revisor de teste",
+                "reviewedAt" to "2026-10-17", "unresolvedIssues" to emptyList<String>())
+        )
+        return com.google.gson.Gson().toJson(mapOf("schemaVersion" to 1, "items" to listOf(item)))
+    }
+
+    private fun sha256(json: String): String =
+        java.security.MessageDigest.getInstance("SHA-256")
+            .digest(json.toByteArray(Charsets.UTF_8))
+            .joinToString("") { "%02x".format(it) }
+
+    @Test fun approvedPackageRequiresMatchingDigestAndActiveCode() {
+        val json = samplePackage()
+        assertTrue(OperationalFichePackage.approvedByCodeWithDigest(json, setOf("672-61"), sha256(json))
+            .containsKey("672-61"))
+        assertTrue(OperationalFichePackage.approvedByCodeWithDigest(json, setOf("672-62"), sha256(json))
+            .isEmpty())
+        assertTrue(OperationalFichePackage.approvedByCodeWithDigest(json, setOf("672-61"), "0".repeat(64))
+            .isEmpty())
+    }
+
+    @Test fun pendingAndPlaceholderContentNeverActivateEvenWithValidDigest() {
+        listOf(samplePackage(status = "PENDING"), samplePackage(text = "RASCUNHO para revisão."))
+            .forEach { json ->
+                assertTrue(OperationalFichePackage.approvedByCodeWithDigest(json, setOf("672-61"), sha256(json))
+                    .isEmpty())
+            }
+    }
+
 }
