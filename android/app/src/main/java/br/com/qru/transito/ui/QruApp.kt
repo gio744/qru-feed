@@ -278,6 +278,26 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                         Text("Fonte oficial: ${source.locator}", style=MaterialTheme.typography.bodySmall)
                     }
                 }
+                item.conditions.forEach { condition ->
+                    Text("Condição: ${condition.text}")
+                    condition.evidence.forEach { source ->
+                        TextButton(onClick={ openOfficialSource(context, source.url) }) {
+                            Text("Fonte oficial: ${source.locator}", style=MaterialTheme.typography.bodySmall)
+                        }
+                    }
+                }
+                item.deadline?.let { deadline ->
+                    Text("Prazo máximo previsto na ficha: ${deadline.maximumDays} dia(s)")
+                    Text(deadline.legalBasis.text)
+                    deadline.legalBasis.evidence.forEach { source ->
+                        TextButton(onClick={ openOfficialSource(context, source.url) }) {
+                            Text("Fundamento oficial: ${source.locator}", style=MaterialTheme.typography.bodySmall)
+                        }
+                    }
+                }
+                item.systemDependency?.let { dependency ->
+                    Text("Dependência de sistema: ${dependency}")
+                }
             }
             Text(result.reviewStatus,style=MaterialTheme.typography.bodySmall)
             if(result.appliesFrom.isNotBlank()) Text("Início registrado no catálogo: ${result.appliesFrom}")
