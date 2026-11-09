@@ -30,6 +30,11 @@ data class OperationalReference(
         if (review.reviewer.isNotBlank() && (review.reviewer.trim().length < 3 || review.reviewer.none { it.isLetter() })) add("invalid_reviewer")
         val statements = whenApplicable + exceptions + observations +
             measures.flatMap { listOf(it.rule) + it.conditions }
+        // Prevent accidental publication of unfinished editorial instructions.
+        if (statements.any { statement ->
+                val text = statement.text.uppercase(java.util.Locale.ROOT)
+                listOf("RASCUNHO", "PENDENTE", "A DEFINIR", "TODO").any { it in text }
+            }) add("editorial_placeholder")
         if (statements.any { it.text.isBlank() || it.evidence.isEmpty() ||
                     it.evidence.any { source -> !source.isComplete() } }) add("incomplete_evidence")
         if (measures.any { it.kind != AdministrativeMeasureKind.NONE && it.conditions.isEmpty() })
