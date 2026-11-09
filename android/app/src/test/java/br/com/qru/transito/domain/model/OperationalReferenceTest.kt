@@ -50,4 +50,14 @@ class OperationalReferenceTest {
     @Test fun structurallyCompleteReviewIsOnlyStructurallyComplete() {
         assertTrue(complete().editorialIssues().isEmpty())
     }
+    @Test fun approvedReviewCannotPublishEditorialPlaceholders() {
+        listOf("RASCUNHO", "pendente", "A DEFINIR", "TODO").forEach { marker ->
+            val reference = complete().copy(whenApplicable = listOf(statement.copy(text = "Orientação $marker para revisão.")))
+            assertTrue("Should reject $marker", "editorial_placeholder" in reference.editorialIssues())
+        }
+    }
+    @Test fun normalApprovedStatementHasNoPlaceholderFlag() {
+        assertTrue("editorial_placeholder" !in complete().editorialIssues())
+    }
+
 }
