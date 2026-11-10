@@ -175,7 +175,6 @@ class ReaderAndNewsUiTest {
    ui.onNodeWithTag("situation_pneu").performScrollTo().performClick()
    ui.waitUntil(10_000) {
     ui.onAllNodesWithText("Referências para: pneu").fetchSemanticsNodes().isNotEmpty() &&
-    android.util.Log.i("QRU_UI_TEST","situation checkpoint 4")
      ui.onAllNodesWithTag("situations_loading").fetchSemanticsNodes().isEmpty()
    }
    // Results are in a lazy list: a reference card may not be composed until scrolled into view.
