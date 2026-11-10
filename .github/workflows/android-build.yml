@@ -59,20 +59,22 @@ jobs:
           python scripts/validate_operational_drafts.py
           python -m unittest discover -s scripts -p 'test_validate_operational_drafts.py' -v
 
+      - name: Test APK and registration integrity checks before compilation
+        run: |
+          python -m unittest discover -s scripts -p 'test_verify_apk_norms.py' -v
+          python -m unittest discover -s scripts -p 'test_register_apk.py' -v
+
       - name: Compile and unit test
         working-directory: android
         run: gradle -PqruParallelTest testDebugUnitTest assembleDebug --stacktrace --warning-mode all
 
       - name: Verify offline documents inside compiled APK
-        run: |
-          python -m unittest discover -s scripts -p 'test_verify_apk_norms.py' -v
-          python scripts/verify_apk_norms.py android/app/build/outputs/apk/debug/app-debug.apk android/app/src/main/assets/norms/pdf-catalog.json android/app/src/main/assets/norms/reference-page-ranges.json
+        run: python scripts/verify_apk_norms.py android/app/build/outputs/apk/debug/app-debug.apk android/app/src/main/assets/norms/pdf-catalog.json android/app/src/main/assets/norms/reference-page-ranges.json
 
       - name: Verify and register APK
         run: |
           python scripts/register_apk.py android/app/build/outputs/apk/debug/app-debug.apk
-          python -m unittest discover -s scripts -p 'test_register_apk.py' -v
-
+ 
       - name: Capture diagnostics on failure
         if: failure()
         run: |
