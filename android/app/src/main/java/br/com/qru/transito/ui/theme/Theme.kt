@@ -3,10 +3,18 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-private val QruColors=darkColorScheme(
-    primary=Color(0xFF9B5CFF), secondary=Color(0xFFC7A8FF),
-    background=Color(0xFF09090B), surface=Color(0xFF141419),
-    surfaceVariant=Color(0xFF1D1D24), onPrimary=Color.White,
-    onBackground=Color(0xFFF5F2FA), onSurface=Color(0xFFF5F2FA)
+// Identidade QRU TRÂNSITO: azul e grafite, sem acentos roxos.
+private val QruColors = darkColorScheme(
+    primary = Color(0xFF258BFF),
+    secondary = Color(0xFF79BCFF),
+    background = Color(0xFF080E19),
+    surface = Color(0xFF111B2A),
+    surfaceVariant = Color(0xFF1A2B40),
+    onPrimary = Color.White,
+    onBackground = Color(0xFFF3F7FF),
+    onSurface = Color(0xFFF3F7FF)
 )
-@Composable fun QruTheme(content: @Composable () -> Unit) = MaterialTheme(colorScheme=QruColors,content=content)
+
+@Composable
+fun QruTheme(content: @Composable () -> Unit) =
+    MaterialTheme(colorScheme = QruColors, content = content)
