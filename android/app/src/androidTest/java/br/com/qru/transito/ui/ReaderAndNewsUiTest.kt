@@ -179,7 +179,7 @@ class ReaderAndNewsUiTest {
    }
    // Results are in a lazy list: a reference card may not be composed until scrolled into view.
     android.util.Log.i("QRU_UI_TEST","situation checkpoint 5")
-   ui.onNodeWithTag("situations_results").performScrollToNode(hasTestTag("reference_card"))
+   revealSituationReferenceCard()
     android.util.Log.i("QRU_UI_TEST","situation checkpoint 6")
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
     android.util.Log.i("QRU_UI_TEST","situation checkpoint 7")
@@ -204,11 +204,23 @@ class ReaderAndNewsUiTest {
     ui.onAllNodesWithTag("situations_loading").fetchSemanticsNodes().isEmpty()
    }
    // The first reference is inside a LazyColumn and may be offscreen after tab restoration.
-   ui.onNodeWithTag("situations_results").performScrollToNode(hasTestTag("reference_card"))
+   revealSituationReferenceCard()
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
   }
  }
 
+
+ private fun revealSituationReferenceCard() {
+  // Avoid performScrollToNode on a LazyColumn: it can hang in Compose semantics
+  // while its children are being recomposed. Bound manual swipes instead.
+  val results=ui.onNodeWithTag("situations_results")
+  repeat(12) {
+   if(ui.onAllNodesWithTag("reference_card").fetchSemanticsNodes().isNotEmpty()) return
+   results.performTouchInput { swipeUp() }
+   ui.waitForIdle()
+  }
+  ui.onAllNodesWithTag("reference_card").onFirst().assertExists()
+ }
 
  private fun revealInSearch(target:SemanticsNodeInteraction,containerTag:String="search_results") {
   val list=ui.onNodeWithTag(containerTag)
