@@ -1,4 +1,5 @@
 package br.com.qru.transito.ui
+import br.com.qru.transito.domain.usecase.CatalogSearch
 import android.content.ActivityNotFoundException
 import android.widget.Toast
 import androidx.compose.foundation.lazy.LazyColumn
@@ -103,6 +104,7 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
   }){
    Scaffold(topBar={if(tab!=QruTab.BUSCA || centralOpen) { Surface(color=Color(0xFF081D32),modifier=Modifier.statusBarsPadding()) { Row(Modifier.fillMaxWidth().height(52.dp),verticalAlignment=Alignment.CenterVertically) { IconButton(onClick={goHome()},modifier=Modifier.testTag("home_top_left")) { Icon(Icons.Default.Home,contentDescription="Voltar à página inicial",tint=Color(0xFFD5E0E9)) }; Text("INÍCIO",color=Color(0xFFD5E0E9),style=MaterialTheme.typography.labelMedium) } } }},bottomBar={NavigationBar(containerColor=Color(0xFF0D1726)){
     QruTab.entries.forEach{item->NavigationBarItem(selected=tab==item,onClick={if(item==QruTab.BUSCA) { tab=QruTab.BUSCA;centralOpen=true } else {tab=item;centralOpen=false}},modifier=Modifier.testTag("tab_"+item.name).semantics { contentDescription = if(item==QruTab.BUSCA) "Abrir central QRU" else item.label },
+     colors=NavigationBarItemDefaults.colors(indicatorColor=Color(0xFF173754),selectedIconColor=Color(0xFFD5E0E9),selectedTextColor=Color(0xFFD5E0E9),unselectedIconColor=Color(0xFF8EA8BF),unselectedTextColor=Color(0xFF8EA8BF)),
      icon={if(item==QruTab.BUSCA) Surface(shape=RoundedCornerShape(50),color=Color(0xFF081D32),border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF6F8DA9)),modifier=Modifier.size(44.dp)) { Box(contentAlignment=Alignment.Center) { Text("Q",style=MaterialTheme.typography.headlineMedium.copy(fontWeight=FontWeight.Black,brush=Brush.verticalGradient(listOf(Color.White,Color(0xFFB7C9D9),Color(0xFF6B91AC),Color(0xFFE4F7FF))))) } } else Icon(when(item){QruTab.BUSCA->Icons.Default.Search;QruTab.CTB->Icons.Default.MenuBook;QruTab.NORMAS->Icons.Default.Gavel;QruTab.SITUACOES->Icons.Default.PlayCircle;QruTab.NOVIDADES->Icons.Default.NewReleases},item.label)},
      label={Text(item.label)})}
    }}){padding->Box(Modifier.padding(padding).fillMaxSize()){
@@ -237,7 +239,6 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
   Text("CONSULTA OPERACIONAL  •  CATÁLOGO OFFLINE", style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.secondary)
    }
   }
-  item(key="guided_habilitation") { HabilitationGuideCard(onOpen={guideExpanded=true}) }
   if(state.query.isBlank()) item(key="quick_access") {
    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(12.dp)) {
     Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically) {
@@ -319,6 +320,21 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
    items(state.results,key={result -> "reference:"+result.stableKey},
     contentType={"reference"}) { result ->
     ReferenceCard(result) { selected=result }
+   }
+  }
+  // Generic category names are not legal facts; guide users to specific references instead of inventing matches.
+  if(!state.loading && state.results.isEmpty() &&
+      CatalogSearch.normalize(state.query.trim()) in setOf("infracao","infracoes","multa","multas")) {
+   item(key="generic_query_help") {
+    Column(Modifier.fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+     Text("CONSULTA POR INFRAÇÃO",fontWeight=FontWeight.SemiBold,color=Color(0xFFC5D9EB))
+     Text("Informe um artigo, código ou fato constatado. O termo genérico não identifica um enquadramento.")
+     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+      listOf("165-A","230, V","Art. 181").forEach { term ->
+       SuggestionChip(onClick={vm.query(term);vm.run()},label={Text(term)})
+      }
+     }
+    }
    }
   }
   if(state.query.isNotBlank() && state.message.isNotBlank() && state.message!="Faça uma consulta à base disponível.") {
