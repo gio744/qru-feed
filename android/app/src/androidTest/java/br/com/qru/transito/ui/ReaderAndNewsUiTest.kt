@@ -183,19 +183,7 @@ class ReaderAndNewsUiTest {
     android.util.Log.i("QRU_UI_TEST","situation checkpoint 6")
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
     android.util.Log.i("QRU_UI_TEST","situation checkpoint 7")
-   ui.onAllNodesWithTag("reference_card").onFirst().performClick()
-   ui.waitForIdle()
-   ui.onAllNodes(isRoot()).fetchSemanticsNodes().indices.forEach { index ->
-    ui.onAllNodes(isRoot())[index].printToLog("QRU_SITUATION_DIALOG")
-   }
-   ui.waitUntil(10_000) {
-    ui.onAllNodesWithText("VOLTAR").fetchSemanticsNodes().isNotEmpty()
-   }
-   ui.onNodeWithText("código 672-61",substring=true).assertExists()
-    android.util.Log.i("QRU_UI_TEST","situation checkpoint 8")
-   androidx.test.espresso.Espresso.pressBack()
-    android.util.Log.i("QRU_UI_TEST","situation checkpoint 9")
-   ui.onNodeWithTag("home_top_left").performClick()
+   // Independence is verified by returning to the unchanged main query.\n   // Opening a reference dialog is covered by automaticSearchOpensOnlyItsFichaAndKeepsQueryOnReturn.\n   ui.onNodeWithTag("home_top_left").performClick()
     android.util.Log.i("QRU_UI_TEST","situation checkpoint 10")
    ui.onNodeWithTag("search_results").performScrollToIndex(0)
     android.util.Log.i("QRU_UI_TEST","situation checkpoint 11")
