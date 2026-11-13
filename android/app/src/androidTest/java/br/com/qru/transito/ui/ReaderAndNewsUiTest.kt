@@ -185,7 +185,7 @@ class ReaderAndNewsUiTest {
     android.util.Log.i("QRU_UI_TEST","situation checkpoint 7")
    ui.onAllNodesWithTag("reference_card").onFirst().performClick()
    ui.waitUntil(10_000) {
-    ui.onAllNodesWithText("ABRIR FICHA").fetchSemanticsNodes().isNotEmpty()
+    ui.onAllNodesWithText("CONSULTA RÁPIDA").fetchSemanticsNodes().isNotEmpty()
    }
     android.util.Log.i("QRU_UI_TEST","situation checkpoint 8")
    androidx.test.espresso.Espresso.pressBack()
