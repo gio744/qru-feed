@@ -183,7 +183,12 @@ class ReaderAndNewsUiTest {
     android.util.Log.i("QRU_UI_TEST","situation checkpoint 6")
    ui.onAllNodesWithTag("reference_card").onFirst().assertTextContains("672-61",substring=true)
     android.util.Log.i("QRU_UI_TEST","situation checkpoint 7")
-   // Independence is verified by returning to the unchanged main query.\n   // Opening a reference dialog is covered by automaticSearchOpensOnlyItsFichaAndKeepsQueryOnReturn.\n   ui.onNodeWithTag("home_top_left").performClick()
+   // Independence is verified by returning to the unchanged main query.
+   // Opening a reference dialog is covered by automaticSearchOpensOnlyItsFichaAndKeepsQueryOnReturn.
+   ui.onNodeWithTag("home_top_left").performClick()
+   ui.waitUntil(10_000) {
+    ui.onAllNodesWithTag("search_results").fetchSemanticsNodes().isNotEmpty()
+   }
     android.util.Log.i("QRU_UI_TEST","situation checkpoint 10")
    ui.onNodeWithTag("search_results").performScrollToIndex(0)
     android.util.Log.i("QRU_UI_TEST","situation checkpoint 11")
