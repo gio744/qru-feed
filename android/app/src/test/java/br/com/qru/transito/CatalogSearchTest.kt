@@ -61,7 +61,16 @@ class CatalogSearchTest {
         assertEquals("Incisos devem aparecer em ordem jurídica, não alfabética",
             order.sorted(), order)
     }
-    @Test fun articleDoesNotConfuse165With165A(){assertEquals(listOf("alcool"),CatalogSearch.search(entries,"artigo 165").map{it.stableKey})}
+    @Test fun article165Shows165AAfterExactArticle(){
+        for (query in listOf("165", "artigo 165", "art. 165"))
+            assertEquals(listOf("alcool", "recusa"), CatalogSearch.search(entries, query).map { it.stableKey })
+    }
+    @Test fun article165KeepsAllExactBreakdownsBefore165A(){
+        val references = entries + IndexedReference(SearchResult("drogas","Influência de substância psicoativa","165","516-92","BR","draft"),"substancia")
+        val results = CatalogSearch.search(references,"165").map { it.stableKey }
+        assertEquals(setOf("alcool", "drogas"), results.take(2).toSet())
+        assertEquals("recusa", results.last())
+    }
     @Test fun hyphenatedArticleKeepsLetter(){assertEquals(listOf("recusa"),CatalogSearch.search(entries,"165-A").map{it.stableKey})}
     @Test fun exactCodeStillMatchesWhenItsDigitsResembleArticleAndInciso() {
         val references = listOf(
