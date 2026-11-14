@@ -145,7 +145,7 @@ enum class QruTab(val label:String){CTB("CTB"),NORMAS("Normas"),BUSCA("QRU"),SIT
    "Equipamentos obrigatórios" to "230",
    "Sinalização e circulação" to "208",
    "Motocicletas e ciclomotores" to "244",
-   "Remoção e medidas administrativas" to "271",
+   "Infrações relacionadas à remoção" to "remoção",
    "Placas e identificação veicular" to "placa"
   ).forEach { (title,query) ->
    Surface(onClick={onSearch(query)},shape=RoundedCornerShape(14.dp),color=Color(0xFF142D49),border=androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF526D87)),modifier=Modifier.fillMaxWidth()) {
