@@ -16,7 +16,8 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = if (project.hasProperty("qruParallelTest")) "br.com.qru.testeapp" else "br.com.qru.transito"
+        applicationId = if (project.hasProperty("qruParallelTest")) "br.com.qru.transito.homologacao20261114" else "br.com.qru.transito"
+        manifestPlaceholders["qruAppLabel"] = if (project.hasProperty("qruParallelTest")) "QRU Trânsito TESTE" else "QRU Trânsito"
         minSdk = 28
         targetSdk = 35
         versionCode = 2
