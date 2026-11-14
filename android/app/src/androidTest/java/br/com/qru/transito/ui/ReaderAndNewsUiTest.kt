@@ -153,6 +153,8 @@ class ReaderAndNewsUiTest {
    ui.onNodeWithTag("tab_BUSCA").performClick()
    ui.onNodeWithText("CENTRAL QRU").assertIsDisplayed()
    ui.onNodeWithText("Alcoolemia e recusa").assertExists()
+   ui.onNodeWithText("Infrações relacionadas à remoção").assertExists()
+   ui.onNodeWithText("Remoção e medidas administrativas").assertDoesNotExist()
    ui.onNodeWithTag("home_top_left").performClick()
    ui.onNodeWithTag("search_query").assertExists()
   }
