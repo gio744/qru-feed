@@ -32,8 +32,16 @@ class OfflineLibraryDeviceTest {
     context.assets.open("norms/$name").use { input ->
      target.outputStream().use { output -> input.copyTo(output) }
     }
-    val actual=MessageDigest.getInstance("SHA-256").digest(target.readBytes())
-     .joinToString("") { "%02x".format(it) }
+    val digest=MessageDigest.getInstance("SHA-256")
+    target.inputStream().buffered().use { input ->
+     val buffer=ByteArray(8192)
+     while (true) {
+      val count=input.read(buffer)
+      if (count<0) break
+      digest.update(buffer,0,count)
+     }
+    }
+    val actual=digest.digest().joinToString("") { "%02x".format(it) }
     assertEquals("Integrity: $name",expected,actual)
     ParcelFileDescriptor.open(target,ParcelFileDescriptor.MODE_READ_ONLY).use { descriptor ->
      PdfRenderer(descriptor).use { renderer ->
