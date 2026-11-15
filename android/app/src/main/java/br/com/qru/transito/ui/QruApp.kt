@@ -464,6 +464,10 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                     TextButton(onClick={onNext ?: {}},enabled=onNext!=null) { Text("PRÓXIMA") }
                 }
             }
+            if (result.code == "757-90") {
+                Text("REFERÊNCIA HISTÓRICA • MBFT 2022", color=Color(0xFFFFD18B), fontWeight=FontWeight.SemiBold)
+                Text("Esta ficha está vinculada à publicação original do MBFT. Para fiscalização atual, confira os enquadramentos e as alterações da Resolução CONTRAN nº 1.031/2026 antes de decidir.", style=MaterialTheme.typography.bodySmall)
+            }
             if (approvedOperationalFiche == null) {
                 Text("REFERÊNCIA EM CONFERÊNCIA • validação jurídica pendente",color=Color(0xFFB6C8D8),style=MaterialTheme.typography.labelSmall)
                 Text("As seções abaixo não constituem orientação de autuação enquanto não houver aprovação editorial.",style=MaterialTheme.typography.bodySmall)
