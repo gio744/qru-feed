@@ -43,6 +43,7 @@ object CatalogSearch {
         val incisoQuery = articleParts.size == 2 && articleParts[0].matches(Regex("[0-9]+(?:-[a-z])?")) && articleParts[1].matches(Regex("[ivxlcdm]+"))
         val exactIncisoKey = articleParts.joinToString(",")
         val numericQuery = articleQuery.matches(Regex("[0-9]+(?:\\s*-\\s*[a-z])?"))
+        val partialInfractionCodeQuery = articleQuery.matches(Regex("""[0-9]{3}"""))
         val infractionCodeQuery = articleQuery.matches(Regex("""[0-9]{3}\s*[- ]\s*[0-9]{2}""")) ||
             articleQuery.matches(Regex("""[0-9]{5}"""))
         // An exact code is an identifier, not a fuzzy keyword search.
@@ -55,6 +56,7 @@ object CatalogSearch {
             val text = normalize("${result.title} ${result.article.orEmpty()} ${result.code.orEmpty()} ${entry.terms}")
             val matches = tokens.count { text.contains(it) }
             val exactCode = code.isNotBlank() && code == compact
+            val partialCode = partialInfractionCodeQuery && code.startsWith(numericKey)
             val resultParts = normalize(result.article.orEmpty()).split(Regex("[^a-z0-9-]+")).filter { it.isNotBlank() }
             val exactInciso = incisoQuery && resultParts.joinToString(",") == exactIncisoKey
             val articleKey = normalize(result.article.orEmpty()).substringBefore(',')
@@ -64,9 +66,9 @@ object CatalogSearch {
             val related165A = numericQuery && numericKey == "165" && articleKey == "165a"
             if (infractionCodeQuery && !exactCode) null
             else if (incisoQuery && !exactInciso && !exactCode) null
-            else if (numericQuery && !exactCode && !exactArticle && !related165A) null
-            else if (!exactCode && matches < (tokens.size + 1) / 2) null
-            else (if (exactCode) 1000 else if (exactInciso) 800 else if (exactArticle) 300 else if (related165A) 100 else 0) +
+            else if (numericQuery && !exactCode && !exactArticle && !related165A && !partialCode) null
+            else if (!exactCode && !partialCode && matches < (tokens.size + 1) / 2) null
+            else (if (exactCode) 1000 else if (partialCode) 900 else if (exactInciso) 800 else if (exactArticle) 300 else if (related165A) 100 else 0) +
                 (if (genericTyreQuery && code == "67261") 150 else 0) +
                 matches * 20 + tokens.count { title.contains(it) } * 5 to result
         }.sortedWith(if (numericQuery) compareBy<Pair<Int, SearchResult>> { articleOrder(it.second.article).first }.thenBy { if (numericKey == "165" && normalize(it.second.article.orEmpty()).substringBefore(',').replace(Regex("[^a-z0-9]"), "") == "165a") 1 else 0 }.thenBy { articleOrder(it.second.article).second }.thenByDescending { it.first }.thenBy { it.second.title } else compareByDescending<Pair<Int, SearchResult>> { it.first }.thenBy { articleOrder(it.second.article).first }.thenBy { articleOrder(it.second.article).second }.thenBy { it.second.title })
