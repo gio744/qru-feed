@@ -389,7 +389,8 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             Text(result.title,style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.SemiBold)
             Text("Art. ${result.article.orEmpty()}  •  ${result.code.orEmpty()}",
                 color=Color(0xFFC1D4E6),style=MaterialTheme.typography.bodyMedium)
-            Text("REFERÊNCIA EM CONFERÊNCIA",color=Color(0xFFAABFD1),
+            Text(if (result.code == "757-90") "FICHA HISTÓRICA • NÃO UTILIZAR COMO ORIENTAÇÃO ATUAL" else "REFERÊNCIA EM CONFERÊNCIA",
+                color=if (result.code == "757-90") Color(0xFFFFD18B) else Color(0xFFAABFD1),
                 style=MaterialTheme.typography.labelSmall)
         }
     }
