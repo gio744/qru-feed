@@ -389,7 +389,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             Text(result.title,style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.SemiBold)
             Text("Art. ${result.article.orEmpty()}  •  ${result.code.orEmpty()}",
                 color=Color(0xFFC1D4E6),style=MaterialTheme.typography.bodyMedium)
-            Text(if (result.code == "757-90") "FICHA HISTÓRICA • NÃO UTILIZAR COMO ORIENTAÇÃO ATUAL" else "REFERÊNCIA EM CONFERÊNCIA",
+            Text(if (result.code == "757-90") "ATENÇÃO • VERIFICAR FICHA VIGENTE DO MBFT" else "REFERÊNCIA EM CONFERÊNCIA",
                 color=if (result.code == "757-90") Color(0xFFFFD18B) else Color(0xFFAABFD1),
                 style=MaterialTheme.typography.labelSmall)
         }
@@ -467,7 +467,7 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             }
             if (result.code == "757-90") {
                 Text("REFERÊNCIA HISTÓRICA • MBFT 2022", color=Color(0xFFFFD18B), fontWeight=FontWeight.SemiBold)
-                Text("Esta ficha está vinculada à publicação original do MBFT. Para fiscalização atual, confira os enquadramentos e as alterações da Resolução CONTRAN nº 1.031/2026 antes de decidir.", style=MaterialTheme.typography.bodySmall)
+                Text("Esta referência está vinculada ao MBFT original de 2022. Antes de utilizar o enquadramento, confira a ficha vigente e as alterações aplicáveis, inclusive as da Resolução CONTRAN nº 1.031/2026.", style=MaterialTheme.typography.bodySmall)
             }
             if (approvedOperationalFiche == null) {
                 Text("REFERÊNCIA EM CONFERÊNCIA • validação jurídica pendente",color=Color(0xFFB6C8D8),style=MaterialTheme.typography.labelSmall)
