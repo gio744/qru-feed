@@ -81,6 +81,16 @@ jobs:
           apksigner="${ANDROID_HOME}/build-tools/35.0.0/apksigner"
           test -x "$apksigner"
           "$apksigner" verify --verbose "$apk"
+          # A valid signature alone does not establish which test key signed the APK.
+          # Compare the actual signer certificate with the dedicated homologation key.
+          expected_cert="$(keytool -exportcert -rfc -alias androiddebugkey -keystore android/test-signing/qru-debug.jks -storepass android 2>/dev/null | openssl x509 -noout -fingerprint -sha256 | cut -d= -f2 | tr -d ':' | tr '[:lower:]' '[:upper:]')"
+          actual_cert="$("$apksigner" verify --print-certs "$apk" | sed -n 's/^Signer #1 certificate SHA-256 digest: //p' | head -n 1 | tr -d ':' | tr '[:lower:]' '[:upper:]')"
+          test -n "$expected_cert"
+          test -n "$actual_cert"
+          if [ "$expected_cert" != "$actual_cert" ]; then
+            echo "APK was not signed with the isolated homologation certificate" >&2
+            exit 1
+          fi
           badging="$("$aapt" dump badging "$apk")"
           printf '%s\n' "$badging" | grep -E "^package: name='br[.]com[.]qru[.]transito[.]homologacao20261114' versionCode='2' versionName='0[.]2[.]7-indice'([[:space:]]|$)"
           printf '%s\n' "$badging" | grep -F "application-label:'QRU Trânsito TESTE'"
