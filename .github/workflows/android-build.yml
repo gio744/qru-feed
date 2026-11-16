@@ -71,6 +71,21 @@ jobs:
       - name: Verify offline documents inside compiled APK
         run: python scripts/verify_apk_norms.py android/app/build/outputs/apk/debug/app-debug.apk android/app/src/main/assets/norms/pdf-catalog.json android/app/src/main/assets/norms/reference-page-ranges.json
 
+      - name: Verify isolated homologation APK identity
+        run: |
+          set -euo pipefail
+          apk="android/app/build/outputs/apk/debug/app-debug.apk"
+          test -s "$apk"
+          aapt="${ANDROID_HOME}/build-tools/35.0.0/aapt"
+          test -x "$aapt"
+          badging="$("$aapt" dump badging "$apk")"
+          printf '%s\n' "$badging" | grep -Fx "package: name='br.com.qru.transito.homologacao20261114' versionCode='2' versionName='0.2.7-indice'" 
+          printf '%s\n' "$badging" | grep -F "application-label:'QRU Trânsito TESTE'"
+          if printf '%s\n' "$badging" | grep -F "package: name='br.com.qru.transito' "; then
+            echo "Refusing to upload a production-package APK as a homologation build" >&2
+            exit 1
+          fi
+
       - name: Verify and register APK
         run: |
           python scripts/register_apk.py android/app/build/outputs/apk/debug/app-debug.apk
