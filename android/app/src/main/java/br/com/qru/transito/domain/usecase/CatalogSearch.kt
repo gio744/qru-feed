@@ -32,7 +32,11 @@ object CatalogSearch {
     fun search(entries: List<IndexedReference>, query: String): List<SearchResult> {
         // Accept compact article/inciso queries such as 230XVIII or art.230XVIII.
         // Keep numeric infraction codes (e.g. 672-61) unchanged.
-        val normalized = normalize(query).replace(Regex("""(?<=\d)(?=[ivxlcdm]+$)"""), " ")
+        val normalized = normalize(query)
+            .replace(Regex("""(?<=\d)(?=[ivxlcdm]+$)"""), " ")
+            // Treat compact letter-suffixed CTB articles (165A) as 165-A.
+            .replace(Regex("""^(?:artigo|art)\.?\s*(\d+)([a-z])$"""), "art $1-$2")
+            .replace(Regex("""^(\d+)([a-z])$"""), "$1-$2")
         val tokens = normalized.split(Regex("[^a-z0-9]+"))
             .filter { it.isNotBlank() && it !in stopWords }.distinct()
         if (tokens.isEmpty()) return emptyList()
