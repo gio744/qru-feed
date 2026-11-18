@@ -46,3 +46,17 @@ Texto do art. 280 reproduzido em decisão oficial do TCE-PR (Diário Eletrônico
 **Conferência ainda necessária:** texto integral das fichas 757-91 e 757-92, Portaria SENATRAN 354/2022 (e alterações), Resolução CONTRAN 918/2022 e eventual atualização posterior. O acesso ao texto compilado do CTB no Planalto esteve bloqueado por verificação automatizada; a transcrição do art. 280 foi confrontada com reprodução em publicação oficial do TCE-PR, não diretamente com o portal do Planalto.
 
 **Estado:** documentação de revisão, não aprovação operacional.
+
+## Confronto com Portaria SENATRAN 354/2022 e Resolução CONTRAN 918/2022 — 18/11/2026
+
+Fontes primárias:
+- https://www.gov.br/transportes/pt-br/assuntos/transito/arquivos-senatran/portarias/2022/Portaria3542022.pdf
+- https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao9182022.pdf/@@download/file
+
+**Portaria 354/2022, art. 1º:** o AIT deve observar os campos obrigatórios e facultativos e as instruções dos Anexos I e II. O texto da portaria **não contém os anexos**: a classificação campo a campo continua pendente de acesso aos anexos efetivos. Art. 2º permite modelos adaptados pelo órgão, inclusive campos adicionais. Art. 3º limita o Anexo III da portaria ao processamento informatizado; não confundir com o Anexo III da Resolução 1.031/2026 (fichas MBFT).
+
+**Resolução 918/2022, art. 3º:** a lavratura do AIT depende de constatação/comprovação da infração e dos dados mínimos do art. 280 do CTB **e regulamentação específica**. O § 4º prevê identificação do condutor sempre que possível. O § 5º traz condições próprias para que AIT assinado valha como notificação da autuação; não confundir assinatura com requisito absoluto de validade do AIT.
+
+**Regra editorial para 757-91 e 757-92:** separar (a) dados gerais do CTB 280, (b) campos obrigatórios dos Anexos I e II da Portaria 354/2022, (c) instruções específicas de cada ficha MBFT, e (d) informações recomendáveis de prova. Não transferir automaticamente os campos de teste positivo do art. 10 da Resolução 1.031/2026 para uma recusa do art. 165-A.
+
+**Pendência expressa:** conferir anexos oficiais da Portaria 354/2022, alterações posteriores e fichas integrais antes de afirmar obrigatoriedade individual de campos ou aprovar qualquer ficha.
