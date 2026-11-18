@@ -465,6 +465,10 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                     TextButton(onClick={onNext ?: {}},enabled=onNext!=null) { Text("PRÓXIMA") }
                 }
             }
+            if (result.appliesUntil.isNotBlank()) {
+                Text("ATENÇÃO À DATA FINAL REGISTRADA", color=Color(0xFFFFD18B), fontWeight=FontWeight.SemiBold)
+                Text("O catálogo registra término em ${result.appliesUntil}. Confira a norma oficial e a data do fato antes de utilizar esta referência.", style=MaterialTheme.typography.bodySmall)
+            }
             if (result.code == "757-90") {
                 Text("REFERÊNCIA HISTÓRICA • MBFT 2022", color=Color(0xFFFFD18B), fontWeight=FontWeight.SemiBold)
                 Text("Esta referência está vinculada ao MBFT original de 2022. Antes de utilizar o enquadramento, confira a ficha vigente e as alterações aplicáveis, inclusive as da Resolução CONTRAN nº 1.031/2026.", style=MaterialTheme.typography.bodySmall)
