@@ -29,3 +29,14 @@ Escopo de conferência: 516-91, 516-92, 757-91 e 757-92. Este documento não alt
 - [ ] Submeter conteúdo final à validação editorial/jurídica antes de alterar indicadores de aprovação.
 
 **Regra de segurança:** este arquivo é uma lista de verificação documental, não uma ficha de autuação e não deve ser exibido como orientação aprovada ao usuário final.
+
+## Achados de conferência visual do Anexo III — 18/11/2026
+
+Fonte: PDF oficial acima, páginas físicas 12, 15, 17 e 19 (códigos 516-91, 516-92, 757-91 e 757-92).
+
+- **516-91, coluna “Quando NÃO Autuar”:** a própria ficha remete à referência **757-90** para recusa ao etilômetro sem pelo menos dois sinais. Contudo, o mesmo Anexo III apresenta a ficha **757-91** para essa hipótese. **Divergência interna do documento oficial; não alterar a citação original sem ressalva e sem eventual retificação oficial.**
+- **516-91, 516-92, 757-91 e 757-92, campo “Medida Administrativa”:** o quadro menciona recolhimento do documento de habilitação, ao passo que o **art. 12 da mesma resolução determina que o agente não promoverá o recolhimento** em decorrência dessas infrações. **Sinalizar o conflito entre quadro e dispositivo expresso; não reproduzir o recolhimento como instrução ao agente.**
+- **757-91 e 757-92:** “Quando NÃO Autuar” remete aos códigos 516-91/516-92 do art. 165 quando há dois ou mais sinais de alteração psicomotora, conforme a substância e o procedimento oferecido.
+- **Limite desta auditoria:** a visualização das páginas iniciais não substitui a leitura de eventuais continuações das fichas; os itens finais e a existência de retificações permanecem pendentes de conferência.
+
+**Situação editorial:** divergências registradas; nenhuma ficha aprovada ou publicada.
