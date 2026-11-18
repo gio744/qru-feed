@@ -465,6 +465,10 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
                     TextButton(onClick={onNext ?: {}},enabled=onNext!=null) { Text("PRÓXIMA") }
                 }
             }
+            if (result.appliesFrom.isBlank() && result.appliesUntil.isBlank()) {
+                Text("VIGÊNCIA NÃO VALIDADA NO CATÁLOGO", color=Color(0xFFFFD18B), fontWeight=FontWeight.SemiBold)
+                Text("A ausência de datas cadastradas não confirma vigência. Consulte a norma oficial aplicável à data do fato.", style=MaterialTheme.typography.bodySmall)
+            }
             if (result.appliesUntil.isNotBlank()) {
                 Text("ATENÇÃO À DATA FINAL REGISTRADA", color=Color(0xFFFFD18B), fontWeight=FontWeight.SemiBold)
                 Text("O catálogo registra término em ${result.appliesUntil}. Confira a norma oficial e a data do fato antes de utilizar esta referência.", style=MaterialTheme.typography.bodySmall)
