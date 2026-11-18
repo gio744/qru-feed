@@ -71,6 +71,12 @@ class CatalogSearchTest {
         assertEquals(setOf("alcool", "drogas"), results.take(2).toSet())
         assertEquals("recusa", results.last())
     }
+    @Test fun article165APlacesHistoricalFicheAfterUndatedReferences() {
+        val catalog = bundledEntries()
+        val results = CatalogSearch.search(catalog, "165-A")
+        assertEquals(setOf("757-91", "757-92"), results.take(2).map { it.code }.toSet())
+        assertEquals("757-90", results.last().code)
+    }
     @Test fun hyphenatedArticleKeepsLetter(){assertEquals(listOf("recusa"),CatalogSearch.search(entries,"165-A").map{it.stableKey})}
     @Test fun compactLetterSuffixedArticleMatchesHyphenatedForm() {
         val expected = CatalogSearch.search(entries, "165-A").map { it.stableKey }
