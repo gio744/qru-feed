@@ -52,3 +52,13 @@
 - [ ] Submeter a revisão editorial/jurídica; só então avaliar publicação no pacote de fichas aprovadas.
 
 **Estado técnico:** este arquivo está em `docs/`, fora dos assets publicados; nenhuma ficha foi homologada.
+
+## Complementos identificados na revisão da fonte primária — 18/11/2026
+
+**Fonte:** Resolução CONTRAN nº 1.031/2026, texto principal, arts. 4º, 5º e 11, § 2º. Estes pontos devem ser incorporados às fichas pertinentes **somente após** a revisão integral de cada ficha do Anexo III.
+
+1. **Pré-teste ou teste passivo (art. 4º):** instrumento de triagem não obrigatório, de caráter exclusivamente indicativo; seu resultado não caracteriza infração, não fundamenta autuação nem imputa influência de álcool. Exige-se procedimento de constatação válido.
+2. **Requisitos do etilômetro (art. 5º):** modelo aprovado pelo Inmetro e verificações metrológicas pertinentes; desconto do erro máximo admissível conforme Anexo I. Reteste somente quando o resultado válido estiver prejudicado por motivo técnico ou operacional, inclusive para afastar álcool no trato respiratório superior.
+3. **Fiscalização de quem recebe o veículo (art. 11, § 2º):** os procedimentos de fiscalização realizados com o condutor que recebe o veículo não precisam ser informados no AIT para sua regularidade; isso **não dispensa** fiscalizar esse condutor, conforme o caput do art. 11.
+
+**Pendência:** conferir as condições de aplicação e a redação completa das quatro fichas do Anexo III, antes de qualquer aprovação operacional. Este documento continua sendo rascunho interno.
