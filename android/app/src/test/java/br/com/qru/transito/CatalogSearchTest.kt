@@ -72,6 +72,16 @@ class CatalogSearchTest {
         assertEquals("recusa", results.last())
     }
     @Test fun hyphenatedArticleKeepsLetter(){assertEquals(listOf("recusa"),CatalogSearch.search(entries,"165-A").map{it.stableKey})}
+    @Test fun compactLetterSuffixedArticleMatchesHyphenatedForm() {
+        val expected = CatalogSearch.search(entries, "165-A").map { it.stableKey }
+        for (query in listOf("165A", "165a", "art. 165A", "artigo 165A", "165-A")) {
+            assertEquals("Consulta compacta: $query", expected,
+                CatalogSearch.search(entries, query).map { it.stableKey })
+        }
+        assertEquals(listOf("alcool", "recusa"),
+            CatalogSearch.search(entries, "165").map { it.stableKey })
+    }
+
     @Test fun exactCodeStillMatchesWhenItsDigitsResembleArticleAndInciso() {
         val references = listOf(
             IndexedReference(SearchResult("coded", "Código operacional", "230, XVIII", "230-V", "BR", "draft"), "referencia"),
