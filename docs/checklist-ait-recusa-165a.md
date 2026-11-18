@@ -28,3 +28,21 @@ Para o art. 165-A, a revisão deve verificar **separadamente** os requisitos ger
 Nenhuma das duas fichas de recusa (`757-91` e `757-92`) será marcada como operacionalmente aprovada apenas com este checklist. É necessária conferência individual do texto integral da ficha, do art. 280 do CTB e da regulamentação vigente sobre preenchimento do AIT.
 
 **Este arquivo não modifica o catálogo, o pacote de fichas aprovadas ou o aplicativo instalado.**
+
+## Confronto com art. 280 do CTB — 18/11/2026
+
+Texto do art. 280 reproduzido em decisão oficial do TCE-PR (Diário Eletrônico nº 3576/2025, p. 13): https://www.tce.pr.gov.br/data/files/22/E5/0E/45/532CA91060957BA9026B6394/DETCPR_3576.pdf
+
+**Elementos gerais do AIT (art. 280, incisos I a VI):**
+1. Tipificação da infração;
+2. Local, data e hora da infração;
+3. Placa, marca, espécie e demais dados necessários à identificação do veículo;
+4. Prontuário do condutor, **sempre que possível**;
+5. Identificação do órgão/entidade e da autoridade, agente autuador ou equipamento comprobatório;
+6. Assinatura do infrator, **sempre que possível**, valendo como notificação.
+
+**Distinção necessária:** os elementos do art. 280 aplicam-se genericamente ao AIT, inclusive nos códigos 757-91 e 757-92. Já os requisitos específicos do art. 10 da Resolução 1.031/2026 são expressamente formulados para autuação pelo **art. 165**; não afirmar que o inciso I (dados de medição do etilômetro) ou II (dados do teste de substância) seja obrigatório em toda recusa do **art. 165-A** apenas por analogia.
+
+**Conferência ainda necessária:** texto integral das fichas 757-91 e 757-92, Portaria SENATRAN 354/2022 (e alterações), Resolução CONTRAN 918/2022 e eventual atualização posterior. O acesso ao texto compilado do CTB no Planalto esteve bloqueado por verificação automatizada; a transcrição do art. 280 foi confrontada com reprodução em publicação oficial do TCE-PR, não diretamente com o portal do Planalto.
+
+**Estado:** documentação de revisão, não aprovação operacional.
