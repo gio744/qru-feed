@@ -60,3 +60,11 @@ Fontes primárias:
 **Regra editorial para 757-91 e 757-92:** separar (a) dados gerais do CTB 280, (b) campos obrigatórios dos Anexos I e II da Portaria 354/2022, (c) instruções específicas de cada ficha MBFT, e (d) informações recomendáveis de prova. Não transferir automaticamente os campos de teste positivo do art. 10 da Resolução 1.031/2026 para uma recusa do art. 165-A.
 
 **Pendência expressa:** conferir anexos oficiais da Portaria 354/2022, alterações posteriores e fichas integrais antes de afirmar obrigatoriedade individual de campos ou aprovar qualquer ficha.
+
+## Verificação da disponibilidade dos Anexos I e II — 18/11/2026
+
+O PDF oficial da Portaria SENATRAN 354/2022 foi reaberto diretamente no portal gov.br: https://www.gov.br/transportes/pt-br/assuntos/transito/arquivos-senatran/portarias/2022/Portaria3542022.pdf/@@display-file/file
+
+**Constatação documental:** o arquivo tem apenas duas páginas e **não contém** os Anexos I e II. Seu art. 1º, parágrafo único, indica as funções dos anexos, e o art. 4º informa que estão disponíveis no sítio eletrônico da SENATRAN. A pesquisa realizada não identificou cópia oficial verificável dos anexos nesta etapa.
+
+**Bloqueio:** não atribuir status obrigatório/facultativo a campos específicos com base em anexos que não foram examinados. Manter pendente a obtenção e conferência dos Anexos I e II, inclusive eventuais atualizações posteriores. Nenhuma ficha de recusa aprovada.
