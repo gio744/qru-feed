@@ -51,3 +51,14 @@ Fonte: mesmo PDF oficial, páginas físicas 12–13 (516-91), 15–16 (516-92), 
 - **757-92:** continuação dos procedimentos 5–6 examinada. Hipótese de sinistro com horários e vedação de autuação simultânea. Campo final de informações complementares: “Não há.”
 
 **Pendência distinta da leitura das páginas:** pesquisar retificações ou alterações oficiais posteriores e reconciliar inconsistências internas antes de aprovar fichas. Nenhuma orientação operacional foi liberada.
+
+## Pesquisa de retificações e alterações — 18/11/2026
+
+Fontes oficiais consultadas:
+- Índice SENATRAN/CONTRAN: https://www.gov.br/transportes/pt-br/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran (atualizado em 04/11/2026, conforme página consultada).
+- PDF da Resolução 1.031/2026: https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/resolucao10312026.pdf/@@display-file/file
+- Comunicado oficial: https://www.gov.br/transportes/pt-br/assuntos/noticias/2026/copy_of_08/contran-atualiza-regras-da-lei-seca-e-procedimentos-de-fiscalizacao
+
+**Resultado limitado:** não foi localizada, nesta pesquisa, retificação oficial específica da Resolução 1.031/2026 que solucione as divergências 757-90/757-91 e recolhimento de CNH. Isso **não equivale à certificação de inexistência** de retificação; nova conferência no DOU e em fontes oficiais é exigida antes da aprovação editorial.
+
+**Conduta do QRU:** manter referência histórica identificada como tal, sinalizar conflito documental e manter as quatro fichas sem aprovação operacional.
