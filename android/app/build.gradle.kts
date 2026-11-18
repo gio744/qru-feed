@@ -18,6 +18,7 @@ android {
     defaultConfig {
         applicationId = if (project.hasProperty("qruParallelTest")) "br.com.qru.transito.homologacao20261114" else "br.com.qru.transito"
         manifestPlaceholders["qruAppLabel"] = if (project.hasProperty("qruParallelTest")) "QRU Trânsito TESTE" else "QRU Trânsito"
+        manifestPlaceholders["qruAppIcon"] = if (project.hasProperty("qruParallelTest")) "@drawable/qru_test_launcher" else "@mipmap/ic_launcher"
         minSdk = 28
         targetSdk = 35
         versionCode = 2
