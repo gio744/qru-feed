@@ -389,8 +389,8 @@ private fun openOfficialSource(context: android.content.Context, url: String) {
             Text(result.title,style=MaterialTheme.typography.titleMedium,fontWeight=FontWeight.SemiBold)
             Text("Art. ${result.article.orEmpty()}  •  ${result.code.orEmpty()}",
                 color=Color(0xFFC1D4E6),style=MaterialTheme.typography.bodyMedium)
-            Text(if (result.code == "757-90") "ATENÇÃO • VERIFICAR FICHA VIGENTE DO MBFT" else "REFERÊNCIA EM CONFERÊNCIA",
-                color=if (result.code == "757-90") Color(0xFFFFD18B) else Color(0xFFAABFD1),
+            Text(if (result.appliesUntil.isNotBlank()) "REFERÊNCIA COM DATA FINAL REGISTRADA • CONFERIR VIGÊNCIA" else "REFERÊNCIA EM CONFERÊNCIA",
+                color=if (result.appliesUntil.isNotBlank()) Color(0xFFFFD18B) else Color(0xFFAABFD1),
                 style=MaterialTheme.typography.labelSmall)
         }
     }
