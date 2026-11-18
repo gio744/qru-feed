@@ -68,3 +68,12 @@ O PDF oficial da Portaria SENATRAN 354/2022 foi reaberto diretamente no portal g
 **Constatação documental:** o arquivo tem apenas duas páginas e **não contém** os Anexos I e II. Seu art. 1º, parágrafo único, indica as funções dos anexos, e o art. 4º informa que estão disponíveis no sítio eletrônico da SENATRAN. A pesquisa realizada não identificou cópia oficial verificável dos anexos nesta etapa.
 
 **Bloqueio:** não atribuir status obrigatório/facultativo a campos específicos com base em anexos que não foram examinados. Manter pendente a obtenção e conferência dos Anexos I e II, inclusive eventuais atualizações posteriores. Nenhuma ficha de recusa aprovada.
+
+## Pesquisa complementar — 18/11/2026: retificação mencionada em fonte secundária
+
+- Texto oficial da Portaria 354/2022: https://www.gov.br/transportes/pt-br/assuntos/transito/arquivos-senatran/portarias/2022/Portaria3542022.pdf
+- Consulta secundária: https://www.legisweb.com.br/legislacao/?id=429755 — a página **menciona** retificação publicada no DOU de 08/11/2024 e alterações do Anexo IV pelas Portarias SENATRAN 1.230/2022, 1.477/2022 e 4/2023.
+
+**Atenção:** a existência e o conteúdo exato da retificação de 08/11/2024 ainda não foram confrontados diretamente com o DOU. Não afirmar que ela altera os Anexos I ou II, nem reproduzir sua redação sem localizar a publicação oficial. Também não utilizar anexos da revogada Portaria DENATRAN 59/2007 como se fossem anexos vigentes da Portaria 354/2022.
+
+**Próximo bloqueio:** obter versão oficial verificável dos Anexos I e II e a publicação original da retificação antes de classificar campos do AIT como obrigatórios ou facultativos.
