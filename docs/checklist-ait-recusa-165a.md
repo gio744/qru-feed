@@ -77,3 +77,14 @@ O PDF oficial da Portaria SENATRAN 354/2022 foi reaberto diretamente no portal g
 **Atenção:** a existência e o conteúdo exato da retificação de 08/11/2024 ainda não foram confrontados diretamente com o DOU. Não afirmar que ela altera os Anexos I ou II, nem reproduzir sua redação sem localizar a publicação oficial. Também não utilizar anexos da revogada Portaria DENATRAN 59/2007 como se fossem anexos vigentes da Portaria 354/2022.
 
 **Próximo bloqueio:** obter versão oficial verificável dos Anexos I e II e a publicação original da retificação antes de classificar campos do AIT como obrigatórios ou facultativos.
+
+## Retificação de 08/11/2024 — fonte oficial identificada
+
+**Fonte oficial SENATRAN (reprodução do DOU):** https://www.gov.br/transportes/pt-br/assuntos/transito/arquivos-senatran/portarias/2022/Portaria3542022R2.pdf
+**Publicação original DOU:** https://www.in.gov.br/en/web/dou/-/retificacao-*-595027040 — 08/11/2024, edição 217, seção 1, p. 119.
+
+**Conteúdo efetivamente conferido:** retifica **exclusivamente o Anexo V** da Portaria SENATRAN 354/2022, substituindo “210320 - PREFEITURA MUNICIPAL DE CAMPOS DE JULHO - MT” por “210320 - PREFEITURA MUNICIPAL DE CAMPOS DE JÚLIO - MT”. A publicação informa republicação por incorreções no DOU de 07/11/2024.
+
+**Conclusão delimitada:** esta retificação **não modifica os Anexos I ou II** nem suas regras de preenchimento do AIT. Isso não dispensa verificar eventuais outros atos posteriores. A Portaria SENATRAN 423/2024 altera o Anexo IV (códigos), não os Anexos I e II: https://www.gov.br/transportes/pt-br/assuntos/transito/arquivos-senatran/portarias/2024/Portaria4232024.pdf
+
+**Pendente:** localizar versões oficiais verificáveis dos Anexos I e II; manter as fichas 757-91 e 757-92 sem homologação operacional.
