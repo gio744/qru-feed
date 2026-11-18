@@ -40,3 +40,14 @@ Fonte: PDF oficial acima, páginas físicas 12, 15, 17 e 19 (códigos 516-91, 51
 - **Limite desta auditoria:** a visualização das páginas iniciais não substitui a leitura de eventuais continuações das fichas; os itens finais e a existência de retificações permanecem pendentes de conferência.
 
 **Situação editorial:** divergências registradas; nenhuma ficha aprovada ou publicada.
+
+## Conferência das continuações do Anexo III — 18/11/2026
+
+Fonte: mesmo PDF oficial, páginas físicas 12–13 (516-91), 15–16 (516-92), 17–18 (757-91) e 19–20 (757-92); páginas físicas indicadas pela sequência de páginas do PDF, e não por numeração impressa.
+
+- **516-91:** definições/procedimentos 5–11 e informações complementares foram examinados. Consta caracterização criminal com medição realizada a partir de 0,34 mg/L ou dois sinais; encaminhamento à autoridade competente; vedação de autos simultâneos 165 e 165-A; simulação de sopro como recusa; constatação posterior em sinistro, com horários registrados; reincidência em até 12 meses com multa em dobro.
+- **516-92:** continuação dos procedimentos 4–9 e informações complementares examinadas. Consta encaminhamento do veículo na ausência de condutor habilitado; possível crime do art. 306; vedação de autuação simultânea; simulação durante teste como recusa; constatação posterior em sinistro com horários; multa em dobro por reincidência em até 12 meses. As informações complementares tratam de contraprova e exames suplementares sob responsabilidade da autoridade policial.
+- **757-91:** continuação dos procedimentos 5–8 examinada. Simulação do sopro como recusa; hipótese de sinistro com horários; vedação de autuação simultânea; multa em dobro na reincidência em até 12 meses. Campo final de informações complementares: “Não há.”
+- **757-92:** continuação dos procedimentos 5–6 examinada. Hipótese de sinistro com horários e vedação de autuação simultânea. Campo final de informações complementares: “Não há.”
+
+**Pendência distinta da leitura das páginas:** pesquisar retificações ou alterações oficiais posteriores e reconciliar inconsistências internas antes de aprovar fichas. Nenhuma orientação operacional foi liberada.
