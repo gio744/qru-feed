@@ -1,0 +1,43 @@
+name: QRU TESTE - Aplicar icone aprovado
+on:
+  workflow_dispatch:
+    inputs:
+      icon_zip_url:
+        description: 'URL HTTPS direta para ZIP com android/app/src/main/res/mipmap-*/ic_launcher.png'
+        required: true
+        type: string
+jobs:
+  icon-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validar origem e baixar pacote
+        env:
+          ICON_ZIP_URL: ${{ inputs.icon_zip_url }}
+        run: |
+          python3 - <<'PY'
+          import os, urllib.parse
+          url = urllib.parse.urlparse(os.environ["ICON_ZIP_URL"])
+          if url.scheme != "https" or url.hostname not in {"github.com","objects.githubusercontent.com","release-assets.githubusercontent.com"}:
+              raise SystemExit("URL deve ser HTTPS hospedada no GitHub")
+          PY
+          curl --fail --location --silent --show-error --max-time 60 --output /tmp/qru-icon.zip "$ICON_ZIP_URL"
+      - name: Validar e instalar somente icones no workspace
+        run: |
+          python3 - <<'PY'
+          import zipfile, pathlib
+          z=zipfile.ZipFile('/tmp/qru-icon.zip')
+          base=pathlib.Path('android/app/src/main/res')
+          for density in ('mdpi','hdpi','xhdpi','xxhdpi','xxxhdpi'):
+              rel=f'android/app/src/main/res/mipmap-{density}/ic_launcher.png'
+              data=z.read(rel)
+              if not data.startswith(b'\x89PNG\r\n\x1a\n'): raise ValueError(f'PNG invalido: {rel}')
+              (base/f'mipmap-{density}'/'ic_launcher.png').write_bytes(data)
+          PY
+      - name: Disponibilizar icones validados para revisao
+        uses: actions/upload-artifact@v4
+        with:
+          name: qru-icone-test-validado
+          path: android/app/src/main/res/mipmap-*/ic_launcher.png
