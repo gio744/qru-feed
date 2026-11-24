@@ -58,7 +58,8 @@ object CatalogSearch {
             val code = normalize(result.code.orEmpty()).replace(Regex("[^a-z0-9]"), "")
             val title = normalize(result.title)
             val text = normalize("${result.title} ${result.article.orEmpty()} ${result.code.orEmpty()} ${entry.terms}")
-            val matches = tokens.count { text.contains(it) }
+            val retrovisorReference = code in setOf("66371", "66372", "66450")
+            val matches = tokens.count { text.contains(it) || (retrovisorReference && it in setOf("retrovisor", "retrovisores")) }
             val exactCode = code.isNotBlank() && code == compact
             val partialCode = partialInfractionCodeQuery && code.startsWith(numericKey)
             val resultParts = normalize(result.article.orEmpty()).split(Regex("[^a-z0-9-]+")).filter { it.isNotBlank() }
