@@ -248,4 +248,12 @@ class CatalogSearchTest {
         }
     }
 
+
+    @Test fun retrovisorSearchReturnsRelevantEquipmentReferences() {
+        val catalog = bundledEntries()
+        for (query in listOf("retrovisor", "retrovisores")) {
+            assertEquals(setOf("663-71", "663-72", "664-50"),
+                CatalogSearch.search(catalog, query).mapNotNull { it.code }.toSet())
+        }
+    }
 }
