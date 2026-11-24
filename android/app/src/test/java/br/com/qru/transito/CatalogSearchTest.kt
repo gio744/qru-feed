@@ -256,4 +256,17 @@ class CatalogSearchTest {
                 CatalogSearch.search(catalog, query).mapNotNull { it.code }.toSet())
         }
     }
+
+    @Test fun operationalShortcutsUseBundledCatalog() {
+        val catalog = bundledEntries()
+        for (query in listOf("bafômetro", "bafometro", "etilômetro"))
+            assertEquals(listOf("516-91", "757-91", "757-90"),
+                CatalogSearch.search(catalog, query).mapNotNull { it.code })
+        for (query in listOf("CNH vencida", "condutor dirigindo com CNH vencida"))
+            assertEquals(listOf("504-50", "509-60", "514-20"),
+                CatalogSearch.search(catalog, query).mapNotNull { it.code })
+        for (query in listOf("recusa ao bafômetro", "recusa etilômetro"))
+            assertEquals(listOf("757-91", "757-90"),
+                CatalogSearch.search(catalog, query).mapNotNull { it.code })
+    }
 }
