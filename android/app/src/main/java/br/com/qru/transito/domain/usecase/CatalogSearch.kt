@@ -40,6 +40,17 @@ object CatalogSearch {
         val tokens = normalized.split(Regex("[^a-z0-9]+"))
             .filter { it.isNotBlank() && it !in stopWords }.distinct()
         if (tokens.isEmpty()) return emptyList()
+        // Explicit operational shortcuts; exact identifiers remain handled below.
+        val shortcutCodes = when (tokens.toSet()) {
+            setOf("bafometro"), setOf("etilometro") -> listOf("516-91", "757-91", "757-90")
+            setOf("cnh", "vencida") -> listOf("504-50", "509-60", "514-20")
+            setOf("recusa", "bafometro"), setOf("recusa", "etilometro") -> listOf("757-91", "757-90")
+            else -> emptyList()
+        }
+        if (shortcutCodes.isNotEmpty()) {
+            val selected = shortcutCodes.flatMap { code -> entries.filter { it.result.code == code }.map { it.result } }
+            if (selected.isNotEmpty()) return selected
+        }
         val compact = tokens.joinToString("")
         val genericTyreQuery = tokens == listOf("pneu")
         val articleQuery = normalized.replace(Regex("^(?:artigo|art)\\.?\\s*"), "").trim()
