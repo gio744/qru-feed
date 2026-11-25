@@ -1,0 +1,39 @@
+name: CONTRAN Catalog Staging
+on:
+  push:
+    branches: ['dev/qru-homologacao-isolada-20261116']
+    paths:
+      - '.github/workflows/contran-catalog-staging.yml'
+      - 'scripts/import_contran_catalog.py'
+permissions:
+  contents: read
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install beautifulsoup4==4.13.4
+      - run: |
+          mkdir -p staging
+          curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' --max-time 120 --retry 2 'https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran' -o staging/source.html
+          python scripts/import_contran_catalog.py staging/source.html staging/catalog.json
+      - run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          records = json.loads(Path('staging/catalog.json').read_text())['records']
+          print('Imported records:', len(records))
+          print('Highest number:', max(r['number'] for r in records))
+          print('All statuses pending:', all(r['status']=='pending_review' for r in records))
+          assert len(records) >= 900, 'Coverage threshold not met; review source layout'
+          assert max(r['number'] for r in records) >= 1033, 'Recent records missing'
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: contran-catalog-review
+          path: staging/
+          retention-days: 7
