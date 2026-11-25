@@ -43,6 +43,8 @@ private fun normExcerpt(text:String,query:String):String {
 /** Bundled documentary text; does not mark any operational ficha as validated. */
 @Composable fun OfflineNormLibrary() {
  var category by rememberSaveable { mutableStateOf("Resoluções") }
+ var showContranCatalog by rememberSaveable { mutableStateOf(false) }
+ if(showContranCatalog) ContranCatalogDialog { showContranCatalog=false }
  Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
   listOf("Resoluções","Portarias","Deliberações","Manuais").forEach { name ->
    FilterChip(selected=category==name,onClick={category=name},label={Text(name)},
@@ -54,6 +56,7 @@ private fun normExcerpt(text:String,query:String):String {
   Text("Nenhum documento desta categoria foi incluído nesta versão.",style=MaterialTheme.typography.bodyMedium)
   return
  }
+ if(category=="Resoluções") OutlinedButton(onClick={showContranCatalog=true},modifier=Modifier.fillMaxWidth()) { Text("CATÁLOGO CONTRAN AMPLIADO") }
  val context=LocalContext.current
  var catalog by remember { mutableStateOf<List<OfflinePdfDocument>?>(null) }
  var catalogFailed by remember { mutableStateOf(false) }
