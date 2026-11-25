@@ -17,9 +17,12 @@ def parse(html):
             if len(cells) != 5:
                 continue
             link = cells[0].find("a")
-            if not link or not re.fullmatch(r"\d{1,4}", link.get_text(strip=True)):
+            label = link.get_text(" ", strip=True) if link else ""
+            number_match = re.fullmatch(r"(\d{1,4})(?:\s+(republicada))?", label, re.IGNORECASE)
+            if not number_match:
                 continue
-            number = int(link.get_text(strip=True))
+            number = int(number_match[1])
+            republication = bool(number_match[2])
             date, publication, subject, situation = [c.get_text(" ", strip=True) for c in cells[1:]]
             match = re.search(r"\b\d{1,2}[./-]\d{1,2}[./-](\d{4}|\d{2})\b", date)
             if not subject:
@@ -36,8 +39,9 @@ def parse(html):
             primary = urljoin(SOURCE, link.get("href", ""))
             if not any(x["url"] == primary for x in links):
                 raise ValueError(f"Unverified primary URL: {number}")
-            if not match and "retificação" in subject.casefold():
-                key = f"{number}/correction/{len(records)}"
+            kind = "republication" if republication else ("correction" if not match and "retificação" in subject.casefold() else "resolution")
+            if kind != "resolution":
+                key = f"{number}/{kind}/{len(records)}"
             else:
                 key = f"{number}/{year}"
             if key in records:
@@ -45,7 +49,7 @@ def parse(html):
             records[key] = dict(number=number, year=year, date=date, publication=publication,
                                 subject=subject, officialSituation=situation,
                                 status="pending_review", source=primary, links=links,
-                                documentKind="correction" if not match and "retificação" in subject.casefold() else "resolution")
+                                documentKind=kind)
     if not records:
         raise ValueError("No records found")
     return sorted(records.values(), key=lambda r: (r["year"] or 0, r["number"]), reverse=True)
