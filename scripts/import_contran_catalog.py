@@ -22,11 +22,11 @@ def parse(html):
             number = int(link.get_text(strip=True))
             date, publication, subject, situation = [c.get_text(" ", strip=True) for c in cells[1:]]
             match = re.search(r"\b\d{1,2}[./-]\d{1,2}[./-](\d{4}|\d{2})\b", date)
-            if not match or not subject:
-                print(f"REVIEW REQUIRED: resolution {number}; date={date!r}; subject={subject!r}")
-                raise ValueError(f"Invalid row {number}: date={date!r}, subject={subject!r}")
-            year = int(match[1])
-            year = year if year >= 1900 else (1900 + year if year >= 90 else 2000 + year)
+            if not subject:
+                raise ValueError(f"Missing subject: {number}")
+            year = int(match[1]) if match else None
+            if year is not None:
+                year = year if year >= 1900 else (1900 + year if year >= 90 else 2000 + year)
             links = []
             for a in row.find_all("a", href=True):
                 url = urljoin(SOURCE, a["href"])
@@ -36,15 +36,19 @@ def parse(html):
             primary = urljoin(SOURCE, link.get("href", ""))
             if not any(x["url"] == primary for x in links):
                 raise ValueError(f"Unverified primary URL: {number}")
-            key = f"{number}/{year}"
+            if not match and "retificação" in subject.casefold():
+                key = f"{number}/correction/{len(records)}"
+            else:
+                key = f"{number}/{year}"
             if key in records:
                 raise ValueError(f"Duplicate: {key}")
             records[key] = dict(number=number, year=year, date=date, publication=publication,
                                 subject=subject, officialSituation=situation,
-                                status="pending_review", source=primary, links=links)
+                                status="pending_review", source=primary, links=links,
+                                documentKind="correction" if not match and "retificação" in subject.casefold() else "resolution")
     if not records:
         raise ValueError("No records found")
-    return sorted(records.values(), key=lambda r: (r["year"], r["number"]), reverse=True)
+    return sorted(records.values(), key=lambda r: (r["year"] or 0, r["number"]), reverse=True)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
