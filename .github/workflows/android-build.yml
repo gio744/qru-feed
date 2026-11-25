@@ -11,6 +11,7 @@ jobs:
     timeout-minutes: 25
     permissions:
       contents: read
+      actions: read
     env:
       ANDROID_COMPILE_SDK: "35"
     steps:
@@ -64,12 +65,32 @@ jobs:
           python -m unittest discover -s scripts -p 'test_verify_apk_norms.py' -v
           python -m unittest discover -s scripts -p 'test_register_apk.py' -v
 
+      - name: Recover validated CONTRAN catalog for isolated build
+        if: github.ref == 'refs/heads/dev/qru-homologacao-isolada-20261116'
+        uses: actions/download-artifact@v4
+        with:
+          name: contran-catalog-validated
+          run-id: 45606775871
+          github-token: ${{ github.token }}
+          path: catalog-staging
+
+      - name: Validate and stage CONTRAN catalog
+        if: github.ref == 'refs/heads/dev/qru-homologacao-isolada-20261116'
+        run: |
+          python -c "import json; r=json.load(open('catalog-staging/catalog.json'))['records']; assert len(r)==1035; assert all(x['status']=='pending_review' for x in r)"
+          cp catalog-staging/catalog.json android/app/src/main/assets/norms/contran-catalog.json
+
       - name: Compile and unit test
         working-directory: android
         run: gradle -PqruParallelTest testDebugUnitTest assembleDebug --stacktrace --warning-mode all
 
       - name: Verify offline documents inside compiled APK
         run: python scripts/verify_apk_norms.py android/app/build/outputs/apk/debug/app-debug.apk android/app/src/main/assets/norms/pdf-catalog.json android/app/src/main/assets/norms/reference-page-ranges.json
+
+      - name: Verify expanded catalog packaged intact
+        if: github.ref == 'refs/heads/dev/qru-homologacao-isolada-20261116'
+        run: |
+          python -c "import zipfile,pathlib; z=zipfile.ZipFile('android/app/build/outputs/apk/debug/app-debug.apk'); assert z.read('assets/norms/contran-catalog.json')==pathlib.Path('catalog-staging/catalog.json').read_bytes()"
 
       - name: Verify isolated homologation APK identity
         run: |
