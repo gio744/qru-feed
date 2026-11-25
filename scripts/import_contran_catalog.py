@@ -23,7 +23,8 @@ def parse(html):
             date, publication, subject, situation = [c.get_text(" ", strip=True) for c in cells[1:]]
             match = re.search(r"\b\d{1,2}[./-]\d{1,2}[./-](\d{4}|\d{2})\b", date)
             if not match or not subject:
-                raise ValueError(f"Invalid row {number}")
+                print(f"REVIEW REQUIRED: resolution {number}; date={date!r}; subject={subject!r}")
+                raise ValueError(f"Invalid row {number}: date={date!r}, subject={subject!r}")
             year = int(match[1])
             year = year if year >= 1900 else (1900 + year if year >= 90 else 2000 + year)
             links = []
