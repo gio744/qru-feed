@@ -52,6 +52,16 @@ def parse(html):
                                 documentKind=kind)
     if not records:
         raise ValueError("No records found")
+    for record in records.values():
+        if record["documentKind"] == "resolution":
+            continue
+        candidates = [r for r in records.values()
+                      if r["documentKind"] == "resolution" and r["number"] == record["number"]
+                      and (record["year"] is None or r["year"] == record["year"])]
+        record["relatedResolution"] = (
+            {"number": candidates[0]["number"], "year": candidates[0]["year"]}
+            if len(candidates) == 1 else None
+        )
     return sorted(records.values(), key=lambda r: (r["year"] or 0, r["number"]), reverse=True)
 
 if __name__ == "__main__":
