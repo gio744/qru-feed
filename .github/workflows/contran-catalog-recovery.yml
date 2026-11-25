@@ -1,0 +1,30 @@
+name: CONTRAN Catalog Recovery
+on:
+  push:
+    branches: ['dev/qru-homologacao-isolada-20261116']
+    paths: ['.github/workflows/contran-catalog-recovery.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install beautifulsoup4==4.13.4
+      - uses: actions/download-artifact@v4
+        with:
+          name: contran-catalog-review
+          run-id: 45600995824
+          github-token: ${{ github.token }}
+          path: recovered
+      - run: |
+          python scripts/import_contran_catalog.py recovered/source.html recovered/catalog.json
+          python -c "import json; r=json.load(open('recovered/catalog.json'))['records']; print(len(r)); assert len(r)==1035"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: contran-catalog-validated
+          path: recovered/catalog.json
