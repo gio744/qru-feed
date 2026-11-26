@@ -26,6 +26,7 @@ internal fun ContranCatalogDialog(onClose:()->Unit) {
  var entries by remember { mutableStateOf<List<ContranEntry>?>(null) }
  var failed by remember { mutableStateOf(false) }
  var query by remember { mutableStateOf("") }
+ var kind by remember { mutableStateOf("Todos") }
  var linkError by remember { mutableStateOf(false) }
  LaunchedEffect(Unit) {
   val result=withContext(Dispatchers.IO) { runCatching {
@@ -36,8 +37,8 @@ internal fun ContranCatalogDialog(onClose:()->Unit) {
   entries=result.getOrNull()
   failed=result.isFailure
  }
- val visible=remember(entries,query) { entries.orEmpty().filter {
-  matchesNorm("Resolução ${it.number}/${it.year ?: ""}",it.subject,query)
+ val visible=remember(entries,query,kind) { entries.orEmpty().filter {
+  (kind=="Todos" || (kind=="Resoluções" && it.documentKind=="resolution") || (kind=="Complementos" && it.documentKind in setOf("correction","republication"))) && matchesNorm("Resolução ${it.number}/${it.year ?: ""}",it.subject,query)
  } }
  Dialog(onDismissRequest=onClose,properties=DialogProperties(usePlatformDefaultWidth=false)) {
   Surface(Modifier.fillMaxSize()) {
@@ -45,6 +46,11 @@ internal fun ContranCatalogDialog(onClose:()->Unit) {
     Text("Catálogo CONTRAN",style=MaterialTheme.typography.titleLarge)
     Text("Índice documental. Vigência pendente de conferência. Os links exigem internet.")
     OutlinedTextField(query,{query=it},Modifier.fillMaxWidth(),label={Text("Número, ano ou assunto")},singleLine=true)
+    Row(horizontalArrangement=Arrangement.spacedBy(6.dp)) {
+     listOf("Todos","Resoluções","Complementos").forEach { option ->
+      FilterChip(selected=kind==option,onClick={kind=option},label={Text(option)})
+     }
+    }
     if(failed) Text("Catálogo ampliado indisponível nesta versão.")
     else if(entries==null) LinearProgressIndicator(Modifier.fillMaxWidth())
     else Text("${visible.size} registros")
